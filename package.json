@@ -2,7 +2,7 @@
   "name": "www",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jpmcglone.github.io/jpmcglone",
+  "homepage": "https://jpmcglone.com",
   "dependencies": {
     "bootstrap": "^4.2.1",
     "jquery": "*",
