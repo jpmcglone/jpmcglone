@@ -14,7 +14,6 @@ export default class Main extends React.Component {
            <a href="/about"> <img src={Me} className="image"/></a>
         </div>
      </center>
-
     );
   }
 }

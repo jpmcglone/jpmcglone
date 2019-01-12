@@ -3,14 +3,13 @@ import Main from './Main'
 import About from './About'
 import FourOhFour from './404'
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 
 export default class Content extends React.Component {
   render() {
     return (
-                  <div class="container-content">
-    <Router basename={process.env.PUBLIC_URL}>
+    <div class="container-content">
       <Container>
         <Row>
           <Col>
@@ -22,7 +21,6 @@ export default class Content extends React.Component {
           </Col>
        	</Row>
       </Container>
-    </Router>
     </div>
     );
   }
