@@ -1,2 +1,0 @@
-# jpmcglone
-jpmcglone website
