@@ -2,6 +2,7 @@ title: JP McGlone
 description: The official website of JP McGlone
 author: JP McGlone
 github: https://github.com/jpmcglone
+year: 2019
 about: I'm an iOS Software engineer, a meetup organizer, a gamer, and much more.
 disqus_shortname: jpmcglone
 google_analytics: UA-147052480-1
@@ -40,8 +41,6 @@ urls:
     url: /about/
   - text: My Projects
     url: /projects/
-  - text: Exclusive Content
-    url: "https://www.subscribestar.com/jpmcglone"
 
 url: "https://www.jpmcglone.com"
 baseurl: ""
