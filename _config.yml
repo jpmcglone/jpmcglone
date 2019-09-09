@@ -41,6 +41,8 @@ urls:
     url: /about/
   - text: My Projects
     url: /projects/
+  - text: Resumé
+    url: /resume/
 
 url: "https://www.jpmcglone.com"
 baseurl: ""

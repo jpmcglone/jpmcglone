@@ -3,10 +3,10 @@
   <channel>
     <title>JP McGlone</title>
     <description>The official website of JP McGlone</description>
-    <link>https://www.jpmcglone.com/</link>
-    <atom:link href="https://www.jpmcglone.com/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Sep 2019 12:38:20 -0400</pubDate>
-    <lastBuildDate>Mon, 09 Sep 2019 12:38:20 -0400</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 09 Sep 2019 13:03:13 -0400</pubDate>
+    <lastBuildDate>Mon, 09 Sep 2019 13:03:13 -0400</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -24,8 +24,8 @@
 &lt;p&gt;I plan to share my ideas here, write public letters, talk about programming, and much more. So make sure to bookmark this site and visit regularly!&lt;/p&gt;
 </description>
         <pubDate>Tue, 03 Sep 2019 20:27:00 -0400</pubDate>
-        <link>https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</link>
-        <guid isPermaLink="true">https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</guid>
+        <link>http://localhost:4000/personal/2019/09/03/new-blog.html</link>
+        <guid isPermaLink="true">http://localhost:4000/personal/2019/09/03/new-blog.html</guid>
         
         
         <category>personal</category>
