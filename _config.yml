@@ -58,13 +58,9 @@ plugins:
 jekyll-archives:
   enabled: all
   layouts:
-    year: archive
+    month: archive
   permalinks:
-    year: /archives/:year/
     month: /archives/:year/:month/
-    day: /archives/:year/:month/:day/
-    tag: /archives/tag/:name/
-    category: /archives/category/:name/
 
 compress_html:
   clippings: all
