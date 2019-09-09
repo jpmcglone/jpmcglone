@@ -1,0 +1,74 @@
+title: JP McGlone
+description: The official website of JP McGlone
+author: JP McGlone
+github: https://github.com/jpmcglone
+year: 2019
+about: I'm an iOS Software engineer, a meetup organizer, a gamer, and much more.
+disqus_shortname: jpmcglone
+google_analytics: UA-147052480-1
+
+enableTags: true
+tagarray:
+  []
+
+collections:
+  project:
+    output: true
+    permalink: /project/:path/
+
+social:
+  - icon: fa-youtube
+    link: "https://youtube.com/user/jpmcglone"
+  - icon: fa-twitter
+    link: "https://twitter.com/jpmcglone"
+  - icon: fa-instagram
+    link: "https://www.instagram.com/thejpmcglone/"
+  - icon: fa-linkedin
+    link: "https://linkedin.com/in/john-mcglone-18513014/"
+  - icon: fa-github
+    link: "https://github.com/jpmcglone"
+  - icon: fa-stack-overflow
+    link: "https://stackoverflow.com/users/1218786/jp"
+  - icon: fa-medium
+    link: "https://medium.com/@jpmcglone"
+
+share:
+  twitter_username: jpmcglone
+  fb_appid: 2804436962919708
+
+urls:
+  - text: About JP
+    url: /about/
+  - text: My Projects
+    url: /projects/
+
+url: "https://www.jpmcglone.com"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
+markdown: kramdown
+plugins:
+  - jekyll-paginate
+  - jekyll-gist
+  - jekyll-archives
+  - jekyll-sitemap
+
+
+jekyll-archives:
+  enabled: all
+  layouts:
+    year: archive
+  permalinks:
+    year: /archives/:year/
+    month: /archives/:year/:month/
+    day: /archives/:year/:month/:day/
+    tag: /archives/tag/:name/
+    category: /archives/category/:name/
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ["development"]

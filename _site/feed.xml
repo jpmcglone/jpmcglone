@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JP McGlone</title>
+    <description>The official website of JP McGlone</description>
+    <link>https://www.jpmcglone.com/</link>
+    <atom:link href="https://www.jpmcglone.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 06 Sep 2019 21:05:51 -0400</pubDate>
+    <lastBuildDate>Fri, 06 Sep 2019 21:05:51 -0400</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Welcome to my new blog</title>
+        <description>&lt;p&gt;Welcome to my new blog.&lt;/p&gt;
+
+&lt;p&gt;For those of you who know me already, you know that I post quite a lot across my &lt;a href=&quot;https://twitter.com/JPMcGlone&quot;&gt;social&lt;/a&gt; &lt;a href=&quot;https://www.facebook.com/thejpmcglone&quot;&gt;media&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/thejpmcglone/&quot;&gt;accounts&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some of those posts have become lengthier (and more thought out) blog posts over on my &lt;a href=&quot;https://medium.com/@jpmcglone&quot;&gt;Medium&lt;/a&gt; profile, and although I enjoy posting to that site overall, I didn’t love that the blog belonged to “medium dot com” and not “jp mcglone dot com”&lt;/p&gt;
+
+&lt;p&gt;So, here we are. Welcome to www.jpmcglone.com&lt;/p&gt;
+
+&lt;p&gt;The design of this blog will likely update over the months (and maybe even years). I built and deployed this blog using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt;, a static site generator written in ruby, which uses a format called &lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Front Matter&lt;/a&gt; that is easy to work with (and export later, if I ever need to).&lt;/p&gt;
+
+&lt;p&gt;I plan to share my ideas here, write public letters, talk about programming, and much more. So make sure to bookmark this site and visit regularly!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 03 Sep 2019 20:27:00 -0400</pubDate>
+        <link>https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</link>
+        <guid isPermaLink="true">https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</guid>
+        
+        
+        <category>personal</category>
+        
+      </item>
+    
+  </channel>
+</rss>
