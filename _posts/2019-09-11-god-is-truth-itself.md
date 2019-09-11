@@ -2,7 +2,7 @@
 layout: post
 title: God is Truth itself
 date: 2019-09-11 01:17 -0400
-categories: [personal]
+categories: [philosophy]
 ---
 
 "Non-believer" doesn't really work. Not for the way that I think about Truth.
