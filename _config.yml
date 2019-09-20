@@ -43,6 +43,8 @@ urls:
     url: /projects/
   - text: Resumé
     url: /resume/
+  - text: JP in the News
+    url: /in-the-news/
 
 url: "https://www.jpmcglone.com"
 baseurl: ""

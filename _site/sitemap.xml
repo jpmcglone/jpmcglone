@@ -3,37 +3,37 @@
   <channel>
     <title>JP McGlone</title>
     <description>The official website of JP McGlone</description>
-    <link>https://www.jpmcglone.com/</link>
-    <atom:link href="https://www.jpmcglone.com/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 11 Sep 2019 01:32:49 -0400</pubDate>
-    <lastBuildDate>Wed, 11 Sep 2019 01:32:49 -0400</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/sitemap.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 20 Sep 2019 10:56:41 -0400</pubDate>
+    <lastBuildDate>Fri, 20 Sep 2019 10:56:41 -0400</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>God is Truth itself</title>
-        <description>&lt;p&gt;“Non-believer” doesn’t really work. Not for the way that I think about Truth.&lt;/p&gt;
+        <description>&lt;p&gt;I was thinking about the term “non-believer”, and it doesn’t really work for the way that I think about Truth.&lt;/p&gt;
 
-&lt;p&gt;I mean, I guess it can make sense, but if you believe in Truth itself, and you aim for it, you’re not merely a “believer” – that implies that Truth is just a belief.&lt;/p&gt;
+&lt;p&gt;I mean, I guess it &lt;em&gt;could&lt;/em&gt; make sense, but if you believe in Truth itself, and you aim to understand and honor it, you’re not merely a “believer” – that makes Truth sound like superstition.&lt;/p&gt;
 
-&lt;p&gt;A belief in Truth itself? That seems so belittling.&lt;/p&gt;
+&lt;p&gt;A belief in Truth itself? That seems belittling.&lt;/p&gt;
 
-&lt;p&gt;It’s not a mere belief–no, it’s more a statement of certainty; a conviction.&lt;/p&gt;
+&lt;p&gt;It’s not a mere belief–no, it’s a statement of certainty; a conviction.&lt;/p&gt;
 
-&lt;p&gt;“Follower” might work (of Truth itself). And maybe “seeker” (again, of Truth itself). I don’t say “God” because I don’t think others think of “God” in exactly the same way.&lt;/p&gt;
+&lt;p&gt;“Follower” of Truth might work. And maybe “seeker” of Truth. I don’t tend to say “God” when talking about this topic, because I don’t think others think of “God” in exactly the same way; although they might think of God as Truth itself, they think God is more than that. That God isn’t just Truth, but that Truth is an extension of God. I don’t see the difference, but I’ve had this debate many times now.&lt;/p&gt;
 
-&lt;p&gt;“Follower”, “seeker”, “believer”… “child of Truth itself”.&lt;/p&gt;
+&lt;p&gt;“Follower”, “seeker”, “believer”… “child” of Truth itself.&lt;/p&gt;
 
-&lt;p&gt;The more I explore this idea of “God is Truth itself”, the more I think this is what our ancestors actually understood “God” to be.&lt;/p&gt;
+&lt;p&gt;The more I explore this idea of “God is Truth itself”, the more I think this is precisely what our ancestors actually understood “God” to be.&lt;/p&gt;
 
 &lt;p&gt;Perhaps what the bible describes is the (loosely put) “personality” of Truth itself, which is sort of like how a lake or a yard has a personality (even though they’re “just” manifestations of nature).&lt;/p&gt;
 
-&lt;p&gt;“Truth”–is all that is, and it certainly has a personality! (And the Old Testament illustrates that personality very well.)&lt;/p&gt;
+&lt;p&gt;“Truth”–is all that is (and all that was, and all that will ever be), and it certainly has a personality! (The Old Testament illustrates that personality very well.)&lt;/p&gt;
 
-&lt;p&gt;So this is just some food for thought. Do you seek, follow or believe in Truth itself? Or do you think reality is an illusion or something else entirely?&lt;/p&gt;
+&lt;p&gt;So this is just some food for thought. Do you seek, follow or believe in Truth itself? Or do you think reality is an illusion, or something else entirely?&lt;/p&gt;
 </description>
         <pubDate>Wed, 11 Sep 2019 01:17:00 -0400</pubDate>
-        <link>https://www.jpmcglone.com/philosophy/2019/09/11/god-is-truth-itself.html</link>
-        <guid isPermaLink="true">https://www.jpmcglone.com/philosophy/2019/09/11/god-is-truth-itself.html</guid>
+        <link>http://localhost:4000/philosophy/2019/09/11/god-is-truth-itself.html</link>
+        <guid isPermaLink="true">http://localhost:4000/philosophy/2019/09/11/god-is-truth-itself.html</guid>
         
         
         <category>philosophy</category>
@@ -55,8 +55,8 @@
 &lt;p&gt;I plan to share my ideas here, write public letters, talk about programming, and much more. So make sure to bookmark this site and visit regularly!&lt;/p&gt;
 </description>
         <pubDate>Tue, 03 Sep 2019 20:27:00 -0400</pubDate>
-        <link>https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</link>
-        <guid isPermaLink="true">https://www.jpmcglone.com/personal/2019/09/03/new-blog.html</guid>
+        <link>http://localhost:4000/personal/2019/09/03/new-blog.html</link>
+        <guid isPermaLink="true">http://localhost:4000/personal/2019/09/03/new-blog.html</guid>
         
         
         <category>personal</category>
