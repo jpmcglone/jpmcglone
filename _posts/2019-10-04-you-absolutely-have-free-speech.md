@@ -56,7 +56,7 @@ The person who said to me that there is no absolute right to freedom of speech w
 
 It's not.
 
-His comments were in context of this <a href="https://www.nbcnews.com/news/latino/new-york-city-bans-use-illegals-illegal-alien-n1062161">new law in New York that makes it illegal to use the term "illegal alien" when used with the intent to demean, humiliate or harass a person</a> (presumably even toward an illegal alien).
+His comments were in context of this <a href="https://www.nbcnews.com/news/latino/new-york-city-bans-use-illegals-illegal-alien-n1062161" target="_blank">new law in New York that makes it illegal to use the term "illegal alien" when used with the intent to demean, humiliate or harass a person</a> (presumably even toward an illegal alien).
 
 In order to believe that I don't have the right to demean, humiliate or harass you, you must first believe that you have the right not to be demeaned, humiliated or harassed.
 
