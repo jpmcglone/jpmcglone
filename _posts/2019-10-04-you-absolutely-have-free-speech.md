@@ -20,7 +20,7 @@ A crucial aspect of human rights, regardless of where they come from, is:
 
 That is to say, I have the right to do just about anything as long as it doesn't directly infringe on your rights. 
 
-Let's go through some of the obvious rights. For the next section, I'm using the Declaration of Independents' "Right to life, liberty and pursuit of happiness"
+Let's go through some of the obvious rights. For the next section, I'm using the Declaration of Independence's "Right to life, liberty and pursuit of happiness"
 
 ### Right to life
 
@@ -56,7 +56,7 @@ The person who said to me that there is no absolute right to freedom of speech w
 
 It's not.
 
-His comments were in context of this new law in New York that makes it illegal to use the term "illegal alien" when used with the intent to demean, humiliate or harass a person (presumably even an illegal alien).
+His comments were in context of this [new law in New York that makes it illegal to use the term "illegal alien" when used with the intent to demean, humiliate or harass a person]("https://www.nbcnews.com/news/latino/new-york-city-bans-use-illegals-illegal-alien-n1062161") (presumably even toward an illegal alien).
 
 In order to believe that I don't have the right to demean, humiliate or harass you, you must first believe that you have the right not to be demeaned, humiliated or harassed.
 
