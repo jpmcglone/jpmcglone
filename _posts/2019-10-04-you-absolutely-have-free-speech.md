@@ -13,7 +13,7 @@ The concept of rights isn't that complicated, yet so many people (usually the sa
 
 In this post, I am not going to go too deeply into where rights come from, but I will make this little aside:
 
-*Ask your friends where our rights come from. The answer they give you tell you what they bend the knee to--what their God is--and I don't trust anybody who thinks my rights come from the government.*
+*Ask your friends where our rights come from. The answer they give you tells you what they bend the knee to--what their God is--and I don't trust anybody who thinks my rights come from the government.*
 
 A crucial aspect of human rights, regardless of where they come from, is:
 > Your rights end where mine begin
