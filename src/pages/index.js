@@ -23,6 +23,13 @@ const Index = () => {
           }
         }
       }
+      file3: file(relativePath: { eq: "youtube-logo.jpeg" }) {
+        childImageSharp {
+          fixed(width: 500) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
     }
   `)
 
@@ -39,6 +46,10 @@ const Index = () => {
           <div style={{ margin: "0 auto" }}>
             <a style={{ display: "inline-block" }} href="https://swiftguild.com" target="_blank" alt="Swift Guild">
               <Img style={{ margin: 5, maxWidth: 100, maxHeight: 100 }} objectFit="cover" objectPosition="50% 80%" alt="Swift Guild" fixed={data.file.childImageSharp.fixed} />
+            </a>
+
+            <a style={{ display: "inline-block" }} href="https://www.youtube.com/channel/UCo4eqJcS7KsiRl5JJTTJkWw?view_as=subscriber" target="_blank" alt="JP Interviews">
+              <Img style={{ margin: 5, maxWidth: 100, maxHeight: 100 }} objectFit="cover" objectPosition="50% 80%" alt="JP Interviews" fixed={data.file3.childImageSharp.fixed} />
             </a>
 
             <a style={{ display: "inline-block" }} href="https://www.meetup.com/Jordan-Peterson-Study-Group/" target="_blank" alt="Jordan Peterson Study Group">
