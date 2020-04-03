@@ -8,17 +8,17 @@
 
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const _ = require("lodash")
+const _ = require('lodash')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   // Profiles
-  const profileTemplate = path.resolve("./src/templates/profile.js")
+  const profileTemplate = path.resolve('./src/templates/profile.js')
 
   // Blog
   const blogPostTemplate = path.resolve(`./src/templates/blog-post.js`)
-  const tagTemplate = path.resolve("./src/templates/tags.js")
+  const tagTemplate = path.resolve('./src/templates/tags.js')
 
   const result = await graphql(`
     {
@@ -57,22 +57,24 @@ exports.createPages = async ({ graphql, actions }) => {
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
+    
+    const slug = `/blog${post.node.fields.slug}`
 
     createPage({
-      path: post.node.fields.slug,
+      path: slug,
       component: blogPostTemplate,
       context: {
-        slug: post.node.fields.slug,
+        slug,
         previous,
         next,
       },
     })
   })
-
+  
   // Extract tag data from query
   const tags = result.data.tagsGroup.group
   // Make tag pages
-  tags.forEach((tag) => {
+  tags.forEach(tag => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
       component: tagTemplate,

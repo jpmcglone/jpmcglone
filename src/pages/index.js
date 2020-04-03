@@ -11,7 +11,7 @@ const Index = ({ data, location }) => {
   const posts = data.allMarkdownRemark.edges
 
   const allProjects = projects.map((project, index) => {
-    const file = require(`../images/${project.image_filename}`)
+    const file = require(`../../content/assets/${project.image_filename}`)
 
     return (
       <div
