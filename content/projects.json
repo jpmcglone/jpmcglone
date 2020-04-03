@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Swift Guild",
+    "url": "https://swiftguild.com",
+    "image_filename": "swiftguild-square-logo.png" 
+  },
+  {
+    "title": "JP Interviews",
+    "url": "https://www.youtube.com/playlist?list=PLQYhHY6AUVaFsHuSHc8K0p92YucaagvwZ",
+    "image_filename": "youtube-logo.jpeg"
+  },
+  {
+    "title": "JBP Study Group",
+    "url": "https://www.meetup.com/Jordan-Peterson-Study-Group/",
+    "image_filename": "jordan-peterson.png"
+  }
+]
