@@ -3,7 +3,6 @@ import Img from "gatsby-image"
 import { StaticQuery, graphql } from "gatsby"
 
 function renderImage(props, file) {
-  console.log(file)
   return <Img {...props} fluid={file.node.childImageSharp.fluid} />
 }
 
@@ -12,7 +11,7 @@ const Image = function (props) {
     <StaticQuery
       query={graphql`
         query {
-          images: allFile(
+          assets: allFile(
             filter: { extension: { regex: "/jpeg|jpg|jpeg|png|gif/" } }
           ) {
             edges {
@@ -29,10 +28,10 @@ const Image = function (props) {
           }
         }
       `}
-      render={({ images }) =>
+      render={({ assets }) =>
         renderImage(
           props,
-          images.edges.find((image) => image.node.relativePath === props.src)
+          assets.edges.find((asset) => asset.node.relativePath === props.src)
         )
       }
     />
@@ -40,7 +39,7 @@ const Image = function (props) {
 }
 
 Image.defaultProps = {
-  src: "jpmcglone-logo.png",
+  src: "logo.png",
 }
 
 export default Image

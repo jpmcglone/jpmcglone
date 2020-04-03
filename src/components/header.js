@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => (
     >
       <div style={{ backgroundColor: "#273B80" }}>
         <div style={{ padding: "10pt 10pt", maxWidth: 200 }}>
-          <Image src="jpmcglone-logo.png" style={{ padding: 0 }} />
+          <Image src="logo.png" style={{ padding: 0 }} />
         </div>
       </div>
       {/* <h1 style={{ margin: 0 }}>
