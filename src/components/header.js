@@ -6,7 +6,7 @@ import Image from "../components/image"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `white`
+      background: `white`,
     }}
   >
     <div

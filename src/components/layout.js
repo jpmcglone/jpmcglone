@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer style={{marginTop: 80, textAlign: "center", color: "#ccc"}}>
+        <footer style={{ marginTop: 80, textAlign: "center", color: "#ccc" }}>
           © {new Date().getFullYear()} JP McGlone, LLC
         </footer>
       </div>
