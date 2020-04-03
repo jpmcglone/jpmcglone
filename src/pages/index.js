@@ -12,9 +12,14 @@ const Index = () => {
     const file = require(`../images/${project.image_filename}`)
 
     return (
-      <div key={index} style={{ display: "inline-block", maxWidth: 100, margin: 5 }}>
+      <div key={index} style={{ position: "relative", display: "inline-block", width: 120, height: 120, margin: 5 }}>
         <a href={project.url} target="__blank" alt={project.title}>
-          <img src={file}/>
+          <img src={file} />
+          <div style={{ backgroundColor: "rgb(0,0,0, 0.6)", width: "100%", height: 40, position: "absolute", top: 80, left: "0%" }}>
+            <div style={{color: "white", marginTop: 7, fontSize: 12, fontWeight: "bold"}}>
+              {project.title}
+            </div>
+          </div>
         </a>
       </div>
     )
