@@ -7,7 +7,9 @@ import SEO from "../components/seo"
 
 import projects from "../../content/projects"
 
-const Index = () => {
+const Index = ({ data, location }) => {
+  const posts = data.allMarkdownRemark.edges
+
   const allProjects = projects.map((project, index) => {
     const file = require(`../images/${project.image_filename}`)
 
@@ -44,3 +46,30 @@ const Index = () => {
 }
 
 export default Index
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+            author
+            tags
+          }
+        }
+      }
+    }
+  }
+`
