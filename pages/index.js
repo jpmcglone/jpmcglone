@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -12,7 +11,7 @@ export default function Home() {
       </Head>
 
       <div style={{height: "33%"}}/>
-      <Image src="/logo.svg" alt="JP McGlone Logo" width={240} height={72} />
+      <img src="/logo.svg" alt="JP McGlone Logo" width={240} height={72} />
       <div style={{height: "67%"}}/>
     </div>
   )
