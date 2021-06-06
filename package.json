@@ -1,11 +1,14 @@
 {
   "name": "www-jpmcglone",
+  "homepage": "https://jpmcglone.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build && next export",
+    "deploy": "npm run export && touch out/.nojekyll && gh-pages --dotfiles -d out"
   },
   "dependencies": {
     "next": "10.2.3",
