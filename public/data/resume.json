@@ -11,39 +11,91 @@
   "technicalSkills": [
     {
       "category": "Languages",
-      "skills": "Swift, Objective-C, JavaScript, TypeScript, Ruby, PHP, Java"
-    },
-    {
-      "category": "Databases",
-      "skills": "PostgreSQL, Realm, MySQL, SQLite, MongoDB"
-    },
-    {
-      "category": "Dependency Managers",
-      "skills": "Swift Package Manager, Cocoapods, Carthage, Bundler, npm"
-    },
-    {
-      "category": "CI/CD",
-      "skills": "CircleCI, Fastlane, GitHub Actions, Travis CI, Jenkins, Azure"
-    },
-    {
-      "category": "Monitoring",
-      "skills": "Sentry, Crashlytics, HockeyApp"
-    },
-    {
-      "category": "Analytics",
-      "skills": "Amplitude, Mixpanel, Firebase, Facebook Analytics"
-    },
-    {
-      "category": "Development Tools",
-      "skills": "Xcode, VS Code, Vim, JetBrains tools"
+      "skills": [
+        { "name": "Swift", "featured": true },
+        { "name": "Objective-C", "featured": true },
+        { "name": "JavaScript" },
+        { "name": "TypeScript" },
+        { "name": "Ruby" },
+        { "name": "PHP" },
+        { "name": "Java" }
+      ]
     },
     {
       "category": "Frameworks",
-      "skills": "SwiftUI, UIKit, SnapKit, Lottie, Combine"
+      "skills": [
+        { "name": "SwiftUI", "featured": true },
+        { "name": "UIKit", "featured": true },
+        { "name": "Nuxt.js", "featured": true },
+        { "name": "SnapKit" },
+        { "name": "Lottie" },
+        { "name": "Combine" }
+      ]
+    },
+    {
+      "category": "Databases",
+      "skills": [
+        { "name": "PostgreSQL" },
+        { "name": "Realm" },
+        { "name": "MySQL" },
+        { "name": "SQLite" },
+        { "name": "MongoDB" }
+      ]
+    },
+    {
+      "category": "Dependency Managers",
+      "skills": [
+        { "name": "Swift Package Manager", "featured": true },
+        { "name": "Cocoapods", "featured": true },
+        { "name": "Carthage" },
+        { "name": "Bundler" },
+        { "name": "npm" }
+      ]
+    },
+    {
+      "category": "CI/CD",
+      "skills": [
+        { "name": "CircleCI" },
+        { "name": "Fastlane", "featured": true },
+        { "name": "GitHub Actions" },
+        { "name": "Travis CI" },
+        { "name": "Jenkins" },
+        { "name": "Azure" }
+      ]
+    },
+    {
+      "category": "Monitoring",
+      "skills": [
+        { "name": "Sentry" },
+        { "name": "Crashlytics" },
+        { "name": "HockeyApp" }
+      ]
+    },
+    {
+      "category": "Analytics",
+      "skills": [
+        { "name": "Amplitude" },
+        { "name": "Mixpanel" },
+        { "name": "Firebase" },
+        { "name": "Facebook Analytics" }
+      ]
+    },
+    {
+      "category": "Development Tools",
+      "skills": [
+        { "name": "Xcode", "featured": true },
+        { "name": "VS Code" },
+        { "name": "Vim" },
+        { "name": "JetBrains tools" }
+      ]
     },
     {
       "category": "Networking",
-      "skills": "Alamofire, AFNetworking, URLSession"
+      "skills": [
+        { "name": "Alamofire", "featured": true },
+        { "name": "AFNetworking" },
+        { "name": "URLSession" }
+      ]
     }
   ],
   "experience": [

@@ -2,14 +2,23 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@nuxt/ui'],
+  modules: [
+    '@nuxt/eslint', 
+    '@nuxtjs/tailwindcss', 
+    '@nuxt/ui',
+    'nuxt-icon',
+  ],
   ui: {
     global: true,
+    icons: ['heroicons', 'simple-icons']
   },
   tailwindcss: {
     exposeConfig: true,
+    viewer: true,
     config: {
-      content: []
+      content: [
+        "./node_modules/@nuxt/ui/dist/**/*.{js,vue,ts}"
+      ]
     }
   }
 })

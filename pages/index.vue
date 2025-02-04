@@ -1,162 +1,160 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-    <div class="container mx-auto py-6 md:py-10 px-4 md:px-8">
-      <section class="max-w-4xl mx-auto bg-white rounded-lg border border-gray-100 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)]" v-if="resumeData">
-        <!-- Header with refined gradient -->
-        <header class="relative mb-16 p-6 md:p-8 rounded-t-lg bg-gradient-to-b from-white via-white to-gray-50/50">
-          <div class="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
-            <img 
-              :src="resumeData.personalInfo.image" 
-              :alt="resumeData.personalInfo.name" 
-              class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-white shadow-sm"
+  <div class="min-h-screen bg-gray-50">
+    <UContainer class="py-8">
+      <UCard class="max-w-4xl mx-auto">
+        <template v-if="loading">
+          <div class="p-8 text-center">
+            <UProgress indeterminate color="primary" />
+          </div>
+        </template>
+
+        <template v-else-if="resumeData">
+          <!-- Header -->
+          <div class="p-8 text-center">
+            <UAvatar
+              v-if="resumeData.personalInfo?.image"
+              :src="resumeData.personalInfo.image"
+              :alt="resumeData.personalInfo?.name"
+              size="xl"
+              class="mb-4"
             />
-          </div>
-          <div class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">{{ resumeData.personalInfo.name }}</h1>
-            <p class="text-lg md:text-xl mt-2 text-gray-600">{{ resumeData.personalInfo.title }}</p>
-            <p class="mt-1 text-gray-500 text-sm md:text-base">
-              {{ resumeData.personalInfo.location }} | {{ resumeData.personalInfo.phone }} | 
-              <a :href="'mailto:' + resumeData.personalInfo.email" class="text-gray-700 hover:text-gray-900 underline">
-                {{ resumeData.personalInfo.email }}
-              </a>
-            </p>
-          </div>
-        </header>
-
-        <!-- Sections with subtle borders and gradients -->
-        <section class="mt-20 mb-8 px-4 md:px-6 py-6 md:py-8 bg-gradient-to-br from-white to-gray-50/30 rounded-lg border border-gray-100/50 hover:bg-white hover:border-gray-200/50 transition-all duration-500">
-          <h2 class="text-xl md:text-2xl font-semibold text-gray-700 mb-4 flex items-center">
-            <span class="mr-2 opacity-70">🎯</span> Objective
-          </h2>
-          <p class="text-gray-600 leading-relaxed">{{ resumeData.objective }}</p>
-        </section>
-
-        <!-- Technical Skills with gradient cards -->
-        <section class="mb-8 px-4 md:px-6 py-6 md:py-8">
-          <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-            <span class="mr-2">⚡</span> Technical Skills
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div v-for="skill in resumeData.technicalSkills" 
-                 :key="skill.category"
-                 class="p-4 rounded-lg bg-gradient-to-br from-gray-50 to-white border border-gray-100/50 hover:border-gray-200/50 hover:from-white hover:to-gray-50/30 transition-all duration-500">
-              <h3 class="font-medium text-gray-800">{{ skill.category }}</h3>
-              <p class="text-gray-600 mt-1 text-sm md:text-base">{{ skill.skills }}</p>
+            <h1 class="text-2xl font-bold mb-2">{{ resumeData.personalInfo?.name }}</h1>
+            <p class="text-lg text-gray-600 mb-4">{{ resumeData.personalInfo?.title }}</p>
+            
+            <!-- Contact Links -->
+            <div class="flex justify-center gap-2">
+              <UButton
+                v-if="resumeData.personalInfo?.email"
+                :to="`mailto:${resumeData.personalInfo.email}`"
+                color="primary"
+                icon="i-heroicons-envelope"
+                size="sm"
+              >
+                Contact
+              </UButton>
+              <UButton
+                v-for="link in resumeData.links"
+                :key="link.url"
+                :to="link.url"
+                target="_blank"
+                color="gray"
+                size="sm"
+                variant="soft"
+              >
+                {{ link.name }}
+              </UButton>
             </div>
           </div>
-        </section>
 
-        <!-- Experience Section -->
-        <section class="mb-8 px-4 md:px-6 py-6 md:py-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-          <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-            <span class="mr-2">💼</span> Professional Experience
-          </h2>
-          <div v-for="job in resumeData.experience" 
-               :key="job.company" 
-               class="mb-8 last:mb-0">
-            <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-6 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-              <img 
-                :src="job.logo" 
-                :alt="`${job.company} Logo`" 
-                class="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg"
-              />
-              <div>
-                <h3 class="text-lg md:text-xl font-semibold text-gray-800">{{ job.company }} - {{ job.title }}</h3>
-                <p class="text-gray-600">{{ job.period }}{{ job.location ? ` (${job.location})` : '' }}</p>
-                <ul class="mt-3 space-y-2">
-                  <li v-for="(responsibility, index) in job.responsibilities" 
+          <UDivider />
+
+          <!-- Main Content -->
+          <div class="p-8 space-y-8">
+            <!-- Objective -->
+            <div v-if="resumeData.objective">
+              <h2 class="font-semibold mb-2 flex items-center gap-2">
+                <UIcon name="i-heroicons-flag" class="text-primary-500" />
+                Objective
+              </h2>
+              <p class="text-gray-600">{{ resumeData.objective }}</p>
+            </div>
+
+            <!-- Technical Skills -->
+            <div v-if="resumeData.technicalSkills">
+              <h2 class="font-semibold mb-4 flex items-center gap-2">
+                <UIcon name="i-heroicons-code-bracket" class="text-primary-500" />
+                Technical Skills
+              </h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <UCard
+                  v-for="skill in resumeData.technicalSkills"
+                  :key="skill.category"
+                  class="bg-gray-50"
+                >
+                  <h3 class="font-medium mb-3">{{ skill.category }}</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <a
+                      v-for="item in sortedSkills(skill.skills)"
+                      :key="item.name"
+                      :href="getSkillUrl(item.name)"
+                      target="_blank"
+                      :class="[
+                        'flex items-center gap-1 px-3 py-1 rounded-full transition-colors',
+                        item.featured ? 'bg-navy-200 text-navy-800' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ]"
+                    >
+                      <UIcon 
+                        :name="getSkillIcon(item.name)" 
+                        class="w-4 h-4"
+                      />
+                      {{ item.name }}
+                    </a>
+                  </div>
+                </UCard>
+              </div>
+            </div>
+
+            <!-- Experience -->
+            <div v-if="resumeData.experience">
+              <h2 class="font-semibold mb-4 flex items-center gap-2">
+                <UIcon name="i-heroicons-briefcase" class="text-primary-500" />
+                Experience
+              </h2>
+              <div class="space-y-4">
+                <UCard
+                  v-for="job in resumeData.experience"
+                  :key="job.company"
+                  class="bg-gray-50"
+                >
+                  <div class="flex items-center gap-3 mb-3">
+                    <UAvatar
+                      v-if="job.logo"
+                      :src="job.logo"
+                      :alt="job.company"
+                      size="sm"
+                    />
+                    <div class="flex-1">
+                      <div class="flex justify-between items-start">
+                        <h3 class="font-medium">{{ job.company }}</h3>
+                        <UBadge color="gray" variant="soft">{{ job.period }}</UBadge>
+                      </div>
+                      <p class="text-sm text-gray-600">{{ job.title }}</p>
+                    </div>
+                  </div>
+                  <ul class="space-y-2">
+                    <li
+                      v-for="(item, index) in job.responsibilities"
                       :key="index"
-                      class="flex items-start">
-                    <span class="text-gray-400 mr-2">•</span>
-                    <span class="text-gray-600">{{ responsibility }}</span>
-                  </li>
-                </ul>
+                      class="flex gap-2 text-sm text-gray-600"
+                    >
+                      <UIcon name="i-heroicons-check" class="flex-shrink-0 w-4 h-4 mt-1 text-primary-500" />
+                      {{ item }}
+                    </li>
+                  </ul>
+                </UCard>
               </div>
             </div>
           </div>
-        </section>
+        </template>
 
-        <!-- Achievements Section -->
-        <section class="mb-8 px-4 md:px-6 py-6 md:py-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-          <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-            <span class="mr-2">🏆</span> Key Achievements
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div v-for="achievement in resumeData.achievements" 
-                 :key="achievement.title"
-                 class="p-4 md:p-6 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-300">
-              <h3 class="text-lg md:text-xl font-semibold text-gray-800">{{ achievement.title }}</h3>
-              <p class="text-gray-600 mt-2 text-sm md:text-base">{{ achievement.description }}</p>
-              <div class="mt-3 inline-block px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium">
-                {{ achievement.metric }}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Speaking & Publications Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
-          <!-- Speaking Engagements -->
-          <section class="px-4 md:px-6 py-6 md:py-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-            <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-              <span class="mr-2">🎤</span> Speaking
-            </h2>
-            <div class="space-y-4">
-              <div v-for="talk in resumeData.speakingEngagements" 
-                   :key="talk.event"
-                   class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
-                <h3 class="font-medium text-gray-800">{{ talk.title }}</h3>
-                <p class="text-gray-700">{{ talk.event }}</p>
-                <p class="text-gray-500 text-sm">{{ talk.location }} - {{ talk.date }}</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Publications -->
-          <section class="px-4 md:px-6 py-6 md:py-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-            <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-              <span class="mr-2">📚</span> Publications
-            </h2>
-            <div class="space-y-4">
-              <div v-for="pub in resumeData.publications" 
-                   :key="pub.title"
-                   class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
-                <h3 class="font-medium text-gray-800">{{ pub.title }}</h3>
-                <p class="text-gray-700">{{ pub.platform }}</p>
-                <a :href="pub.url" 
-                   target="_blank" 
-                   class="text-sm text-gray-600 hover:text-gray-800 hover:underline inline-flex items-center mt-2">
-                   Read Article 
-                   <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                   </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Footer with subtle gradient -->
-        <footer class="text-center mt-12 pb-8 bg-gradient-to-t from-gray-50/50 to-white">
-          <div class="flex flex-wrap justify-center gap-3">
-            <a v-for="link in resumeData.links" 
-               :key="link.url" 
-               :href="link.url" 
-               target="_blank"
-               class="px-5 py-2 bg-gradient-to-br from-gray-50 to-white border border-gray-100 text-gray-600 rounded-full hover:border-gray-200 hover:from-white hover:to-gray-50 transition-all duration-300 text-sm md:text-base">
-              {{ link.name }}
-            </a>
-          </div>
-        </footer>
-      </section>
-    </div>
+        <template v-else>
+          <UAlert
+            icon="i-heroicons-exclamation-triangle"
+            color="red"
+            title="Error"
+            description="Failed to load resume data"
+          />
+        </template>
+      </UCard>
+    </UContainer>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const resumeData = ref(null)
+const loading = ref(true)
 
 onMounted(async () => {
   try {
@@ -164,8 +162,70 @@ onMounted(async () => {
     resumeData.value = await response.json()
   } catch (error) {
     console.error('Error loading resume data:', error)
+  } finally {
+    loading.value = false
   }
 })
+
+const getSkillIcon = (skill) => {
+  const icons = {
+    // Languages
+    'Swift': 'logos:swift',
+    'Objective-C': 'logos:c',
+    'JavaScript': 'logos:javascript',
+    'TypeScript': 'logos:typescript-icon',
+    'Ruby': 'logos:ruby',
+    'PHP': 'logos:php',
+    'Java': 'logos:java',
+    
+    // Databases
+    'PostgreSQL': 'logos:postgresql',
+    'MongoDB': 'logos:mongodb-icon',
+    'MySQL': 'logos:mysql',
+    'SQLite': 'logos:sqlite',
+    'Realm': 'logos:realm',
+    
+    // Tools & Frameworks
+    'SwiftUI': 'logos:swift',
+    'UIKit': 'logos:apple',
+    'Xcode': 'logos:xcode',
+    'VS Code': 'logos:visual-studio-code',
+    'GitHub': 'logos:github-icon',
+    'npm': 'logos:npm-icon',
+    'Firebase': 'logos:firebase',
+    
+    // Default icon for items without specific icons
+    'default': 'heroicons:code-bracket'
+  }
+  return icons[skill] || icons.default
+}
+
+const getSkillUrl = (skill) => {
+  const urls = {
+    // Languages
+    'Swift': 'https://developer.apple.com/swift/',
+    'Objective-C': 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/',
+    'JavaScript': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+    'TypeScript': 'https://www.typescriptlang.org/',
+    'Ruby': 'https://www.ruby-lang.org/',
+    'PHP': 'https://www.php.net/',
+    'Java': 'https://dev.java/',
+    
+    // Databases
+    'PostgreSQL': 'https://www.postgresql.org/',
+    'Realm': 'https://realm.io/',
+    'MySQL': 'https://www.mysql.com/',
+    'SQLite': 'https://www.sqlite.org/',
+    'MongoDB': 'https://www.mongodb.com/',
+    
+    // Add more URLs as needed...
+  }
+  return urls[skill] || '#'
+}
+
+const sortedSkills = (skills) => {
+  return skills.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+}
 </script>
 
 <style scoped>
@@ -187,5 +247,12 @@ section {
 section:hover {
   background-position: 100% 100%;
   background-size: 200% 200%;
+}
+
+.bg-navy-200 {
+  background-color: #e0e7ff;
+}
+.text-navy-800 {
+  color: #1e3a8a;
 }
 </style>
