@@ -1,34 +1,42 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-    <UContainer class="py-8">
-      <UCard class="max-w-4xl mx-auto shadow-lg">
-        <template v-if="loading">
-          <div class="p-8 text-center">
-            <UProgress indeterminate color="primary" />
-          </div>
-        </template>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Color mode toggle -->
+    <div class="fixed top-4 right-4 z-50">
+      <UButton
+        icon="i-heroicons-sun"
+        color="gray"
+        variant="ghost"
+        aria-label="Toggle color mode"
+        @click="toggleColorMode"
+      />
+    </div>
 
-        <template v-else-if="resumeData">
+    <UContainer class="py-8 relative">
+      <UCard class="max-w-4xl mx-auto">
+        <template v-if="resumeData">
           <!-- Header -->
-          <div class="p-8 text-center">
+          <div class="p-6 sm:p-8 text-center">
             <UAvatar
               v-if="resumeData.personalInfo?.image"
               :src="resumeData.personalInfo.image"
               :alt="resumeData.personalInfo?.name"
-              size="xl"
-              class="mb-4 border-4 border-primary-500"
+              size="2xl"
+              class="mb-6 border-4 border-primary-500"
             />
-            <h1 class="text-4xl font-bold mb-2">{{ resumeData.personalInfo?.name }}</h1>
-            <p class="text-xl text-gray-600 mb-4 font-normal">{{ resumeData.personalInfo?.title }}</p>
+            <h1 class="text-3xl font-semibold mb-2 text-gray-900 dark:text-white">
+              {{ resumeData.personalInfo?.name }}
+            </h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-6">
+              {{ resumeData.personalInfo?.title }}
+            </p>
             
-            <!-- Contact Links -->
             <div class="flex justify-center gap-2">
               <UButton
                 v-if="resumeData.personalInfo?.email"
                 :to="`mailto:${resumeData.personalInfo.email}`"
                 color="primary"
                 icon="i-heroicons-envelope"
-                size="sm"
+                size="md"
               >
                 Contact
               </UButton>
@@ -38,8 +46,8 @@
                 :to="link.url"
                 target="_blank"
                 color="gray"
-                size="sm"
                 variant="soft"
+                size="md"
               >
                 {{ link.name }}
               </UButton>
@@ -49,87 +57,88 @@
           <UDivider />
 
           <!-- Main Content -->
-          <div class="p-8 space-y-8">
-            <!-- Objective -->
-            <div v-if="resumeData.objective">
-              <h2 class="text-2xl font-bold mb-2 flex items-center gap-2">
-                <UIcon name="i-heroicons-flag" class="text-primary-500" />
-                Objective
-              </h2>
-              <p class="text-gray-600 font-normal">{{ resumeData.objective }}</p>
-            </div>
-
+          <div class="p-6 sm:p-8 space-y-8">
             <!-- Technical Skills -->
             <div v-if="resumeData.technicalSkills">
-              <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                <UIcon name="i-heroicons-code-bracket" class="text-navy-600" />
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-code-bracket" class="text-primary-500 h-5 w-5" />
                 Technical Skills
               </h2>
-              <div class="grid md:grid-cols-2 gap-6">
+              <div class="grid md:grid-cols-2 gap-4">
                 <UCard
                   v-for="skill in resumeData.technicalSkills"
                   :key="skill.category"
-                  class="bg-white shadow-sm hover:shadow-md transition-all duration-300"
+                  class="bg-white dark:bg-gray-800"
                 >
-                  <h3 class="text-xl font-bold mb-4">{{ skill.category }}</h3>
+                  <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
+                    {{ skill.category }}
+                  </h3>
                   <div class="flex flex-wrap gap-2">
-                    <a
+                    <UBadge
                       v-for="item in sortedSkills(skill.skills)"
                       :key="item.name"
-                      :href="getSkillUrl(item.name)"
-                      target="_blank"
-                      :class="[
-                        'flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300',
-                        item.featured 
-                          ? 'bg-navy-100 text-navy-900 hover:bg-navy-200 hover:-translate-y-0.5 hover:shadow' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:-translate-y-0.5 hover:shadow'
-                      ]"
+                      :color="item.featured ? 'primary' : 'gray'"
+                      :variant="item.featured ? 'solid' : 'soft'"
+                      size="md"
+                      class="cursor-pointer hover:-translate-y-0.5 transition-transform"
+                      @click="navigateToSkill(item.name)"
                     >
                       <UIcon 
                         :name="getSkillIcon(item.name)" 
-                        class="w-4 h-4"
+                        class="h-4 w-4 mr-1"
                       />
                       {{ item.name }}
-                    </a>
+                    </UBadge>
                   </div>
                 </UCard>
               </div>
             </div>
 
+            <UDivider />
+
             <!-- Experience -->
             <div v-if="resumeData.experience">
-              <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-                <UIcon name="i-heroicons-briefcase" class="text-primary-500" />
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
                 Experience
               </h2>
               <div class="space-y-4">
                 <UCard
                   v-for="job in resumeData.experience"
                   :key="job.company"
-                  class="bg-gray-50"
+                  class="bg-gray-50 dark:bg-gray-800"
                 >
-                  <div class="flex items-center gap-3 mb-3">
+                  <div class="flex items-center gap-4 mb-4">
                     <UAvatar
                       v-if="job.logo"
                       :src="job.logo"
                       :alt="job.company"
-                      size="sm"
+                      size="lg"
                     />
                     <div class="flex-1">
-                      <div class="flex justify-between items-start">
-                        <h3 class="text-xl font-bold">{{ job.company }}</h3>
-                        <UBadge color="gray" variant="soft">{{ job.period }}</UBadge>
+                      <div class="flex justify-between items-start gap-4">
+                        <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                          {{ job.company }}
+                        </h3>
+                        <UBadge color="primary" variant="soft" size="sm">
+                          {{ job.period }}
+                        </UBadge>
                       </div>
-                      <p class="text-sm text-gray-600 font-normal">{{ job.title }}</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {{ job.title }}
+                      </p>
                     </div>
                   </div>
                   <ul class="space-y-2">
                     <li
                       v-for="(item, index) in job.responsibilities"
                       :key="index"
-                      class="flex gap-2 text-sm text-gray-600 font-normal"
+                      class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
                     >
-                      <UIcon name="i-heroicons-check" class="flex-shrink-0 w-4 h-4 mt-1 text-primary-500" />
+                      <UIcon 
+                        name="i-heroicons-check" 
+                        class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
+                      />
                       {{ item }}
                     </li>
                   </ul>
@@ -138,14 +147,10 @@
             </div>
           </div>
         </template>
-
         <template v-else>
-          <UAlert
-            icon="i-heroicons-exclamation-triangle"
-            color="red"
-            title="Error"
-            description="Failed to load resume data"
-          />
+          <div class="p-8 text-center">
+            <ULoading size="lg" />
+          </div>
         </template>
       </UCard>
     </UContainer>
@@ -155,8 +160,13 @@
 <script setup>
 import { ref } from 'vue'
 
+const colorMode = useColorMode()
 const resumeData = ref(null)
 const loading = ref(true)
+
+const toggleColorMode = () => {
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 
 onMounted(async () => {
   try {
@@ -168,6 +178,13 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+const navigateToSkill = (skillName) => {
+  const url = getSkillUrl(skillName)
+  if (url !== '#') {
+    window.open(url, '_blank')
+  }
+}
 
 const getSkillIcon = (skill) => {
   const icons = {
@@ -254,8 +271,15 @@ section:hover {
 .bg-navy-200 {
   background-color: #e0e7ff;
 }
+.dark .bg-navy-200 {
+  background-color: #1e3a8a;
+}
+
 .text-navy-800 {
   color: #1e3a8a;
+}
+.dark .text-navy-800 {
+  color: #e0e7ff;
 }
 
 /* Add smooth transitions for all interactive elements */
@@ -279,5 +303,14 @@ section:hover {
 }
 .bg-navy-200 {
   background-color: #c7d2fe;
+}
+
+/* Add dark mode transitions */
+:root {
+  --bg-transition: background-color 0.3s ease;
+}
+
+.dark-mode-transition {
+  transition: var(--bg-transition);
 }
 </style>

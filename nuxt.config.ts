@@ -10,7 +10,12 @@ export default defineNuxtConfig({
   ],
   ui: {
     global: true,
-    icons: ['heroicons', 'simple-icons']
+    icons: ['heroicons', 'simple-icons'],
+    colorMode: {
+      preference: 'system',
+      fallback: 'light',
+      classSuffix: ''
+    }
   },
   tailwindcss: {
     exposeConfig: true,
@@ -18,7 +23,8 @@ export default defineNuxtConfig({
     config: {
       content: [
         "./node_modules/@nuxt/ui/dist/**/*.{js,vue,ts}"
-      ]
+      ],
+      darkMode: 'class'
     }
   }
 })
