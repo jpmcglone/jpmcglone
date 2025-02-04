@@ -193,6 +193,74 @@
                 </UCard>
               </div>
             </div>
+
+            <!-- After Experience section, before closing template -->
+            <UDivider />
+
+            <!-- Education -->
+            <div v-if="resumeData.education">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-academic-cap" class="text-primary-500 h-5 w-5" />
+                Education
+              </h2>
+              <UCard class="bg-white dark:bg-gray-800">
+                <div class="flex justify-between items-start gap-4">
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ resumeData.education.degree }}
+                    </h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      {{ resumeData.education.school }}
+                    </p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      {{ resumeData.education.location }}
+                    </p>
+                  </div>
+                  <div class="text-right">
+                    <UBadge color="gray" variant="soft" size="sm">
+                      {{ resumeData.education.period }}
+                    </UBadge>
+                    <p v-if="resumeData.education.gpa" class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      GPA: {{ resumeData.education.gpa }}
+                    </p>
+                  </div>
+                </div>
+              </UCard>
+            </div>
+
+            <!-- Achievements -->
+            <div v-if="resumeData.achievements">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-trophy" class="text-primary-500 h-5 w-5" />
+                Achievements
+              </h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <UCard
+                  v-for="achievement in resumeData.achievements"
+                  :key="achievement.title"
+                  class="bg-white dark:bg-gray-800"
+                >
+                  <div class="flex items-start gap-4">
+                    <div>
+                      <h3 class="text-base font-medium text-gray-900 dark:text-white mb-2">
+                        {{ achievement.title }}
+                      </h3>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {{ achievement.description }}
+                      </p>
+                    </div>
+                    <UBadge
+                      v-if="achievement.metric"
+                      color="primary"
+                      variant="soft"
+                      size="sm"
+                    >
+                      {{ achievement.metric }}
+                    </UBadge>
+                  </div>
+                </UCard>
+              </div>
+            </div>
           </div>
         </template>
         <template v-else>
