@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
     <UContainer class="py-8">
-      <UCard class="max-w-4xl mx-auto">
+      <UCard class="max-w-4xl mx-auto shadow-lg">
         <template v-if="loading">
           <div class="p-8 text-center">
             <UProgress indeterminate color="primary" />
@@ -16,10 +16,10 @@
               :src="resumeData.personalInfo.image"
               :alt="resumeData.personalInfo?.name"
               size="xl"
-              class="mb-4"
+              class="mb-4 border-4 border-primary-500"
             />
-            <h1 class="text-2xl font-bold mb-2">{{ resumeData.personalInfo?.name }}</h1>
-            <p class="text-lg text-gray-600 mb-4">{{ resumeData.personalInfo?.title }}</p>
+            <h1 class="text-4xl font-bold mb-2">{{ resumeData.personalInfo?.name }}</h1>
+            <p class="text-xl text-gray-600 mb-4 font-normal">{{ resumeData.personalInfo?.title }}</p>
             
             <!-- Contact Links -->
             <div class="flex justify-center gap-2">
@@ -52,26 +52,26 @@
           <div class="p-8 space-y-8">
             <!-- Objective -->
             <div v-if="resumeData.objective">
-              <h2 class="font-semibold mb-2 flex items-center gap-2">
+              <h2 class="text-2xl font-bold mb-2 flex items-center gap-2">
                 <UIcon name="i-heroicons-flag" class="text-primary-500" />
                 Objective
               </h2>
-              <p class="text-gray-600">{{ resumeData.objective }}</p>
+              <p class="text-gray-600 font-normal">{{ resumeData.objective }}</p>
             </div>
 
             <!-- Technical Skills -->
             <div v-if="resumeData.technicalSkills">
-              <h2 class="font-semibold mb-4 flex items-center gap-2">
-                <UIcon name="i-heroicons-code-bracket" class="text-primary-500" />
+              <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <UIcon name="i-heroicons-code-bracket" class="text-navy-600" />
                 Technical Skills
               </h2>
-              <div class="grid md:grid-cols-2 gap-4">
+              <div class="grid md:grid-cols-2 gap-6">
                 <UCard
                   v-for="skill in resumeData.technicalSkills"
                   :key="skill.category"
-                  class="bg-gray-50"
+                  class="bg-white shadow-sm hover:shadow-md transition-all duration-300"
                 >
-                  <h3 class="font-medium mb-3">{{ skill.category }}</h3>
+                  <h3 class="text-xl font-bold mb-4">{{ skill.category }}</h3>
                   <div class="flex flex-wrap gap-2">
                     <a
                       v-for="item in sortedSkills(skill.skills)"
@@ -79,8 +79,10 @@
                       :href="getSkillUrl(item.name)"
                       target="_blank"
                       :class="[
-                        'flex items-center gap-1 px-3 py-1 rounded-full transition-colors',
-                        item.featured ? 'bg-navy-200 text-navy-800' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        'flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300',
+                        item.featured 
+                          ? 'bg-navy-100 text-navy-900 hover:bg-navy-200 hover:-translate-y-0.5 hover:shadow' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:-translate-y-0.5 hover:shadow'
                       ]"
                     >
                       <UIcon 
@@ -96,7 +98,7 @@
 
             <!-- Experience -->
             <div v-if="resumeData.experience">
-              <h2 class="font-semibold mb-4 flex items-center gap-2">
+              <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
                 <UIcon name="i-heroicons-briefcase" class="text-primary-500" />
                 Experience
               </h2>
@@ -115,17 +117,17 @@
                     />
                     <div class="flex-1">
                       <div class="flex justify-between items-start">
-                        <h3 class="font-medium">{{ job.company }}</h3>
+                        <h3 class="text-xl font-bold">{{ job.company }}</h3>
                         <UBadge color="gray" variant="soft">{{ job.period }}</UBadge>
                       </div>
-                      <p class="text-sm text-gray-600">{{ job.title }}</p>
+                      <p class="text-sm text-gray-600 font-normal">{{ job.title }}</p>
                     </div>
                   </div>
                   <ul class="space-y-2">
                     <li
                       v-for="(item, index) in job.responsibilities"
                       :key="index"
-                      class="flex gap-2 text-sm text-gray-600"
+                      class="flex gap-2 text-sm text-gray-600 font-normal"
                     >
                       <UIcon name="i-heroicons-check" class="flex-shrink-0 w-4 h-4 mt-1 text-primary-500" />
                       {{ item }}
@@ -254,5 +256,28 @@ section:hover {
 }
 .text-navy-800 {
   color: #1e3a8a;
+}
+
+/* Add smooth transitions for all interactive elements */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Hover effect for cards */
+.hover\:shadow {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Existing color classes */
+.text-navy-900 {
+  color: #1e3a8a;
+}
+.bg-navy-100 {
+  background-color: #e0e7ff;
+}
+.bg-navy-200 {
+  background-color: #c7d2fe;
 }
 </style>
