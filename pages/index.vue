@@ -25,8 +25,19 @@
       </UButton>
     </div>
 
-    <UContainer class="py-8 relative">
-      <UCard class="max-w-4xl mx-auto">
+    <UContainer class="py-8 relative max-w-5xl mx-auto sm:px-4">
+      <UCard 
+        class="-mx-4 sm:mx-auto sm:rounded-lg" 
+        :ui="{ 
+          base: 'relative overflow-hidden',
+          background: 'bg-white dark:bg-gray-900',
+          divide: 'divide-y divide-gray-200 dark:divide-gray-800',
+          ring: 'ring-1 ring-gray-200 dark:ring-gray-800',
+          rounded: 'sm:rounded-lg',
+          shadow: 'sm:shadow-lg',
+          padding: 'p-0 sm:p-0'
+        }"
+      >
         <template v-if="resumeData">
           <!-- Header -->
           <div class="p-6 sm:p-8 text-center">
@@ -75,60 +86,86 @@
           <div class="p-6 sm:p-8 space-y-8">
             <!-- Bio Section -->
             <div>
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-user" class="text-primary-500 h-5 w-5" />
-                About
-              </h2>
-              <UCard class="bg-white dark:bg-gray-800">
-                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {{ resumeData.personalInfo?.bio }}
-                </p>
-              </UCard>
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
+                  <UIcon name="i-heroicons-user" class="text-primary-500 h-5 w-5" />
+                  About
+                </h2>
+                <UButton
+                  :icon="sectionStates.about ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                  color="gray"
+                  variant="ghost"
+                  size="xs"
+                  @click="toggleSection('about')"
+                />
+              </div>
+              <Transition name="fade">
+                <div v-show="sectionStates.about">
+                  <UCard class="dark:bg-gray-800">
+                    <p class="text-gray-600 dark:text-gray-100 leading-relaxed">
+                      {{ resumeData.personalInfo?.bio }}
+                    </p>
+                  </UCard>
+                </div>
+              </Transition>
             </div>
 
             <UDivider id="skills" class="scroll-mt-8" />
 
             <!-- Featured Projects -->
             <div v-if="resumeData.projects">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-rocket-launch" class="text-primary-500 h-5 w-5" />
-                Featured Projects
-              </h2>
-              <div class="grid md:grid-cols-2 gap-4">
-                <UCard
-                  v-for="project in resumeData.projects"
-                  :key="project.name"
-                  class="bg-white dark:bg-gray-800"
-                >
-                  <div class="space-y-4">
-                    <div class="flex justify-between items-start">
-                      <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                        {{ project.name }}
-                      </h3>
-                      <UBadge 
-                        :color="project.status === 'In Development' ? 'orange' : 'green'"
-                        variant="soft"
-                      >
-                        {{ project.status }}
-                      </UBadge>
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                      {{ project.description }}
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      <UBadge
-                        v-for="tech in project.technologies"
-                        :key="tech"
-                        color="gray"
-                        variant="soft"
-                        size="sm"
-                      >
-                        {{ tech }}
-                      </UBadge>
-                    </div>
-                  </div>
-                </UCard>
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
+                  <UIcon name="i-heroicons-rocket-launch" class="text-primary-500 h-5 w-5" />
+                  Featured Projects
+                </h2>
+                <UButton
+                  :icon="sectionStates.skills ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                  color="gray"
+                  variant="ghost"
+                  size="xs"
+                  @click="toggleSection('skills')"
+                />
               </div>
+              <Transition name="fade">
+                <div v-show="sectionStates.skills">
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <UCard
+                      v-for="project in resumeData.projects"
+                      :key="project.name"
+                      class="dark:bg-gray-800"
+                    >
+                      <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                            {{ project.name }}
+                          </h3>
+                          <UBadge 
+                            :color="project.status === 'In Development' ? 'orange' : 'green'"
+                            variant="soft"
+                          >
+                            {{ project.status }}
+                          </UBadge>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-100">
+                          {{ project.description }}
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                          <UBadge
+                            v-for="tech in project.technologies"
+                            :key="tech"
+                            color="gray"
+                            variant="soft"
+                            size="sm"
+                          >
+                            {{ tech }}
+                          </UBadge>
+                        </div>
+                      </div>
+                    </UCard>
+                  </div>
+                </div>
+              </Transition>
             </div>
 
             <UDivider />
@@ -143,10 +180,10 @@
                 <UCard
                   v-for="testimonial in resumeData.testimonials"
                   :key="testimonial.author"
-                  class="bg-white dark:bg-gray-800"
+                  class="dark:bg-gray-800"
                 >
                   <div class="space-y-4">
-                    <p class="text-gray-600 dark:text-gray-400 italic">
+                    <p class="text-gray-600 dark:text-gray-100 italic">
                       "{{ testimonial.quote }}"
                     </p>
                     <div class="flex items-center gap-4">
@@ -182,7 +219,7 @@
                 <UCard
                   v-for="skill in resumeData.technicalSkills"
                   :key="skill.category"
-                  class="bg-white dark:bg-gray-800"
+                  class="dark:bg-gray-800"
                 >
                   <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
                     {{ skill.category }}
@@ -212,100 +249,112 @@
 
             <!-- Experience -->
             <div>
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
-                Experience
-              </h2>
-              
-              <!-- Current Roles -->
-              <div class="space-y-4 mb-8">
-                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
-                <UCard
-                  v-for="job in currentRoles"
-                  :key="job.company"
-                  class="bg-white dark:bg-gray-800"
-                >
-                  <div class="flex items-center gap-4 mb-4">
-                    <UAvatar
-                      v-if="job.logo"
-                      :src="job.logo"
-                      :alt="job.company"
-                      size="lg"
-                    />
-                    <div class="flex-1">
-                      <div class="flex justify-between items-start gap-4">
-                        <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                          {{ job.company }}
-                        </h3>
-                        <UBadge color="green" variant="soft" size="sm">
-                          {{ job.period }}
-                        </UBadge>
-                      </div>
-                      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        {{ job.title }}
-                      </p>
-                    </div>
-                  </div>
-                  <ul class="space-y-2">
-                    <li
-                      v-for="(item, index) in job.responsibilities"
-                      :key="index"
-                      class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
-                    >
-                      <UIcon 
-                        name="i-heroicons-check" 
-                        class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                      />
-                      {{ item }}
-                    </li>
-                  </ul>
-                </UCard>
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
+                  <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
+                  Experience
+                </h2>
+                <UButton
+                  :icon="sectionStates.experience ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                  color="gray"
+                  variant="ghost"
+                  size="xs"
+                  @click="toggleSection('experience')"
+                />
               </div>
+              <Transition name="fade">
+                <div v-show="sectionStates.experience">
+                  <!-- Current Roles -->
+                  <div class="space-y-4 mb-8">
+                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
+                    <UCard
+                      v-for="job in currentRoles"
+                      :key="job.company"
+                      class="dark:bg-gray-800"
+                    >
+                      <div class="flex items-center gap-4 mb-4">
+                        <UAvatar
+                          v-if="job.logo"
+                          :src="job.logo"
+                          :alt="job.company"
+                          size="lg"
+                        />
+                        <div class="flex-1">
+                          <div class="flex justify-between items-start gap-4">
+                            <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                              {{ job.company }}
+                            </h3>
+                            <UBadge color="green" variant="soft" size="sm">
+                              {{ job.period }}
+                            </UBadge>
+                          </div>
+                          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            {{ job.title }}
+                          </p>
+                        </div>
+                      </div>
+                      <ul class="space-y-2">
+                        <li
+                          v-for="(item, index) in job.responsibilities"
+                          :key="index"
+                          class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+                        >
+                          <UIcon 
+                            name="i-heroicons-check" 
+                            class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
+                          />
+                          {{ item }}
+                        </li>
+                      </ul>
+                    </UCard>
+                  </div>
 
-              <!-- Past Roles -->
-              <div class="space-y-4">
-                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
-                <UCard
-                  v-for="job in pastRoles"
-                  :key="job.company"
-                  class="bg-white dark:bg-gray-800"
-                >
-                  <div class="flex items-center gap-4 mb-4">
-                    <UAvatar
-                      v-if="job.logo"
-                      :src="job.logo"
-                      :alt="job.company"
-                      size="lg"
-                    />
-                    <div class="flex-1">
-                      <div class="flex justify-between items-start gap-4">
-                        <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                          {{ job.company }}
-                        </h3>
-                        <UBadge color="gray" variant="soft" size="sm">
-                          {{ job.period }}
-                        </UBadge>
-                      </div>
-                      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        {{ job.title }}
-                      </p>
-                    </div>
-                  </div>
-                  <ul class="space-y-2">
-                    <li
-                      v-for="(item, index) in job.responsibilities"
-                      :key="index"
-                      class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+                  <!-- Past Roles -->
+                  <div class="space-y-4">
+                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
+                    <UCard
+                      v-for="job in pastRoles"
+                      :key="job.company"
+                      class="dark:bg-gray-800"
                     >
-                      <UIcon 
-                        name="i-heroicons-check" 
-                        class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                      />
-                      {{ item }}
-                    </li>
-                  </ul>
-                </UCard>
-              </div>
+                      <div class="flex items-center gap-4 mb-4">
+                        <UAvatar
+                          v-if="job.logo"
+                          :src="job.logo"
+                          :alt="job.company"
+                          size="lg"
+                        />
+                        <div class="flex-1">
+                          <div class="flex justify-between items-start gap-4">
+                            <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                              {{ job.company }}
+                            </h3>
+                            <UBadge color="gray" variant="soft" size="sm">
+                              {{ job.period }}
+                            </UBadge>
+                          </div>
+                          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            {{ job.title }}
+                          </p>
+                        </div>
+                      </div>
+                      <ul class="space-y-2">
+                        <li
+                          v-for="(item, index) in job.responsibilities"
+                          :key="index"
+                          class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+                        >
+                          <UIcon 
+                            name="i-heroicons-check" 
+                            class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
+                          />
+                          {{ item }}
+                        </li>
+                      </ul>
+                    </UCard>
+                  </div>
+                </div>
+              </Transition>
             </div>
 
             <!-- After Experience section, before closing template -->
@@ -317,7 +366,7 @@
                 <UIcon name="i-heroicons-academic-cap" class="text-primary-500 h-5 w-5" />
                 Education
               </h2>
-              <UCard class="bg-white dark:bg-gray-800">
+              <UCard class="dark:bg-gray-800">
                 <div class="flex justify-between items-start gap-4">
                   <div>
                     <h3 class="text-base font-medium text-gray-900 dark:text-white">
@@ -352,14 +401,14 @@
                 <UCard
                   v-for="achievement in resumeData.achievements"
                   :key="achievement.title"
-                  class="bg-white dark:bg-gray-800"
+                  class="dark:bg-gray-800"
                 >
                   <div class="flex items-start gap-4">
                     <div>
                       <h3 class="text-base font-medium text-gray-900 dark:text-white mb-2">
                         {{ achievement.title }}
                       </h3>
-                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                      <p class="text-sm text-gray-600 dark:text-gray-100">
                         {{ achievement.description }}
                       </p>
                     </div>
@@ -399,11 +448,40 @@
         </li>
       </ul>
     </nav>
+
+    <!-- Add to template -->
+    <Transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="transform translate-y-8 opacity-0"
+      enter-to-class="transform translate-y-0 opacity-100"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="transform translate-y-0 opacity-100"
+      leave-to-class="transform translate-y-8 opacity-0"
+    >
+      <UButton
+        v-show="showBackToTop"
+        icon="i-heroicons-arrow-up"
+        color="gray"
+        variant="soft"
+        class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 print:hidden dark:bg-gray-800 dark:hover:bg-gray-700"
+        @click="scrollToTop"
+      />
+    </Transition>
+
+    <!-- <UButton
+      icon="i-heroicons-document-arrow-down"
+      color="gray"
+      variant="soft"
+      class="dark:bg-gray-800 dark:hover:bg-gray-700"
+      @click="downloadPDF"
+    >
+      Download PDF
+    </UButton> -->
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, reactive } from 'vue'
 import { useHead } from 'unhead'
 
 const colorMode = useColorMode()
@@ -447,6 +525,19 @@ onMounted(async () => {
     const element = document.getElementById(section.id)
     if (element) observer.observe(element)
   })
+
+  // Add to script
+  const showBackToTop = ref(false)
+
+  onMounted(() => {
+    window.addEventListener('scroll', () => {
+      showBackToTop.value = window.scrollY > 300
+    })
+  })
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 })
 
 const trackEvent = (action, category, label) => {
@@ -541,12 +632,27 @@ const scrollToSection = (sectionId) => {
   }
 }
 
+const downloadPDF = () => {
+  window.print()
+  // Or implement a proper PDF generation service
+}
+
 useHead({
   title: resumeData.value?.personalInfo?.name || 'Resume',
   meta: [
     { name: 'description', content: resumeData.value?.personalInfo?.title || 'Professional Resume' }
   ]
 })
+
+const sectionStates = reactive({
+  about: true,
+  skills: true,
+  experience: true
+})
+
+const toggleSection = (sectionId) => {
+  sectionStates[sectionId] = !sectionStates[sectionId]
+}
 </script>
 
 <style scoped>
@@ -680,5 +786,22 @@ section:hover {
 
 .section {
   scroll-margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .UContainer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
