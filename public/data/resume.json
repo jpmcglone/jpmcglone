@@ -1,11 +1,12 @@
 {
   "personalInfo": {
-    "name": "John P. McGlone",
-    "title": "iOS Engineer",
+    "name": "JP McGlone",
+    "title": "Senior Software Engineer",
     "location": "Newport News, VA",
     "phone": "(631) 943-6889",
     "email": "jp@jpmcglone.com",
-    "image": "/images/johnmcglone.jpg"
+    "image": "/images/profile.jpg",
+    "bio": "Senior Software Engineer with over 15 years of experience specializing in iOS and full-stack development. Passionate about building scalable applications and leading engineering teams to deliver high-quality software solutions."
   },
   "objective": "To inspire and lead engineering teams to create high-quality, efficient products while implementing tools and processes that enhance team performance without compromising on quality.",
   "technicalSkills": [
@@ -224,6 +225,76 @@
     {
       "name": "LinkedIn",
       "url": "https://www.linkedin.com/in/john-p-mcglone-18513014"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "proficiency": "Native",
+      "featured": true
+    },
+    {
+      "name": "Spanish",
+      "proficiency": "Conversational",
+      "featured": false
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Developer",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "url": "https://aws.amazon.com/certification/"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Church Directory App",
+      "description": "A modern church directory application built with Nuxt.js and iOS native components.",
+      "status": "In Development",
+      "technologies": ["Swift", "Nuxt.js", "Firebase"],
+      "url": "https://churchapp.com",
+      "featured": true
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "JP is an exceptional engineer who consistently delivers high-quality solutions.",
+      "author": "John Doe",
+      "title": "CTO at Previous Company",
+      "company": "Tech Corp",
+      "image": "/images/testimonials/john-doe.jpg"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Building Scalable iOS Applications",
+      "publisher": "Medium",
+      "date": "2023",
+      "url": "https://medium.com/..."
+    }
+  ],
+  "speakingEngagements": [
+    {
+      "title": "SwiftUI Best Practices",
+      "event": "iOS Dev Conference 2023",
+      "date": "Oct 2023",
+      "location": "San Francisco, CA"
+    }
+  ],
+  "openSourceContributions": [
+    {
+      "project": "Vue.js",
+      "description": "Implemented new feature X",
+      "url": "https://github.com/vuejs/core/pulls/..."
+    }
+  ],
+  "awards": [
+    {
+      "title": "Best Mobile App",
+      "organization": "App Awards 2023",
+      "date": "2023",
+      "description": "Won for innovative use of SwiftUI"
     }
   ]
 }

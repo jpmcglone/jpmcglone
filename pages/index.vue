@@ -1,14 +1,28 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Color mode toggle -->
-    <div class="fixed top-4 right-4 z-50">
+    <div class="fixed top-4 right-4 z-50 print:hidden">
       <UButton
-        icon="i-heroicons-sun"
+        :icon="colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
         color="gray"
-        variant="ghost"
+        variant="soft"
+        class="dark:bg-gray-800 dark:hover:bg-gray-700"
         aria-label="Toggle color mode"
         @click="toggleColorMode"
       />
+    </div>
+
+    <!-- Print button -->
+    <div class="fixed bottom-4 right-4 z-50 print:hidden">
+      <UButton
+        icon="i-heroicons-printer"
+        color="gray"
+        variant="soft"
+        class="dark:bg-gray-800 dark:hover:bg-gray-700"
+        @click="window.print()"
+      >
+        Print
+      </UButton>
     </div>
 
     <UContainer class="py-8 relative">
@@ -48,18 +62,118 @@
                 color="gray"
                 variant="soft"
                 size="md"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 {{ link.name }}
               </UButton>
             </div>
           </div>
 
-          <UDivider />
+          <UDivider id="about" class="scroll-mt-8" />
 
           <!-- Main Content -->
           <div class="p-6 sm:p-8 space-y-8">
+            <!-- Bio Section -->
+            <div>
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-user" class="text-primary-500 h-5 w-5" />
+                About
+              </h2>
+              <UCard class="bg-white dark:bg-gray-800">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {{ resumeData.personalInfo?.bio }}
+                </p>
+              </UCard>
+            </div>
+
+            <UDivider id="skills" class="scroll-mt-8" />
+
+            <!-- Featured Projects -->
+            <div v-if="resumeData.projects">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-rocket-launch" class="text-primary-500 h-5 w-5" />
+                Featured Projects
+              </h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <UCard
+                  v-for="project in resumeData.projects"
+                  :key="project.name"
+                  class="bg-white dark:bg-gray-800"
+                >
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-start">
+                      <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                        {{ project.name }}
+                      </h3>
+                      <UBadge 
+                        :color="project.status === 'In Development' ? 'orange' : 'green'"
+                        variant="soft"
+                      >
+                        {{ project.status }}
+                      </UBadge>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      {{ project.description }}
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      <UBadge
+                        v-for="tech in project.technologies"
+                        :key="tech"
+                        color="gray"
+                        variant="soft"
+                        size="sm"
+                      >
+                        {{ tech }}
+                      </UBadge>
+                    </div>
+                  </div>
+                </UCard>
+              </div>
+            </div>
+
+            <UDivider />
+
+            <!-- Testimonials -->
+            <div v-if="resumeData.testimonials">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+                <UIcon name="i-heroicons-chat-bubble-bottom-center-text" class="text-primary-500 h-5 w-5" />
+                Testimonials
+              </h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <UCard
+                  v-for="testimonial in resumeData.testimonials"
+                  :key="testimonial.author"
+                  class="bg-white dark:bg-gray-800"
+                >
+                  <div class="space-y-4">
+                    <p class="text-gray-600 dark:text-gray-400 italic">
+                      "{{ testimonial.quote }}"
+                    </p>
+                    <div class="flex items-center gap-4">
+                      <UAvatar
+                        v-if="testimonial.image"
+                        :src="testimonial.image"
+                        :alt="testimonial.author"
+                        size="sm"
+                      />
+                      <div>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">
+                          {{ testimonial.author }}
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                          {{ testimonial.title }} at {{ testimonial.company }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </UCard>
+              </div>
+            </div>
+
+            <UDivider id="skills"/>
+
             <!-- Technical Skills -->
-            <div v-if="resumeData.technicalSkills">
+            <div>
               <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                 <UIcon name="i-heroicons-code-bracket" class="text-primary-500 h-5 w-5" />
                 Technical Skills
@@ -94,10 +208,10 @@
               </div>
             </div>
 
-            <UDivider />
+            <UDivider id="experience" class="scroll-mt-8" />
 
             <!-- Experience -->
-            <div v-if="resumeData.experience">
+            <div>
               <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                 <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
                 Experience
@@ -123,7 +237,7 @@
                         <h3 class="text-base font-medium text-gray-900 dark:text-white">
                           {{ job.company }}
                         </h3>
-                        <UBadge color="primary" variant="soft" size="sm">
+                        <UBadge color="green" variant="soft" size="sm">
                           {{ job.period }}
                         </UBadge>
                       </div>
@@ -270,15 +384,38 @@
         </template>
       </UCard>
     </UContainer>
+
+    <!-- Floating navigation -->
+    <nav class="fixed left-4 top-1/2 transform -translate-y-1/2 hidden lg:block print:hidden">
+      <ul class="space-y-2">
+        <li v-for="section in sections" :key="section.id">
+          <UButton
+            :variant="activeSection === section.id ? 'solid' : 'ghost'"
+            size="xs"
+            @click="scrollToSection(section.id)"
+          >
+            {{ section.label }}
+          </UButton>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useHead } from 'unhead'
 
 const colorMode = useColorMode()
 const resumeData = ref(null)
 const loading = ref(true)
+const activeSection = ref(null)
+const sections = [
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' }
+  // ... other sections
+]
 
 const toggleColorMode = () => {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
@@ -293,13 +430,39 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+
+  // Intersection observer for active section
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activeSection.value = entry.target.id
+      }
+    })
+  }, { 
+    threshold: 0.5,
+    rootMargin: '-50px 0px -50px 0px' // Adjust the margins to control when sections become active
+  })
+
+  sections.forEach(section => {
+    const element = document.getElementById(section.id)
+    if (element) observer.observe(element)
+  })
 })
 
-const navigateToSkill = (skillName) => {
-  const url = getSkillUrl(skillName)
-  if (url !== '#') {
-    window.open(url, '_blank')
+const trackEvent = (action, category, label) => {
+  // Integration with your analytics platform
+  if (window.gtag) {
+    gtag('event', action, {
+      event_category: category,
+      event_label: label
+    })
   }
+}
+
+const navigateToSkill = (skillName) => {
+  trackEvent('click', 'skill', skillName)
+  const url = getSkillUrl(skillName)
+  if (url !== '#') window.open(url, '_blank')
 }
 
 const getSkillIcon = (skill) => {
@@ -370,6 +533,20 @@ const currentRoles = computed(() =>
 const pastRoles = computed(() => 
   resumeData.value?.experience?.filter(job => !job.isCurrentRole) || []
 )
+
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+useHead({
+  title: resumeData.value?.personalInfo?.name || 'Resume',
+  meta: [
+    { name: 'description', content: resumeData.value?.personalInfo?.title || 'Professional Resume' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -437,5 +614,71 @@ section:hover {
 
 .dark-mode-transition {
   transition: var(--bg-transition);
+}
+
+@media print {
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide navigation and buttons when printing */
+  nav, 
+  .fixed {
+    display: none !important;
+  }
+
+  /* Ensure dark mode colors print correctly */
+  .dark\:bg-gray-900,
+  .dark\:bg-gray-800 {
+    background-color: white !important;
+  }
+
+  .dark\:text-white,
+  .dark\:text-gray-400 {
+    color: black !important;
+  }
+
+  /* Remove shadows and borders for cleaner print */
+  .shadow,
+  .border {
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ensure full width content */
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* Adjust spacing for print */
+  .p-6,
+  .p-8 {
+    padding: 1rem !important;
+  }
+
+  .space-y-8 > * + * {
+    margin-top: 1.5rem !important;
+  }
+
+  /* Force background colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+.section {
+  scroll-margin-top: 2rem;
 }
 </style>
