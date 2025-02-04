@@ -97,7 +97,35 @@
               </UCard>
             </div>
 
-            <UDivider class="scroll-mt-6" />
+            <!-- Add this after the About section and before Technical Skills -->
+            <UDivider />
+
+            <!-- Social Proof Section -->
+            <div class="scroll-mt-16">
+              <div class="grid grid-cols-2 gap-4 mb-8">
+                <UCard class="text-center p-4 dark:bg-gray-800">
+                  <div class="flex flex-col items-center">
+                    <UIcon name="i-heroicons-clock" class="h-8 w-8 text-primary-500 mb-2" />
+                    <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
+                      {{ resumeData.metrics?.yearsExperience }}+
+                    </h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Years Experience</p>
+                  </div>
+                </UCard>
+
+                <UCard class="text-center p-4 dark:bg-gray-800">
+                  <div class="flex flex-col items-center">
+                    <UIcon name="i-heroicons-users" class="h-8 w-8 text-primary-500 mb-2" />
+                    <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
+                      {{ resumeData.metrics?.employersSatisfied }}+
+                    </h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Satisfied Employers</p>
+                  </div>
+                </UCard>
+              </div>
+            </div>
+
+            <UDivider />
 
             <!-- Featured Projects -->
             <div v-if="resumeData.projects">
@@ -729,5 +757,28 @@ section:hover {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@keyframes countUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.text-2xl {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+.UCard {
+  transition: transform 0.2s ease-in-out;
+}
+
+.UCard:hover {
+  transform: translateY(-5px);
 }
 </style>
