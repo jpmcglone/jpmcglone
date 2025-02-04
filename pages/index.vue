@@ -25,7 +25,7 @@
       </UButton>
     </div>
 
-    <UContainer class="py-8 relative max-w-5xl mx-auto sm:px-4">
+    <UContainer class="sm:py-8 relative max-w-5xl mx-auto sm:px-4">
       <UCard 
         class="-mx-4 sm:mx-auto sm:rounded-lg" 
         :ui="{ 
@@ -80,37 +80,24 @@
             </div>
           </div>
 
-          <UDivider id="about" class="scroll-mt-8" />
+          <UDivider />
 
           <!-- Main Content -->
-          <div class="p-6 sm:p-8 space-y-8">
-            <!-- Bio Section -->
-            <div>
-              <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-                  <UIcon name="i-heroicons-user" class="text-primary-500 h-5 w-5" />
-                  About
-                </h2>
-                <UButton
-                  :icon="sectionStates.about ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                  color="gray"
-                  variant="ghost"
-                  size="xs"
-                  @click="toggleSection('about')"
-                />
-              </div>
-              <Transition name="fade">
-                <div v-show="sectionStates.about">
-                  <UCard class="dark:bg-gray-800">
-                    <p class="text-gray-600 dark:text-gray-100 leading-relaxed">
-                      {{ resumeData.personalInfo?.bio }}
-                    </p>
-                  </UCard>
-                </div>
-              </Transition>
+          <div id="about" class="p-6 sm:p-8 space-y-8">
+            <!-- About Section -->
+            <div class="scroll-mt-6">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <UIcon name="i-heroicons-user" class="text-primary-500 h-5 w-5" />
+                About
+              </h2>
+              <UCard class="dark:bg-gray-800">
+                <p class="leading-relaxed">
+                  {{ resumeData.personalInfo?.bio }}
+                </p>
+              </UCard>
             </div>
 
-            <UDivider id="skills" class="scroll-mt-8" />
+            <UDivider class="scroll-mt-6" />
 
             <!-- Featured Projects -->
             <div v-if="resumeData.projects">
@@ -207,10 +194,10 @@
               </div>
             </div>
 
-            <UDivider id="skills"/>
+            <UDivider />
 
             <!-- Technical Skills -->
-            <div>
+            <div id="technical-skills" class="scroll-mt-6">
               <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                 <UIcon name="i-heroicons-code-bracket" class="text-primary-500 h-5 w-5" />
                 Technical Skills
@@ -245,124 +232,113 @@
               </div>
             </div>
 
-            <UDivider id="experience" class="scroll-mt-8" />
+            <UDivider />
 
             <!-- Experience -->
-            <div>
-              <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-                  <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
-                  Experience
-                </h2>
-                <UButton
-                  :icon="sectionStates.experience ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                  color="gray"
-                  variant="ghost"
-                  size="xs"
-                  @click="toggleSection('experience')"
-                />
-              </div>
-              <Transition name="fade">
-                <div v-show="sectionStates.experience">
-                  <!-- Current Roles -->
-                  <div class="space-y-4 mb-8">
-                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
-                    <UCard
-                      v-for="job in currentRoles"
-                      :key="job.company"
-                      class="dark:bg-gray-800"
-                    >
-                      <div class="flex items-center gap-4 mb-4">
-                        <UAvatar
-                          v-if="job.logo"
-                          :src="job.logo"
-                          :alt="job.company"
-                          size="lg"
-                        />
-                        <div class="flex-1">
-                          <div class="flex justify-between items-start gap-4">
-                            <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                              {{ job.company }}
-                            </h3>
-                            <UBadge color="green" variant="soft" size="sm">
-                              {{ job.period }}
-                            </UBadge>
-                          </div>
-                          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                            {{ job.title }}
-                          </p>
+            <div id="experience" class="scroll-mt-6">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
+                Experience
+              </h2>
+              <UCard class="dark:bg-gray-800">
+                <!-- Current Roles -->
+                <div class="space-y-4 mb-8">
+                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
+                  <UCard
+                    v-for="job in currentRoles"
+                    :key="job.company"
+                    class="dark:bg-gray-800"
+                  >
+                    <div class="flex items-center gap-4 mb-4">
+                      <UAvatar
+                        v-if="job.logo"
+                        :src="job.logo"
+                        :alt="job.company"
+                        size="lg"
+                      />
+                      <div class="flex-1">
+                        <div class="flex justify-between items-start gap-4">
+                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                            {{ job.company }}
+                          </h3>
+                          <UBadge color="green" variant="soft" size="sm">
+                            {{ job.period }}
+                          </UBadge>
                         </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {{ job.title }}
+                        </p>
                       </div>
-                      <ul class="space-y-2">
-                        <li
-                          v-for="(item, index) in job.responsibilities"
-                          :key="index"
-                          class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
-                        >
-                          <UIcon 
-                            name="i-heroicons-check" 
-                            class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                          />
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </UCard>
-                  </div>
-
-                  <!-- Past Roles -->
-                  <div class="space-y-4">
-                    <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
-                    <UCard
-                      v-for="job in pastRoles"
-                      :key="job.company"
-                      class="dark:bg-gray-800"
-                    >
-                      <div class="flex items-center gap-4 mb-4">
-                        <UAvatar
-                          v-if="job.logo"
-                          :src="job.logo"
-                          :alt="job.company"
-                          size="lg"
+                    </div>
+                    <ul class="space-y-2">
+                      <li
+                        v-for="(item, index) in job.responsibilities"
+                        :key="index"
+                        class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+                      >
+                        <UIcon 
+                          name="i-heroicons-check" 
+                          class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
                         />
-                        <div class="flex-1">
-                          <div class="flex justify-between items-start gap-4">
-                            <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                              {{ job.company }}
-                            </h3>
-                            <UBadge color="gray" variant="soft" size="sm">
-                              {{ job.period }}
-                            </UBadge>
-                          </div>
-                          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                            {{ job.title }}
-                          </p>
-                        </div>
-                      </div>
-                      <ul class="space-y-2">
-                        <li
-                          v-for="(item, index) in job.responsibilities"
-                          :key="index"
-                          class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
-                        >
-                          <UIcon 
-                            name="i-heroicons-check" 
-                            class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                          />
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </UCard>
-                  </div>
+                        {{ item }}
+                      </li>
+                    </ul>
+                  </UCard>
                 </div>
-              </Transition>
+
+                <!-- Past Roles -->
+                <div class="space-y-4">
+                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
+                  <UCard
+                    v-for="job in pastRoles"
+                    :key="job.company"
+                    class="dark:bg-gray-800"
+                  >
+                    <div class="flex items-center gap-4 mb-4">
+                      <UAvatar
+                        v-if="job.logo"
+                        :src="job.logo"
+                        :alt="job.company"
+                        size="lg"
+                      />
+                      <div class="flex-1">
+                        <div class="flex justify-between items-start gap-4">
+                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                            {{ job.company }}
+                          </h3>
+                          <UBadge color="gray" variant="soft" size="sm">
+                            {{ job.period }}
+                          </UBadge>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                          {{ job.title }}
+                        </p>
+                      </div>
+                    </div>
+                    <ul class="space-y-2">
+                      <li
+                        v-for="(item, index) in job.responsibilities"
+                        :key="index"
+                        class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+                      >
+                        <UIcon 
+                          name="i-heroicons-check" 
+                          class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
+                        />
+                        {{ item }}
+                      </li>
+                    </ul>
+                  </UCard>
+                </div>
+              </UCard>
             </div>
 
             <!-- After Experience section, before closing template -->
             <UDivider />
 
             <!-- Education -->
-            <div v-if="resumeData.education">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
+            <div id="education" class="scroll-mt-6">
+              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
                 <UIcon name="i-heroicons-academic-cap" class="text-primary-500 h-5 w-5" />
                 Education
               </h2>
@@ -439,7 +415,7 @@
       <ul class="space-y-2">
         <li v-for="section in sections" :key="section.id">
           <UButton
-            :variant="activeSection === section.id ? 'solid' : 'ghost'"
+            variant="ghost"
             size="xs"
             @click="scrollToSection(section.id)"
           >
@@ -448,25 +424,6 @@
         </li>
       </ul>
     </nav>
-
-    <!-- Add to template -->
-    <Transition
-      enter-active-class="transition duration-200 ease-out"
-      enter-from-class="transform translate-y-8 opacity-0"
-      enter-to-class="transform translate-y-0 opacity-100"
-      leave-active-class="transition duration-200 ease-in"
-      leave-from-class="transform translate-y-0 opacity-100"
-      leave-to-class="transform translate-y-8 opacity-0"
-    >
-      <UButton
-        v-show="showBackToTop"
-        icon="i-heroicons-arrow-up"
-        color="gray"
-        variant="soft"
-        class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 print:hidden dark:bg-gray-800 dark:hover:bg-gray-700"
-        @click="scrollToTop"
-      />
-    </Transition>
 
     <!-- <UButton
       icon="i-heroicons-document-arrow-down"
@@ -487,12 +444,11 @@ import { useHead } from 'unhead'
 const colorMode = useColorMode()
 const resumeData = ref(null)
 const loading = ref(true)
-const activeSection = ref(null)
 const sections = [
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' }
-  // ... other sections
+  { id: 'technical-skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'education', label: 'Education' }
 ]
 
 const toggleColorMode = () => {
@@ -507,36 +463,6 @@ onMounted(async () => {
     console.error('Error loading resume data:', error)
   } finally {
     loading.value = false
-  }
-
-  // Intersection observer for active section
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        activeSection.value = entry.target.id
-      }
-    })
-  }, { 
-    threshold: 0.5,
-    rootMargin: '-50px 0px -50px 0px' // Adjust the margins to control when sections become active
-  })
-
-  sections.forEach(section => {
-    const element = document.getElementById(section.id)
-    if (element) observer.observe(element)
-  })
-
-  // Add to script
-  const showBackToTop = ref(false)
-
-  onMounted(() => {
-    window.addEventListener('scroll', () => {
-      showBackToTop.value = window.scrollY > 300
-    })
-  })
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 })
 
@@ -625,13 +551,6 @@ const pastRoles = computed(() =>
   resumeData.value?.experience?.filter(job => !job.isCurrentRole) || []
 )
 
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
-
 const downloadPDF = () => {
   window.print()
   // Or implement a proper PDF generation service
@@ -652,6 +571,13 @@ const sectionStates = reactive({
 
 const toggleSection = (sectionId) => {
   sectionStates[sectionId] = !sectionStates[sectionId]
+}
+
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 
@@ -785,7 +711,7 @@ section:hover {
 }
 
 .section {
-  scroll-margin-top: 2rem;
+  scroll-margin-top: 10rem;
 }
 
 @media (max-width: 640px) {
