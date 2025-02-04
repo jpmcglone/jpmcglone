@@ -1,0 +1,177 @@
+{
+  "personalInfo": {
+    "name": "John P. McGlone",
+    "title": "iOS Engineer",
+    "location": "Newport News, VA",
+    "phone": "(631) 943-6889",
+    "email": "jp@jpmcglone.com",
+    "image": "/images/johnmcglone.jpg"
+  },
+  "objective": "To inspire and lead engineering teams to create high-quality, efficient products while implementing tools and processes that enhance team performance without compromising on quality.",
+  "technicalSkills": [
+    {
+      "category": "Languages",
+      "skills": "Swift, Objective-C, JavaScript, TypeScript, Ruby, PHP, Java"
+    },
+    {
+      "category": "Databases",
+      "skills": "PostgreSQL, Realm, MySQL, SQLite, MongoDB"
+    },
+    {
+      "category": "Dependency Managers",
+      "skills": "Swift Package Manager, Cocoapods, Carthage, Bundler, npm"
+    },
+    {
+      "category": "CI/CD",
+      "skills": "CircleCI, Fastlane, GitHub Actions, Travis CI, Jenkins, Azure"
+    },
+    {
+      "category": "Monitoring",
+      "skills": "Sentry, Crashlytics, HockeyApp"
+    },
+    {
+      "category": "Analytics",
+      "skills": "Amplitude, Mixpanel, Firebase, Facebook Analytics"
+    },
+    {
+      "category": "Development Tools",
+      "skills": "Xcode, VS Code, Vim, JetBrains tools"
+    },
+    {
+      "category": "Frameworks",
+      "skills": "SwiftUI, UIKit, SnapKit, Lottie, Combine"
+    },
+    {
+      "category": "Networking",
+      "skills": "Alamofire, AFNetworking, URLSession"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Rumble",
+      "title": "Lead iOS Developer",
+      "period": "May 2023 - Present",
+      "location": "Remote",
+      "logo": "/images/companies/rumble-logo.png",
+      "responsibilities": [
+        "Developed the Rumble Studio iOS app, integrating real-time conferencing with LiveKit.",
+        "Ensured compatibility across iPhone, iPad, and Apple Vision Pro.",
+        "Contributed to Vue.js frontend for Ads team."
+      ]
+    },
+    {
+      "company": "Callin",
+      "title": "Lead iOS Developer",
+      "period": "Jan 2022 - May 2023",
+      "location": "Acquired by Rumble",
+      "logo": "/images/companies/callin-logo.png",
+      "responsibilities": [
+        "Built Callin iOS app, integrating Agora.io for real-time media needs.",
+        "Implemented complex UI components, such as synchronized transcripts."
+      ]
+    },
+    {
+      "company": "JP McGlone LLC",
+      "title": "Owner / Engineering Lead",
+      "period": "Nov 2024 - Present",
+      "logo": "/images/companies/jpm-logo.png",
+      "responsibilities": [
+        "Developing a competitive church directory app using Nuxt.js.",
+        "Managing overseas contractors to streamline MVP development."
+      ]
+    }
+  ],
+  "education": {
+    "degree": "A.S. in Computer Science",
+    "school": "Nassau Community College",
+    "location": "Garden City, NY",
+    "period": "2006 - 2009",
+    "gpa": "3.8"
+  },
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://www.github.com/jpmcglone"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/john-p-mcglone-18513014"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "App Store Success",
+      "description": "Led development of apps with combined 1M+ downloads",
+      "metric": "1M+ Downloads"
+    },
+    {
+      "title": "Performance Optimization",
+      "description": "Reduced app startup time by 40% through optimization",
+      "metric": "40% Faster"
+    }
+  ],
+  "speakingEngagements": [
+    {
+      "event": "iOS Dev Conference 2023",
+      "title": "Building Real-time Audio Apps with LiveKit",
+      "location": "San Francisco, CA",
+      "date": "October 2023"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Apple Developer Certification",
+      "issuer": "Apple",
+      "date": "2023",
+      "logo": "/images/certifications/apple-cert.png"
+    }
+  ],
+  "openSourceContributions": [
+    {
+      "project": "LiveKit iOS SDK",
+      "description": "Contributed real-time audio improvements",
+      "url": "https://github.com/livekit/client-sdk-ios"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Building Scalable iOS Applications",
+      "platform": "Medium",
+      "url": "https://medium.com/@jpmcglone/building-scalable-ios-applications",
+      "date": "2023"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Native"
+    },
+    {
+      "language": "Spanish",
+      "proficiency": "Conversational"
+    }
+  ],
+  "patents": [
+    {
+      "title": "Method for Real-time Audio Processing in Mobile Applications",
+      "number": "US123456789",
+      "year": "2023"
+    }
+  ],
+  "mentoring": {
+    "description": "Actively mentored 5+ junior developers, leading to their promotion to senior roles",
+    "platforms": ["ADPList", "MentorCruise"],
+    "specialties": ["iOS Development", "Career Growth", "Technical Leadership"]
+  },
+  "sideProjects": [
+    {
+      "name": "iOS Dev Newsletter",
+      "description": "Weekly newsletter reaching 5,000+ iOS developers",
+      "url": "https://iosdevweekly.com",
+      "metrics": {
+        "subscribers": "5,000+",
+        "issues": "52+"
+      }
+    }
+  ]
+}
