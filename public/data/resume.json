@@ -29,7 +29,10 @@
         { "name": "Nuxt.js", "featured": true },
         { "name": "SnapKit" },
         { "name": "Lottie" },
-        { "name": "Combine" }
+        { "name": "Combine" },
+        { "name": "FLAnimatedImage" },
+        { "name": "LiveKit" },
+        { "name": "Apollo (GraphQL)" }
       ]
     },
     {
@@ -60,7 +63,7 @@
         { "name": "GitHub Actions" },
         { "name": "Travis CI" },
         { "name": "Jenkins" },
-        { "name": "Azure" }
+        { "name": "Azure DevOps" }
       ]
     },
     {
@@ -86,7 +89,8 @@
         { "name": "Xcode", "featured": true },
         { "name": "VS Code" },
         { "name": "Vim" },
-        { "name": "JetBrains tools" }
+        { "name": "JetBrains tools" },
+        { "name": "AppCode" }
       ]
     },
     {
@@ -96,6 +100,34 @@
         { "name": "AFNetworking" },
         { "name": "URLSession" }
       ]
+    },
+    {
+      "category": "Issue Tracking / Wiki",
+      "skills": [
+        { "name": "Linear" },
+        { "name": "JIRA" },
+        { "name": "GitHub" },
+        { "name": "Notion" },
+        { "name": "GitLab" },
+        { "name": "Bitbucket" },
+        { "name": "Confluence" },
+        { "name": "Pivotal Tracker" },
+        { "name": "Phabricator" }
+      ]
+    },
+    {
+      "category": "Miscellaneous",
+      "skills": [
+        { "name": "Next.js" },
+        { "name": "React" },
+        { "name": "GraphQL" },
+        { "name": "JSON" },
+        { "name": "YAML" },
+        { "name": "dotenv" },
+        { "name": "xcconfig" },
+        { "name": "Regex" },
+        { "name": "XML" }
+      ]
     }
   ],
   "experience": [
@@ -103,33 +135,77 @@
       "company": "Rumble",
       "title": "Lead iOS Developer",
       "period": "May 2023 - Present",
-      "location": "Remote",
+      "isCurrentRole": true,
       "logo": "/images/companies/rumble-logo.png",
       "responsibilities": [
-        "Developed the Rumble Studio iOS app, integrating real-time conferencing with LiveKit.",
-        "Ensured compatibility across iPhone, iPad, and Apple Vision Pro.",
-        "Contributed to Vue.js frontend for Ads team."
-      ]
-    },
-    {
-      "company": "Callin",
-      "title": "Lead iOS Developer",
-      "period": "Jan 2022 - May 2023",
-      "location": "Acquired by Rumble",
-      "logo": "/images/companies/callin-logo.png",
-      "responsibilities": [
-        "Built Callin iOS app, integrating Agora.io for real-time media needs.",
-        "Implemented complex UI components, such as synchronized transcripts."
+        "Leading iOS development for Rumble's social media platform",
+        "Implementing complex UI components, such as synchronized transcripts."
       ]
     },
     {
       "company": "JP McGlone LLC",
       "title": "Owner / Engineering Lead",
       "period": "Nov 2024 - Present",
+      "isCurrentRole": true,
       "logo": "/images/companies/jpm-logo.png",
       "responsibilities": [
         "Developing a competitive church directory app using Nuxt.js.",
         "Managing overseas contractors to streamline MVP development."
+      ]
+    },
+    {
+      "company": "Callin",
+      "title": "Lead iOS Developer",
+      "period": "Jan 2022 - May 2023",
+      "isCurrentRole": false,
+      "logo": "/images/companies/callin-logo.png",
+      "responsibilities": [
+        "Led development of social audio app using Swift and UIKit",
+        "Implemented complex audio features and real-time communication"
+      ]
+    },
+    {
+      "company": "Epihealthy",
+      "title": "Senior iOS Developer",
+      "period": "2022",
+      "location": "Remote",
+      "responsibilities": [
+        "Developed MVP for Epihealthy iOS app.",
+        "Integrated Bluetooth connection to health ring, reading heart rate and oxygen data.",
+        "Implemented real-time alerts for potential seizure detection."
+      ]
+    },
+    {
+      "company": "Rite Aid",
+      "title": "Senior Product Mobile Specialist (Mobile Tech Lead)",
+      "period": "2021",
+      "location": "Remote",
+      "responsibilities": [
+        "Oversaw mobile technology for iOS and Android platforms.",
+        "Trained team leads to manage onshore and offshore engineering teams.",
+        "Set up CI with Azure DevOps, advocated for CircleCI for workflow improvement.",
+        "Enhanced git policies and Azure DevOps Work Items to boost team efficiency.",
+        "Led contracted team to build white-labeled features for multiple apps beyond Rite Aid."
+      ]
+    },
+    {
+      "company": "Walmart Labs",
+      "title": "iOS Engineer",
+      "period": "2020",
+      "location": "Remote",
+      "responsibilities": [
+        "Contributed to development of Walmart's new app."
+      ]
+    },
+    {
+      "company": "Supersapiens",
+      "title": "iOS Engineer",
+      "period": "2020 - 2021",
+      "location": "Remote",
+      "responsibilities": [
+        "Built custom, animated glucose monitoring charts in SwiftUI.",
+        "Integrated Bluetooth data from glucose devices, refactored services using Combine.",
+        "Collaborated with remote teams across three countries."
       ]
     }
   ],
@@ -148,82 +224,6 @@
     {
       "name": "LinkedIn",
       "url": "https://www.linkedin.com/in/john-p-mcglone-18513014"
-    }
-  ],
-  "achievements": [
-    {
-      "title": "App Store Success",
-      "description": "Led development of apps with combined 1M+ downloads",
-      "metric": "1M+ Downloads"
-    },
-    {
-      "title": "Performance Optimization",
-      "description": "Reduced app startup time by 40% through optimization",
-      "metric": "40% Faster"
-    }
-  ],
-  "speakingEngagements": [
-    {
-      "event": "iOS Dev Conference 2023",
-      "title": "Building Real-time Audio Apps with LiveKit",
-      "location": "San Francisco, CA",
-      "date": "October 2023"
-    }
-  ],
-  "certifications": [
-    {
-      "name": "Apple Developer Certification",
-      "issuer": "Apple",
-      "date": "2023",
-      "logo": "/images/certifications/apple-cert.png"
-    }
-  ],
-  "openSourceContributions": [
-    {
-      "project": "LiveKit iOS SDK",
-      "description": "Contributed real-time audio improvements",
-      "url": "https://github.com/livekit/client-sdk-ios"
-    }
-  ],
-  "publications": [
-    {
-      "title": "Building Scalable iOS Applications",
-      "platform": "Medium",
-      "url": "https://medium.com/@jpmcglone/building-scalable-ios-applications",
-      "date": "2023"
-    }
-  ],
-  "languages": [
-    {
-      "language": "English",
-      "proficiency": "Native"
-    },
-    {
-      "language": "Spanish",
-      "proficiency": "Conversational"
-    }
-  ],
-  "patents": [
-    {
-      "title": "Method for Real-time Audio Processing in Mobile Applications",
-      "number": "US123456789",
-      "year": "2023"
-    }
-  ],
-  "mentoring": {
-    "description": "Actively mentored 5+ junior developers, leading to their promotion to senior roles",
-    "platforms": ["ADPList", "MentorCruise"],
-    "specialties": ["iOS Development", "Career Growth", "Technical Leadership"]
-  },
-  "sideProjects": [
-    {
-      "name": "iOS Dev Newsletter",
-      "description": "Weekly newsletter reaching 5,000+ iOS developers",
-      "url": "https://iosdevweekly.com",
-      "metrics": {
-        "subscribers": "5,000+",
-        "issues": "52+"
-      }
     }
   ]
 }
