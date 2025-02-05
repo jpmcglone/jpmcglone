@@ -4,24 +4,41 @@
       <UIcon name="i-heroicons-code-bracket" class="text-primary-500 h-5 w-5" />
       Technical Skills
     </h2>
+
+    <!-- Add search input -->
+    <div class="mb-4">
+      <UInput
+        v-model="searchQuery"
+        placeholder="Search skills..."
+        icon="i-heroicons-magnifying-glass"
+        class="max-w-md"
+      />
+    </div>
+
     <div class="grid md:grid-cols-2 gap-4">
       <UCard
         v-for="skill in technicalSkills"
         :key="skill.category"
-        class="dark:bg-gray-800"
+        class="dark:bg-gray-800 transition-all duration-300"
+        :class="{
+          'opacity-20': !categoryMatchesSearch(skill),
+          'scale-[1.02] shadow-lg': categoryMatchesSearch(skill) && searchQuery
+        }"
       >
         <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
           {{ skill.category }}
         </h3>
         <div class="flex flex-wrap gap-2">
           <UBadge
-            v-for="item in sortedSkills(skill.skills)"
+            v-for="item in skill.skills"
             :key="item.name"
             :color="item.featured ? 'primary' : 'gray'"
             :variant="'soft'"
             :class="[
-              'cursor-pointer hover:-translate-y-0.5 transition-transform',
-              item.featured ? 'border border-primary-500' : ''
+              'cursor-pointer hover:-translate-y-0.5 transition-all duration-300',
+              item.featured ? 'border border-primary-500' : '',
+              !itemMatchesSearch(item) ? 'opacity-20' : '',
+              itemMatchesSearch(item) && searchQuery ? 'scale-[1.05] shadow-sm' : ''
             ]"
             size="md"
             @click="navigateToSkill(item.name)"
@@ -42,6 +59,8 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 const props = defineProps({
   technicalSkills: {
     type: Array,
@@ -49,8 +68,20 @@ const props = defineProps({
   }
 })
 
-const sortedSkills = (skills) => {
-  return skills.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+const searchQuery = ref('')
+
+// Helper function to check if an item matches the search
+const itemMatchesSearch = (item) => {
+  const query = searchQuery.value.toLowerCase().trim()
+  if (!query) return true
+  return item.name.toLowerCase().includes(query)
+}
+
+// Helper function to check if any items in a category match the search
+const categoryMatchesSearch = (category) => {
+  const query = searchQuery.value.toLowerCase().trim()
+  if (!query) return true
+  return category.skills.some(item => item.name.toLowerCase().includes(query))
 }
 
 const isAppleLogo = (skill) => {

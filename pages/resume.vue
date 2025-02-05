@@ -1,5 +1,5 @@
 <template>
-  <div id="about" class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div id="about" class="min-h-screen">
     <ColorModeToggle />
 
     <UContainer class="sm:py-8 relative max-w-5xl mx-auto sm:px-4">
@@ -93,37 +93,14 @@
       </UCard>
     </UContainer>
 
-    <!-- Floating navigation -->
-    <nav class="fixed left-4 top-1/2 transform -translate-y-1/2 hidden lg:block print:hidden">
-      <ul class="space-y-2">
-        <li v-for="section in sections" :key="section.id">
-          <UButton
-            variant="ghost"
-            size="xs"
-            @click="scrollToSection(section.id)"
-          >
-            {{ section.label }}
-          </UButton>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- <UButton
-      icon="i-heroicons-document-arrow-down"
-      color="gray"
-      variant="soft"
-      class="dark:bg-gray-800 dark:hover:bg-gray-700"
-      @click="downloadPDF"
-    >
-      Download PDF
-    </UButton> -->
+    <ResumeFloatingNav :sections="sections" />
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
 import { useHead } from 'unhead'
-import resumeData from '~/public/data/resume.json'
+import resumeData from '~/public/data/resume.js'
 
 const sections = computed(() => {
   const availableSections = []
@@ -165,3 +142,13 @@ useHead({
   ]
 })
 </script>
+
+<style>
+body {
+  background-color: rgb(249 250 251);
+}
+
+:root.dark body {
+  background-color: rgb(17 24 39);
+}
+</style>
