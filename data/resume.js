@@ -15,7 +15,7 @@ export default {
       skills: [
         { name: "Swift", featured: true },
         { name: "Objective-C", featured: true },
-        { name: "JavaScript" },
+        { name: "JavaScript", featured: true },
         { name: "TypeScript" },
         { name: "Ruby" },
         { name: "PHP" },
@@ -59,7 +59,7 @@ export default {
     {
       category: "CI/CD",
       skills: [
-        { name: "CircleCI" },
+        { name: "CircleCI", featured: true },
         { name: "Fastlane", featured: true },
         { name: "GitHub Actions" },
         { name: "Travis CI" },
@@ -88,6 +88,7 @@ export default {
       category: "Development Tools",
       skills: [
         { name: "Xcode", featured: true },
+        { name: "Cursor", featured: true },
         { name: "VS Code" },
         { name: "Vim" },
         { name: "JetBrains tools" },
@@ -105,15 +106,23 @@ export default {
     {
       category: "Issue Tracking / Wiki",
       skills: [
-        { name: "Linear" },
-        { name: "JIRA" },
-        { name: "GitHub" },
+        { name: "JIRA", featured: true },
+        { name: "Linear", featured: true },
+        { name: "GitHub", featured: true },
         { name: "Notion" },
         { name: "GitLab" },
         { name: "Bitbucket" },
         { name: "Confluence" },
         { name: "Pivotal Tracker" },
         { name: "Phabricator" }
+      ]
+    },
+    {
+      category: "A.I.",
+      skills: [
+        { name: "ChatGPT", featured: true },
+        { name: "Cursor", featured: true },
+        { name: "Claude" }
       ]
     },
     {
@@ -129,7 +138,7 @@ export default {
         { name: "Regex" },
         { name: "XML" }
       ]
-    }
+    },
   ],
   experience: [
     {
