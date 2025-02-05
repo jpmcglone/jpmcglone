@@ -16,17 +16,20 @@
         }"
       >
         <template v-if="resumeData">
-          <ResumeHeader
-            :personal-info="resumeData.personalInfo"
-            :links="resumeData.links"
-          />
-
           <div class="p-6 sm:p-8 space-y-8">
+            <!-- Header Section -->
+            <ResumeHeaderSection
+              :personal-info="resumeData.personalInfo"
+              :links="resumeData.links"
+            />
+            
+            <!-- About Section -->
             <ResumeAboutSection 
               v-if="resumeData.personalInfo?.bio" 
               :bio="resumeData.personalInfo.bio" 
             />
 
+            <!-- Objective Section -->
             <ResumeObjectiveSection
               v-if="resumeData.objective"
               :objective="resumeData.objective"
@@ -35,314 +38,58 @@
             <UDivider />
             
             <!-- Social Proof Section -->
-            <ResumeSocialProof 
+            <ResumeSocialProofSection
               v-if="hasMetrics" 
               :metrics="resumeData.metrics" 
             />
 
-            <UDivider />
+            <UDivider v-if="hasMetrics" />
 
             <!-- Featured Projects -->
-            <div v-if="resumeData.projects">
-              <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-                  <UIcon name="i-heroicons-rocket-launch" class="text-primary-500 h-5 w-5" />
-                  Featured Projects
-                </h2>
-                <UButton
-                  :icon="sectionStates.skills ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                  color="gray"
-                  variant="ghost"
-                  size="xs"
-                  @click="toggleSection('skills')"
-                />
-              </div>
-              <Transition name="fade">
-                <div v-show="sectionStates.skills">
-                  <div class="grid md:grid-cols-2 gap-4">
-                    <UCard
-                      v-for="project in resumeData.projects"
-                      :key="project.name"
-                      class="dark:bg-gray-800"
-                    >
-                      <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                            {{ project.name }}
-                          </h3>
-                          <UBadge 
-                            :color="project.status === 'In Development' ? 'orange' : 'green'"
-                            variant="soft"
-                          >
-                            {{ project.status }}
-                          </UBadge>
-                        </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-100">
-                          {{ project.description }}
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                          <UBadge
-                            v-for="tech in project.technologies"
-                            :key="tech"
-                            color="gray"
-                            variant="soft"
-                            size="sm"
-                          >
-                            {{ tech }}
-                          </UBadge>
-                        </div>
-                      </div>
-                    </UCard>
-                  </div>
-                </div>
-              </Transition>
-            </div>
+            <ResumeFeaturedProjectsSection 
+              v-if="resumeData.projects"
+              :projects="resumeData.projects"
+            />
 
-            <UDivider />
+            <UDivider v-if="resumeData.projects" />
 
             <!-- Testimonials -->
-            <div v-if="resumeData.testimonials">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-chat-bubble-bottom-center-text" class="text-primary-500 h-5 w-5" />
-                Testimonials
-              </h2>
-              <div class="grid md:grid-cols-2 gap-4">
-                <UCard
-                  v-for="testimonial in resumeData.testimonials"
-                  :key="testimonial.author"
-                  class="dark:bg-gray-800"
-                >
-                  <div class="space-y-4">
-                    <p class="text-gray-600 dark:text-gray-100 italic">
-                      "{{ testimonial.quote }}"
-                    </p>
-                    <div class="flex items-center gap-4">
-                      <UAvatar
-                        v-if="testimonial.image"
-                        :src="testimonial.image"
-                        :alt="testimonial.author"
-                        size="sm"
-                      />
-                      <div>
-                        <p class="text-sm font-medium text-gray-900 dark:text-white">
-                          {{ testimonial.author }}
-                        </p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">
-                          {{ testimonial.title }} at {{ testimonial.company }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </UCard>
-              </div>
-            </div>
+            <ResumeTestimonialsSection 
+              v-if="resumeData.testimonials"
+              :testimonials="resumeData.testimonials"
+            />
 
-            <UDivider />
+            <UDivider v-if="resumeData.testimonials"/>
 
             <!-- Technical Skills -->
-            <div id="technical-skills" class="scroll-mt-6">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-code-bracket" class="text-primary-500 h-5 w-5" />
-                Technical Skills
-              </h2>
-              <div class="grid md:grid-cols-2 gap-4">
-                <UCard
-                  v-for="skill in resumeData.technicalSkills"
-                  :key="skill.category"
-                  class="dark:bg-gray-800"
-                >
-                  <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
-                    {{ skill.category }}
-                  </h3>
-                  <div class="flex flex-wrap gap-2">
-                    <UBadge
-                      v-for="item in sortedSkills(skill.skills)"
-                      :key="item.name"
-                      :color="item.featured ? 'primary' : 'gray'"
-                      :variant="item.featured ? 'solid' : 'soft'"
-                      size="md"
-                      class="cursor-pointer hover:-translate-y-0.5 transition-transform"
-                      @click="navigateToSkill(item.name)"
-                    >
-                      <UIcon 
-                        :name="getSkillIcon(item.name)" 
-                        class="h-4 w-4 mr-1"
-                      />
-                      {{ item.name }}
-                    </UBadge>
-                  </div>
-                </UCard>
-              </div>
-            </div>
+            <ResumeTechnicalSkillsSection 
+              v-if="resumeData.technicalSkills"
+              :technical-skills="resumeData.technicalSkills"
+            />
 
-            <UDivider />
+            <UDivider v-if="resumeData.technicalSkills" />
 
             <!-- Experience -->
-            <div id="experience" class="scroll-mt-6">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
-                <UIcon name="i-heroicons-briefcase" class="text-primary-500 h-5 w-5" />
-                Experience
-              </h2>
-              <UCard class="dark:bg-gray-800">
-                <!-- Current Roles -->
-                <div class="space-y-4 mb-8">
-                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
-                  <UCard
-                    v-for="job in currentRoles"
-                    :key="job.company"
-                    class="dark:bg-gray-800"
-                  >
-                    <div class="flex items-center gap-4 mb-4">
-                      <UAvatar
-                        v-if="job.logo"
-                        :src="job.logo"
-                        :alt="job.company"
-                        size="lg"
-                      />
-                      <div class="flex-1">
-                        <div class="flex justify-between items-start gap-4">
-                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                            {{ job.company }}
-                          </h3>
-                          <UBadge color="green" variant="soft" size="sm">
-                            {{ job.period }}
-                          </UBadge>
-                        </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                          {{ job.title }}
-                        </p>
-                      </div>
-                    </div>
-                    <ul class="space-y-2">
-                      <li
-                        v-for="(item, index) in job.responsibilities"
-                        :key="index"
-                        class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
-                      >
-                        <UIcon 
-                          name="i-heroicons-check" 
-                          class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                        />
-                        {{ item }}
-                      </li>
-                    </ul>
-                  </UCard>
-                </div>
+            <ResumeExperienceSection 
+              v-if="resumeData.experience"
+              :experience="resumeData.experience"
+            />
 
-                <!-- Past Roles -->
-                <div class="space-y-4">
-                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
-                  <UCard
-                    v-for="job in pastRoles"
-                    :key="job.company"
-                    class="dark:bg-gray-800"
-                  >
-                    <div class="flex items-center gap-4 mb-4">
-                      <UAvatar
-                        v-if="job.logo"
-                        :src="job.logo"
-                        :alt="job.company"
-                        size="lg"
-                      />
-                      <div class="flex-1">
-                        <div class="flex justify-between items-start gap-4">
-                          <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                            {{ job.company }}
-                          </h3>
-                          <UBadge color="gray" variant="soft" size="sm">
-                            {{ job.period }}
-                          </UBadge>
-                        </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                          {{ job.title }}
-                        </p>
-                      </div>
-                    </div>
-                    <ul class="space-y-2">
-                      <li
-                        v-for="(item, index) in job.responsibilities"
-                        :key="index"
-                        class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
-                      >
-                        <UIcon 
-                          name="i-heroicons-check" 
-                          class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
-                        />
-                        {{ item }}
-                      </li>
-                    </ul>
-                  </UCard>
-                </div>
-              </UCard>
-            </div>
-
-            <!-- After Experience section, before closing template -->
-            <UDivider />
+            <UDivider v-if="resumeData.experience" />
 
             <!-- Education -->
-            <div id="education" class="scroll-mt-6">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
-                <UIcon name="i-heroicons-academic-cap" class="text-primary-500 h-5 w-5" />
-                Education
-              </h2>
-              <UCard class="dark:bg-gray-800">
-                <div class="flex justify-between items-start gap-4">
-                  <div>
-                    <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                      {{ resumeData.education.degree }}
-                    </h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                      {{ resumeData.education.school }}
-                    </p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                      {{ resumeData.education.location }}
-                    </p>
-                  </div>
-                  <div class="text-right">
-                    <UBadge color="gray" variant="soft" size="sm">
-                      {{ resumeData.education.period }}
-                    </UBadge>
-                    <p v-if="resumeData.education.gpa" class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                      GPA: {{ resumeData.education.gpa }}
-                    </p>
-                  </div>
-                </div>
-              </UCard>
-            </div>
+            <ResumeEducationSection 
+              v-if="resumeData.education"
+              :education="resumeData.education"
+            />
+
+            <UDivider v-if="resumeData.education && resumeData.achievements" />
 
             <!-- Achievements -->
-            <div v-if="resumeData.achievements">
-              <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-                <UIcon name="i-heroicons-trophy" class="text-primary-500 h-5 w-5" />
-                Achievements
-              </h2>
-              <div class="grid md:grid-cols-2 gap-4">
-                <UCard
-                  v-for="achievement in resumeData.achievements"
-                  :key="achievement.title"
-                  class="dark:bg-gray-800"
-                >
-                  <div class="flex items-start gap-4">
-                    <div>
-                      <h3 class="text-base font-medium text-gray-900 dark:text-white mb-2">
-                        {{ achievement.title }}
-                      </h3>
-                      <p class="text-sm text-gray-600 dark:text-gray-100">
-                        {{ achievement.description }}
-                      </p>
-                    </div>
-                    <UBadge
-                      v-if="achievement.metric"
-                      color="primary"
-                      variant="soft"
-                      size="sm"
-                    >
-                      {{ achievement.metric }}
-                    </UBadge>
-                  </div>
-                </UCard>
-              </div>
-            </div>
+            <ResumeAchievementsSection 
+              v-if="resumeData.achievements"
+              :achievements="resumeData.achievements"
+            />
           </div>
         </template>
         <template v-else>
@@ -494,15 +241,6 @@ const getSkillUrl = (skill) => {
 const sortedSkills = (skills) => {
   return skills.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
 }
-
-// Computed properties for role filtering
-const currentRoles = computed(() => 
-  resumeData.value?.experience?.filter(job => job.isCurrentRole) || []
-)
-
-const pastRoles = computed(() => 
-  resumeData.value?.experience?.filter(job => !job.isCurrentRole) || []
-)
 
 const downloadPDF = () => {
   window.print()
