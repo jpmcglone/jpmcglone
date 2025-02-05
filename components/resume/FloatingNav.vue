@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed left-4 top-1/2 transform -translate-y-1/2 hidden lg:block print:hidden">
+  <nav class="fixed left-4 top-1/2 transform -translate-y-1/2 hidden xl:block print:hidden">
     <ul class="space-y-2">
       <li v-for="section in sections" :key="section.id">
         <UButton
