@@ -15,88 +15,81 @@
           padding: 'p-0 sm:p-0'
         }"
       >
-        <template v-if="resumeData">
-          <div class="p-6 sm:p-8 space-y-8">
-            <!-- Header Section -->
-            <ResumeHeaderSection
-              :personal-info="resumeData.personalInfo"
-              :links="resumeData.links"
-            />
-            
-            <!-- About Section -->
-            <ResumeAboutSection 
-              v-if="resumeData.personalInfo?.bio" 
-              :bio="resumeData.personalInfo.bio" 
-            />
+        <div class="p-6 sm:p-8 space-y-8">
+          <!-- Header Section -->
+          <ResumeHeaderSection
+            :personal-info="resumeData.personalInfo"
+            :links="resumeData.links"
+          />
+          
+          <!-- About Section -->
+          <ResumeAboutSection 
+            v-if="resumeData.personalInfo?.bio" 
+            :bio="resumeData.personalInfo.bio" 
+          />
 
-            <!-- Objective Section -->
-            <ResumeObjectiveSection
-              v-if="resumeData.objective"
-              :objective="resumeData.objective"
-            />
+          <!-- Objective Section -->
+          <ResumeObjectiveSection
+            v-if="resumeData.objective"
+            :objective="resumeData.objective"
+          />
 
-            <UDivider />
-            
-            <!-- Social Proof Section -->
-            <ResumeSocialProofSection
-              v-if="hasMetrics" 
-              :metrics="resumeData.metrics" 
-            />
+          <UDivider />
+          
+          <!-- Social Proof Section -->
+          <ResumeSocialProofSection
+            v-if="hasMetrics" 
+            :metrics="resumeData.metrics" 
+          />
 
-            <UDivider v-if="hasMetrics" />
+          <UDivider v-if="hasMetrics" />
 
-            <!-- Featured Projects -->
-            <ResumeFeaturedProjectsSection 
-              v-if="resumeData.projects"
-              :projects="resumeData.projects"
-            />
+          <!-- Featured Projects -->
+          <ResumeFeaturedProjectsSection 
+            v-if="resumeData.projects"
+            :projects="resumeData.projects"
+          />
 
-            <UDivider v-if="resumeData.projects" />
+          <UDivider v-if="resumeData.projects" />
 
-            <!-- Testimonials -->
-            <ResumeTestimonialsSection 
-              v-if="resumeData.testimonials"
-              :testimonials="resumeData.testimonials"
-            />
+          <!-- Testimonials -->
+          <ResumeTestimonialsSection 
+            v-if="resumeData.testimonials"
+            :testimonials="resumeData.testimonials"
+          />
 
-            <UDivider v-if="resumeData.testimonials"/>
+          <UDivider v-if="resumeData.testimonials"/>
 
-            <!-- Technical Skills -->
-            <ResumeTechnicalSkillsSection 
-              v-if="resumeData.technicalSkills"
-              :technical-skills="resumeData.technicalSkills"
-            />
+          <!-- Technical Skills -->
+          <ResumeTechnicalSkillsSection 
+            v-if="resumeData.technicalSkills"
+            :technical-skills="resumeData.technicalSkills"
+          />
 
-            <UDivider v-if="resumeData.technicalSkills" />
+          <UDivider v-if="resumeData.technicalSkills" />
 
-            <!-- Experience -->
-            <ResumeExperienceSection 
-              v-if="resumeData.experience"
-              :experience="resumeData.experience"
-            />
+          <!-- Experience -->
+          <ResumeExperienceSection 
+            v-if="resumeData.experience"
+            :experience="resumeData.experience"
+          />
 
-            <UDivider v-if="resumeData.experience" />
+          <UDivider v-if="resumeData.experience" />
 
-            <!-- Education -->
-            <ResumeEducationSection 
-              v-if="resumeData.education"
-              :education="resumeData.education"
-            />
+          <!-- Education -->
+          <ResumeEducationSection 
+            v-if="resumeData.education"
+            :education="resumeData.education"
+          />
 
-            <UDivider v-if="resumeData.education && resumeData.achievements" />
+          <UDivider v-if="resumeData.education && resumeData.achievements" />
 
-            <!-- Achievements -->
-            <ResumeAchievementsSection 
-              v-if="resumeData.achievements"
-              :achievements="resumeData.achievements"
-            />
-          </div>
-        </template>
-        <template v-else>
-          <div class="p-8 text-center text-gray-500 dark:text-gray-400">
-            Loading...
-          </div>
-        </template>
+          <!-- Achievements -->
+          <ResumeAchievementsSection 
+            v-if="resumeData.achievements"
+            :achievements="resumeData.achievements"
+          />
+        </div>
       </UCard>
     </UContainer>
 
@@ -128,141 +121,35 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, reactive } from 'vue'
+import { computed } from 'vue'
 import { useHead } from 'unhead'
+import resumeData from '~/public/data/resume.json'
 
-const resumeData = ref(null)
-const loading = ref(true)
 const sections = computed(() => {
   const availableSections = []
   
-  if (resumeData.value?.personalInfo?.bio) {
+  if (resumeData.personalInfo?.bio) {
     availableSections.push({ id: 'about', label: 'About' })
   }
   
-  if (resumeData.value?.technicalSkills?.length) {
+  if (resumeData.technicalSkills?.length) {
     availableSections.push({ id: 'technical-skills', label: 'Skills' })
   }
   
-  if (resumeData.value?.experience?.length) {
+  if (resumeData.experience?.length) {
     availableSections.push({ id: 'experience', label: 'Experience' })
   }
   
-  if (resumeData.value?.education) {
+  if (resumeData.education) {
     availableSections.push({ id: 'education', label: 'Education' })
   }
   
   return availableSections
 })
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/data/resume.json')
-    resumeData.value = await response.json()
-  } catch (error) {
-    console.error('Error loading resume data:', error)
-  } finally {
-    loading.value = false
-  }
+const hasMetrics = computed(() => {
+  return resumeData.metrics?.yearsExperience || resumeData.metrics?.employersSatisfied
 })
-
-const trackEvent = (action, category, label) => {
-  // Integration with your analytics platform
-  if (window.gtag) {
-    gtag('event', action, {
-      event_category: category,
-      event_label: label
-    })
-  }
-}
-
-const navigateToSkill = (skillName) => {
-  trackEvent('click', 'skill', skillName)
-  const url = getSkillUrl(skillName)
-  if (url !== '#') window.open(url, '_blank')
-}
-
-const getSkillIcon = (skill) => {
-  const icons = {
-    // Languages
-    'Swift': 'logos:swift',
-    'Objective-C': 'logos:c',
-    'JavaScript': 'logos:javascript',
-    'TypeScript': 'logos:typescript-icon',
-    'Ruby': 'logos:ruby',
-    'PHP': 'logos:php',
-    'Java': 'logos:java',
-    
-    // Databases
-    'PostgreSQL': 'logos:postgresql',
-    'MongoDB': 'logos:mongodb-icon',
-    'MySQL': 'logos:mysql',
-    'SQLite': 'logos:sqlite',
-    'Realm': 'logos:realm',
-    
-    // Tools & Frameworks
-    'SwiftUI': 'logos:swift',
-    'UIKit': 'logos:apple',
-    'Xcode': 'logos:xcode',
-    'VS Code': 'logos:visual-studio-code',
-    'GitHub': 'logos:github-icon',
-    'npm': 'logos:npm-icon',
-    'Firebase': 'logos:firebase',
-    
-    // Default icon for items without specific icons
-    'default': 'heroicons:code-bracket'
-  }
-  return icons[skill] || icons.default
-}
-
-const getSkillUrl = (skill) => {
-  const urls = {
-    // Languages
-    'Swift': 'https://developer.apple.com/swift/',
-    'Objective-C': 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/',
-    'JavaScript': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-    'TypeScript': 'https://www.typescriptlang.org/',
-    'Ruby': 'https://www.ruby-lang.org/',
-    'PHP': 'https://www.php.net/',
-    'Java': 'https://dev.java/',
-    
-    // Databases
-    'PostgreSQL': 'https://www.postgresql.org/',
-    'Realm': 'https://realm.io/',
-    'MySQL': 'https://www.mysql.com/',
-    'SQLite': 'https://www.sqlite.org/',
-    'MongoDB': 'https://www.mongodb.com/',
-    
-    // Add more URLs as needed...
-  }
-  return urls[skill] || '#'
-}
-
-const sortedSkills = (skills) => {
-  return skills.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-}
-
-const downloadPDF = () => {
-  window.print()
-  // Or implement a proper PDF generation service
-}
-
-useHead({
-  title: resumeData.value?.personalInfo?.name || 'Resume',
-  meta: [
-    { name: 'description', content: resumeData.value?.personalInfo?.title || 'Professional Resume' }
-  ]
-})
-
-const sectionStates = reactive({
-  about: true,
-  skills: true,
-  experience: true
-})
-
-const toggleSection = (sectionId) => {
-  sectionStates[sectionId] = !sectionStates[sectionId]
-}
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
@@ -271,21 +158,10 @@ const scrollToSection = (sectionId) => {
   }
 }
 
-const hasContactOrLinks = computed(() => {
-  return resumeData.value?.personalInfo?.email || (resumeData.value?.links?.length > 0)
+useHead({
+  title: resumeData.personalInfo?.name || 'Resume',
+  meta: [
+    { name: 'description', content: resumeData.personalInfo?.title || 'Professional Resume' }
+  ]
 })
-
-const hasMetrics = computed(() => {
-  return resumeData.value?.metrics?.yearsExperience || resumeData.value?.metrics?.employersSatisfied
-})
-
-const getSocialIcon = (name) => {
-  const icons = {
-    'GitHub': 'i-simple-icons-github',
-    'LinkedIn': 'i-simple-icons-linkedin',
-    // Add more social icons as needed
-    'default': 'i-heroicons-link'
-  }
-  return icons[name] || icons.default
-}
 </script>
