@@ -6,14 +6,12 @@
     <footer class="border-t border-gray-200 bg-gray-50 py-8 text-center text-sm text-gray-600">
       <p class="max-w-md mx-auto px-4">
         Built by 
-        <a 
-          href="https://github.com/mcglonej" 
+        <NuxtLink 
+          to="/" 
           class="font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 underline"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           John McGlone
-        </a> 
+        </NuxtLink> 
         using 
         <a 
           href="https://nuxt.com" 

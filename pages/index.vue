@@ -14,7 +14,7 @@
       </p>
       <UButton
         to="/resume"
-        class="flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow hover:-translate-y-[1px] hover:shadow-lg bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+        class="inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow hover:-translate-y-[1px] hover:shadow-lg bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
         icon="i-heroicons-document-text"
       >
         View Resume
