@@ -143,12 +143,12 @@ export default {
   experience: [
     {
       company: "Rumble",
-      title: "Lead iOS Developer",
+      title: "Lead iOS Developer (Rumble Studio)",
       period: "2023 - Present",
       isRemote: true,
       isCurrentRole: true,
       responsibilities: [
-        "Spearheaded development of Rumble Studio iOS app from ground up, delivering a polished experience across iPhone, iPad, and Vision Pro platforms",
+        "Spearheaded development of Rumble Studio iOS app from the ground up, delivering a polished experience across iPhone, iPad, and Vision Pro platforms",
         "Mastered LiveKit integration to power studio-quality conference calls and multi-platform streaming, handling complex media synchronization",
         "Contributed to Rumble's Advertising Center (RAC), expanding my expertise to Vue.js, architecting key components of the RAC frontend"
       ]
