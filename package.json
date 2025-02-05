@@ -6,7 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d .output/public",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
@@ -30,7 +30,6 @@
     "@nuxtjs/tailwindcss": "^6.13.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.19.0",
-    "nuxt-icon": "^1.0.0-beta.7",
     "postcss": "^8.5.1",
     "postcss-import": "^16.1.0"
   }
