@@ -71,7 +71,7 @@
           <!-- Experience -->
           <ResumeExperienceSection 
             v-if="resumeData.experience"
-            :experience="resumeData.experience"
+            :experience="transformedExperience"
           />
 
           <UDivider v-if="resumeData.experience" />
@@ -101,6 +101,21 @@
 import { computed } from 'vue'
 import { useHead } from 'unhead'
 import resumeData from '~/public/data/resume.js'
+
+// Transform experience data to handle "Present" dates
+const transformedExperience = computed(() => {
+  return resumeData.experience?.map((exp, index) => {
+    // Only transform the first entry (most recent) if it ends in current year
+    if (index === 0 && exp.period.endsWith('2024')) {
+      const period = exp.period.replace('- 2024', '- Present')
+      return {
+        ...exp,
+        period
+      }
+    }
+    return exp
+  })
+})
 
 const sections = computed(() => {
   const availableSections = []

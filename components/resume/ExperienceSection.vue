@@ -6,31 +6,31 @@
     </h2>
     
     <div class="relative">
-      <!-- Timeline line - with no right spacing -->
+      <!-- Timeline line -->
       <div 
-        class="absolute right-0 w-px bg-gradient-to-b from-gray-200 to-gray-200 dark:from-gray-700 dark:to-gray-700"
+        class="absolute right-0 w-px bg-gradient-to-t from-gray-200 via-gray-200 via-90% to-primary-500 dark:from-gray-700 dark:via-gray-700 dark:via-90% dark:to-primary-500"
         :style="{
-          top: firstDateTop + 'px',
+          top: `${firstDateTop + 24}px`,
           bottom: '0'
         }"
       />
       
       <!-- Current Roles -->
-      <div class="space-y-12 mb-12">
-        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">Current</h3>
+      <div v-if="currentRoles.length" class="space-y-12 mb-12">
+        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Current</h3>
         <div
           v-for="(job, index) in currentRoles"
           :key="job.company"
           class="relative pr-8 md:pr-12"
-          ref="jobCards"
+          ref="currentJobCards"
         >
           <!-- Timeline year -->
           <div 
             v-if="shouldShowYear(job, index, currentRoles)"
-            class="absolute -right-[0.25rem] top-0 translate-x-1/2"
+            class="absolute -right-[0.25rem] top-5 translate-x-1/2"
           >
             <div class="bg-primary-500 text-white text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 md:py-1.5 rounded-full shadow-lg shadow-primary-500/20 dark:shadow-primary-500/10">
-              {{ getEndYear(job.period) }}
+              {{ job.period.endsWith('Present') ? 'Present' : getEndYear(job.period) }}
             </div>
           </div>
           
@@ -62,7 +62,7 @@
                       size="sm"
                       class="hidden md:block"
                     >
-                      {{ job.period }}
+                      {{ formatPeriod(job.period) }}
                     </UBadge>
                   </div>
                 </div>
@@ -137,19 +137,20 @@
 
       <!-- Past Roles -->
       <div class="space-y-12">
-        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">Previous</h3>
+        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
         <div
           v-for="(job, index) in pastRoles"
           :key="job.company"
           class="relative pr-8 md:pr-12"
+          ref="pastJobCards"
         >
           <!-- Timeline year -->
           <div 
             v-if="shouldShowYear(job, index, pastRoles)"
-            class="absolute -right-[0.25rem] top-0 translate-x-1/2"
+            class="absolute -right-[0.25rem] top-5 translate-x-1/2"
           >
             <div class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 md:py-1.5 rounded-full shadow-md">
-              {{ getEndYear(job.period) }}
+              {{ job.period.endsWith('Present') ? 'Present' : getEndYear(job.period) }}
             </div>
           </div>
           
@@ -260,6 +261,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 
+const currentYear = new Date().getFullYear()
+
 const props = defineProps({
   experience: {
     type: Array,
@@ -275,30 +278,34 @@ const pastRoles = computed(() =>
   props.experience.filter(job => !job.isCurrentRole) || []
 )
 
-const jobCards = ref([])
+const currentJobCards = ref([])
+const pastJobCards = ref([])
+
 const firstDateTop = computed(() => {
-  // Wait for DOM to be ready
-  if (!jobCards.value.length) return 0
+  // Get all job cards in display order
+  const allJobCards = [...currentJobCards.value, ...pastJobCards.value]
+  const allRoles = [...currentRoles.value, ...pastRoles.value]
+  
+  if (!allJobCards.length) return 0
   
   // Find first card with a visible year
-  const firstCard = jobCards.value.find((_, index) => 
-    shouldShowYear(currentRoles[index] || pastRoles[index - currentRoles.length], 
-    index, 
-    index < currentRoles.length ? currentRoles : pastRoles)
+  const firstCard = allJobCards.find((_, index) => 
+    shouldShowYear(allRoles[index], index, allRoles)
   )
   
   return firstCard?.offsetTop || 0
 })
 
+const formatPeriod = (period) => {
+  if (!period.includes(' - ')) return period
+  const [start, end] = period.split(' - ')
+  return start === end ? end : period
+}
+
 const getEndYear = (period) => {
-  // Handle current year for current roles
-  if (period.toLowerCase().includes('current')) {
-    return new Date().getFullYear()
-  }
-  
-  // Extract the last year from the period string
-  const years = period.match(/\d{4}/g)
-  return years ? years[years.length - 1] : period
+  const [start, end] = period.split(' - ')
+  if (start === end) return start
+  return end === 'Present' ? currentYear : end
 }
 
 const shouldShowYear = (job, index, roles) => {

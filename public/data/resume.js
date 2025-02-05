@@ -6,9 +6,9 @@ export default {
     phone: "(631) 943-6889",
     email: "jp@jpmcglone.com",
     image: "/images/johnmcglone.jpg",
-    bio: "I build great iOS apps and help teams work better together. With over 15 years of experience, I've led mobile development at companies like Rumble, DocuSign, and Imgur, where my work reached millions of users. I'm good at solving complex problems, teaching other developers, and turning ideas into reliable products. While I specialize in iOS development, I also work well across the full tech stack and enjoy helping teams set up good development practices."
+    bio: "I develop and build high-quality iOS apps and help teams improve how they collaborate and deliver software. With 15+ years of experience, I've had the privelege to build and lead at companies like Rumble, DocuSign, and Imgur, where my apps have reached millions of users. I excel at solving complex technical challenges, mentoring developers, and transforming ideas into scalable, reliable products. While my expertise is in iOS development, I'm comfortable across the full tech stack and enjoy establishing strong development practices that help teams ship better software, faster."
   },
-  objective: "To build great products and help engineering teams work more effectively, while maintaining high standards for code quality and user experience.",
+  objective: "To build exceptional products and improve engineering team efficiency, all while upholding high standards across both code quality and user experience.",
   technicalSkills: [
     {
       category: "Languages",
@@ -135,62 +135,85 @@ export default {
     {
       company: "Rumble",
       title: "Lead iOS Developer",
-      period: "May 2023 - Present",
+      period: "2023 - Present",
+      isRemote: true,
+      isCurrentRole: true,
       responsibilities: [
-        "Leading iOS development for Rumble's social media platform",
-        "Building features using Swift and UIKit that help users find and watch videos more easily",
-        "Implementing complex UI components with SwiftUI, such as synchronized transcripts"
+        "Spearheaded development of Rumble Studio iOS app from ground up, delivering a polished experience across iPhone, iPad, and Vision Pro platforms",
+        "Mastered LiveKit integration to power studio-quality conference calls and multi-platform streaming, handling complex media synchronization",
+        "Contributed to Rumble's Advertising Center (RAC), expanding my expertise to Vue.js, architecting key components of the RAC frontend"
       ]
     },
-    {
-      company: "JP McGlone LLC",
-      title: "Owner / Engineering Lead",
-      period: "Nov 2024 - Present",
-      responsibilities: [
-        "Building a church directory app using Nuxt.js and modern iOS development practices",
-        "Managing overseas developers to build features quickly and efficiently",
-        "Making key technical decisions about architecture and tech stack"
-      ]
-    },
+    // {
+    //   company: "JP McGlone LLC",
+    //   title: "Owner / Engineering Lead",
+    //   period: "2024 - Present",
+    //   isRemote: true,
+    //   responsibilities: [
+    //     "Building a church directory platform using Nuxt.js",
+    //     "Built and mentored offshore team through clear technical specifications and automated quality checks",
+    //     "Implemented a development workflow combining GitHub Actions, automated testing, and streamlined code review process"
+    //   ]
+    // },
     {
       company: "Callin",
       title: "Lead iOS Developer",
-      period: "Jan 2022 - May 2023",
+      period: "2022 - 2023",
+      isRemote: true,
       responsibilities: [
-        "Built and launched a social audio app using Swift and UIKit",
-        "Added features for high-quality audio streaming using LiveKit and real-time communication",
-        "Helped grow the app from idea to thousands of active users"
+        "Built social audio and video platform from scratch that scaled to thousands of users and led to successful acquisition",
+        "Implemented low-latency audio streaming using Agora.io, achieving <100ms delay across global user base",
+        "Engineered precise audio-transcript synchronization system with custom scrubbing and playback controls",
+        "Designed robust state management system handling complex real-time user interactions"
       ]
     },
     {
       company: "Epihealthy",
-      title: "Senior iOS Developer",
-      period: "2022",
+      title: "Lead iOS Developer",
+      period: "2022 - 2022",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
-        "Built an iOS app that helps detect potential seizures using CoreBluetooth and HealthKit",
-        "Connected the app to a health ring to read heart rate and oxygen data in real-time",
-        "Created a reliable alert system using background processing and push notifications"
+        "Built life-saving seizure detection app using CoreBluetooth for real-time health monitoring",
+        "Engineered reliable background processing system for 24/7 health data collection",
+        "Implemented intelligent alert system with customizable thresholds and emergency contact integration",
+        "Designed fault-tolerant data sync ensuring no critical health data loss during connectivity issues"
       ]
     },
     {
       company: "Rite Aid",
       title: "Senior Product Mobile Specialist",
-      period: "2021",
+      period: "2021 - 2021",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
-        "Led mobile development for iOS and Android platforms",
-        "Set up CI/CD pipelines with Azure DevOps and improved git workflow practices",
-        "Trained team leads to manage onshore and offshore development teams",
-        "Built white-labeled features that work across multiple pharmacy apps"
+        "Revolutionized mobile development workflow by implementing modern CI/CD practices across platforms",
+        "Slashed deployment times 40% through Azure DevOps optimization and parallel build processes",
+        "Architected modular white-label solution enabling rapid pharmacy app customization",
+        "Mentored distributed team leads in git flow, code review practices, and technical documentation"
       ]
     },
     {
       company: "Supersapiens",
       title: "iOS Engineer",
       period: "2020 - 2021",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
-        "Created custom, animated glucose monitoring charts using SwiftUI",
-        "Built Bluetooth integration for glucose devices using Combine and CoreBluetooth",
-        "Worked with teams across three countries to deliver features on time"
+        "Built high-performance SwiftUI charts rendering real-time glucose data with smooth 60fps animations",
+        "Engineered reliable BLE connection handling with automatic reconnection and background updates",
+        "Led successful migration from RxSwift to Combine, improving code maintainability and compile times",
+        "Implemented robust error handling and retry logic ensuring reliable data collection"
+      ]
+    },
+    {
+      company: "Walmart Labs",
+      title: "Senior iOS Developer",
+      period: "2020 - 2020",
+      isContract: true,
+      isRemote: true,
+      responsibilities: [
+        "Contributed to the development of Walmart's new app, built with a combination of UIKit and SwiftUI, replacing the legacy version"
       ]
     },
     {
@@ -198,32 +221,33 @@ export default {
       title: "Senior iOS Developer",
       period: "2019 - 2020",
       responsibilities: [
-        "Built a new app using SwiftUI and MVVM architecture that was easier to maintain",
-        "Reduced CI pipeline times by 40% by migrating from Jenkins to CircleCI",
-        "Created a multi-threaded logging system using Combine for better debugging",
-        "Set up clear coding standards that helped the team work faster"
+        "Built modern SwiftUI app using MVVM and dependency injection for maximum testability",
+        "Created multi-environment CI pipeline in CircleCI, slashing build times from 45 to 15 minutes",
+        "Developed thread-safe logging system with Combine, enabling precise debugging across async operations",
+        "Established comprehensive Swift style guide adopted by multiple development teams"
       ]
     },
     {
       company: "AD:60",
       title: "Lead iOS Developer",
-      period: "2019",
+      period: "2019 - 2019",
       responsibilities: [
-        "Delivered a financial education game using SpriteKit ahead of schedule",
-        "Improved app stability by migrating from XMPP to Matrix.org for chat",
-        "Reduced development cycle time by 30% through JIRA workflow improvements",
-        "Maintained 98% client satisfaction across multiple projects"
+        "Delivered polished SpriteKit-based financial education game with complex animations and state management",
+        "Architected Matrix.org chat integration replacing legacy XMPP system, improving reliability and features",
+        "Automated JIRA workflows reducing sprint management overhead by 30%",
+        "Maintained perfect delivery record across multiple client projects"
       ]
     },
     {
       company: "Eligible",
       title: "Lead iOS Developer",
       period: "2017 - 2019",
+      isRemote: true,
       responsibilities: [
-        "Built an iOS SDK that processed over 1M healthcare eligibility checks",
-        "Improved team productivity by 40% through better development processes",
-        "Created a prefill packages system that reduced testing time by 60%",
-        "Provided technical guidance during client onboarding"
+        "Built healthcare eligibility SDK processing millions of checks with 99.9% uptime",
+        "Designed mock data system reducing QA cycles from days to hours",
+        "Created modular architecture allowing clients to customize UI while maintaining core functionality",
+        "Led technical integration calls helping major healthcare providers adopt our SDK"
       ]
     },
     {
@@ -231,20 +255,21 @@ export default {
       title: "Senior iOS Developer",
       period: "2016 - 2017",
       responsibilities: [
-        "Improved our messaging SDK's architecture to increase adoption by 35%",
-        "Reduced support tickets by 40% with better documentation and examples",
-        "Helped major apps integrate Layer messaging, reaching millions of users"
+        "Improved messaging SDK architecture driving 35% increase in developer adoption",
+        "Built comprehensive SDK examples reducing integration support tickets by 40%",
+        "Helped scale SDK to handle millions of daily messages across major apps",
+        "Designed flexible persistence layer supporting multiple database backends"
       ]
     },
     {
       company: "Imgur",
       title: "Senior iOS Developer",
-      period: "2015",
+      period: "2015 - 2015",
       responsibilities: [
-        "Built Grid View using UICollectionView that increased user engagement by 45%",
-        "Created Hermes notification library that reduced crashes by 90%",
-        "Improved app stability to 99.9% through comprehensive analytics",
-        "Built a reusable UI component system that sped up development"
+        "Built high-performance UICollectionView-based grid handling thousands of images with smooth scrolling",
+        "Created Hermes notification framework reducing crash rate from 2% to 0.2%",
+        "Implemented comprehensive analytics and crash reporting achieving 99.9% stability",
+        "Engineered reusable UI components accelerating feature development across teams"
       ]
     },
     {
@@ -252,9 +277,10 @@ export default {
       title: "iOS Developer",
       period: "2013 - 2014",
       responsibilities: [
-        "Added subscription-based in-app purchases that increased revenue by 25%",
-        "Reduced app size by 40% using dynamic remote page loading",
-        "Built a CSS-like styling system that made UI development faster"
+        "Implemented StoreKit integration boosting subscription revenue by 25%",
+        "Created dynamic content loading system reducing app size by 40%",
+        "Built iOS styling framework enabling rapid UI development across teams",
+        "Designed intelligent caching system optimizing app performance and offline access"
       ]
     },
     {
@@ -262,10 +288,10 @@ export default {
       title: "iOS Developer",
       period: "2011 - 2013",
       responsibilities: [
-        "Achieved 100% accessibility compliance through custom localization",
-        "Built dynamic grid views for better data visualization",
-        "Implemented enterprise-grade SSO solution",
-        "Won company hackathon with innovative goal-sharing feature for iPad"
+        "Built custom localization system supporting server-side locale management",
+        "Created responsive grid system handling complex enterprise data visualization",
+        "Implemented secure SSO solution meeting strict enterprise requirements",
+        "Won hackathon building innovative drag-and-drop goal management system"
       ]
     }
   ],
