@@ -8,16 +8,21 @@
     <!-- Add search input -->
     <div class="mb-4">
       <UInput
-        v-model="searchQuery"
+        v-model="searchInput"
+        @update:model-value="onSearchInput"
         placeholder="Search skills..."
         icon="i-heroicons-magnifying-glass"
         class="max-w-md"
       />
     </div>
 
-    <div class="grid md:grid-cols-2 gap-4">
+    <TransitionGroup
+      name="category"
+      tag="div"
+      class="grid md:grid-cols-2 gap-4"
+    >
       <UCard
-        v-for="skill in technicalSkills"
+        v-for="skill in sortedCategories"
         :key="skill.category"
         class="dark:bg-gray-800 transition-all duration-300"
         :class="{
@@ -29,37 +34,35 @@
           {{ skill.category }}
         </h3>
         <div class="flex flex-wrap gap-2">
-          <UBadge
+          <span
             v-for="item in skill.skills"
             :key="item.name"
-            :color="item.featured ? 'primary' : 'gray'"
-            :variant="'soft'"
+            class="inline-flex items-center font-medium rounded-md text-sm px-2 py-1 gap-1 transition-all duration-300"
             :class="[
-              'cursor-pointer hover:-translate-y-0.5 transition-all duration-300',
-              item.featured ? 'border border-primary-500' : '',
-              !itemMatchesSearch(item) ? 'opacity-20' : '',
-              itemMatchesSearch(item) && searchQuery ? 'scale-[1.05] shadow-sm' : ''
+              item.featured ? 'bg-primary-50 dark:bg-primary-400/10 text-primary-500 dark:text-primary-400 border border-primary-500' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+              !itemMatchesSearch(item, skill) ? 'opacity-20' : '',
+              itemMatchesSearch(item, skill) && searchQuery ? 'scale-[1.05] shadow-sm' : '',
+              hasSkillUrl(item.name) ? 'cursor-pointer hover:-translate-y-0.5' : ''
             ]"
-            size="md"
             @click="navigateToSkill(item.name)"
           >
             <UIcon 
               :name="getSkillIcon(item.name)" 
-              :class="[
-                'h-4 w-4 mr-1',
-                isAppleLogo(item.name) ? 'dark:invert' : ''
-              ]"
+              class="h-4 w-4"
+              :class="[isAppleLogo(item.name) ? 'dark:invert' : '']"
             />
             {{ item.name }}
-          </UBadge>
+            <span v-if="hasSkillUrl(item.name)" class="opacity-70 group-hover:opacity-100">↗</span>
+          </span>
         </div>
       </UCard>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useDebounceFn } from '@vueuse/core'  // Using VueUse's debounce utility
 
 const props = defineProps({
   technicalSkills: {
@@ -68,20 +71,43 @@ const props = defineProps({
   }
 })
 
+const searchInput = ref('')
 const searchQuery = ref('')
 
+// Debounced function to update searchQuery
+const updateQuery = useDebounceFn((value) => {
+  searchQuery.value = value
+}, 300)  // 300ms delay
+
+// Watch searchInput and update searchQuery with debounce
+const onSearchInput = (value) => {
+  searchInput.value = value
+  updateQuery(value)
+}
+
+// Helper function to normalize text for searching
+const normalizeText = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '') // Remove all non-alphanumeric characters
+}
+
 // Helper function to check if an item matches the search
-const itemMatchesSearch = (item) => {
-  const query = searchQuery.value.toLowerCase().trim()
+const itemMatchesSearch = (item, category) => {
+  const query = normalizeText(searchQuery.value)
   if (!query) return true
-  return item.name.toLowerCase().includes(query)
+  // Show all items if category matches the search
+  if (normalizeText(category.category).includes(query)) return true
+  return normalizeText(item.name).includes(query)
 }
 
 // Helper function to check if any items in a category match the search
 const categoryMatchesSearch = (category) => {
-  const query = searchQuery.value.toLowerCase().trim()
+  const query = normalizeText(searchQuery.value)
   if (!query) return true
-  return category.skills.some(item => item.name.toLowerCase().includes(query))
+  // Match if category name matches OR if any skills match
+  return normalizeText(category.category).includes(query) || 
+         category.skills.some(item => normalizeText(item.name).includes(query))
 }
 
 const isAppleLogo = (skill) => {
@@ -187,18 +213,91 @@ const getSkillUrl = (skill) => {
     'PHP': 'https://www.php.net/',
     'Java': 'https://dev.java/',
     
+    // Frameworks & Libraries
+    'React': 'https://react.dev/',
+    'Next.js': 'https://nextjs.org/',
+    'Nuxt.js': 'https://nuxt.com/',
+    'Apollo (GraphQL)': 'https://www.apollographql.com/',
+    
     // Databases
     'PostgreSQL': 'https://www.postgresql.org/',
     'Realm': 'https://realm.io/',
     'MySQL': 'https://www.mysql.com/',
     'SQLite': 'https://www.sqlite.org/',
     'MongoDB': 'https://www.mongodb.com/',
+    
+    // Development Tools
+    'VS Code': 'https://code.visualstudio.com/',
+    'Vim': 'https://www.vim.org/',
+    'JetBrains tools': 'https://www.jetbrains.com/',
+    
+    // Issue Tracking / Wiki
+    'Linear': 'https://linear.app/',
+    'JIRA': 'https://www.atlassian.com/software/jira',
+    'GitHub': 'https://github.com/',
+    'Notion': 'https://www.notion.so/',
+    'GitLab': 'https://gitlab.com/',
+    'Bitbucket': 'https://bitbucket.org/',
+    'Confluence': 'https://www.atlassian.com/software/confluence',
+    
+    // CI/CD & DevOps
+    'CircleCI': 'https://circleci.com/',
+    'GitHub Actions': 'https://github.com/features/actions',
+    'Travis CI': 'https://travis-ci.org/',
+    'Jenkins': 'https://www.jenkins.io/',
+    'Azure DevOps': 'https://azure.microsoft.com/en-us/products/devops',
+    
+    // Monitoring & Analytics
+    'Sentry': 'https://sentry.io/',
+    'Firebase': 'https://firebase.google.com/',
+    'Amplitude': 'https://amplitude.com/',
+    'Mixpanel': 'https://mixpanel.com/',
+    
+    // APIs & Data
+    'GraphQL': 'https://graphql.org/',
+    'JSON': 'https://www.json.org/',
+    'YAML': 'https://yaml.org/',
+    'Regex': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions',
+    'XML': 'https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction'
   }
-  return urls[skill] || '#'
+  return urls[skill] || null
+}
+
+const hasSkillUrl = (skill) => {
+  return getSkillUrl(skill) !== null
 }
 
 const navigateToSkill = (skillName) => {
   const url = getSkillUrl(skillName)
-  if (url !== '#') window.open(url, '_blank')
+  if (url !== null) window.open(url, '_blank')
 }
-</script> 
+
+const sortedCategories = computed(() => {
+  if (!searchQuery.value) return props.technicalSkills
+  
+  return [...props.technicalSkills].sort((a, b) => {
+    const aMatches = categoryMatchesSearch(a)
+    const bMatches = categoryMatchesSearch(b)
+    if (aMatches && !bMatches) return -1
+    if (!aMatches && bMatches) return 1
+    return 0
+  })
+})
+</script>
+
+<style>
+.category-move {
+  transition: transform 0.5s ease;
+}
+
+.category-enter-active,
+.category-leave-active {
+  transition: all 0.5s ease;
+}
+
+.category-enter-from,
+.category-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style> 
