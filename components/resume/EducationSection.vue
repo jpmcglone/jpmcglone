@@ -5,8 +5,11 @@
       Education
     </h2>
     <UCard class="dark:bg-gray-800">
-      <div class="flex justify-between items-start gap-4">
-        <div>
+      <div class="flex justify-between items-stretch gap-4">
+        <div class="flex-grow">
+          <UBadge color="gray" variant="soft" size="sm" class="mb-2">
+            {{ education.period }}
+          </UBadge>
           <h3 class="text-base font-medium text-gray-900 dark:text-white">
             {{ education.degree }}
           </h3>
@@ -17,13 +20,13 @@
             {{ education.location }}
           </p>
         </div>
-        <div class="text-right">
-          <UBadge color="gray" variant="soft" size="sm">
-            {{ education.period }}
-          </UBadge>
-          <p v-if="education.gpa" class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            GPA: {{ education.gpa }}
-          </p>
+        <div v-if="education.gpa" class="relative border-2 border-gray-300 dark:border-gray-600 rounded-lg w-24 aspect-square">
+          <div class="absolute top-2 left-2 text-xs text-gray-500 dark:text-gray-400">
+            GPA
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-900 dark:text-white">
+            {{ education.gpa }}
+          </div>
         </div>
       </div>
     </UCard>

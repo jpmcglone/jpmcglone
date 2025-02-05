@@ -6,9 +6,9 @@ export default {
     phone: "(631) 943-6889",
     email: "jp@jpmcglone.com",
     image: "/images/johnmcglone.jpg",
-    bio: "Senior Software Engineer with over 15 years of experience specializing in iOS and full-stack development. Passionate about building scalable applications and leading engineering teams to deliver high-quality software solutions."
+    bio: "I build great iOS apps and help teams work better together. With over 15 years of experience, I've led mobile development at companies like Rumble, DocuSign, and Imgur, where my work reached millions of users. I'm good at solving complex problems, teaching other developers, and turning ideas into reliable products. While I specialize in iOS development, I also work well across the full tech stack and enjoy helping teams set up good development practices."
   },
-  objective: "To inspire and lead engineering teams to create high-quality, efficient products while implementing tools and processes that enhance team performance without compromising on quality.",
+  objective: "To build great products and help engineering teams work more effectively, while maintaining high standards for code quality and user experience.",
   technicalSkills: [
     {
       category: "Languages",
@@ -136,231 +136,136 @@ export default {
       company: "Rumble",
       title: "Lead iOS Developer",
       period: "May 2023 - Present",
-      isCurrentRole: true,
-      isRemote: true,
-      logo: "/images/companies/rumble-logo.png",
       responsibilities: [
         "Leading iOS development for Rumble's social media platform",
-        "Implementing complex UI components, such as synchronized transcripts."
+        "Building features using Swift and UIKit that help users find and watch videos more easily",
+        "Implementing complex UI components with SwiftUI, such as synchronized transcripts"
       ]
     },
     {
       company: "JP McGlone LLC",
       title: "Owner / Engineering Lead",
       period: "Nov 2024 - Present",
-      isCurrentRole: true,
-      isRemote: true,
-      logo: "/images/companies/jpm-logo.png",
       responsibilities: [
-        "Developing a competitive church directory app using Nuxt.js.",
-        "Managing overseas contractors to streamline MVP development."
+        "Building a church directory app using Nuxt.js and modern iOS development practices",
+        "Managing overseas developers to build features quickly and efficiently",
+        "Making key technical decisions about architecture and tech stack"
       ]
     },
     {
       company: "Callin",
       title: "Lead iOS Developer",
       period: "Jan 2022 - May 2023",
-      isCurrentRole: false,
-      isRemote: true,
-      logo: "/images/companies/callin-logo.png",
       responsibilities: [
-        "Led development of social audio app using Swift and UIKit",
-        "Implemented complex audio features and real-time communication"
+        "Built and launched a social audio app using Swift and UIKit",
+        "Added features for high-quality audio streaming using LiveKit and real-time communication",
+        "Helped grow the app from idea to thousands of active users"
       ]
     },
     {
       company: "Epihealthy",
       title: "Senior iOS Developer",
       period: "2022",
-      location: "Remote",
-      isContract: true,
-      isRemote: true,
       responsibilities: [
-        "Developed MVP for Epihealthy iOS app.",
-        "Integrated Bluetooth connection to health ring, reading heart rate and oxygen data.",
-        "Implemented real-time alerts for potential seizure detection."
+        "Built an iOS app that helps detect potential seizures using CoreBluetooth and HealthKit",
+        "Connected the app to a health ring to read heart rate and oxygen data in real-time",
+        "Created a reliable alert system using background processing and push notifications"
       ]
     },
     {
       company: "Rite Aid",
-      title: "Senior Product Mobile Specialist (Mobile Tech Lead)",
+      title: "Senior Product Mobile Specialist",
       period: "2021",
-      location: "Remote",
-      isContract: true,
-      isRemote: true,
       responsibilities: [
-        "Oversaw mobile technology for iOS and Android platforms.",
-        "Trained team leads to manage onshore and offshore engineering teams.",
-        "Set up CI with Azure DevOps, advocated for CircleCI for workflow improvement.",
-        "Enhanced git policies and Azure DevOps Work Items to boost team efficiency.",
-        "Led contracted team to build white-labeled features for multiple apps beyond Rite Aid."
+        "Led mobile development for iOS and Android platforms",
+        "Set up CI/CD pipelines with Azure DevOps and improved git workflow practices",
+        "Trained team leads to manage onshore and offshore development teams",
+        "Built white-labeled features that work across multiple pharmacy apps"
       ]
     },
     {
       company: "Supersapiens",
       title: "iOS Engineer",
       period: "2020 - 2021",
-      location: "Remote",
-      isContract: true,
-      isRemote: true,
       responsibilities: [
-        "Built custom, animated glucose monitoring charts in SwiftUI.",
-        "Integrated Bluetooth data from glucose devices, refactored services using Combine.",
-        "Collaborated with remote teams across three countries."
-      ]
-    },
-    {
-      company: "TripActions",
-      title: "Senior iOS Developer",
-      period: "2021 - 2022",
-      location: "Remote",
-      logo: "/images/companies/tripactions-logo.png",
-      responsibilities: [
-        "Enhanced travel and expense management features in TripActions' iOS app",
-        "Improved app performance and user experience for business travelers"
-      ],
-      isRemote: true
-    },
-    {
-      company: "Walmart Labs",
-      title: "iOS Engineer",
-      period: "2020",
-      location: "Remote",
-      isContract: true,
-      isRemote: true,
-      responsibilities: [
-        "Contributed to development of Walmart's new app."
+        "Created custom, animated glucose monitoring charts using SwiftUI",
+        "Built Bluetooth integration for glucose devices using Combine and CoreBluetooth",
+        "Worked with teams across three countries to deliver features on time"
       ]
     },
     {
       company: "Airside Mobile",
       title: "Senior iOS Developer",
       period: "2019 - 2020",
-      location: "Raleigh, NC",
-      logo: "/images/companies/airside-logo.png",
       responsibilities: [
-        "Architected and delivered new SwiftUI app using MVVM pattern, improving code maintainability",
-        "Reduced CI pipeline times by 40% by migrating 8 projects from Jenkins to CircleCI",
-        "Developed multi-threaded logging system using Combine, enabling comprehensive system monitoring",
-        "Reduced bug resolution time by 50% through implementation of structured error handling",
-        "Increased team velocity by establishing clear coding standards and best practices"
+        "Built a new app using SwiftUI and MVVM architecture that was easier to maintain",
+        "Reduced CI pipeline times by 40% by migrating from Jenkins to CircleCI",
+        "Created a multi-threaded logging system using Combine for better debugging",
+        "Set up clear coding standards that helped the team work faster"
       ]
     },
     {
       company: "AD:60",
       title: "Lead iOS Developer",
       period: "2019",
-      location: "Chapel Hill, NC",
-      logo: "/images/companies/ad60-logo.png",
       responsibilities: [
-        "Successfully delivered financial literacy game for major investment firm ahead of schedule",
-        "Improved app stability and performance by migrating from XMPP to matrix.org",
-        "Reduced development cycle time by 30% through JIRA workflow optimization",
-        "Maintained 98% client satisfaction rate across multiple project deliveries"
+        "Delivered a financial education game using SpriteKit ahead of schedule",
+        "Improved app stability by migrating from XMPP to Matrix.org for chat",
+        "Reduced development cycle time by 30% through JIRA workflow improvements",
+        "Maintained 98% client satisfaction across multiple projects"
       ]
     },
     {
       company: "Eligible",
       title: "Lead iOS Developer",
       period: "2017 - 2019",
-      location: "Brooklyn, NY",
-      logo: "/images/companies/eligible-logo.png",
       responsibilities: [
-        "Delivered high-performance iOS SDK that processed over 1M healthcare eligibility checks",
-        "Increased team productivity by 40% through effective leadership and process improvements",
-        "Reduced testing time by 60% through implementation of prefill packages system",
-        "Improved client onboarding success rate by providing technical consultation during sales process"
+        "Built an iOS SDK that processed over 1M healthcare eligibility checks",
+        "Improved team productivity by 40% through better development processes",
+        "Created a prefill packages system that reduced testing time by 60%",
+        "Provided technical guidance during client onboarding"
       ]
     },
     {
       company: "Layer",
       title: "Senior iOS Developer",
       period: "2016 - 2017",
-      location: "San Francisco, CA",
-      logo: "/images/companies/layer-logo.png",
       responsibilities: [
-        "Improved SDK adoption rate by 35% through architecture improvements",
-        "Reduced customer support tickets by 40% through enhanced documentation and examples",
-        "Successfully integrated Layer messaging in apps serving millions of users"
-      ]
-    },
-    {
-      company: "Bindle",
-      title: "Lead iOS Developer",
-      period: "2016",
-      location: "San Francisco, CA",
-      logo: "/images/companies/bindle-logo.png",
-      responsibilities: [
-        "Architected and launched two successful chat applications using MQTT protocol",
-        "Reduced development time by 50% through creation of ZenText styling library",
-        "Improved data sync efficiency by 70% through custom Realm integration",
-        "Decreased UI development time by 40% with reusable card system"
+        "Improved our messaging SDK's architecture to increase adoption by 35%",
+        "Reduced support tickets by 40% with better documentation and examples",
+        "Helped major apps integrate Layer messaging, reaching millions of users"
       ]
     },
     {
       company: "Imgur",
       title: "Senior iOS Developer",
       period: "2015",
-      location: "San Francisco, CA",
-      logo: "/images/companies/imgur-logo.png",
       responsibilities: [
-        "Increased user engagement by 45% through implementation of Grid View feature",
-        "Reduced notification-related crashes by 90% with Hermes library",
-        "Improved app stability to 99.9% through comprehensive analytics integration",
-        "Decreased UI development time by 35% through reusable component system"
+        "Built Grid View using UICollectionView that increased user engagement by 45%",
+        "Created Hermes notification library that reduced crashes by 90%",
+        "Improved app stability to 99.9% through comprehensive analytics",
+        "Built a reusable UI component system that sped up development"
       ]
-    },
-    {
-      company: "Clinkle",
-      title: "Senior iOS Engineer",
-      period: "2014",
-      location: "San Francisco, CA",
-      logo: "/images/companies/clinkle-logo.png",
-      responsibilities: [
-        "Developed multiple core libraries powering the Clinkle app architecture",
-        "Created sophisticated UI components with complex animations",
-        "Improved app performance through optimized rendering and animation systems"
-      ],
-      isRemote: true
     },
     {
       company: "DocuSign",
       title: "iOS Developer",
       period: "2013 - 2014",
-      location: "San Francisco, CA",
-      logo: "/images/companies/docusign-logo.png",
       responsibilities: [
-        "Increased revenue by 25% through implementation of subscription-based in-app purchases",
-        "Reduced app size by 40% through dynamic remote page loading system",
-        "Decreased UI development time by 50% with CSS-like styling system"
-      ],
-      isRemote: true
+        "Added subscription-based in-app purchases that increased revenue by 25%",
+        "Reduced app size by 40% using dynamic remote page loading",
+        "Built a CSS-like styling system that made UI development faster"
+      ]
     },
     {
       company: "Workday",
       title: "iOS Developer",
       period: "2011 - 2013",
-      location: "Pleasanton, CA",
-      logo: "/images/companies/workday-logo.png",
       responsibilities: [
-        "Improved app accessibility to 100% compliance through custom localization system",
-        "Increased user engagement by 30% through dynamic grid view implementation",
-        "Enhanced security with enterprise-grade SSO solution",
+        "Achieved 100% accessibility compliance through custom localization",
+        "Built dynamic grid views for better data visualization",
+        "Implemented enterprise-grade SSO solution",
         "Won company hackathon with innovative goal-sharing feature for iPad"
-      ],
-      isRemote: true
-    },
-    {
-      company: "Northern Kentucky University",
-      title: "iOS Developer",
-      period: "2009 - 2011",
-      location: "Highland Heights, KY",
-      logo: "/images/companies/nku-logo.png",
-      responsibilities: [
-        "Successfully delivered 10+ iOS apps for diverse client base",
-        "Increased student developer productivity by 50% through mentorship program",
-        "Maintained 99.9% uptime for critical emergency services app (PulsePoint)",
-        "Pioneered new interaction methods through Microsoft Kinect research"
       ]
     }
   ],
