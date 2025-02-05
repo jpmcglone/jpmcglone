@@ -196,6 +196,18 @@ const getSkillIcon = (skill) => {
     'Regex': 'i-heroicons-command-line',
     'XML': 'i-heroicons-code-bracket',
     
+    // A.I. Tools
+    'Claude': 'simple-icons:anthropic',
+    'ChatGPT': 'logos:openai-icon',
+    
+    // Additional missing icons
+    'FLAnimatedImage': 'i-heroicons-photo',
+    'LiveKit': 'i-heroicons-video-camera',
+    'HockeyApp': 'i-heroicons-rocket-launch',
+    'Facebook Analytics': 'logos:facebook',
+    'Pivotal Tracker': 'i-heroicons-clipboard-document-list',
+    'Phabricator': 'i-heroicons-bug-ant',
+    
     // Default icon for items without specific icons
     'default': 'i-heroicons-code-bracket'
   }
