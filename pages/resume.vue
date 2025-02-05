@@ -163,13 +163,3 @@ useHead({
   ]
 })
 </script>
-
-<style>
-body {
-  background-color: rgb(249 250 251);
-}
-
-:root.dark body {
-  background-color: rgb(17 24 39);
-}
-</style>
