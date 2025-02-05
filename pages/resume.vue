@@ -2,9 +2,9 @@
   <div id="about" class="min-h-screen">
     <ColorModeToggle />
 
-    <UContainer class="sm:py-8 relative max-w-5xl mx-auto px-1 sm:px-4">
+    <UContainer class="sm:py-8 relative max-w-5xl mx-auto px-2 sm:px-4">
       <UCard 
-        class="-mx-1 sm:mx-auto sm:rounded-lg" 
+        class="-mx-2 sm:mx-auto sm:rounded-lg" 
         :ui="{ 
           base: 'relative overflow-hidden',
           background: 'bg-white dark:bg-gray-900',
@@ -15,7 +15,7 @@
           padding: 'p-0 sm:p-0'
         }"
       >
-        <div class="p-2 sm:p-8 space-y-8">
+        <div class="p-3 sm:p-8 space-y-8">
           <!-- Header Section -->
           <ResumeHeaderSection
             :personal-info="resumeData.personalInfo"
@@ -153,7 +153,13 @@ const scrollToSection = (sectionId) => {
 useHead({
   title: resumeData.personalInfo?.name || 'Resume',
   meta: [
-    { name: 'description', content: resumeData.personalInfo?.title || 'Professional Resume' }
+    { name: 'description', content: resumeData.personalInfo?.title || 'Professional Resume' },
+    { name: 'og:title', content: resumeData.personalInfo?.name || 'Resume' },
+    { name: 'og:description', content: resumeData.personalInfo?.title || 'Professional Resume' },
+    { name: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: resumeData.personalInfo?.name || 'Resume' },
+    { name: 'twitter:description', content: resumeData.personalInfo?.title || 'Professional Resume' }
   ]
 })
 </script>

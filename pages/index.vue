@@ -25,4 +25,17 @@
 
 <script setup>
 import resumeData from '~/public/data/resume.js'
+
+useHead({
+  title: `@jpmcglone - Software Engineer`,
+  meta: [
+    { name: 'description', content: 'Software Engineer specializing in iOS and Full Stack Development' },
+    { name: 'og:title', content: `${resumeData.personalInfo?.name || 'JP McGlone'} - Software Engineer` },
+    { name: 'og:description', content: 'Software Engineer specializing in iOS and Full Stack Development' },
+    { name: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: `${resumeData.personalInfo?.name || 'JP McGlone'} - Software Engineer` },
+    { name: 'twitter:description', content: 'Software Engineer specializing in iOS and Full Stack Development' }
+  ]
+})
 </script>
