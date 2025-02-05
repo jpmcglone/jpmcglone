@@ -137,6 +137,7 @@ export default {
       title: "Lead iOS Developer",
       period: "May 2023 - Present",
       isCurrentRole: true,
+      isRemote: true,
       logo: "/images/companies/rumble-logo.png",
       responsibilities: [
         "Leading iOS development for Rumble's social media platform",
@@ -148,6 +149,7 @@ export default {
       title: "Owner / Engineering Lead",
       period: "Nov 2024 - Present",
       isCurrentRole: true,
+      isRemote: true,
       logo: "/images/companies/jpm-logo.png",
       responsibilities: [
         "Developing a competitive church directory app using Nuxt.js.",
@@ -159,6 +161,7 @@ export default {
       title: "Lead iOS Developer",
       period: "Jan 2022 - May 2023",
       isCurrentRole: false,
+      isRemote: true,
       logo: "/images/companies/callin-logo.png",
       responsibilities: [
         "Led development of social audio app using Swift and UIKit",
@@ -170,6 +173,8 @@ export default {
       title: "Senior iOS Developer",
       period: "2022",
       location: "Remote",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
         "Developed MVP for Epihealthy iOS app.",
         "Integrated Bluetooth connection to health ring, reading heart rate and oxygen data.",
@@ -181,6 +186,8 @@ export default {
       title: "Senior Product Mobile Specialist (Mobile Tech Lead)",
       period: "2021",
       location: "Remote",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
         "Oversaw mobile technology for iOS and Android platforms.",
         "Trained team leads to manage onshore and offshore engineering teams.",
@@ -190,19 +197,12 @@ export default {
       ]
     },
     {
-      company: "Walmart Labs",
-      title: "iOS Engineer",
-      period: "2020",
-      location: "Remote",
-      responsibilities: [
-        "Contributed to development of Walmart's new app."
-      ]
-    },
-    {
       company: "Supersapiens",
       title: "iOS Engineer",
       period: "2020 - 2021",
       location: "Remote",
+      isContract: true,
+      isRemote: true,
       responsibilities: [
         "Built custom, animated glucose monitoring charts in SwiftUI.",
         "Integrated Bluetooth data from glucose devices, refactored services using Combine.",
@@ -212,12 +212,24 @@ export default {
     {
       company: "TripActions",
       title: "Senior iOS Developer",
-      period: "2022",
+      period: "2021 - 2022",
       location: "Remote",
       logo: "/images/companies/tripactions-logo.png",
       responsibilities: [
         "Enhanced travel and expense management features in TripActions' iOS app",
         "Improved app performance and user experience for business travelers"
+      ],
+      isRemote: true
+    },
+    {
+      company: "Walmart Labs",
+      title: "iOS Engineer",
+      period: "2020",
+      location: "Remote",
+      isContract: true,
+      isRemote: true,
+      responsibilities: [
+        "Contributed to development of Walmart's new app."
       ]
     },
     {
@@ -299,6 +311,19 @@ export default {
       ]
     },
     {
+      company: "Clinkle",
+      title: "Senior iOS Engineer",
+      period: "2014",
+      location: "San Francisco, CA",
+      logo: "/images/companies/clinkle-logo.png",
+      responsibilities: [
+        "Developed multiple core libraries powering the Clinkle app architecture",
+        "Created sophisticated UI components with complex animations",
+        "Improved app performance through optimized rendering and animation systems"
+      ],
+      isRemote: true
+    },
+    {
       company: "DocuSign",
       title: "iOS Developer",
       period: "2013 - 2014",
@@ -308,7 +333,8 @@ export default {
         "Increased revenue by 25% through implementation of subscription-based in-app purchases",
         "Reduced app size by 40% through dynamic remote page loading system",
         "Decreased UI development time by 50% with CSS-like styling system"
-      ]
+      ],
+      isRemote: true
     },
     {
       company: "Workday",
@@ -321,7 +347,8 @@ export default {
         "Increased user engagement by 30% through dynamic grid view implementation",
         "Enhanced security with enterprise-grade SSO solution",
         "Won company hackathon with innovative goal-sharing feature for iPad"
-      ]
+      ],
+      isRemote: true
     },
     {
       company: "Northern Kentucky University",
