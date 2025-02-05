@@ -1,29 +1,6 @@
 <template>
   <div id="about" class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Color mode toggle -->
-    <div class="fixed top-4 right-4 z-50 print:hidden">
-      <UButton
-        :icon="colorMode.value === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
-        color="gray"
-        variant="soft"
-        class="dark:bg-gray-800 dark:hover:bg-gray-700"
-        aria-label="Toggle color mode"
-        @click="toggleColorMode"
-      />
-    </div>
-
-    <!-- Print button -->
-    <div class="fixed bottom-4 right-4 z-50 print:hidden">
-      <UButton
-        icon="i-heroicons-printer"
-        color="gray"
-        variant="soft"
-        class="dark:bg-gray-800 dark:hover:bg-gray-700"
-        @click="window.print()"
-      >
-        Print
-      </UButton>
-    </div>
+    <ColorModeToggle />
 
     <UContainer class="sm:py-8 relative max-w-5xl mx-auto sm:px-4">
       <UCard 
@@ -39,102 +16,29 @@
         }"
       >
         <template v-if="resumeData">
-          <!-- Header -->
-          <div class="p-6 sm:p-8 text-center">
-            <UAvatar
-              v-if="resumeData.personalInfo?.image"
-              :src="resumeData.personalInfo.image"
-              :alt="resumeData.personalInfo?.name"
-              size="2xl"
-            />
-            <h1 v-if="resumeData.personalInfo?.name" class="text-3xl font-semibold mb-2 text-gray-900 dark:text-white">
-              {{ resumeData.personalInfo.name }}
-            </h1>
-            <p v-if="resumeData.personalInfo?.title" class="text-lg text-gray-500 dark:text-gray-400 mb-2">
-              {{ resumeData.personalInfo.title }}
-            </p>
-            <p v-if="resumeData.personalInfo?.location" class="text-md text-gray-500 dark:text-gray-400 mb-6">
-              {{ resumeData.personalInfo.location }}
-            </p>
-            
-            <div v-if="hasContactOrLinks" class="flex justify-center gap-2">
-              <UButton
-                v-if="resumeData.personalInfo?.email"
-                :to="`mailto:${resumeData.personalInfo.email}`"
-                color="primary"
-                icon="i-heroicons-envelope"
-                size="md"
-              >
-                Contact
-              </UButton>
-              <UButton
-                v-for="link in resumeData.links"
-                :key="link.url"
-                :to="link.url"
-                target="_blank"
-                color="gray"
-                variant="soft"
-                size="md"
-                class="dark:bg-gray-800 dark:hover:bg-gray-700"
-              >
-                {{ link.name }}
-              </UButton>
-            </div>
-          </div>
+          <ResumeHeader
+            :personal-info="resumeData.personalInfo"
+            :links="resumeData.links"
+          />
 
-          <!-- Main Content -->
           <div class="p-6 sm:p-8 space-y-8">
-            <!-- About Section -->
-            <template v-if="resumeData.personalInfo?.bio">
-              <div class="scroll-mt-6">
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg py-4 px-1">
-                  {{ resumeData.personalInfo.bio }}
-                </p>
-              </div>
-              <UDivider />
-            </template>
+            <ResumeAboutSection 
+              v-if="resumeData.personalInfo?.bio" 
+              :bio="resumeData.personalInfo.bio" 
+            />
 
-            <!-- Objective Section -->
-            <template v-if="resumeData.objective">
-              <div class="scroll-mt-6">
-                <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <UIcon name="i-heroicons-flag" class="text-primary-500 h-5 w-5" />
-                  Objective
-                </h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-lg py-4 px-1">
-                  {{ resumeData.objective }}
-                </p>
-              </div>
-            </template>
+            <ResumeObjectiveSection
+              v-if="resumeData.objective"
+              :objective="resumeData.objective"
+            />
 
             <UDivider />
             
             <!-- Social Proof Section -->
-            <template v-if="hasMetrics">
-              <div class="scroll-mt-16">
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                  <UCard v-if="resumeData.metrics?.yearsExperience" class="text-center p-4 dark:bg-gray-800">
-                    <div class="flex flex-col items-center">
-                      <UIcon name="i-heroicons-clock" class="h-8 w-8 text-primary-500 mb-2" />
-                      <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
-                        {{ resumeData.metrics.yearsExperience }}+
-                      </h4>
-                      <p class="text-sm text-gray-600 dark:text-gray-400">Years Experience</p>
-                    </div>
-                  </UCard>
-
-                  <UCard v-if="resumeData.metrics?.employersSatisfied" class="text-center p-4 dark:bg-gray-800">
-                    <div class="flex flex-col items-center">
-                      <UIcon name="i-heroicons-users" class="h-8 w-8 text-primary-500 mb-2" />
-                      <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
-                        {{ resumeData.metrics.employersSatisfied }}+
-                      </h4>
-                      <p class="text-sm text-gray-600 dark:text-gray-400">Satisfied Employers</p>
-                    </div>
-                  </UCard>
-                </div>
-              </div>
-            </template>
+            <ResumeSocialProof 
+              v-if="hasMetrics" 
+              :metrics="resumeData.metrics" 
+            />
 
             <UDivider />
 
@@ -442,8 +346,8 @@
           </div>
         </template>
         <template v-else>
-          <div class="p-8 text-center">
-            <ULoading size="lg" />
+          <div class="p-8 text-center text-gray-500 dark:text-gray-400">
+            Loading...
           </div>
         </template>
       </UCard>
@@ -480,7 +384,6 @@
 import { ref, computed, onMounted, reactive } from 'vue'
 import { useHead } from 'unhead'
 
-const colorMode = useColorMode()
 const resumeData = ref(null)
 const loading = ref(true)
 const sections = computed(() => {
@@ -504,10 +407,6 @@ const sections = computed(() => {
   
   return availableSections
 })
-
-const toggleColorMode = () => {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-}
 
 onMounted(async () => {
   try {
@@ -641,197 +540,14 @@ const hasContactOrLinks = computed(() => {
 const hasMetrics = computed(() => {
   return resumeData.value?.metrics?.yearsExperience || resumeData.value?.metrics?.employersSatisfied
 })
+
+const getSocialIcon = (name) => {
+  const icons = {
+    'GitHub': 'i-simple-icons-github',
+    'LinkedIn': 'i-simple-icons-linkedin',
+    // Add more social icons as needed
+    'default': 'i-heroicons-link'
+  }
+  return icons[name] || icons.default
+}
 </script>
-
-<style>
-/* Global styles to ensure consistent background */
-html,
-body {
-  background-color: rgb(249 250 251); /* bg-gray-50 */
-}
-
-html.dark,
-html.dark body {
-  background-color: rgb(17 24 39); /* bg-gray-900 */
-}
-
-/* Smooth transition for background color changes */
-html,
-body {
-  transition: background-color 0.3s ease;
-}
-</style>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-.container {
-  font-family: 'Inter', sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-section {
-  transition: all 0.3s ease;
-}
-
-/* Subtle gradient animation on hover */
-section:hover {
-  background-position: 100% 100%;
-  background-size: 200% 200%;
-}
-
-.bg-navy-200 {
-  background-color: #e0e7ff;
-}
-.dark .bg-navy-200 {
-  background-color: #1e3a8a;
-}
-
-.text-navy-800 {
-  color: #1e3a8a;
-}
-.dark .text-navy-800 {
-  color: #e0e7ff;
-}
-
-/* Add smooth transitions for all interactive elements */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-/* Hover effect for cards */
-.hover\:shadow {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-/* Existing color classes */
-.text-navy-900 {
-  color: #1e3a8a;
-}
-.bg-navy-100 {
-  background-color: #e0e7ff;
-}
-.bg-navy-200 {
-  background-color: #c7d2fe;
-}
-
-/* Add dark mode transitions */
-:root {
-  --bg-transition: background-color 0.3s ease;
-}
-
-.dark-mode-transition {
-  transition: var(--bg-transition);
-}
-
-@media print {
-  @page {
-    margin: 1cm;
-    size: A4;
-  }
-  
-  body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-
-  /* Hide navigation and buttons when printing */
-  nav, 
-  .fixed {
-    display: none !important;
-  }
-
-  /* Ensure dark mode colors print correctly */
-  .dark\:bg-gray-900,
-  .dark\:bg-gray-800 {
-    background-color: white !important;
-  }
-
-  .dark\:text-white,
-  .dark\:text-gray-400 {
-    color: black !important;
-  }
-
-  /* Remove shadows and borders for cleaner print */
-  .shadow,
-  .border {
-    box-shadow: none !important;
-    border: none !important;
-  }
-
-  /* Ensure full width content */
-  .container {
-    max-width: none !important;
-    padding: 0 !important;
-  }
-
-  /* Adjust spacing for print */
-  .p-6,
-  .p-8 {
-    padding: 1rem !important;
-  }
-
-  .space-y-8 > * + * {
-    margin-top: 1.5rem !important;
-  }
-
-  /* Force background colors to print */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-}
-
-.section {
-  scroll-margin-top: 10rem;
-}
-
-@media (max-width: 640px) {
-  .UContainer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-@keyframes countUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.text-2xl {
-  animation: countUp 0.6s ease-out forwards;
-}
-
-.UCard {
-  transition: transform 0.2s ease-in-out;
-}
-
-.UCard:hover {
-  transform: translateY(-5px);
-}
-</style>
