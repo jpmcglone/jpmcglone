@@ -232,9 +232,10 @@ export default {
       title: "Lead iOS Developer",
       period: "2019 - 2019",
       responsibilities: [
-        "Delivered polished SpriteKit-based financial education game with complex animations and state management",
+        "Delivered polished financial education game with complex animations and state management built in a custom engine written in UIKit using a combination of CoreAnimation and Lottie files",
         "Architected Matrix.org chat integration replacing legacy XMPP system, improving reliability and features",
-        "Automated JIRA workflows reducing sprint management overhead by 30%",
+        "Automated JIRA workflows reducing sprint management overhead",
+        "Contributed to our shared libraries",
         "Maintained perfect delivery record across multiple client projects"
       ]
     },
@@ -342,15 +343,15 @@ export default {
       featured: true
     }
   ],
-  testimonials: [
-    {
-      quote: "JP is an exceptional engineer who consistently delivers high-quality solutions.",
-      author: "John Doe",
-      title: "CTO at Previous Company",
-      company: "Tech Corp",
-      image: "/images/testimonials/john-doe.jpg"
-    }
-  ],
+  // testimonials: [
+  //   {
+  //     quote: "JP is an exceptional engineer who consistently delivers high-quality solutions.",
+  //     author: "John Doe",
+  //     title: "CTO at Previous Company",
+  //     company: "Tech Corp",
+  //     image: "/images/testimonials/john-doe.jpg"
+  //   }
+  // ],
   publications: [
     {
       title: "Building Scalable iOS Applications",
