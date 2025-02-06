@@ -17,13 +17,13 @@
       </h1>
 
       <div class="tag-cloud flex gap-3 justify-center flex-wrap max-w-xl mx-auto py-4">
-        <UTooltip v-for="tag in indexData.personalInfo.tags" :key="tag.label" :text="tag.tooltip">
+        <UTooltip v-for="tag in indexData.personalInfo.tags.filter(t => t.label && t.link)" :key="tag.label" :text="tag.tooltip">
           <ULink
             :to="tag.link"
             class="tag-item px-4 py-2 rounded-full text-sm bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 
                    shadow-sm hover:shadow-md transition-all duration-300 inline-flex items-center gap-2
                    border border-gray-200 dark:border-gray-700 hover:-translate-y-0.5"
-            :external="tag.link.startsWith('http')"
+            :external="tag.link?.startsWith('http')"
             target="_blank"
           >
             <UIcon 
