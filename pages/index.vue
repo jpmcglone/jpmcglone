@@ -52,6 +52,25 @@
       >
         {{ indexData.resume.buttonText }}
       </UButton>
+
+      <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex justify-center gap-4">
+          <UTooltip v-for="social in indexData.personalInfo.socialLinks" :key="social.name" :text="social.name">
+            <ULink
+              :to="social.url"
+              external
+              target="_blank"
+              class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white 
+                     transition-all duration-300 hover:-translate-y-1"
+            >
+              <UIcon 
+                :name="social.icon"
+                class="h-6 w-6"
+              />
+            </ULink>
+          </UTooltip>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -24,6 +24,23 @@ export default {
         tooltip: 'Watch me stream games live',
         link: 'https://twitch.tv/jpmcglone'
       }
+    ],
+    socialLinks: [
+      {
+        name: 'GitHub',
+        url: 'https://github.com/jpmcglone',
+        icon: 'i-simple-icons-github'
+      },
+      {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/john-p-mcglone-18513014',
+        icon: 'i-simple-icons-linkedin'
+      },
+      {
+        name: 'Twitch',
+        url: 'https://twitch.tv/jpmcglone',
+        icon: 'i-simple-icons-twitch'
+      }
     ]
   },
   resume: {
