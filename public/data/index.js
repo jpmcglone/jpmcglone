@@ -18,7 +18,7 @@ export default {
       {
         // label: 'Landlord',
         tooltip: 'Real estate investor and property manager',
-        link: '/landlord'
+        // link: '/landlord'
       },
       {
         label: 'Gamer',
