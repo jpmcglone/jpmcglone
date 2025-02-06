@@ -13,12 +13,11 @@ export default {
       {
         label: 'Husband',
         tooltip: 'Married to my wonderful wife Katrina',
-        link: 'https://johnandkatmcglone.com/',
+        link: 'https://johnandkatmcglone.com/'
       },
       {
-        // label: 'Landlord',
-        tooltip: 'Real estate investor and property manager',
-        // link: '/landlord'
+        label: 'Landlord',
+        tooltip: 'Real estate investor and property manager'
       },
       {
         label: 'Gamer',
