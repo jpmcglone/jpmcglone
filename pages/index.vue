@@ -58,10 +58,13 @@ import indexData from '~/public/data/index.js'
 
 const getTagIcon = (label) => {
   const icons = {
+    'Software Engineer': 'i-simple-icons-github',
+    'iOS Developer': 'i-simple-icons-apple',
+    'Web Developer': 'i-simple-icons-javascript',
+    'Entrepreneur': 'i-heroicons-rocket-launch',
     'Husband': 'i-heroicons-heart',
     'Landlord': 'i-heroicons-home',
-    'Gamer': 'i-simple-icons-twitch',
-    'Software Engineer': 'i-simple-icons-github'
+    'Gamer': 'i-simple-icons-twitch'
   }
   return icons[label] || 'i-heroicons-tag'
 }
