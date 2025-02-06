@@ -18,11 +18,16 @@
     <UCard class="dark:bg-gray-800 transition-all duration-300 hover:shadow-lg">
       <div class="flex flex-col gap-4">
         <div class="flex items-start gap-4">
+          <div
+            v-if="!job.logo"
+            class="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-gray-200 dark:bg-gray-700 flex-shrink-0"
+          />
           <UAvatar
-            v-if="job.logo"
+            v-else
             :src="job.logo"
             :alt="job.company"
             size="lg"
+            class="rounded-lg"
           />
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-start gap-4">
