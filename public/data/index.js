@@ -16,7 +16,7 @@ export default {
         link: 'https://johnandkatmcglone.com/',
       },
       {
-        label: 'Landlord',
+        // label: 'Landlord',
         tooltip: 'Real estate investor and property manager',
         link: '/landlord'
       },
