@@ -19,11 +19,11 @@ export default {
         label: 'Landlord',
         tooltip: 'Real estate investor and property manager'
       },
-      {
-        label: 'Gamer',
-        tooltip: 'Watch me stream games live',
-        link: 'https://twitch.tv/jpmcglone'
-      }
+      // {
+      //   label: 'Gamer',
+      //   tooltip: 'Watch me stream games live',
+      //   link: 'https://twitch.tv/jpmcglone'
+      // }
     ],
     socialLinks: [
       {
@@ -36,11 +36,11 @@ export default {
         url: 'https://www.linkedin.com/in/john-p-mcglone-18513014',
         icon: 'i-simple-icons-linkedin'
       },
-      {
-        name: 'Twitch',
-        url: 'https://twitch.tv/jpmcglone',
-        icon: 'i-simple-icons-twitch'
-      }
+      // {
+      //   name: 'Twitch',
+      //   url: 'https://twitch.tv/jpmcglone',
+      //   icon: 'i-simple-icons-twitch'
+      // }
     ]
   },
   resume: {
