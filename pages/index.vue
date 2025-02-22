@@ -86,7 +86,7 @@ const getTagIcon = (label) => {
     'Entrepreneur': 'i-heroicons-rocket-launch',
     'Husband': 'i-heroicons-heart',
     'Landlord': 'i-heroicons-home',
-    'Gamer': 'i-simple-icons-twitch'
+    // 'Gamer': 'i-simple-icons-twitch'
   }
   return icons[label] || 'i-heroicons-tag'
 }
