@@ -1,0 +1,1 @@
+@keyframes pulse-opacity{0%,to{opacity:.25}50%{opacity:.6}}.animate-pulse-opacity{animation:pulse-opacity 2s ease-in-out infinite}
