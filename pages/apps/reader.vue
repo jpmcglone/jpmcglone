@@ -57,7 +57,7 @@
       <!-- Fixed indicator at 1/3 mark -->
       <div class="fixed left-0 right-0 top-0 h-full pointer-events-none" style="z-index: 0;">
         <div class="relative h-full">
-          <div class="absolute top-[calc(33.333vh-2.5rem)] w-full">
+          <div class="absolute top-[calc(33.333vh+1rem)] w-full">
             <div class="flex justify-center items-center">
               <div class="max-w-4xl w-full">
                 <div class="w-full h-12 bg-primary-500 bg-opacity-10 rounded-lg"></div>
