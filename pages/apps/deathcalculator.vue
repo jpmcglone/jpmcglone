@@ -6,7 +6,6 @@
           <h1 class="text-2xl font-semibold">Age Calculator</h1>
           <p class="text-gray-500 mt-1">Calculate precise ages and periods from birthdays</p>
         </div>
-        <ColorModeToggle />
       </div>
 
       <div v-if="!birthdays.length" class="flex flex-col items-center justify-center p-8">

@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-    <ColorModeToggle />
     <div class="space-y-8 text-center max-w-2xl mx-auto px-6">
       <div>
         <UAvatar

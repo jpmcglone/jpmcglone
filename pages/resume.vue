@@ -1,7 +1,5 @@
 <template>
   <div id="about" class="min-h-screen">
-    <ColorModeToggle />
-
     <UContainer class="sm:py-8 relative max-w-5xl mx-auto px-2 sm:px-4">
       <UCard
         class="-mx-2 sm:mx-auto sm:rounded-lg"

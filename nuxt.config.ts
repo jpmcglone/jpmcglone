@@ -13,11 +13,11 @@ export default defineNuxtConfig({
   ui: {
     global: true,
     icons: ['heroicons', 'simple-icons'],
-    colorMode: {
-      preference: 'system',
-      fallback: 'light',
-      classSuffix: ''
-    }
+  },
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+    classSuffix: '',
   },
   tailwindcss: {
     exposeConfig: true,
