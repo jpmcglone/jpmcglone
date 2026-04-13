@@ -9,19 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/icon',
     '@vueuse/nuxt',
-    '@nuxtjs/sitemap',
   ],
-  site: {
-    url: 'https://jpmcglone.com',
-    name: 'jpmcglone.com',
-  },
-  sitemap: {
-    strictNuxtContentPaths: false,
-    urls: [
-      { loc: '/', priority: 1.0, changefreq: 'monthly' },
-      { loc: '/resume', priority: 0.9, changefreq: 'monthly' },
-    ],
-  },
   ui: {
     global: true,
     icons: ['heroicons', 'simple-icons'],
