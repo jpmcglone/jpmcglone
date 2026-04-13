@@ -1,1 +1,0 @@
-.tag-cloud[data-v-c249f569]{perspective:1000px}.tag-item[data-v-c249f569]{animation:float-c249f569 6s ease-in-out infinite;animation-delay:calc(var(--index, 0)*.5s)}.tag-item[data-v-c249f569]:nth-child(odd){--index:1}.tag-item[data-v-c249f569]:nth-child(2n){--index:2}@keyframes float-c249f569{0%,to{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(1deg)}}
