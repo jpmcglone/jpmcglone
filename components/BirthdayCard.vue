@@ -100,62 +100,58 @@ import {
   format,
   startOfWeek,
   parseISO,
-} from 'date-fns';
+} from 'date-fns'
 
 const props = defineProps<{
-  birthday: string;
-  maxAge: number;
-}>();
+  birthday: string
+  maxAge: number
+}>()
 
 const birthDate = computed(() => {
-  const date = parseISO(props.birthday);
-  const offset = date.getTimezoneOffset();
-  date.setMinutes(date.getMinutes() + offset);
-  return date;
-});
+  const date = parseISO(props.birthday)
+  const offset = date.getTimezoneOffset()
+  date.setMinutes(date.getMinutes() + offset)
+  return date
+})
 
-const today = new Date();
+const today = new Date()
 
-const formattedBirthday = computed(() => format(birthDate.value, 'MMMM d, yyyy'));
+const formattedBirthday = computed(() => format(birthDate.value, 'MMMM d, yyyy'))
 
 const ageData = computed(() => ({
   years: differenceInYears(today, birthDate.value),
   months: differenceInMonths(today, birthDate.value),
   weeks: differenceInWeeks(today, birthDate.value),
   days: differenceInDays(today, birthDate.value),
-}));
+}))
 
 const progressPercent = computed(() => {
-  return Math.round((ageData.value.years / props.maxAge) * 100);
-});
+  return Math.round((ageData.value.years / props.maxAge) * 100)
+})
 
 const currentPeriods = computed(() => {
-  const birthDateObj = birthDate.value;
-  const nextDay = new Date(birthDateObj);
-  nextDay.setDate(birthDateObj.getDate() + 1);
+  const birthDateObj = birthDate.value
+  const nextDay = new Date(birthDateObj)
+  nextDay.setDate(birthDateObj.getDate() + 1)
 
-  const nextSunday = startOfWeek(birthDateObj, { weekStartsOn: 0 });
-  nextSunday.setDate(nextSunday.getDate() + 7);
+  const nextSunday = startOfWeek(birthDateObj, { weekStartsOn: 0 })
+  nextSunday.setDate(nextSunday.getDate() + 7)
 
-  const nextMonth = new Date(birthDateObj);
-  nextMonth.setMonth(nextMonth.getMonth() + 1);
-  nextMonth.setDate(1);
+  const nextMonth = new Date(birthDateObj)
+  nextMonth.setMonth(nextMonth.getMonth() + 1)
+  nextMonth.setDate(1)
 
-  const nextYear = new Date(birthDateObj);
-  nextYear.setFullYear(nextYear.getFullYear() + 1);
-  nextYear.setMonth(0, 1);
+  const nextYear = new Date(birthDateObj)
+  nextYear.setFullYear(nextYear.getFullYear() + 1)
+  nextYear.setMonth(0, 1)
 
   return {
     day: differenceInDays(today, nextDay) + 1,
     week: differenceInWeeks(today, nextSunday) + 1,
     month: differenceInMonths(today, nextMonth) + 1,
     year: differenceInYears(today, nextYear) + 1,
-  };
-});
-
-const formatNumber = (num: number) => {
-  return new Intl.NumberFormat().format(num);
-};
+  }
+})
 </script>
 
 <style>
@@ -172,4 +168,4 @@ const formatNumber = (num: number) => {
 .animate-pulse-opacity {
   animation: pulse-opacity 2s ease-in-out infinite;
 }
-</style> 
+</style>

@@ -11,8 +11,8 @@
             placeholder="Paste your lyrics here..."
             class="w-full font-mono"
           />
-          <UButton 
-            @click="startPresentation" 
+          <UButton
+            @click="startPresentation"
             :disabled="!inputText"
             color="primary"
             size="lg"
@@ -25,8 +25,8 @@
     </div>
 
     <!-- Presentation Mode -->
-    <div 
-      v-else 
+    <div
+      v-else
       class="fixed inset-0 bg-gray-900 text-white"
       @keydown="handleKeydown"
       tabindex="0"
@@ -47,8 +47,8 @@
             aria-label="Close presentation"
           />
         </div>
-        <UProgress 
-          :value="progressPercent" 
+        <UProgress
+          :value="progressPercent"
           color="primary"
           class="h-1"
         />
@@ -70,24 +70,24 @@
       <!-- Main content container -->
       <div class="absolute inset-0 pt-16 pb-16 flex flex-col items-center" style="z-index: 1;">
         <!-- Scrollable content -->
-        <div 
-          class="h-full w-full overflow-y-auto" 
+        <div
+          class="h-full w-full overflow-y-auto"
           ref="scrollContainer"
         >
           <div class="min-h-full flex flex-col">
             <!-- Top spacer -->
             <div class="h-[33vh] shrink-0"></div>
-            
+
             <!-- Content wrapper -->
             <div class="flex flex-col items-center px-5">
               <!-- Previous Sections -->
-              <div 
-                v-for="(section, sIndex) in previousSections" 
+              <div
+                v-for="(section, sIndex) in previousSections"
                 :key="`prev-section-${sIndex}`"
                 class="w-full max-w-[calc(100vw-40px)] md:max-w-4xl opacity-25 mb-16"
               >
-                <div 
-                  v-for="(sentence, lIndex) in section" 
+                <div
+                  v-for="(sentence, lIndex) in section"
                   :key="`prev-${sIndex}-${lIndex}`"
                   class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
                 >
@@ -97,8 +97,8 @@
 
               <!-- Current Section -->
               <div class="w-full max-w-[calc(100vw-40px)] md:max-w-4xl mb-16">
-                <div 
-                  v-for="(sentence, index) in currentSection" 
+                <div
+                  v-for="(sentence, index) in currentSection"
                   :key="`current-${index}`"
                   class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
                   :class="{
@@ -111,14 +111,14 @@
               </div>
 
               <!-- Next Sections -->
-              <div 
-                v-for="(section, sIndex) in futureSections" 
+              <div
+                v-for="(section, sIndex) in futureSections"
                 :key="`future-section-${sIndex}`"
                 class="w-full max-w-[calc(100vw-40px)] md:max-w-4xl mb-16"
                 :class="{ 'opacity-50': sIndex === 0, 'opacity-25': sIndex > 0 }"
               >
-                <div 
-                  v-for="(sentence, lIndex) in section" 
+                <div
+                  v-for="(sentence, lIndex) in section"
                   :key="`future-${sIndex}-${lIndex}`"
                   class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
                 >
@@ -144,8 +144,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick } from 'vue'
-
 // State
 const inputText = ref('')
 const isPresenting = ref(false)
@@ -179,111 +177,77 @@ const progressPercent = computed(() => {
 type Position = { section: number, line: number }
 
 function isValidPosition(position: Position): boolean {
-  console.log('isValidPosition')
   const section = sections.value[position.section]
   return section !== undefined && position.line >= 0 && position.line < section.length
 }
 
 function calculateNextPosition(direction: 'next' | 'prev', mode: 'line' | 'section'): Position | null {
-  console.log('calculateNextPosition', { direction, mode })
-  const { section: currentSection, line: currentLine } = currentPosition.value
-  
+  const { section: currentSectionIdx, line: currentLine } = currentPosition.value
+
   if (mode === 'line') {
     if (direction === 'next') {
-      // Try next line in current section
-      if (currentLine + 1 < sections.value[currentSection]?.length) {
-        return { section: currentSection, line: currentLine + 1 }
+      if (currentLine + 1 < sections.value[currentSectionIdx]?.length) {
+        return { section: currentSectionIdx, line: currentLine + 1 }
       }
-      // Try first line of next section
-      if (currentSection + 1 < sections.value.length) {
-        return { section: currentSection + 1, line: 0 }
+      if (currentSectionIdx + 1 < sections.value.length) {
+        return { section: currentSectionIdx + 1, line: 0 }
       }
     } else {
-      // Try previous line in current section
       if (currentLine > 0) {
-        return { section: currentSection, line: currentLine - 1 }
+        return { section: currentSectionIdx, line: currentLine - 1 }
       }
-      // Try last line of previous section
-      if (currentSection > 0) {
-        const prevSection = currentSection - 1
+      if (currentSectionIdx > 0) {
+        const prevSection = currentSectionIdx - 1
         return { section: prevSection, line: sections.value[prevSection].length - 1 }
       }
     }
-  } else { // mode === 'section'
-    if (direction === 'next' && currentSection + 1 < sections.value.length) {
-      return { section: currentSection + 1, line: 0 }
-    } else if (direction === 'prev' && currentSection > 0) {
-      const prevSection = currentSection - 1
+  } else {
+    if (direction === 'next' && currentSectionIdx + 1 < sections.value.length) {
+      return { section: currentSectionIdx + 1, line: 0 }
+    } else if (direction === 'prev' && currentSectionIdx > 0) {
+      const prevSection = currentSectionIdx - 1
       return { section: prevSection, line: sections.value[prevSection].length - 1 }
     }
   }
-  
+
   return null
 }
 
 async function navigateTo(position: Position) {
-  console.log('navigateTo', position)
   if (!isValidPosition(position)) return
-  
+
   currentPosition.value = position
   await nextTick()
-  
+
   const container = scrollContainer.value
   const currentLine = document.getElementById('current-line')
-  
+
   if (!container || !currentLine) return
-  
+
   const containerRect = container.getBoundingClientRect()
   const lineRect = currentLine.getBoundingClientRect()
   const targetFromTop = containerRect.height / 3
   const scrollTarget = container.scrollTop + (lineRect.top - containerRect.top) - targetFromTop
-  
-  container.scrollTo({
-    top: scrollTarget,
-    behavior: 'smooth'
-  })
+
+  container.scrollTo({ top: scrollTarget, behavior: 'smooth' })
 }
 
-// Navigation Commands
 function navigate(direction: 'next' | 'prev', mode: 'line' | 'section') {
-  console.log('navigate', { direction, mode })
   const nextPosition = calculateNextPosition(direction, mode)
-  if (nextPosition) {
-    navigateTo(nextPosition)
-  }
+  if (nextPosition) navigateTo(nextPosition)
 }
 
-// Event Handlers
 function handleKeydown(event: KeyboardEvent) {
-  console.log('handleKeydown', event.key)
   if (event.shiftKey) {
-    if (event.key === 'ArrowRight') {
-      event.preventDefault()
-      navigate('next', 'section')
-    } else if (event.key === 'ArrowLeft') {
-      event.preventDefault()
-      navigate('prev', 'section')
-    }
+    if (event.key === 'ArrowRight') { event.preventDefault(); navigate('next', 'section') }
+    else if (event.key === 'ArrowLeft') { event.preventDefault(); navigate('prev', 'section') }
   } else {
-    if (event.key === 'ArrowRight') {
-      event.preventDefault()
-      navigate('next', 'line')
-    } else if (event.key === 'ArrowLeft') {
-      event.preventDefault()
-      navigate('prev', 'line')
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault()
-      navigate('prev', 'section')
-    } else if (event.key === 'ArrowDown') {
-      event.preventDefault()
-      navigate('next', 'section')
-    } else if (event.key === 'r' || event.key === 'R') {
-      event.preventDefault()
-      navigateTo({ section: 0, line: 0 })
-    } else if (event.key === 'Escape') {
-      event.preventDefault()
-      isPresenting.value = false
-    }
+    if (event.key === 'ArrowRight') { event.preventDefault(); navigate('next', 'line') }
+    else if (event.key === 'ArrowLeft') { event.preventDefault(); navigate('prev', 'line') }
+    else if (event.key === 'ArrowUp') { event.preventDefault(); navigate('prev', 'section') }
+    else if (event.key === 'ArrowDown') { event.preventDefault(); navigate('next', 'section') }
+    else if (event.key === 'r' || event.key === 'R') { event.preventDefault(); navigateTo({ section: 0, line: 0 }) }
+    else if (event.key === 'Escape') { event.preventDefault(); isPresenting.value = false }
   }
 }
 
@@ -297,13 +261,8 @@ function exitPresentation() {
   isPresenting.value = false
 }
 
-// Focus Management
 watch(isPresenting, (newValue) => {
-  if (newValue) {
-    nextTick(() => {
-      presentationRef.value?.focus()
-    })
-  }
+  if (newValue) nextTick(() => presentationRef.value?.focus())
 })
 </script>
 
@@ -323,18 +282,15 @@ watch(isPresenting, (newValue) => {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Add smooth transitions for opacity changes */
 .opacity-25,
 .opacity-50 {
   transition: opacity 0.3s ease-out;
 }
 
-/* Add smooth transitions for font weight changes */
 .text-3xl {
   transition: font-weight 0.3s ease-out;
 }
 
-/* Fit text container */
 .fit-text {
   font-size: clamp(1rem, 5vw, 1.875rem);
   padding: 0 1rem;

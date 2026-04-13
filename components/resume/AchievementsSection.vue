@@ -1,9 +1,6 @@
 <template>
   <div>
-    <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-      <UIcon name="i-heroicons-trophy" class="text-primary-500 h-5 w-5" />
-      Achievements
-    </h2>
+    <ResumeSectionHeading icon="i-heroicons-trophy" title="Achievements" />
     <div class="grid md:grid-cols-2 gap-4">
       <UCard
         v-for="achievement in achievements"
@@ -39,11 +36,11 @@ defineProps({
     type: Array,
     required: true,
     validator: (value) => {
-      return value.every(achievement => 
-        'title' in achievement && 
+      return value.every(achievement =>
+        'title' in achievement &&
         'description' in achievement
       )
     }
   }
 })
-</script> 
+</script>

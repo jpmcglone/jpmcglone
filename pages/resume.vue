@@ -3,9 +3,9 @@
     <ColorModeToggle />
 
     <UContainer class="sm:py-8 relative max-w-5xl mx-auto px-2 sm:px-4">
-      <UCard 
-        class="-mx-2 sm:mx-auto sm:rounded-lg" 
-        :ui="{ 
+      <UCard
+        class="-mx-2 sm:mx-auto sm:rounded-lg"
+        :ui="{
           base: 'relative overflow-hidden',
           background: 'bg-white dark:bg-gray-900',
           divide: 'divide-y divide-gray-200 dark:divide-gray-800',
@@ -21,11 +21,11 @@
             :personal-info="resumeData.personalInfo"
             :links="resumeData.links"
           />
-          
+
           <!-- About Section -->
-          <ResumeAboutSection 
-            v-if="resumeData.personalInfo?.bio" 
-            :bio="resumeData.personalInfo.bio" 
+          <ResumeAboutSection
+            v-if="resumeData.personalInfo?.bio"
+            :bio="resumeData.personalInfo.bio"
           />
 
           <!-- Objective Section -->
@@ -35,17 +35,9 @@
           />
 
           <UDivider />
-          
-          <!-- Social Proof Section -->
-          <ResumeSocialProofSection
-            v-if="hasMetrics" 
-            :metrics="resumeData.metrics" 
-          />
-
-          <UDivider v-if="hasMetrics" />
 
           <!-- Featured Projects -->
-          <ResumeFeaturedProjectsSection 
+          <ResumeFeaturedProjectsSection
             v-if="resumeData.projects?.length"
             :projects="resumeData.projects"
           />
@@ -53,16 +45,16 @@
           <UDivider v-if="resumeData.projects?.length" />
 
           <!-- Recommendations -->
-          <ResumeTestimonialsSection 
+          <ResumeTestimonialsSection
             v-if="resumeData.recommendations?.items?.length"
             :recommendations="resumeData.recommendations.items"
             :recommendations-url="resumeData.recommendations.url"
           />
 
-          <UDivider v-if="resumeData.recommendations?.items?.length"/>
+          <UDivider v-if="resumeData.recommendations?.items?.length" />
 
           <!-- Technical Skills -->
-          <ResumeTechnicalSkillsSection 
+          <ResumeTechnicalSkillsSection
             v-if="resumeData.technicalSkills"
             :technical-skills="resumeData.technicalSkills"
           />
@@ -70,15 +62,15 @@
           <UDivider v-if="resumeData.technicalSkills" />
 
           <!-- Experience -->
-          <ResumeExperienceSection 
+          <ResumeExperienceSection
             v-if="resumeData.experience"
-            :experience="transformedExperience"
+            :experience="normalizedExperience"
           />
 
           <UDivider v-if="resumeData.experience" />
 
           <!-- Education -->
-          <ResumeEducationSection 
+          <ResumeEducationSection
             v-if="resumeData.education"
             :education="resumeData.education"
           />
@@ -86,7 +78,7 @@
           <UDivider v-if="resumeData.education && resumeData.achievements" />
 
           <!-- Achievements -->
-          <ResumeAchievementsSection 
+          <ResumeAchievementsSection
             v-if="resumeData.achievements"
             :achievements="resumeData.achievements"
           />
@@ -99,20 +91,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useHead } from 'unhead'
-import resumeData from '~/public/data/resume.js'
+import resumeData from '~/data/resume'
 
-// Transform experience data to handle "Present" dates
-const transformedExperience = computed(() => {
-  return resumeData.experience?.map((exp, index) => {
-    // Only transform the first entry (most recent) if it ends in current year
-    if (index === 0 && exp.period.endsWith('2024')) {
-      const period = exp.period.replace('- 2024', '- Present')
-      return {
-        ...exp,
-        period
-      }
+const normalizedExperience = computed(() => {
+  return resumeData.experience?.map(exp => {
+    if (exp.isCurrentRole && !exp.period.endsWith('Present')) {
+      return { ...exp, period: exp.period.replace(/- \d{4}$/, '- Present') }
     }
     return exp
   })
@@ -120,44 +104,29 @@ const transformedExperience = computed(() => {
 
 const sections = computed(() => {
   const availableSections = []
-  
+
   if (resumeData.personalInfo?.bio) {
     availableSections.push({ id: 'about', label: 'About', icon: 'i-heroicons-user' })
   }
-
   if (resumeData.projects?.length) {
     availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-heroicons-rocket-launch' })
   }
-
   if (resumeData.recommendations?.items?.length) {
     availableSections.push({ id: 'recommendations', label: 'Recommendations', icon: 'i-heroicons-chat-bubble-bottom-center-text' })
   }
-  
   if (resumeData.technicalSkills?.length) {
     availableSections.push({ id: 'technical-skills', label: 'Skills', icon: 'i-heroicons-code-bracket' })
   }
-  
   if (resumeData.experience?.length) {
     availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-heroicons-briefcase' })
   }
-  
   if (resumeData.education) {
     availableSections.push({ id: 'education', label: 'Education', icon: 'i-heroicons-academic-cap' })
   }
-  
+
   return availableSections
 })
 
-const hasMetrics = computed(() => {
-  return resumeData.metrics?.yearsExperience
-})
-
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 
 useHead({
   title: resumeData.personalInfo?.name || 'Resume',

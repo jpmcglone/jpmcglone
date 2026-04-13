@@ -22,8 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const route = useRoute()
 
 const maxAge = computed(() => {
@@ -34,7 +32,6 @@ const maxAge = computed(() => {
 const birthdays = computed(() => {
   const birthdaysParam = route.query.birthdays as string
   if (!birthdaysParam) return []
-
   return birthdaysParam
     .split(',')
     .map((date) => date.trim())

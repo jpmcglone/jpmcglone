@@ -1,17 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
-  target: 'static',
-  router: {
-    base: '/'
-  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
-    '@nuxt/eslint', 
-    '@nuxtjs/tailwindcss', 
+    '@nuxt/eslint',
+    '@nuxtjs/tailwindcss',
     '@nuxt/ui',
     '@nuxt/icon',
+    '@vueuse/nuxt',
   ],
   ui: {
     global: true,

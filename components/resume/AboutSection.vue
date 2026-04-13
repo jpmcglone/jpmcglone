@@ -7,7 +7,10 @@
     ><template
         v-for="(segment, segmentIndex) in paragraph"
         :key="`${paragraphIndex}-${segmentIndex}`"
-      ><span v-if="segment.type === 'text'" v-text="segment.content" /><span
+      ><span v-if="segment.type === 'text'" v-text="segment.content" /><strong
+          v-else-if="segment.type === 'strong'"
+          class="font-semibold text-gray-800 dark:text-white"
+        >{{ segment.content }}</strong        ><span
           v-else
           class="bio-link-wrap"
         ><a
@@ -20,8 +23,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
 const props = defineProps({
   bio: {
     type: String,
@@ -33,7 +34,7 @@ const linkDescriptions = {
   'https://rumble.studio': 'Rumble\'s creator-focused platform for recording, editing, and publishing content.',
   'https://www.docusign.com': 'Digital agreement platform centered on e-signature and workflow automation.',
   'https://imgur.com': 'A large image-sharing and internet culture platform.',
-  'https://menofhunger.com': 'A private platform for men — an independent project by JP.',
+  'https://menofhunger.com': 'A social media platform  justfor men.',
   'https://realm.github.io/SwiftLint/': 'Enforces style and best practices in Swift codebases.',
   'https://github.com/nicklockwood/SwiftFormat': 'Automatically formats Swift code to keep it clean and consistent.',
   'https://github.com/peripheryapp/periphery': 'Static analysis tool for finding unused Swift code.',
@@ -50,33 +51,29 @@ const parsedBio = computed(() => {
 
 function parseParagraph(paragraph) {
   const segments = []
-  const anchorPattern = /<a\s+[^>]*href="([^"]+)"[^>]*>(.*?)<\/a>/g
+  const pattern = /<a\s+[^>]*href="([^"]+)"[^>]*>(.*?)<\/a>|<strong>(.*?)<\/strong>/g
   let lastIndex = 0
   let match
 
-  while ((match = anchorPattern.exec(paragraph)) !== null) {
+  while ((match = pattern.exec(paragraph)) !== null) {
     if (match.index > lastIndex) {
-      segments.push({
-        type: 'text',
-        content: paragraph.slice(lastIndex, match.index)
-      })
+      segments.push({ type: 'text', content: paragraph.slice(lastIndex, match.index) })
     }
-
-    segments.push({
-      type: 'link',
-      href: match[1],
-      content: match[2],
-      description: linkDescriptions[match[1]] || match[1]
-    })
-
+    if (match[1] !== undefined) {
+      segments.push({
+        type: 'link',
+        href: match[1],
+        content: match[2],
+        description: linkDescriptions[match[1]] || match[1]
+      })
+    } else {
+      segments.push({ type: 'strong', content: match[3] })
+    }
     lastIndex = match.index + match[0].length
   }
 
   if (lastIndex < paragraph.length) {
-    segments.push({
-      type: 'text',
-      content: paragraph.slice(lastIndex)
-    })
+    segments.push({ type: 'text', content: paragraph.slice(lastIndex) })
   }
 
   return segments

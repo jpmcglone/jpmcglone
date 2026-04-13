@@ -24,50 +24,28 @@
         :key="recommendation.author"
         class="dark:bg-gray-800"
       >
-        <div class="space-y-4">
-          <div class="flex items-start gap-4">
-            <p class="flex-1 text-gray-600 dark:text-gray-100 italic">
-              "{{ recommendation.quote }}"
+        <div class="space-y-6">
+          <div class="flex items-start gap-4 pl-8 relative">
+            <span
+              aria-hidden="true"
+              class="absolute left-0 top-0 text-5xl leading-none text-primary-400/30 dark:text-primary-400/20 select-none pointer-events-none"
+              style="font-family: Georgia, 'Times New Roman', serif;"
+            >&ldquo;</span>
+            <p class="flex-1 text-gray-600 dark:text-gray-100 italic leading-relaxed">
+              {{ recommendation.quote }}
             </p>
-            <span v-if="recommendation.year" class="shrink-0 text-xs text-gray-300 dark:text-gray-600">
+            <span v-if="recommendation.year" class="shrink-0 text-xs text-gray-300 dark:text-gray-600 mt-1">
               {{ recommendation.year }}
             </span>
           </div>
           <div class="flex items-start gap-4">
-            <a
-              v-if="recommendation.linkedin"
-              :href="recommendation.linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="shrink-0"
-            >
-              <div
-                v-if="!recommendation.image"
-                class="h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center"
-              >
-                <span class="text-base font-semibold text-primary-600 dark:text-primary-400 uppercase">{{ initials(recommendation.author) }}</span>
-              </div>
-              <UAvatar
-                v-else
-                :src="recommendation.image"
-                :alt="recommendation.author"
-                size="xl"
-              />
-            </a>
-            <template v-else>
-              <div
-                v-if="!recommendation.image"
-                class="h-16 w-16 shrink-0 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center"
-              >
-                <span class="text-base font-semibold text-primary-600 dark:text-primary-400 uppercase">{{ initials(recommendation.author) }}</span>
-              </div>
-              <UAvatar
-                v-else
-                :src="recommendation.image"
-                :alt="recommendation.author"
-                size="xl"
-              />
-            </template>
+            <LinkedAvatar
+              :url="recommendation.linkedin"
+              :src="recommendation.image"
+              :alt="recommendation.author"
+              size="xl"
+              shape="circle"
+            />
             <div>
               <p class="text-sm font-medium text-gray-900 dark:text-white">
                 <a
@@ -107,14 +85,4 @@ defineProps({
     default: ''
   }
 })
-
-const initials = (name) => {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .map(w => w[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
-}
 </script>

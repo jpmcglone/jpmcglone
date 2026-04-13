@@ -1,9 +1,6 @@
 <template>
   <div id="education" class="scroll-mt-6">
-    <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
-      <UIcon name="i-heroicons-academic-cap" class="text-primary-500 h-5 w-5" />
-      Education
-    </h2>
+    <ResumeSectionHeading icon="i-heroicons-academic-cap" title="Education" />
     <UCard class="dark:bg-gray-800">
       <div class="flex justify-between items-stretch gap-4">
         <div class="flex-grow">

@@ -9,7 +9,7 @@
           class="ring-4 ring-white dark:ring-gray-800 shadow-xl transform hover:scale-105 transition-all duration-300"
         />
       </div>
-      
+
       <h1 class="text-5xl font-light bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
         {{ indexData.personalInfo.username }}
       </h1>
@@ -23,12 +23,12 @@
               external: tag.link.startsWith('http'),
               target: '_blank'
             } : {}"
-            class="tag-item px-4 py-2 rounded-full text-sm bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 
+            class="tag-item px-4 py-2 rounded-full text-sm bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700
                    shadow-sm hover:shadow-md transition-all duration-300 inline-flex items-center gap-2
                    border border-gray-200 dark:border-gray-700 hover:-translate-y-0.5"
           >
-            <UIcon 
-              :name="getTagIcon(tag.label)" 
+            <UIcon
+              :name="getTagIcon(tag.label)"
               class="h-4 w-4"
             />
             {{ tag.label }}
@@ -42,8 +42,8 @@
 
       <UButton
         :to="indexData.resume.link"
-        class="inline-flex items-center px-6 py-3 rounded-xl font-medium transition-all duration-300 
-               shadow-lg hover:shadow-xl hover:-translate-y-1 
+        class="inline-flex items-center px-6 py-3 rounded-xl font-medium transition-all duration-300
+               shadow-lg hover:shadow-xl hover:-translate-y-1
                bg-gradient-to-r from-gray-900 to-gray-700 text-white hover:from-gray-800 hover:to-gray-600
                dark:from-white dark:to-gray-200 dark:text-gray-900 dark:hover:from-gray-100 dark:hover:to-gray-300"
         icon="i-heroicons-document-text"
@@ -58,10 +58,10 @@
               :to="social.url"
               external
               target="_blank"
-              class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white 
+              class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white
                      transition-all duration-300 hover:-translate-y-1"
             >
-              <UIcon 
+              <UIcon
                 :name="social.icon"
                 class="h-6 w-6"
               />
@@ -74,7 +74,7 @@
 </template>
 
 <script setup>
-import indexData from '~/public/data/index.js'
+import indexData from '~/data/index'
 
 const getTagIcon = (label) => {
   const icons = {
@@ -84,7 +84,6 @@ const getTagIcon = (label) => {
     'Entrepreneur': 'i-heroicons-rocket-launch',
     'Husband': 'i-heroicons-heart',
     'Landlord': 'i-heroicons-home',
-    // 'Gamer': 'i-simple-icons-twitch'
   }
   return icons[label] || 'i-heroicons-tag'
 }
