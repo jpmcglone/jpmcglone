@@ -10,10 +10,8 @@
         />
       </div>
       
-      <h1>
-        <UText class="text-5xl font-light bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-          {{ indexData.personalInfo.username }}
-        </UText>
+      <h1 class="text-5xl font-light bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+        {{ indexData.personalInfo.username }}
       </h1>
 
       <div class="tag-cloud flex gap-3 justify-center flex-wrap max-w-xl mx-auto py-4">
@@ -38,8 +36,8 @@
         </UTooltip>
       </div>
 
-      <p>
-        <UText class="text-xl text-gray-500 dark:text-gray-400 font-light">{{ indexData.personalInfo.title }}</UText>
+      <p class="text-xl text-gray-500 dark:text-gray-400 font-light">
+        {{ indexData.personalInfo.title }}
       </p>
 
       <UButton

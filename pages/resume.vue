@@ -46,19 +46,20 @@
 
           <!-- Featured Projects -->
           <ResumeFeaturedProjectsSection 
-            v-if="resumeData.projects"
+            v-if="resumeData.projects?.length"
             :projects="resumeData.projects"
           />
 
-          <UDivider v-if="resumeData.projects" />
+          <UDivider v-if="resumeData.projects?.length" />
 
-          <!-- Testimonials -->
+          <!-- Recommendations -->
           <ResumeTestimonialsSection 
-            v-if="resumeData.testimonials"
-            :testimonials="resumeData.testimonials"
+            v-if="resumeData.recommendations?.items?.length"
+            :recommendations="resumeData.recommendations.items"
+            :recommendations-url="resumeData.recommendations.url"
           />
 
-          <UDivider v-if="resumeData.testimonials"/>
+          <UDivider v-if="resumeData.recommendations?.items?.length"/>
 
           <!-- Technical Skills -->
           <ResumeTechnicalSkillsSection 
@@ -121,26 +122,34 @@ const sections = computed(() => {
   const availableSections = []
   
   if (resumeData.personalInfo?.bio) {
-    availableSections.push({ id: 'about', label: 'About' })
+    availableSections.push({ id: 'about', label: 'About', icon: 'i-heroicons-user' })
+  }
+
+  if (resumeData.projects?.length) {
+    availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-heroicons-rocket-launch' })
+  }
+
+  if (resumeData.recommendations?.items?.length) {
+    availableSections.push({ id: 'recommendations', label: 'Recommendations', icon: 'i-heroicons-chat-bubble-bottom-center-text' })
   }
   
   if (resumeData.technicalSkills?.length) {
-    availableSections.push({ id: 'technical-skills', label: 'Skills' })
+    availableSections.push({ id: 'technical-skills', label: 'Skills', icon: 'i-heroicons-code-bracket' })
   }
   
   if (resumeData.experience?.length) {
-    availableSections.push({ id: 'experience', label: 'Experience' })
+    availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-heroicons-briefcase' })
   }
   
   if (resumeData.education) {
-    availableSections.push({ id: 'education', label: 'Education' })
+    availableSections.push({ id: 'education', label: 'Education', icon: 'i-heroicons-academic-cap' })
   }
   
   return availableSections
 })
 
 const hasMetrics = computed(() => {
-  return resumeData.metrics?.yearsExperience || resumeData.metrics?.employersSatisfied
+  return resumeData.metrics?.yearsExperience
 })
 
 const scrollToSection = (sectionId) => {

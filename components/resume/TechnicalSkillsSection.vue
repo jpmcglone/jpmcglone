@@ -48,7 +48,7 @@
           >
             <UIcon 
               :name="getSkillIcon(item.name)" 
-              class="h-4 w-4"
+              class="h-4 w-4 text-current"
               :class="[isAppleLogo(item.name) ? 'dark:invert' : '']"
             />
             {{ item.name }}
@@ -130,6 +130,8 @@ const getSkillIcon = (skill) => {
     'SwiftUI': 'logos:swift',
     'UIKit': 'logos:apple',
     'Nuxt.js': 'logos:nuxt-icon',
+    'Vue.js': 'logos:vue',
+    'MVI Architecture': 'i-heroicons-squares-2x2',
     'SnapKit': 'i-heroicons-puzzle-piece',
     'Lottie': 'i-heroicons-play-circle',
     'Combine': 'logos:apple',
@@ -189,6 +191,9 @@ const getSkillIcon = (skill) => {
     
     // Miscellaneous
     'GraphQL': 'logos:graphql',
+    'API Design': 'i-heroicons-circle-stack',
+    'SDK Development': 'i-heroicons-cube',
+    'Trunk-Based Development': 'i-heroicons-arrow-path',
     'JSON': 'i-heroicons-code-bracket',
     'YAML': 'i-heroicons-document-text',
     'dotenv': 'i-heroicons-document',
@@ -196,9 +201,14 @@ const getSkillIcon = (skill) => {
     'Regex': 'i-heroicons-command-line',
     'XML': 'i-heroicons-code-bracket',
     
-    // A.I. Tools
+    // AI-Assisted Development
     'Claude': 'simple-icons:anthropic',
-    'ChatGPT': 'logos:openai-icon',
+    'ChatGPT': 'simple-icons:openai',
+    
+    // iOS Tooling
+    'SwiftLint': 'logos:swift',
+    'SwiftFormat': 'logos:swift',
+    'Periphery': 'logos:swift',
     
     // Additional missing icons
     'FLAnimatedImage': 'i-heroicons-photo',
@@ -216,6 +226,16 @@ const getSkillIcon = (skill) => {
 
 const getSkillUrl = (skill) => {
   const urls = {
+    // AI-Assisted Development
+    'Cursor': 'https://docs.cursor.com/',
+    'Claude': 'https://docs.anthropic.com/en/docs/intro-to-claude',
+    'ChatGPT': 'https://platform.openai.com/docs/overview',
+
+    // iOS Tooling
+    'SwiftLint': 'https://realm.github.io/SwiftLint/',
+    'SwiftFormat': 'https://github.com/nicklockwood/SwiftFormat',
+    'Periphery': 'https://github.com/peripheryapp/periphery',
+
     // Languages
     'Swift': 'https://developer.apple.com/swift/',
     'Objective-C': 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/',
@@ -226,49 +246,80 @@ const getSkillUrl = (skill) => {
     'Java': 'https://dev.java/',
     
     // Frameworks & Libraries
-    'React': 'https://react.dev/',
-    'Next.js': 'https://nextjs.org/',
-    'Nuxt.js': 'https://nuxt.com/',
-    'Apollo (GraphQL)': 'https://www.apollographql.com/',
+    'SwiftUI': 'https://developer.apple.com/xcode/swiftui/',
+    'UIKit': 'https://developer.apple.com/documentation/uikit',
+    'Nuxt.js': 'https://nuxt.com/docs',
+    'Vue.js': 'https://vuejs.org/guide/introduction.html',
+    'MVI Architecture': 'https://developer.android.com/topic/architecture',
+    'SnapKit': 'https://snapkit.github.io/SnapKit/',
+    'Lottie': 'https://airbnb.io/lottie/',
+    'Combine': 'https://developer.apple.com/documentation/combine',
+    'FLAnimatedImage': 'https://github.com/Flipboard/FLAnimatedImage',
+    'LiveKit': 'https://docs.livekit.io/home/',
+    'Apollo (GraphQL)': 'https://www.apollographql.com/docs/',
     
     // Databases
-    'PostgreSQL': 'https://www.postgresql.org/',
-    'Realm': 'https://realm.io/',
-    'MySQL': 'https://www.mysql.com/',
+    'PostgreSQL': 'https://www.postgresql.org/docs/',
+    'Realm': 'https://www.mongodb.com/docs/atlas/device-sdks/sdk/swift/',
+    'MySQL': 'https://dev.mysql.com/doc/',
     'SQLite': 'https://www.sqlite.org/',
-    'MongoDB': 'https://www.mongodb.com/',
+    'MongoDB': 'https://www.mongodb.com/docs/',
     
     // Development Tools
+    'Xcode': 'https://developer.apple.com/xcode/',
     'VS Code': 'https://code.visualstudio.com/',
     'Vim': 'https://www.vim.org/',
     'JetBrains tools': 'https://www.jetbrains.com/',
+    'AppCode': 'https://www.jetbrains.com/objc/',
     
     // Issue Tracking / Wiki
-    'Linear': 'https://linear.app/',
-    'JIRA': 'https://www.atlassian.com/software/jira',
-    'GitHub': 'https://github.com/',
-    'Notion': 'https://www.notion.so/',
-    'GitLab': 'https://gitlab.com/',
-    'Bitbucket': 'https://bitbucket.org/',
-    'Confluence': 'https://www.atlassian.com/software/confluence',
+    'Linear': 'https://developers.linear.app/docs/graphql/working-with-the-graphql-api',
+    'JIRA': 'https://developer.atlassian.com/cloud/jira/platform/',
+    'GitHub': 'https://docs.github.com/',
+    'Notion': 'https://developers.notion.com/',
+    'GitLab': 'https://docs.gitlab.com/',
+    'Bitbucket': 'https://developer.atlassian.com/cloud/bitbucket/',
+    'Confluence': 'https://developer.atlassian.com/cloud/confluence/',
+    'Pivotal Tracker': 'https://www.pivotaltracker.com/help',
     
     // CI/CD & DevOps
-    'CircleCI': 'https://circleci.com/',
-    'GitHub Actions': 'https://github.com/features/actions',
-    'Travis CI': 'https://travis-ci.org/',
+    'CircleCI': 'https://circleci.com/docs/',
+    'Fastlane': 'https://docs.fastlane.tools/',
+    'GitHub Actions': 'https://docs.github.com/actions',
+    'Travis CI': 'https://docs.travis-ci.com/',
     'Jenkins': 'https://www.jenkins.io/',
-    'Azure DevOps': 'https://azure.microsoft.com/en-us/products/devops',
+    'Azure DevOps': 'https://learn.microsoft.com/en-us/azure/devops/?view=azure-devops',
     
     // Monitoring & Analytics
-    'Sentry': 'https://sentry.io/',
-    'Firebase': 'https://firebase.google.com/',
-    'Amplitude': 'https://amplitude.com/',
-    'Mixpanel': 'https://mixpanel.com/',
+    'Sentry': 'https://docs.sentry.io/',
+    'Crashlytics': 'https://firebase.google.com/docs/crashlytics',
+    'Amplitude': 'https://amplitude.com/docs',
+    'Mixpanel': 'https://docs.mixpanel.com/',
+    'Firebase': 'https://firebase.google.com/docs',
     
-    // APIs & Data
-    'GraphQL': 'https://graphql.org/',
+    // Networking
+    'Alamofire': 'https://alamofire.github.io/Alamofire/',
+    'AFNetworking': 'https://github.com/AFNetworking/AFNetworking',
+    'URLSession': 'https://developer.apple.com/documentation/foundation/urlsession',
+
+    // Dependency Managers
+    'Swift Package Manager': 'https://www.swift.org/package-manager/',
+    'Cocoapods': 'https://guides.cocoapods.org/',
+    'Carthage': 'https://github.com/Carthage/Carthage',
+    'Bundler': 'https://bundler.io/',
+    'npm': 'https://docs.npmjs.com/',
+
+    // APIs & Data / Miscellaneous
+    'Next.js': 'https://nextjs.org/docs',
+    'React': 'https://react.dev/learn',
+    'GraphQL': 'https://graphql.org/learn/',
+    'API Design': 'https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design',
+    'SDK Development': 'https://www.stainless.com/sdk-api-best-practices',
+    'Trunk-Based Development': 'https://trunkbaseddevelopment.com/',
     'JSON': 'https://www.json.org/',
     'YAML': 'https://yaml.org/',
+    'dotenv': 'https://github.com/motdotla/dotenv',
+    'xcconfig': 'https://developer.apple.com/library/archive/featuredarticles/XcodeConcepts/Concept-Build_Settings.html',
     'Regex': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions',
     'XML': 'https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction'
   }

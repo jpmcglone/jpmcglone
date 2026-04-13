@@ -5,6 +5,7 @@
         <UButton
           variant="ghost"
           size="xs"
+          :icon="section.icon"
           @click="scrollToSection(section.id)"
         >
           {{ section.label }}
@@ -28,4 +29,4 @@ const scrollToSection = (sectionId) => {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
-</script> 
+</script>

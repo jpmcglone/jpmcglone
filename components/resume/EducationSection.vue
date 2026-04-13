@@ -14,7 +14,14 @@
             {{ education.degree }}
           </h3>
           <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            {{ education.school }}
+            <a
+              v-if="education.schoolUrl"
+              :href="education.schoolUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors underline underline-offset-4"
+            >{{ education.school }}</a>
+            <span v-else>{{ education.school }}</span>
           </p>
           <p class="text-sm text-gray-500 dark:text-gray-400">
             {{ education.location }}
@@ -43,4 +50,4 @@ defineProps({
     }
   }
 })
-</script> 
+</script>

@@ -17,23 +17,55 @@
     
     <UCard class="dark:bg-gray-800 transition-all duration-300 hover:shadow-lg">
       <div class="flex flex-col gap-4">
-        <div class="flex items-start gap-4">
-          <div
-            v-if="!job.logo"
-            class="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-gray-200 dark:bg-gray-700 flex-shrink-0"
-          />
-          <UAvatar
-            v-else
-            :src="job.logo"
-            :alt="job.company"
-            size="lg"
-            class="rounded-lg"
-          />
+        <div class="flex items-start gap-3">
+          <a
+            v-if="job.url"
+            :href="job.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0"
+          >
+            <div
+              v-if="!job.logo"
+              class="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+            >
+              <span class="text-sm md:text-base font-semibold text-primary-600 dark:text-primary-400 uppercase">{{ initials(job.company) }}</span>
+            </div>
+            <UAvatar
+              v-else
+              :src="job.logo"
+              :alt="job.company"
+              size="lg"
+              :ui="{ rounded: 'rounded-lg' }"
+            />
+          </a>
+          <template v-else>
+            <div
+              v-if="!job.logo"
+              class="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+            >
+              <span class="text-sm md:text-base font-semibold text-primary-600 dark:text-primary-400 uppercase">{{ initials(job.company) }}</span>
+            </div>
+            <UAvatar
+              v-else
+              :src="job.logo"
+              :alt="job.company"
+              size="lg"
+              :ui="{ rounded: 'rounded-lg' }"
+            />
+          </template>
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-start gap-4">
               <div>
                 <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                  {{ job.company }}
+                  <a
+                    v-if="job.url"
+                    :href="job.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                  >{{ job.company }}</a>
+                  <span v-else>{{ job.company }}</span>
                 </h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   {{ job.title }}
@@ -104,15 +136,18 @@
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
           <ul class="space-y-2">
             <li
-              v-for="(item, index) in job.responsibilities"
+              v-for="(item, index) in normalizedResponsibilities"
               :key="index"
-              class="flex gap-2 text-sm text-gray-600 dark:text-gray-400"
+              class="flex gap-2 text-sm"
+              :class="item.highlighted ? 'text-gray-600 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'"
             >
               <UIcon 
+                v-if="item.highlighted"
                 name="i-heroicons-check" 
-                class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500" 
+                class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500"
               />
-              {{ item }}
+              <span v-else class="flex-shrink-0 w-4" />
+              {{ item.text }}
             </li>
           </ul>
         </div>
@@ -122,6 +157,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   job: {
     type: Object,
@@ -138,6 +175,27 @@ const props = defineProps({
 })
 
 const currentYear = new Date().getFullYear()
+
+const normalizedResponsibilities = computed(() => {
+  const items = (props.job.responsibilities || []).map(item => {
+    if (typeof item === 'string') return { text: item, highlighted: true }
+    return { text: item.text, highlighted: item.highlighted !== false }
+  })
+  return [
+    ...items.filter(i => i.highlighted),
+    ...items.filter(i => !i.highlighted)
+  ]
+})
+
+const initials = (name) => {
+  return name
+    .split(/[\s:]+/)
+    .filter(Boolean)
+    .map(w => w[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+}
 
 const formatPeriod = (period) => {
   if (!period.includes(' - ')) return period
