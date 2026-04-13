@@ -1,9 +1,9 @@
 export default {
   personalInfo: {
     username: '@jpmcglone',
-    title: 'Senior Software Engineer',
+    title: 'Seasoned Software Engineer',
     avatar: '/images/johnmcglone.jpg', 
-    description: 'Software Engineer specializing in iOS and Full Stack Development',
+    description: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
     tags: [
       {
         label: 'Software Engineer',
@@ -48,13 +48,13 @@ export default {
     link: '/resume'
   },
   meta: {
-    title: '@jpmcglone - Software Engineer',
-    description: 'Software Engineer specializing in iOS and Full Stack Development',
-    ogTitle: 'JP McGlone - Software Engineer',
-    ogDescription: 'Software Engineer specializing in iOS and Full Stack Development',
+    title: '@jpmcglone - Seasoned Software Engineer',
+    description: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
+    ogTitle: 'JP McGlone - Seasoned Software Engineer',
+    ogDescription: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
     ogType: 'website',
     twitterCard: 'summary',
-    twitterTitle: 'JP McGlone - Software Engineer',
-    twitterDescription: 'Software Engineer specializing in iOS and Full Stack Development'
+    twitterTitle: 'JP McGlone - Seasoned Software Engineer',
+    twitterDescription: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship'
   }
 } 
