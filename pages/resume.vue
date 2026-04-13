@@ -144,7 +144,7 @@ useHead({
     { property: 'og:image', content: seo.ogImage },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '1200' },
-    { property: 'og:image:alt', content: 'John P. McGlone — Senior iOS Engineer' },
+    { property: 'og:image:alt', content: 'John P. McGlone — Seasoned iOS Engineer' },
     { property: 'og:site_name', content: 'jpmcglone.com' },
     { property: 'profile:first_name', content: 'John' },
     { property: 'profile:last_name', content: 'McGlone' },
@@ -168,11 +168,11 @@ useHead({
         '@type': 'Person',
         name: 'John P. McGlone',
         alternateName: ['JP McGlone', 'jpmcglone', 'John McGlone', 'John P McGlone'],
-        jobTitle: 'Senior iOS Engineer',
+        jobTitle: 'Seasoned iOS Engineer',
         url: 'https://jpmcglone.com',
         image: 'https://jpmcglone.com/images/johnmcglone.jpg',
         email: 'jp@jpmcglone.com',
-        description: 'Senior iOS Engineer with 16+ years of experience building polished mobile apps, SDKs, and products at companies like Rumble, DocuSign, and Imgur.',
+        description: 'Seasoned iOS Engineer with 16+ years of experience building polished mobile apps, SDKs, and products at companies like Rumble, DocuSign, and Imgur.',
         address: { '@type': 'PostalAddress', addressLocality: 'Roanoke', addressRegion: 'VA', addressCountry: 'US' },
         sameAs: [
           'https://github.com/jpmcglone',
@@ -181,7 +181,7 @@ useHead({
         knowsAbout: ['iOS Development', 'Swift', 'Mobile Engineering', 'SDK Development', 'Software Architecture', 'Nuxt.js', 'Vue.js'],
         hasOccupation: {
           '@type': 'Occupation',
-          name: 'Senior iOS Engineer',
+          name: 'Seasoned iOS Engineer',
           occupationLocation: { '@type': 'City', name: 'Roanoke, VA' },
         },
         worksFor: {

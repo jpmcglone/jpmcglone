@@ -90,16 +90,16 @@ const indexData: IndexData = {
     link: '/resume'
   },
   meta: {
-    title: 'John P. McGlone (@jpmcglone) — Senior iOS Engineer',
+    title: 'John P. McGlone (@jpmcglone) — Seasoned iOS Engineer',
     description: 'John P. McGlone (JP McGlone, jpmcglone) is a seasoned software engineer with 16+ years building polished iOS apps, SDKs, and products. Former engineer at Rumble, DocuSign, Imgur, and more.',
     keywords: 'John McGlone, John P McGlone, JP McGlone, jpmcglone, John P. McGlone, iOS developer, senior iOS engineer, Swift developer, iOS engineer, software engineer, Rumble, DocuSign, Imgur, PulsePoint, Men of Hunger, Roanoke VA developer',
-    ogTitle: 'John P. McGlone — Senior iOS Engineer',
+    ogTitle: 'John P. McGlone — Seasoned iOS Engineer',
     ogDescription: 'JP McGlone is a seasoned software engineer with 16+ years building polished iOS apps and SDKs. Former engineer at Rumble, DocuSign, and Imgur.',
     ogImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
     ogUrl: 'https://jpmcglone.com',
     ogType: 'profile',
     twitterCard: 'summary_large_image',
-    twitterTitle: 'John P. McGlone — Senior iOS Engineer',
+    twitterTitle: 'John P. McGlone — Seasoned iOS Engineer',
     twitterDescription: 'JP McGlone is a seasoned software engineer with 16+ years building polished iOS apps and SDKs. Former engineer at Rumble, DocuSign, and Imgur.',
     twitterImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
     canonical: 'https://jpmcglone.com'

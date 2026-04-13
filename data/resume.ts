@@ -100,8 +100,8 @@ export interface ResumeData {
 
 const resumeData: ResumeData = {
   seo: {
-    title: 'Resume — John P. McGlone | Senior iOS Engineer',
-    description: 'John P. McGlone (JP McGlone, jpmcglone) — Senior iOS Engineer with 16+ years of experience at Rumble, DocuSign, Imgur, and more. Swift, iOS, SDK development, product engineering.',
+    title: 'Resume — John P. McGlone | Seasoned iOS Engineer',
+    description: 'John P. McGlone (JP McGlone, jpmcglone) — Seasoned iOS Engineer with 16+ years of experience at Rumble, DocuSign, Imgur, and more. Swift, iOS, SDK development, product engineering.',
     keywords: 'John McGlone resume, John P McGlone, JP McGlone, jpmcglone, senior iOS engineer, iOS developer, Swift developer, Rumble engineer, DocuSign iOS, Imgur iOS, PulsePoint, software architect, SDK developer, Roanoke VA',
     ogImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
     ogUrl: 'https://jpmcglone.com/resume',
@@ -109,7 +109,7 @@ const resumeData: ResumeData = {
   },
   personalInfo: {
     name: "John P. McGlone",
-    title: "Senior iOS Engineer",
+    title: "Seasoned iOS Engineer",
     location: "Roanoke, VA",
     phone: "(631) 943-6889",
     email: "jp@jpmcglone.com",
