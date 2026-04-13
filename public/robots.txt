@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://jpmcglone.com/sitemap.xml

@@ -113,7 +113,7 @@
                 class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500"
               />
               <span v-else class="flex-shrink-0 w-4 text-center">•</span>
-              {{ item.text }}
+              <span v-html="item.text" />
             </li>
           </ul>
         </div>
@@ -177,3 +177,14 @@ const jobBadges = computed(() => {
   return badges
 })
 </script>
+
+<style scoped>
+:deep(a) {
+  color: rgb(var(--color-primary-400));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:deep(a:hover) {
+  color: rgb(var(--color-primary-300));
+}
+</style>

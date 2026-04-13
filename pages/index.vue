@@ -68,6 +68,14 @@
           </UTooltip>
         </div>
       </div>
+
+      <div class="pt-4">
+        <a
+          href="/sitemap.xml"
+          target="_blank"
+          class="text-xs text-gray-400 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-500 transition-colors"
+        >Sitemap</a>
+      </div>
     </div>
   </div>
 </template>
@@ -87,16 +95,60 @@ const getTagIcon = (label) => {
   return icons[label] || 'i-heroicons-tag'
 }
 
+const m = indexData.meta
+
 useHead({
-  title: indexData.meta.title,
+  title: m.title,
+  link: [
+    { rel: 'canonical', href: m.canonical }
+  ],
   meta: [
-    { name: 'description', content: indexData.meta.description },
-    { name: 'og:title', content: indexData.meta.ogTitle },
-    { name: 'og:description', content: indexData.meta.ogDescription },
-    { name: 'og:type', content: indexData.meta.ogType },
-    { name: 'twitter:card', content: indexData.meta.twitterCard },
-    { name: 'twitter:title', content: indexData.meta.twitterTitle },
-    { name: 'twitter:description', content: indexData.meta.twitterDescription }
+    { name: 'description', content: m.description },
+    { name: 'keywords', content: m.keywords },
+    // Open Graph
+    { property: 'og:title', content: m.ogTitle },
+    { property: 'og:description', content: m.ogDescription },
+    { property: 'og:type', content: m.ogType },
+    { property: 'og:url', content: m.ogUrl },
+    { property: 'og:image', content: m.ogImage },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '1200' },
+    { property: 'og:image:alt', content: 'John P. McGlone — Senior iOS Engineer' },
+    { property: 'og:site_name', content: 'jpmcglone.com' },
+    { property: 'profile:first_name', content: 'John' },
+    { property: 'profile:last_name', content: 'McGlone' },
+    { property: 'profile:username', content: 'jpmcglone' },
+    // Twitter
+    { name: 'twitter:card', content: m.twitterCard },
+    { name: 'twitter:title', content: m.twitterTitle },
+    { name: 'twitter:description', content: m.twitterDescription },
+    { name: 'twitter:image', content: m.twitterImage },
+    { name: 'twitter:site', content: '@jpmcglone' },
+    { name: 'twitter:creator', content: '@jpmcglone' },
+    // Extra discoverability
+    { name: 'author', content: 'John P. McGlone' },
+    { name: 'robots', content: 'index, follow' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'John P. McGlone',
+        alternateName: ['JP McGlone', 'jpmcglone', 'John McGlone', 'John P McGlone'],
+        jobTitle: 'Senior iOS Engineer',
+        url: 'https://jpmcglone.com',
+        image: 'https://jpmcglone.com/images/johnmcglone.jpg',
+        email: 'jp@jpmcglone.com',
+        address: { '@type': 'PostalAddress', addressLocality: 'Roanoke', addressRegion: 'VA', addressCountry: 'US' },
+        sameAs: [
+          'https://github.com/jpmcglone',
+          'https://www.linkedin.com/in/john-p-mcglone-18513014',
+        ],
+        knowsAbout: ['iOS Development', 'Swift', 'Mobile Engineering', 'SDK Development', 'Software Architecture', 'Nuxt.js', 'Vue.js'],
+      })
+    }
   ]
 })
 </script>

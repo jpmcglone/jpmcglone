@@ -74,6 +74,14 @@ export interface ResumeData {
     image?: string
     bio?: string
   }
+  seo?: {
+    title: string
+    description: string
+    keywords: string
+    ogImage: string
+    ogUrl: string
+    canonical: string
+  }
   objective?: string
   technicalSkills: SkillCategory[]
   experience: Experience[]
@@ -91,9 +99,17 @@ export interface ResumeData {
 }
 
 const resumeData: ResumeData = {
+  seo: {
+    title: 'Resume — John P. McGlone | Senior iOS Engineer',
+    description: 'John P. McGlone (JP McGlone, jpmcglone) — Senior iOS Engineer with 16+ years of experience at Rumble, DocuSign, Imgur, and more. Swift, iOS, SDK development, product engineering.',
+    keywords: 'John McGlone resume, John P McGlone, JP McGlone, jpmcglone, senior iOS engineer, iOS developer, Swift developer, Rumble engineer, DocuSign iOS, Imgur iOS, PulsePoint, software architect, SDK developer, Roanoke VA',
+    ogImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
+    ogUrl: 'https://jpmcglone.com/resume',
+    canonical: 'https://jpmcglone.com/resume',
+  },
   personalInfo: {
     name: "John P. McGlone",
-    title: "Seasoned Software Engineer",
+    title: "Senior iOS Engineer",
     location: "Roanoke, VA",
     phone: "(631) 943-6889",
     email: "jp@jpmcglone.com",
@@ -440,6 +456,17 @@ I bring more than implementation. I help teams make better technical decisions, 
         "Implemented a secure SSO solution adhering to enterprise security requirements",
         { text: "Developed a custom localization system to support server-side locale management", highlighted: false },
         { text: "Created a responsive grid system for complex enterprise data visualization", highlighted: false }
+      ]
+    },
+    {
+      company: "Northern Kentucky University (NKU)",
+      logo: "/images/logos/nku.png",
+      title: "Freelance Mobile Developer",
+      period: "2009 - 2011",
+      isContract: true,
+      responsibilities: [
+        `Built <a href="https://www.pulsepoint.org/" target="_blank" rel="noopener noreferrer">PulsePoint</a> (originally firedepartment.mobi), a first-responder geolocation app now used by hundreds of fire departments nationwide`,
+        { text: "Developed various mobile apps and web applications for local and regional clients", highlighted: false }
       ]
     }
   ],

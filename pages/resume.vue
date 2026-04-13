@@ -126,16 +126,71 @@ const sections = computed(() => {
 })
 
 
+const seo = resumeData.seo
+
 useHead({
-  title: resumeData.personalInfo?.name || 'Resume',
+  title: seo.title,
+  link: [
+    { rel: 'canonical', href: seo.canonical }
+  ],
   meta: [
-    { name: 'description', content: resumeData.personalInfo?.title || 'Professional Resume' },
-    { name: 'og:title', content: resumeData.personalInfo?.name || 'Resume' },
-    { name: 'og:description', content: resumeData.personalInfo?.title || 'Professional Resume' },
-    { name: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary' },
-    { name: 'twitter:title', content: resumeData.personalInfo?.name || 'Resume' },
-    { name: 'twitter:description', content: resumeData.personalInfo?.title || 'Professional Resume' }
+    { name: 'description', content: seo.description },
+    { name: 'keywords', content: seo.keywords },
+    // Open Graph
+    { property: 'og:title', content: seo.title },
+    { property: 'og:description', content: seo.description },
+    { property: 'og:type', content: 'profile' },
+    { property: 'og:url', content: seo.ogUrl },
+    { property: 'og:image', content: seo.ogImage },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '1200' },
+    { property: 'og:image:alt', content: 'John P. McGlone — Senior iOS Engineer' },
+    { property: 'og:site_name', content: 'jpmcglone.com' },
+    { property: 'profile:first_name', content: 'John' },
+    { property: 'profile:last_name', content: 'McGlone' },
+    { property: 'profile:username', content: 'jpmcglone' },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: seo.title },
+    { name: 'twitter:description', content: seo.description },
+    { name: 'twitter:image', content: seo.ogImage },
+    { name: 'twitter:site', content: '@jpmcglone' },
+    { name: 'twitter:creator', content: '@jpmcglone' },
+    // Extra discoverability
+    { name: 'author', content: 'John P. McGlone' },
+    { name: 'robots', content: 'index, follow' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'John P. McGlone',
+        alternateName: ['JP McGlone', 'jpmcglone', 'John McGlone', 'John P McGlone'],
+        jobTitle: 'Senior iOS Engineer',
+        url: 'https://jpmcglone.com',
+        image: 'https://jpmcglone.com/images/johnmcglone.jpg',
+        email: 'jp@jpmcglone.com',
+        description: 'Senior iOS Engineer with 16+ years of experience building polished mobile apps, SDKs, and products at companies like Rumble, DocuSign, and Imgur.',
+        address: { '@type': 'PostalAddress', addressLocality: 'Roanoke', addressRegion: 'VA', addressCountry: 'US' },
+        sameAs: [
+          'https://github.com/jpmcglone',
+          'https://www.linkedin.com/in/john-p-mcglone-18513014',
+        ],
+        knowsAbout: ['iOS Development', 'Swift', 'Mobile Engineering', 'SDK Development', 'Software Architecture', 'Nuxt.js', 'Vue.js'],
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: 'Senior iOS Engineer',
+          occupationLocation: { '@type': 'City', name: 'Roanoke, VA' },
+        },
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Rumble',
+          url: 'https://rumble.studio',
+        },
+      })
+    }
   ]
 })
 </script>
