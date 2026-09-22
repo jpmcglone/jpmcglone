@@ -112,7 +112,7 @@ const resumeData: ResumeData = {
     image: siteMetadata.portrait,
     bio: `I'm a software engineer and technical lead with <strong>16+ years of experience</strong> shipping products people rely on. I've worked on <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and <a href="https://rumble.com" target="_blank" rel="noopener noreferrer">Rumble Video</a> for iOS, and built software at <a href="https://www.docusign.com" target="_blank" rel="noopener noreferrer">DocuSign</a> and <a href="https://imgur.com" target="_blank" rel="noopener noreferrer">Imgur</a>. iPhone is my specialty; full-stack development and product architecture are part of the job.
 
-<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a live social platform with its own MCP server.
+<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform with its own MCP server.
 
 I like small teams, clear technical direction, and well-made software. I mentor developers, help teams adopt practical AI workflows, and stay involved from the first architectural decision through production.`,
   },
