@@ -21,7 +21,7 @@
       :src="src"
       :alt="alt"
       :size="sizes.avatar"
-      :ui="{ rounded: isCircle ? 'rounded-full' : 'rounded-lg' }"
+      :ui="{ root: isCircle ? 'rounded-full' : 'rounded-lg' }"
     />
   </component>
 </template>

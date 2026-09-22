@@ -42,32 +42,41 @@ const indexData: IndexData = {
     avatar: siteMetadata.portrait,
     description: 'I build products, mentor engineers, and help small teams ship with AI.',
     tags: [
-      { label: 'Husband', tooltip: 'Married to my wonderful wife Katrina', icon: 'i-heroicons-heart', link: 'https://johnandkatmcglone.com/' },
-      { label: 'Landlord', tooltip: 'Real estate investor and property manager', icon: 'i-heroicons-home' },
+      {
+        label: 'Husband',
+        tooltip: 'Married to my wonderful wife Katrina',
+        icon: 'i-heroicons-heart',
+        link: 'https://johnandkatmcglone.com/',
+      },
+      {
+        label: 'Landlord',
+        tooltip: 'Real estate investor and property manager',
+        icon: 'i-heroicons-home',
+      },
     ],
     socialLinks: [
       {
         name: 'GitHub',
         url: 'https://github.com/jpmcglone',
-        icon: 'i-simple-icons-github'
+        icon: 'i-simple-icons-github',
       },
       {
         name: 'LinkedIn',
         url: 'https://www.linkedin.com/in/john-p-mcglone-18513014',
-        icon: 'i-simple-icons-linkedin'
+        icon: 'i-simple-icons-linkedin',
       },
       // {
       //   name: 'Twitch',
       //   url: 'https://twitch.tv/jpmcglone',
       //   icon: 'i-simple-icons-twitch'
       // }
-    ]
+    ],
   },
   resume: {
     buttonText: 'View Resume',
-    link: '/resume'
+    link: '/resume',
   },
-  meta: pageMetadata.home
+  meta: pageMetadata.home,
 }
 
 export default indexData

@@ -12,12 +12,12 @@
             placeholder="Paste your lyrics here..."
             aria-label="Lyrics"
             size="xl"
-            :ui="{ padding: { xl: 'p-6' }, base: 'min-h-[300px] leading-relaxed' }"
+            :ui="{ base: 'p-6 min-h-[300px] leading-relaxed' }"
             class="w-full"
           />
           <UButton
             :disabled="!inputText"
-            color="black"
+            color="neutral"
             size="lg"
             class="w-full justify-center"
             @click="startPresentation"
@@ -37,34 +37,27 @@
       @keydown="handleKeydown"
     >
       <!-- Progress Bar -->
-      <div class="fixed top-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-95 p-6">
+      <div class="fixed top-0 left-0 right-0 z-10 bg-gray-900/95 p-6">
         <div class="flex justify-between items-center text-sm mb-2">
           <span>Section {{ currentPosition.section + 1 }}/{{ sections.length }}</span>
           <span>Line {{ currentPosition.line + 1 }}/{{ currentSection?.length || 0 }}</span>
           <!-- Close Button -->
           <UButton
             icon="i-heroicons-x-mark"
-            color="gray"
+            color="neutral"
             variant="ghost"
             size="sm"
             aria-label="Close presentation"
             @click="exitPresentation"
           />
         </div>
-        <UProgress
-          :value="progressPercent"
-          color="primary"
-          class="h-1"
-        />
+        <UProgress :model-value="progressPercent" color="primary" class="h-1" />
       </div>
 
       <!-- Main content container -->
-      <div class="absolute inset-0 pt-24 pb-36 flex flex-col items-center" style="z-index: 1;">
+      <div class="absolute inset-0 pt-24 pb-36 flex flex-col items-center" style="z-index: 1">
         <!-- Scrollable content -->
-        <div
-          ref="scrollContainer"
-          class="h-full w-full overflow-y-auto"
-        >
+        <div ref="scrollContainer" class="h-full w-full overflow-y-auto">
           <div class="min-h-full flex flex-col">
             <!-- Top spacer -->
             <div class="h-[33vh] shrink-0"></div>
@@ -94,7 +87,7 @@
                   :key="`current-${index}`"
                   class="text-3xl mb-4 text-center break-words fit-text"
                   :class="{
-                    'font-semibold rounded-2xl bg-gray-800 py-6': index === currentPosition.line
+                    'font-semibold rounded-2xl bg-gray-800 py-6': index === currentPosition.line,
                   }"
                 >
                   {{ sentence }}
@@ -127,9 +120,31 @@
       <!-- The same navigation actions are available to touch and keyboard users. -->
       <div class="fixed bottom-0 left-0 right-0 z-10 space-y-4 bg-gray-900/95 px-6 py-5">
         <div class="flex justify-center gap-3">
-          <UButton color="gray" size="lg" icon="i-heroicons-arrow-left" aria-label="Previous line" :disabled="!calculateNextPosition('prev', 'line')" @click="navigate('prev', 'line')" />
-          <UButton color="black" size="lg" icon="i-heroicons-arrow-right" aria-label="Next line" :disabled="!calculateNextPosition('next', 'line')" @click="navigate('next', 'line')" />
-          <UButton color="gray" size="lg" icon="i-heroicons-arrow-path" aria-label="Reset presentation" @click="navigateTo({ section: 0, line: 0 })" />
+          <UButton
+            color="neutral"
+            variant="soft"
+            size="lg"
+            icon="i-heroicons-arrow-left"
+            aria-label="Previous line"
+            :disabled="!calculateNextPosition('prev', 'line')"
+            @click="navigate('prev', 'line')"
+          />
+          <UButton
+            color="neutral"
+            size="lg"
+            icon="i-heroicons-arrow-right"
+            aria-label="Next line"
+            :disabled="!calculateNextPosition('next', 'line')"
+            @click="navigate('next', 'line')"
+          />
+          <UButton
+            color="neutral"
+            variant="soft"
+            size="lg"
+            icon="i-heroicons-arrow-path"
+            aria-label="Reset presentation"
+            @click="navigateTo({ section: 0, line: 0 })"
+          />
         </div>
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400">
           <span>← → Navigate Lines</span>
@@ -158,8 +173,8 @@ const sections = computed(() => {
   if (!inputText.value) return []
   return inputText.value
     .split(/\n\n+/)
-    .map(section => section.split('\n'))
-    .filter(section => section.length)
+    .map((section) => section.split('\n'))
+    .filter((section) => section.length)
 })
 
 // View Data
@@ -169,26 +184,30 @@ const futureSections = computed(() => sections.value.slice(currentPosition.value
 const progressPercent = computed(() => {
   if (!sections.value.length) return 0
   const totalLines = sections.value.reduce((acc, section) => acc + section.length, 0)
-  const completedLines = sections.value
-    .slice(0, currentPosition.value.section)
-    .reduce((acc, section) => acc + section.length, 0) + currentPosition.value.line
+  const completedLines =
+    sections.value
+      .slice(0, currentPosition.value.section)
+      .reduce((acc, section) => acc + section.length, 0) + currentPosition.value.line
   return (completedLines / totalLines) * 100
 })
 
 // Navigation Logic
-type Position = { section: number, line: number }
+type Position = { section: number; line: number }
 
 function isValidPosition(position: Position): boolean {
   const section = sections.value[position.section]
   return section !== undefined && position.line >= 0 && position.line < section.length
 }
 
-function calculateNextPosition(direction: 'next' | 'prev', mode: 'line' | 'section'): Position | null {
+function calculateNextPosition(
+  direction: 'next' | 'prev',
+  mode: 'line' | 'section',
+): Position | null {
   const { section: currentSectionIdx, line: currentLine } = currentPosition.value
 
   if (mode === 'line') {
     if (direction === 'next') {
-      if (currentLine + 1 < sections.value[currentSectionIdx]?.length) {
+      if (currentLine + 1 < (sections.value[currentSectionIdx]?.length ?? 0)) {
         return { section: currentSectionIdx, line: currentLine + 1 }
       }
       if (currentSectionIdx + 1 < sections.value.length) {
@@ -200,7 +219,7 @@ function calculateNextPosition(direction: 'next' | 'prev', mode: 'line' | 'secti
       }
       if (currentSectionIdx > 0) {
         const prevSection = currentSectionIdx - 1
-        return { section: prevSection, line: sections.value[prevSection].length - 1 }
+        return { section: prevSection, line: (sections.value[prevSection]?.length ?? 1) - 1 }
       }
     }
   } else {
@@ -208,7 +227,7 @@ function calculateNextPosition(direction: 'next' | 'prev', mode: 'line' | 'secti
       return { section: currentSectionIdx + 1, line: 0 }
     } else if (direction === 'prev' && currentSectionIdx > 0) {
       const prevSection = currentSectionIdx - 1
-      return { section: prevSection, line: sections.value[prevSection].length - 1 }
+      return { section: prevSection, line: (sections.value[prevSection]?.length ?? 1) - 1 }
     }
   }
 
@@ -241,15 +260,33 @@ function navigate(direction: 'next' | 'prev', mode: 'line' | 'section') {
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.shiftKey) {
-    if (event.key === 'ArrowRight') { event.preventDefault(); navigate('next', 'section') }
-    else if (event.key === 'ArrowLeft') { event.preventDefault(); navigate('prev', 'section') }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      navigate('next', 'section')
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      navigate('prev', 'section')
+    }
   } else {
-    if (event.key === 'ArrowRight') { event.preventDefault(); navigate('next', 'line') }
-    else if (event.key === 'ArrowLeft') { event.preventDefault(); navigate('prev', 'line') }
-    else if (event.key === 'ArrowUp') { event.preventDefault(); navigate('prev', 'section') }
-    else if (event.key === 'ArrowDown') { event.preventDefault(); navigate('next', 'section') }
-    else if (event.key === 'r' || event.key === 'R') { event.preventDefault(); navigateTo({ section: 0, line: 0 }) }
-    else if (event.key === 'Escape') { event.preventDefault(); isPresenting.value = false }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      navigate('next', 'line')
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      navigate('prev', 'line')
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      navigate('prev', 'section')
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      navigate('next', 'section')
+    } else if (event.key === 'r' || event.key === 'R') {
+      event.preventDefault()
+      navigateTo({ section: 0, line: 0 })
+    } else if (event.key === 'Escape') {
+      event.preventDefault()
+      isPresenting.value = false
+    }
   }
 }
 
@@ -270,7 +307,8 @@ watch(isPresenting, (newValue) => {
 
 <style scoped>
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }

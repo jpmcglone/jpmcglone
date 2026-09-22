@@ -3,7 +3,9 @@
     <template #header>
       <div class="flex flex-wrap items-center justify-between gap-3">
         <h3 class="text-2xl font-semibold text-gray-50">{{ formattedBirthday }}</h3>
-        <UBadge color="primary" size="lg" class="text-lg">{{ formatNumber(ageData.years) }} years</UBadge>
+        <UBadge color="primary" size="lg" class="text-lg">
+          {{ formatNumber(ageData.years) }} years
+        </UBadge>
       </div>
     </template>
 
@@ -13,7 +15,7 @@
         <span class="text-gray-500">Life Progress</span>
         <span class="text-gray-700 dark:text-gray-300">{{ progressPercent }}%</span>
       </div>
-      <UProgress :value="progressPercent" color="primary" />
+      <UProgress :model-value="progressPercent" color="primary" />
     </div>
 
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -21,8 +23,14 @@
       <div>
         <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">Precise Age</h4>
         <div class="grid grid-cols-2 gap-3">
-          <div v-for="metric in ageMetrics" :key="metric.key" class="rounded-xl border border-gray-700 bg-gray-900/50 p-4">
-            <div class="text-[28px] font-semibold leading-9 tabular-nums text-gray-50">{{ formatNumber(ageData[metric.key]) }}</div>
+          <div
+            v-for="metric in ageMetrics"
+            :key="metric.key"
+            class="rounded-xl border border-gray-700 bg-gray-900/50 p-4"
+          >
+            <div class="text-[28px] font-semibold leading-9 tabular-nums text-gray-50">
+              {{ formatNumber(ageData[metric.key]) }}
+            </div>
             <div class="mt-2 text-xs font-medium text-primary-400">{{ metric.label }}</div>
           </div>
         </div>
@@ -32,9 +40,15 @@
       <div>
         <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">Current Periods</h4>
         <div class="space-y-4 rounded-xl border border-gray-700 bg-gray-900/50 p-4">
-          <div v-for="period in periodMetrics" :key="period.key" class="flex items-center justify-between gap-4">
+          <div
+            v-for="period in periodMetrics"
+            :key="period.key"
+            class="flex items-center justify-between gap-4"
+          >
             <span class="text-sm text-gray-400">{{ period.label }}</span>
-            <span class="text-xl font-medium tabular-nums text-gray-50">{{ formatNumber(currentPeriods[period.key]) }}</span>
+            <span class="text-xl font-medium tabular-nums text-gray-50">
+              {{ formatNumber(currentPeriods[period.key]) }}
+            </span>
           </div>
         </div>
       </div>

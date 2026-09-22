@@ -4,10 +4,7 @@
 
     <div class="relative">
       <!-- Timeline line -->
-      <div
-        aria-hidden="true"
-        class="absolute bottom-0 right-7 top-12 w-px bg-gray-600"
-      />
+      <div aria-hidden="true" class="absolute bottom-0 right-7 top-12 w-px bg-gray-600" />
 
       <!-- Current Roles -->
       <div v-if="currentRoles.length" class="mb-12">
@@ -48,17 +45,13 @@
 const props = defineProps({
   experience: {
     type: Array,
-    required: true
-  }
+    required: true,
+  },
 })
 
-const currentRoles = computed(() =>
-  props.experience.filter(job => job.isCurrentRole) || []
-)
+const currentRoles = computed(() => props.experience.filter((job) => job.isCurrentRole) || [])
 
-const pastRoles = computed(() =>
-  props.experience.filter(job => !job.isCurrentRole) || []
-)
+const pastRoles = computed(() => props.experience.filter((job) => !job.isCurrentRole) || [])
 
 const shouldShowYear = (job, index, roles) => {
   if (index === 0) return true

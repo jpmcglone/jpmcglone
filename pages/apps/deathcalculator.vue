@@ -10,24 +10,41 @@
       </div>
 
       <UCard>
-        <form class="grid items-start gap-4 sm:grid-cols-[1fr_140px_auto]" @submit.prevent="calculate">
-          <UFormGroup label="Birthday" name="birthdays" :error="error || undefined">
-            <UInput v-model="birthdayInput" placeholder="YYYY-MM-DD" size="lg" icon="i-heroicons-calendar-days" />
-          </UFormGroup>
-          <UFormGroup label="Life in Years" name="maxAge">
+        <form
+          class="grid items-start gap-4 sm:grid-cols-[1fr_140px_auto]"
+          @submit.prevent="calculate"
+        >
+          <UFormField label="Birthday" name="birthdays" :error="error || undefined">
+            <UInput
+              v-model="birthdayInput"
+              class="w-full"
+              placeholder="YYYY-MM-DD"
+              size="lg"
+              icon="i-heroicons-calendar-days"
+            />
+          </UFormField>
+          <UFormField label="Life in Years" name="maxAge">
             <UInput v-model="maxAgeInput" type="number" min="1" step="1" required size="lg" />
-          </UFormGroup>
-          <UButton type="submit" color="black" size="lg" class="justify-center sm:mt-6">Calculate age</UButton>
+          </UFormField>
+          <UButton type="submit" color="neutral" size="lg" class="justify-center sm:mt-6">
+            Calculate age
+          </UButton>
         </form>
       </UCard>
 
       <div v-if="!birthdays.length" class="py-4">
         <p class="text-sm leading-relaxed text-gray-400">
-          No birthdays provided. Add ?birthdays=YYYY-MM-DD or ?birthdays=YYYY-MM-DD,YYYY-MM-DD to the URL.
+          No birthdays provided. Add ?birthdays=YYYY-MM-DD or ?birthdays=YYYY-MM-DD,YYYY-MM-DD to
+          the URL.
         </p>
       </div>
       <div v-else class="flex flex-col gap-6">
-        <BirthdayCard v-for="(birthday, index) in birthdays" :key="index" :birthday="birthday" :max-age="maxAge" />
+        <BirthdayCard
+          v-for="(birthday, index) in birthdays"
+          :key="index"
+          :birthday="birthday"
+          :max-age="maxAge"
+        />
       </div>
     </div>
   </UContainer>
@@ -63,19 +80,25 @@ const birthdays = computed(() => {
     .filter(validBirthday)
 })
 
-watch(() => [route.query.birthdays, maxAge.value], () => {
-  birthdayInput.value = typeof route.query.birthdays === 'string' ? route.query.birthdays : ''
-  maxAgeInput.value = maxAge.value
-  error.value = ''
-}, { immediate: true })
+watch(
+  () => [route.query.birthdays, maxAge.value],
+  () => {
+    birthdayInput.value = typeof route.query.birthdays === 'string' ? route.query.birthdays : ''
+    maxAgeInput.value = maxAge.value
+    error.value = ''
+  },
+  { immediate: true },
+)
 
 async function calculate() {
-  const dates = birthdayInput.value.split(',').map(date => date.trim())
-  if (!dates.length || dates.some(date => !validBirthday(date))) {
+  const dates = birthdayInput.value.split(',').map((date) => date.trim())
+  if (!dates.length || dates.some((date) => !validBirthday(date))) {
     error.value = 'Use dates in YYYY-MM-DD format, separated by commas.'
     return
   }
   error.value = ''
-  await router.push({ query: { ...route.query, birthdays: dates.join(','), maxAge: String(maxAgeInput.value) } })
+  await router.push({
+    query: { ...route.query, birthdays: dates.join(','), maxAge: String(maxAgeInput.value) },
+  })
 }
 </script>

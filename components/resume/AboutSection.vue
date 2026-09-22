@@ -4,21 +4,35 @@
       v-for="(paragraph, paragraphIndex) in parsedBio"
       :key="paragraphIndex"
       class="mb-4 last:mb-0"
-    ><template
+    >
+      <template
         v-for="(segment, segmentIndex) in paragraph"
         :key="`${paragraphIndex}-${segmentIndex}`"
-      ><span v-if="segment.type === 'text'" v-text="segment.content" /><strong
+      >
+        <span v-if="segment.type === 'text'" v-text="segment.content" />
+        <strong
           v-else-if="segment.type === 'strong'"
           class="font-semibold text-gray-800 dark:text-white"
-        >{{ segment.content }}</strong        ><span
-          v-else
-          class="bio-link-wrap"
-        ><a
+        >
+          {{ segment.content }}
+        </strong>
+        <span v-else class="bio-link-wrap">
+          <a
             :href="segment.href"
             target="_blank"
             rel="noopener noreferrer"
             class="bio-link text-link underline"
-          >{{ segment.content }}</a><span class="bio-tooltip" role="tooltip"><strong>{{ segment.content }}</strong><br />{{ segment.description }}</span></span></template></p>
+          >
+            {{ segment.content }}
+          </a>
+          <span class="bio-tooltip" role="tooltip">
+            <strong>{{ segment.content }}</strong>
+            <br />
+            {{ segment.description }}
+          </span>
+        </span>
+      </template>
+    </p>
   </div>
 </template>
 
@@ -26,28 +40,28 @@
 const props = defineProps({
   bio: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const linkDescriptions = {
   'https://rumble.com': 'Rumble’s video platform for creators and viewers.',
   'https://rumble.studio': 'Rumble’s livestreaming product for creators.',
-  'https://www.docusign.com': 'Digital agreement platform centered on e-signature and workflow automation.',
+  'https://www.docusign.com':
+    'Digital agreement platform centered on e-signature and workflow automation.',
   'https://imgur.com': 'A large image-sharing and internet culture platform.',
   'https://menofhunger.com': 'A social media platform for men.',
   'https://realm.github.io/SwiftLint/': 'Enforces style and best practices in Swift codebases.',
-  'https://github.com/nicklockwood/SwiftFormat': 'Automatically formats Swift code to keep it clean and consistent.',
-  'https://github.com/peripheryapp/periphery': 'Static analysis tool for finding unused Swift code.',
+  'https://github.com/nicklockwood/SwiftFormat':
+    'Automatically formats Swift code to keep it clean and consistent.',
+  'https://github.com/peripheryapp/periphery':
+    'Static analysis tool for finding unused Swift code.',
   'https://cursor.com': 'AI-powered code editor designed to speed up development work.',
-  'https://claude.ai': 'AI assistant that helps with drafting, reasoning, and code tasks.'
+  'https://claude.ai': 'AI assistant that helps with drafting, reasoning, and code tasks.',
 }
 
 const parsedBio = computed(() => {
-  return props.bio
-    .split('\n\n')
-    .filter(Boolean)
-    .map(parseParagraph)
+  return props.bio.split('\n\n').filter(Boolean).map(parseParagraph)
 })
 
 function parseParagraph(paragraph) {
@@ -65,7 +79,7 @@ function parseParagraph(paragraph) {
         type: 'link',
         href: match[1],
         content: match[2],
-        description: linkDescriptions[match[1]] || match[1]
+        description: linkDescriptions[match[1]] || match[1],
       })
     } else {
       segments.push({ type: 'strong', content: match[3] })
@@ -108,7 +122,9 @@ function parseParagraph(paragraph) {
   border: 1px solid rgb(31 41 55);
   box-shadow: 0 4px 16px rgb(0 0 0 / 0.3);
   pointer-events: none;
-  transition: opacity 0.15s ease, visibility 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
   z-index: 50;
 }
 

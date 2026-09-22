@@ -26,9 +26,13 @@
         class="dark:bg-gray-800"
       >
         <figure class="space-y-6">
-          <blockquote class="space-y-4 border-l-2 border-primary-400/30 pl-4 text-base leading-relaxed text-gray-300">
+          <blockquote
+            class="space-y-4 border-l-2 border-primary-400/30 pl-4 text-base leading-relaxed text-gray-300"
+          >
             <span aria-hidden="true" class="block h-9 text-5xl leading-none text-link">“</span>
-            <p v-for="(paragraph, index) in recommendation.quote.split(/\n\n+/)" :key="index">{{ paragraph }}</p>
+            <p v-for="(paragraph, index) in recommendation.quote.split(/\n\n+/)" :key="index">
+              {{ paragraph }}
+            </p>
           </blockquote>
           <figcaption class="flex items-start gap-4">
             <LinkedAvatar
@@ -53,13 +57,19 @@
                 <span v-else>{{ recommendation.author }}</span>
               </p>
               <p class="mt-1 text-sm text-gray-400">
-                {{ recommendation.title }}<span v-if="recommendation.company"> at {{ recommendation.company }}</span>
+                {{ recommendation.title }}
+                <span v-if="recommendation.company">at {{ recommendation.company }}</span>
               </p>
               <p v-if="recommendation.year" class="mt-2 text-xs text-primary-400">
-                <time v-if="recommendation.date" :datetime="recommendation.date">{{ recommendation.year }}</time>
+                <time v-if="recommendation.date" :datetime="recommendation.date">
+                  {{ recommendation.year }}
+                </time>
                 <span v-else>{{ recommendation.year }}</span>
               </p>
-              <p v-if="recommendation.context" class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              <p
+                v-if="recommendation.context"
+                class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+              >
                 {{ recommendation.context }}
               </p>
             </div>
@@ -74,15 +84,17 @@
 const props = defineProps({
   recommendations: {
     type: Array,
-    required: true
+    required: true,
   },
   recommendationsUrl: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 
-const sortedRecommendations = computed(() => [...props.recommendations].sort((a, b) =>
-  (b.date || `${b.year || '0000'}-01-01`).localeCompare(a.date || `${a.year || '0000'}-01-01`)
-))
+const sortedRecommendations = computed(() =>
+  [...props.recommendations].sort((a, b) =>
+    (b.date || `${b.year || '0000'}-01-01`).localeCompare(a.date || `${a.year || '0000'}-01-01`),
+  ),
+)
 </script>

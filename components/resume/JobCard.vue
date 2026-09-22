@@ -1,24 +1,26 @@
 <template>
   <div class="relative pr-16 md:pr-20">
     <!-- Timeline year -->
-    <div
-      v-if="shouldShowYear"
-      class="absolute right-0 top-5 z-10"
-    >
+    <div v-if="shouldShowYear" class="absolute right-0 top-5 z-10">
       <div
-:class="[
-        'flex h-8 w-14 items-center justify-center rounded-full border text-xs font-medium',
-        isCurrentRole
-          ? 'border-primary-400 bg-primary-400 text-gray-900'
-          : 'border-gray-600 bg-gray-800 text-gray-300'
-      ]">
+        :class="[
+          'flex h-8 w-14 items-center justify-center rounded-full border text-xs font-medium',
+          isCurrentRole
+            ? 'border-primary-400 bg-primary-400 text-gray-900'
+            : 'border-gray-600 bg-gray-800 text-gray-300',
+        ]"
+      >
         {{ job.period.endsWith('Present') ? 'Present' : getEndYear(job.period) }}
       </div>
     </div>
 
     <UCard
       :class="{ 'ring-primary-400': isCurrentRole }"
-      :ui="{ background: job.isContract ? 'bg-gray-900 dark:bg-gray-900' : 'bg-gray-800 dark:bg-gray-800', ring: job.isContract ? 'ring-1 ring-gray-800 dark:ring-gray-800' : 'ring-1 ring-primary-400/25 dark:ring-primary-400/25' }"
+      :ui="{
+        root: job.isContract
+          ? 'bg-gray-900 ring-1 ring-gray-800'
+          : 'bg-gray-800 ring-1 ring-primary-400/25',
+      }"
       :data-employment="job.isContract ? 'contract' : 'full-time'"
     >
       <div :class="['flex flex-col', job.isContract ? 'gap-3' : 'gap-4']">
@@ -33,25 +35,36 @@
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-start gap-4">
               <div>
-                <h3 :class="['text-lg flex flex-wrap items-center gap-2 text-gray-50', job.isContract ? 'font-medium' : 'font-semibold']">
+                <h3
+                  :class="[
+                    'text-lg flex flex-wrap items-center gap-2 text-gray-50',
+                    job.isContract ? 'font-medium' : 'font-semibold',
+                  ]"
+                >
                   <a
                     v-if="job.url"
                     :href="job.url"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="text-link"
-                  >{{ job.company }}</a>
+                  >
+                    {{ job.company }}
+                  </a>
                   <span v-else>{{ job.company }}</span>
                   <span
                     v-if="job.isDefunct"
                     class="text-[10px] font-normal px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 tracking-wide"
-                  >closed</span>
+                  >
+                    closed
+                  </span>
                 </h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   {{ job.title }}
                   <template v-if="job.isContract">
-                    <span class="text-amber-500/70 dark:text-amber-400/60"> · Contract</span>
-                    <span v-if="job.isRemote" class="text-gray-400 dark:text-gray-500"> · Remote</span>
+                    <span class="text-amber-500/70 dark:text-amber-400/60">· Contract</span>
+                    <span v-if="job.isRemote" class="text-gray-400 dark:text-gray-500">
+                      · Remote
+                    </span>
                   </template>
                   <span v-else-if="job.location" class="text-gray-400 dark:text-gray-500">
                     · {{ job.location }}
@@ -59,7 +72,7 @@
                 </p>
               </div>
               <UBadge
-                :color="job.isCurrentRole ? 'green' : 'gray'"
+                :color="job.isCurrentRole ? 'success' : 'neutral'"
                 variant="soft"
                 size="sm"
                 class="hidden md:block shrink-0"
@@ -72,7 +85,7 @@
 
         <!-- Mobile-only date -->
         <UBadge
-          :color="job.isCurrentRole ? 'green' : 'gray'"
+          :color="job.isCurrentRole ? 'success' : 'neutral'"
           variant="soft"
           size="sm"
           class="md:hidden self-start"
@@ -83,7 +96,12 @@
         <!-- Badges row — full-time only -->
         <div v-if="!job.isContract" class="flex flex-wrap gap-2">
           <UTooltip v-for="badge in jobBadges" :key="badge.label" :text="badge.tooltip">
-            <span :class="['inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full', badge.classes]">
+            <span
+              :class="[
+                'inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full',
+                badge.classes,
+              ]"
+            >
               <UIcon :name="badge.icon" class="h-3 w-3" />
               {{ badge.label }}
             </span>
@@ -101,7 +119,11 @@
               v-for="(item, index) in normalizedResponsibilities"
               :key="index"
               class="flex gap-3 text-base leading-relaxed"
-              :class="item.highlighted ? 'text-gray-600 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'"
+              :class="
+                item.highlighted
+                  ? 'text-gray-600 dark:text-gray-300'
+                  : 'text-gray-500 dark:text-gray-400'
+              "
             >
               <UIcon
                 v-if="item.highlighted"
@@ -109,7 +131,7 @@
                 class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500"
               />
               <span v-else class="flex-shrink-0 w-4 text-center">•</span>
-              <span v-html="item.text" />
+              <InlineContent :text="item.text" />
             </li>
           </ul>
         </div>
@@ -122,27 +144,24 @@
 const props = defineProps({
   job: {
     type: Object,
-    required: true
+    required: true,
   },
   shouldShowYear: {
     type: Boolean,
-    required: true
+    required: true,
   },
   isCurrentRole: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const normalizedResponsibilities = computed(() => {
-  const items = (props.job.responsibilities || []).map(item => {
+  const items = (props.job.responsibilities || []).map((item) => {
     if (typeof item === 'string') return { text: item, highlighted: true }
     return { text: item.text, highlighted: item.highlighted !== false }
   })
-  return [
-    ...items.filter(i => i.highlighted),
-    ...items.filter(i => !i.highlighted)
-  ]
+  return [...items.filter((i) => i.highlighted), ...items.filter((i) => !i.highlighted)]
 })
 
 const jobBadges = computed(() => {
@@ -152,14 +171,16 @@ const jobBadges = computed(() => {
       label: 'Contract',
       icon: 'i-heroicons-briefcase-solid',
       tooltip: 'Worked as an independent contractor or through a consulting agency',
-      classes: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20 dark:bg-amber-400/10 dark:text-amber-400 dark:ring-amber-400/20'
+      classes:
+        'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20 dark:bg-amber-400/10 dark:text-amber-400 dark:ring-amber-400/20',
     })
   } else {
     badges.push({
       label: 'Full-time',
       icon: 'i-heroicons-building-office-solid',
       tooltip: 'Full-time employee position with benefits',
-      classes: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20 dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20'
+      classes:
+        'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20 dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20',
     })
   }
   if (props.job.isRemote) {
@@ -167,7 +188,8 @@ const jobBadges = computed(() => {
       label: 'Remote',
       icon: 'i-heroicons-globe-americas-solid',
       tooltip: 'Work performed primarily from home office',
-      classes: 'bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:ring-sky-400/20'
+      classes:
+        'bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:ring-sky-400/20',
     })
   }
   return badges

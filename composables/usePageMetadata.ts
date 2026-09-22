@@ -7,11 +7,23 @@ export function usePageMetadata(page: PageMetadata) {
 
   useHead({
     title: page.title,
-    script: page.type === 'profile' && !page.unlisted ? [{ key: 'profile-schema', type: 'application/ld+json', innerHTML: JSON.stringify(profileSchema(page)).replace(/</g, '\\u003c') }] : [],
+    script:
+      page.type === 'profile' && !page.unlisted
+        ? [
+            {
+              key: 'profile-schema',
+              type: 'application/ld+json',
+              innerHTML: JSON.stringify(profileSchema(page)).replace(/</g, '\\u003c'),
+            },
+          ]
+        : [],
     link: [{ key: 'canonical', rel: 'canonical', href: canonical }],
     meta: [
       { name: 'description', content: page.description },
-      { name: 'robots', content: page.unlisted ? 'noindex, nofollow' : 'index, follow, max-image-preview:large' },
+      {
+        name: 'robots',
+        content: page.unlisted ? 'noindex, nofollow' : 'index, follow, max-image-preview:large',
+      },
       { property: 'og:title', content: page.title },
       { property: 'og:description', content: page.description },
       { property: 'og:type', content: page.type || 'website' },
@@ -30,11 +42,13 @@ export function usePageMetadata(page: PageMetadata) {
       { name: 'twitter:image:alt', content: siteMetadata.imageAlt },
       { name: 'twitter:site', content: siteMetadata.handle },
       { name: 'twitter:creator', content: siteMetadata.handle },
-      ...(page.type === 'profile' ? [
-        { property: 'profile:first_name', content: 'John' },
-        { property: 'profile:last_name', content: 'McGlone' },
-        { property: 'profile:username', content: 'jpmcglone' },
-      ] : []),
+      ...(page.type === 'profile'
+        ? [
+            { property: 'profile:first_name', content: 'John' },
+            { property: 'profile:last_name', content: 'McGlone' },
+            { property: 'profile:username', content: 'jpmcglone' },
+          ]
+        : []),
     ],
   })
 }

@@ -3,24 +3,25 @@ import { pageMetadata, siteMetadata } from './data/site'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+  srcDir: '.',
   compatibilityDate: '2024-11-01',
-  css: ['@fontsource-variable/inter'],
+  css: ['@fontsource-variable/inter', '~/assets/css/tailwind.css'],
   devtools: { enabled: true },
-  modules: [
-    '@nuxt/eslint',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/ui',
-    '@nuxt/icon',
-    '@vueuse/nuxt',
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/icon', '@vueuse/nuxt'],
   ui: {
-    global: true,
-    icons: ['heroicons', 'simple-icons'],
+    fonts: false,
   },
   icon: {
     clientBundle: {
       scan: {
-        globInclude: ['components/**/*.vue', 'pages/**/*.vue', 'layouts/**/*.vue', 'data/**/*.ts', 'utils/**/*.ts', 'app.config.ts'],
+        globInclude: [
+          'components/**/*.vue',
+          'pages/**/*.vue',
+          'layouts/**/*.vue',
+          'data/**/*.ts',
+          'utils/**/*.ts',
+          'app.config.ts',
+        ],
       },
     },
   },
@@ -32,19 +33,10 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       // Unlisted tools still need static pages even though no public page links to them.
-      routes: Object.values(pageMetadata).map(page => page.path),
+      routes: Object.values(pageMetadata).map((page) => page.path),
     },
   },
-  tailwindcss: {
-    exposeConfig: true,
-    viewer: true,
-    config: {
-      content: [
-        "./node_modules/@nuxt/ui/dist/**/*.{js,vue,ts}"
-      ],
-      darkMode: 'class'
-    }
-  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -60,12 +52,17 @@ export default defineNuxtConfig({
         { name: 'color-scheme', content: 'dark' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', sizes: '16x16 32x32 48x48 64x64', href: '/favicon.ico?v=rounded2' },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          sizes: '16x16 32x32 48x48 64x64',
+          href: '/favicon.ico?v=rounded2',
+        },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png?v=rounded2' },
         { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png?v=rounded2' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=rounded2' },
         { rel: 'manifest', href: '/site.webmanifest?v=rounded2' },
-      ]
-    }
-  }
+      ],
+    },
+  },
 })

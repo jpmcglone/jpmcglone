@@ -4,10 +4,7 @@
       <ResumeFloatingNav :sections="sections" />
       <div class="resume-content mx-auto w-full min-w-0 max-w-[70ch] space-y-12">
         <!-- Header Section -->
-        <ResumeHeaderSection
-          :personal-info="resumeData.personalInfo"
-          :links="resumeData.links"
-        />
+        <ResumeHeaderSection :personal-info="resumeData.personalInfo" :links="resumeData.links" />
 
         <!-- About Section -->
         <ResumeAboutSection
@@ -16,12 +13,9 @@
         />
 
         <!-- Objective Section -->
-        <ResumeObjectiveSection
-          v-if="resumeData.objective"
-          :objective="resumeData.objective"
-        />
+        <ResumeObjectiveSection v-if="resumeData.objective" :objective="resumeData.objective" />
 
-        <UDivider />
+        <USeparator />
 
         <!-- Featured Projects -->
         <ResumeFeaturedProjectsSection
@@ -29,7 +23,7 @@
           :projects="resumeData.projects"
         />
 
-        <UDivider v-if="resumeData.projects?.length" />
+        <USeparator v-if="resumeData.projects?.length" />
 
         <!-- Recommendations -->
         <ResumeTestimonialsSection
@@ -38,7 +32,7 @@
           :recommendations-url="resumeData.recommendations.url"
         />
 
-        <UDivider v-if="resumeData.recommendations?.items?.length" />
+        <USeparator v-if="resumeData.recommendations?.items?.length" />
 
         <!-- Technical Skills -->
         <ResumeTechnicalSkillsSection
@@ -46,23 +40,17 @@
           :technical-skills="resumeData.technicalSkills"
         />
 
-        <UDivider v-if="resumeData.technicalSkills" />
+        <USeparator v-if="resumeData.technicalSkills" />
 
         <!-- Experience -->
-        <ResumeExperienceSection
-          v-if="resumeData.experience"
-          :experience="resumeData.experience"
-        />
+        <ResumeExperienceSection v-if="resumeData.experience" :experience="resumeData.experience" />
 
-        <UDivider v-if="resumeData.experience" />
+        <USeparator v-if="resumeData.experience" />
 
         <!-- Education -->
-        <ResumeEducationSection
-          v-if="resumeData.education"
-          :education="resumeData.education"
-        />
+        <ResumeEducationSection v-if="resumeData.education" :education="resumeData.education" />
 
-        <UDivider v-if="resumeData.education && resumeData.achievements" />
+        <USeparator v-if="resumeData.education && resumeData.achievements" />
 
         <!-- Achievements -->
         <ResumeAchievementsSection
@@ -77,7 +65,6 @@
 <script setup>
 import resumeData from '~/data/resume'
 
-
 definePageMeta({ colorMode: 'dark' })
 
 const sections = computed(() => {
@@ -90,22 +77,32 @@ const sections = computed(() => {
     availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-heroicons-rocket-launch' })
   }
   if (resumeData.recommendations?.items?.length) {
-    availableSections.push({ id: 'recommendations', label: 'Recommendations', icon: 'i-heroicons-chat-bubble-bottom-center-text' })
+    availableSections.push({
+      id: 'recommendations',
+      label: 'Recommendations',
+      icon: 'i-heroicons-chat-bubble-bottom-center-text',
+    })
   }
   if (resumeData.technicalSkills?.length) {
-    availableSections.push({ id: 'technical-skills', label: 'Skills', icon: 'i-heroicons-code-bracket' })
+    availableSections.push({
+      id: 'technical-skills',
+      label: 'Skills',
+      icon: 'i-heroicons-code-bracket',
+    })
   }
   if (resumeData.experience?.length) {
     availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-heroicons-briefcase' })
   }
   if (resumeData.education) {
-    availableSections.push({ id: 'education', label: 'Education', icon: 'i-heroicons-academic-cap' })
+    availableSections.push({
+      id: 'education',
+      label: 'Education',
+      icon: 'i-heroicons-academic-cap',
+    })
   }
 
   return availableSections
 })
 
-
 usePageMetadata(resumeData.seo)
-
 </script>

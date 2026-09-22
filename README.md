@@ -1,75 +1,48 @@
-# Nuxt Minimal Starter
+# John P. McGlone’s website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A static Nuxt 4 / Vue portfolio using Nuxt UI 4, Tailwind CSS 4, and Inter. GitHub Pages hosts the generated site at https://jpmcglone.com.
 
 ## Setup
 
-Make sure to install dependencies:
+Use Node 24 (`nvm use`) and npm 11 or later:
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+```sh
+npm ci
+npm run dev -- --port 3001
 ```
 
-## Development Server
+The project also installs Node 24 locally so npm scripts use a consistent runtime even when the shell has an older Node patch. npm and `package-lock.json` are the authoritative package manager and lockfile.
 
-Start the development server on `http://localhost:3000`:
+## Quality checks
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```sh
+npm run check         # Zero-warning ESLint, Prettier, Vue/TypeScript, Vitest
+npm run generate      # Production build and static prerendering
+npm run check:site    # Generated routes, SEO metadata, indexing, local assets
+npm run audit        # Dependency security advisories
 ```
 
-## Production
+Use `npm run lint:fix`, `npm run format`, and `npm run test:watch` during development. GitHub Actions runs the same checks on pull requests and pushes to `main`; it does not deploy.
 
-Build the application for production:
+Tests cover skill search and ranking, historical dates, safe inline content, shared profile metadata, and icon availability. The generated-site check ensures the two tools remain unlisted and have `noindex` metadata.
 
-```bash
-# npm
-npm run build
+## Content and design
 
-# pnpm
-pnpm build
+- `data/` holds profile, résumé, search keywords, and page metadata.
+- `components/resume/` renders the résumé sections.
+- `app.config.ts` and `assets/css/tailwind.css` define the dark theme and UI component overrides.
+- `public/data/` contains legacy data exports; the app imports the typed files in `data/`.
+- TypeScript stays on the Vue tooling’s established 5.9 line. The scoped `fontless → esbuild` override avoids GHSA-g7r4-m6w7-qqqr until the upstream font package updates its range. Automatic font fetching is disabled; Inter is bundled locally.
 
-# yarn
-yarn build
+## Deployment
 
-# bun
-bun run build
+```sh
+npm run check
+npm run generate
+npm run check:site
+npm run deploy
 ```
 
-Locally preview production build:
+The deploy script publishes `.output/public` to the `gh-pages` branch and adds `.nojekyll`; `public/CNAME` preserves the custom domain. Pushing source to `main` alone does not deploy.
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Stop the development server before generating in the same checkout: both commands write to `.nuxt`. To keep development running, generate from a separate checkout or temporary source copy.

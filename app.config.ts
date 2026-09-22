@@ -1,28 +1,20 @@
 export default defineAppConfig({
   ui: {
-    primary: 'blue',
-    gray: 'cool',
+    colors: { primary: 'blue', neutral: 'gray' },
     card: {
-      background: 'bg-gray-800 dark:bg-gray-800',
-      ring: 'ring-1 ring-gray-700 dark:ring-gray-700',
-      rounded: 'rounded-2xl',
-      shadow: 'shadow-none',
-      divide: 'divide-y divide-gray-700 dark:divide-gray-700',
-      body: { padding: 'p-6' },
+      slots: {
+        root: 'rounded-2xl shadow-none divide-y divide-gray-700',
+        body: 'p-6',
+        header: 'p-6',
+        footer: 'p-6',
+      },
+      variants: { variant: { outline: { root: 'bg-gray-800 ring-1 ring-gray-700' } } },
     },
     button: {
-      rounded: 'rounded-xl',
-      padding: { lg: 'px-6 py-3.5' },
+      slots: { base: 'rounded-xl' },
+      variants: { size: { lg: { base: 'px-6 py-3.5' } } },
     },
-    input: {
-      rounded: 'rounded-xl',
-      placeholder: 'placeholder-gray-400',
-      default: { color: 'gray' },
-    },
-    textarea: {
-      rounded: 'rounded-2xl',
-      placeholder: 'placeholder-gray-400',
-      default: { color: 'gray' },
-    },
+    input: { slots: { base: 'rounded-xl placeholder:text-gray-400' } },
+    textarea: { slots: { base: 'rounded-2xl placeholder:text-gray-400' } },
   },
 })

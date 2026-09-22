@@ -1,6 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme static {
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-blue-300: #b7d0ff;
+  --color-blue-400: #89b4fa;
+  --color-blue-500: #74a0e8;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #94a3b8;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+}
+
+:root {
+  --ui-bg: var(--color-gray-900);
+  --ui-bg-muted: var(--color-gray-800);
+  --ui-bg-elevated: var(--color-gray-800);
+  --ui-border: var(--color-gray-700);
+  --ui-text: var(--color-gray-300);
+}
 
 @layer base {
   :root {
@@ -10,21 +35,46 @@
     --link-visited: #c4b5fd;
     --focus-ring: #c4b5fd;
   }
-  body { @apply bg-gray-900 font-sans text-gray-300 antialiased; }
-  h1, h2, h3 { @apply tracking-tight; }
-  ::selection { @apply bg-primary-400/25 text-white; }
+  body {
+    @apply bg-gray-900 font-sans text-gray-300 antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+  }
+  ::selection {
+    @apply bg-primary-400/25 text-white;
+  }
 }
 
 @layer components {
-  .page-shell { @apply mx-auto w-full max-w-[1440px] px-6 py-6 sm:px-10 sm:py-12 lg:px-20 lg:py-20; }
-  .section-heading { @apply mb-6 flex items-center gap-2 text-2xl font-semibold text-gray-50; }
+  .page-shell {
+    @apply mx-auto w-full max-w-[1440px] px-6 py-6 sm:px-10 sm:py-12 lg:px-20 lg:py-20;
+  }
+  .section-heading {
+    @apply mb-6 flex items-center gap-2 text-2xl font-semibold text-gray-50;
+  }
 }
 
 /* Keep semantic link and focus colors consistent inside Nuxt UI controls. */
-html:root .text-link { color: var(--link-default); text-underline-offset: 4px; transition: color 150ms; }
-html:root a.text-link:visited { color: var(--link-visited); }
-html:root a.text-link:hover, html:root .text-link:hover { color: var(--link-hover); }
-html:root :focus-visible, html:root [class]:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+html:root .text-link {
+  color: var(--link-default);
+  text-underline-offset: 4px;
+  transition: color 150ms;
+}
+html:root a.text-link:visited {
+  color: var(--link-visited);
+}
+html:root a.text-link:hover,
+html:root .text-link:hover {
+  color: var(--link-hover);
+}
+html:root :focus-visible,
+html:root [class]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
 
 .resume-page {
   grid-template-columns: minmax(0, 70ch);
@@ -33,18 +83,26 @@ html:root :focus-visible, html:root [class]:focus-visible { outline: 2px solid v
 
 @media (min-width: 1280px) {
   /* Equal outer columns keep the reading column on the viewport centerline. */
-  .resume-page { grid-template-columns: minmax(200px, 1fr) minmax(0, 70ch) minmax(200px, 1fr); }
+  .resume-page {
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 70ch) minmax(200px, 1fr);
+  }
 }
 
-body, .matte-background {
-  background-image: url('/images/matte-grain.svg'), linear-gradient(135deg, #182232 0%, #111827 45%, #0d131f 100%);
-  background-size: 160px 160px, cover;
+body,
+.matte-background {
+  background-image:
+    url('/images/matte-grain.svg'), linear-gradient(135deg, #182232 0%, #111827 45%, #0d131f 100%);
+  background-size:
+    160px 160px,
+    cover;
   background-repeat: repeat, no-repeat;
   background-attachment: fixed;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

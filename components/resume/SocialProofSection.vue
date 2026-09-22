@@ -18,7 +18,7 @@
 defineProps({
   metrics: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
-</script> 
+</script>
