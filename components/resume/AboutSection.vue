@@ -46,7 +46,7 @@ const props = defineProps({
 
 const linkDescriptions = {
   'https://rumble.com': 'Rumble’s video platform for creators and viewers.',
-  'https://rumble.studio': 'Rumble’s livestreaming product for creators.',
+  'https://studio.rumble.com': 'Rumble’s livestreaming product for creators.',
   'https://www.docusign.com':
     'Digital agreement platform centered on e-signature and workflow automation.',
   'https://imgur.com': 'A large image-sharing and internet culture platform.',
