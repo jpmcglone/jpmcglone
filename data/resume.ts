@@ -586,7 +586,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       name: 'Men of Hunger',
       logo: '/images/logos/men-of-hunger.png',
       description:
-        'Built and run a live social platform for men, owning the full stack and product architecture. Built its custom MCP server and use agentic coding throughout development, with hands-on review and responsibility for what reaches production.',
+        'A community for men centered on honest conversation, accountability, and personal growth.',
       status: 'Live',
       technologies: ['Full Stack', 'Agentic Coding', 'MCP'],
       url: 'https://menofhunger.com',
@@ -595,7 +595,8 @@ I like small teams, clear technical direction, and well-made software. I mentor 
     {
       name: 'Fandemic',
       logo: '/images/logos/fandemic.png',
-      description: 'Advise Brett’s company, Fandemic, on product and engineering.',
+      description:
+        'A sports community app bringing fans together with live scores, highlights, and real-time conversations.',
       status: 'Advising',
       technologies: ['Product', 'Engineering', 'Advisory'],
       url: 'https://fandemicapp.com',

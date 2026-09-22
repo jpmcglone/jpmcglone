@@ -550,7 +550,7 @@ export default {
     {
       "name": "Men of Hunger",
       "logo": "/images/logos/men-of-hunger.png",
-      "description": "Built and run a live social platform for men, owning the full stack and product architecture. Built its custom MCP server and use agentic coding throughout development, with hands-on review and responsibility for what reaches production.",
+      "description": "A community for men centered on honest conversation, accountability, and personal growth.",
       "status": "Live",
       "technologies": [
         "Full Stack",
@@ -563,7 +563,7 @@ export default {
     {
       "name": "Fandemic",
       "logo": "/images/logos/fandemic.png",
-      "description": "Advise Brett’s company, Fandemic, on product and engineering.",
+      "description": "A sports community app bringing fans together with live scores, highlights, and real-time conversations.",
       "status": "Advising",
       "technologies": [
         "Product",
