@@ -5,6 +5,10 @@
       :src="personalInfo.image"
       :alt="personalInfo?.name"
       size="3xl"
+      width="80"
+      height="80"
+      fetchpriority="high"
+      decoding="async"
       class="mb-6"
     />
     <h1 v-if="personalInfo?.name" class="text-4xl sm:text-[56px] sm:leading-[64px] font-semibold mb-4 text-gray-50">
@@ -13,8 +17,9 @@
     <p v-if="personalInfo?.title" class="text-lg font-semibold text-gray-300 mb-3">
       {{ personalInfo.title }}
     </p>
-    <p v-if="personalInfo?.location" class="text-md text-gray-500 dark:text-gray-400 mb-6">
-      {{ personalInfo.location }}
+    <p v-if="personalInfo?.location" class="mb-6 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-400">
+      <VirginiaIcon class="h-4 w-6" />
+      <span>{{ personalInfo.location }}<template v-if="personalInfo.workPreference"> <span aria-hidden="true">·</span> {{ personalInfo.workPreference }}</template></span>
     </p>
     
     <div v-if="hasLinks" class="flex flex-wrap justify-center gap-3">

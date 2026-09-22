@@ -525,7 +525,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
     {
       name: "Fandemic",
       logo: "/images/logos/fandemic.png",
-      description: "Advise the team behind Fandemic on product and engineering decisions as an ongoing side engagement.",
+      description: "Advise Brett’s company, Fandemic, on product and engineering.",
       status: "Advising",
       technologies: ["Product", "Engineering", "Advisory"],
       url: "https://fandemicapp.com",
@@ -555,7 +555,7 @@ I would strongly recommend John to any team looking for a skilled, driven, and g
         author: "Brett Pollan",
         image: "/images/avatars/brett-pollan.jpeg",
         title: "Results-oriented and solutions focused business leader",
-        context: "John advises for Brett's company",
+        context: "John advises at Brett’s company, Fandemic",
         linkedin: "https://www.linkedin.com/in/bpollan/",
         year: "2026"
       },

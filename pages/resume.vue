@@ -77,15 +77,8 @@
 <script setup>
 import resumeData from '~/data/resume'
 
-import { siteMetadata } from '~/data/site'
 
 definePageMeta({ colorMode: 'dark' })
-
-const currentEmployers = resumeData.experience.filter(job => job.isCurrentRole).map(job => ({
-  '@type': 'Organization',
-  name: job.company,
-  ...(job.url ? { url: job.url } : {}),
-}))
 
 const sections = computed(() => {
   const availableSections = []
@@ -115,34 +108,4 @@ const sections = computed(() => {
 
 usePageMetadata(resumeData.seo)
 
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        name: 'John P. McGlone',
-        alternateName: ['JP McGlone', 'jpmcglone', 'John McGlone', 'John P McGlone'],
-        jobTitle: siteMetadata.role,
-        url: 'https://jpmcglone.com',
-        image: 'https://jpmcglone.com/images/johnmcglone.jpg',
-        email: 'jp@jpmcglone.com',
-        description: resumeData.seo.description,
-        address: { '@type': 'PostalAddress', addressLocality: 'Roanoke', addressRegion: 'VA', addressCountry: 'US' },
-        sameAs: [
-          'https://github.com/jpmcglone',
-          'https://www.linkedin.com/in/john-p-mcglone-18513014',
-        ],
-        knowsAbout: ['iOS Development', 'Swift', 'Mobile Engineering', 'SDK Development', 'Software Architecture', 'Full-Stack Development', 'Agentic Coding', 'MCP Server Development', 'AI-Assisted Engineering', 'Technical Leadership', 'Nuxt.js', 'Vue.js'],
-        hasOccupation: {
-          '@type': 'Occupation',
-          name: siteMetadata.role,
-          occupationLocation: { '@type': 'City', name: 'Roanoke, VA' },
-        },
-        ...(currentEmployers.length ? { worksFor: currentEmployers } : {}),
-      })
-    }
-  ]
-})
 </script>

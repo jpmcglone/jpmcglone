@@ -1,4 +1,5 @@
 import { siteMetadata, type PageMetadata } from '~/data/site'
+import { profileSchema } from '~/utils/profileSchema'
 
 export function usePageMetadata(page: PageMetadata) {
   const canonical = new URL(page.path, siteMetadata.url).href
@@ -6,10 +7,11 @@ export function usePageMetadata(page: PageMetadata) {
 
   useHead({
     title: page.title,
+    script: page.type === 'profile' && !page.unlisted ? [{ key: 'profile-schema', type: 'application/ld+json', innerHTML: JSON.stringify(profileSchema(page)).replace(/</g, '\\u003c') }] : [],
     link: [{ key: 'canonical', rel: 'canonical', href: canonical }],
     meta: [
       { name: 'description', content: page.description },
-      { name: 'robots', content: page.unlisted ? 'noindex, nofollow' : 'index, follow' },
+      { name: 'robots', content: page.unlisted ? 'noindex, nofollow' : 'index, follow, max-image-preview:large' },
       { property: 'og:title', content: page.title },
       { property: 'og:description', content: page.description },
       { property: 'og:type', content: page.type || 'website' },

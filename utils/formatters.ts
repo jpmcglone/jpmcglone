@@ -15,11 +15,7 @@ export function formatPeriod(period: string): string {
 }
 
 export function formatExperiencePeriod(job: { period: string; endDate?: string }): string {
-  if (!job.endDate) return formatPeriod(job.period)
-  const end = new Intl.DateTimeFormat('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
-  }).format(new Date(job.endDate))
-  return `${job.period.split(' - ')[0]} - ${end}`
+  return formatPeriod(job.period)
 }
 
 export function getEndYear(period: string): number | string {

@@ -246,7 +246,16 @@ export const skillUrls: Record<string, string> = {
   'XML': 'https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction',
 }
 
-export function getSkillIcon(skill: string): string {
+const primarySkillIcons: Record<string, string> = {
+  Swift: 'simple-icons:swift', SwiftUI: 'simple-icons:swift', UIKit: 'simple-icons:apple',
+  'Swift 6 Concurrency': 'simple-icons:swift', 'Nuxt.js': 'simple-icons:nuxt',
+  'Vue.js': 'simple-icons:vuedotjs', PostgreSQL: 'simple-icons:postgresql',
+  XCTest: 'i-heroicons-beaker', 'Swift Package Manager': 'i-heroicons-cube',
+  Xcode: 'i-heroicons-wrench-screwdriver', Git: 'simple-icons:git',
+}
+
+export function getSkillIcon(skill: string, primary = false): string {
+  if (primary && primarySkillIcons[skill]) return primarySkillIcons[skill]
   return skillIcons[skill] ?? skillIcons.default
 }
 

@@ -19,6 +19,8 @@
       </div>
     </div>
 
+    <p class="mb-4 text-xs text-gray-400">Filled chips highlight my core focus. Muted items reflect historical experience.</p>
+
     <TransitionGroup
       name="category"
       tag="div"
@@ -38,26 +40,31 @@
         </h3>
         <p v-if="skill.description" class="mb-3 text-sm leading-relaxed text-gray-400">{{ skill.description }}</p>
         <div class="flex flex-wrap gap-2">
-          <span
+          <component
+            :is="hasSkillUrl(item.name) ? 'a' : 'span'"
             v-for="item in skill.skills"
             :key="item.name"
-            class="inline-flex items-center font-medium rounded-md text-sm px-2 py-1 gap-1 transition-all duration-300"
+            :href="getSkillUrl(item.name) || undefined"
+            :target="hasSkillUrl(item.name) ? '_blank' : undefined"
+            :rel="hasSkillUrl(item.name) ? 'noopener noreferrer' : undefined"
+            :title="item.historical ? 'Historical experience' : undefined"
+            class="skill-chip inline-flex items-center font-medium rounded-md text-sm px-2 py-1 gap-1.5 transition-all duration-200"
             :class="[
-              item.featured ? 'bg-primary-50 dark:bg-primary-400/10 text-primary-500 dark:text-primary-400 border border-primary-500' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+              item.featured ? 'skill-chip-primary bg-primary-400 text-gray-950' : item.historical ? 'bg-gray-800 text-gray-500 ring-1 ring-inset ring-gray-700/50' : 'bg-gray-700/60 text-gray-300',
               !itemMatchesSearch(item, skill) ? 'opacity-20' : '',
               itemMatchesSearch(item, skill) && searchQuery ? 'scale-[1.05] shadow-sm' : '',
               hasSkillUrl(item.name) ? 'cursor-pointer hover:-translate-y-0.5' : ''
             ]"
-            @click="navigateToSkill(item.name)"
           >
             <UIcon
-              :name="getSkillIcon(item.name)"
+              :name="getSkillIcon(item.name, item.featured)"
               class="h-4 w-4 text-current"
-              :class="[isAppleSkill(item.name) ? 'dark:invert' : '']"
+              :class="[!item.featured && isAppleSkill(item.name) ? 'dark:invert' : '', item.historical ? 'grayscale opacity-50' : '']"
             />
             {{ item.name }}
             <span v-if="hasSkillUrl(item.name)" class="opacity-70 group-hover:opacity-100">↗</span>
-          </span>
+            <span v-if="item.historical" class="sr-only"> (historical experience)</span>
+          </component>
         </div>
       </UCard>
     </TransitionGroup>
@@ -91,11 +98,6 @@ const clearSearch = () => {
   searchInput.value = ''
   searchQuery.value = ''
   updateQuery('')
-}
-
-const navigateToSkill = (skillName) => {
-  const url = getSkillUrl(skillName)
-  if (url) window.open(url, '_blank')
 }
 
 const sortedCategories = computed(() => rankSkillCategories(props.technicalSkills, searchQuery.value))

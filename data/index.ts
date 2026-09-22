@@ -44,7 +44,6 @@ const indexData: IndexData = {
     tags: [
       { label: 'Husband', tooltip: 'Married to my wonderful wife Katrina', icon: 'i-heroicons-heart', link: 'https://johnandkatmcglone.com/' },
       { label: 'Landlord', tooltip: 'Real estate investor and property manager', icon: 'i-heroicons-home' },
-      { label: 'Mentor', tooltip: 'Helping engineers grow and teams do their best work', icon: 'i-heroicons-user-group', link: '/resume' },
     ],
     socialLinks: [
       {

@@ -60,10 +60,11 @@ export default defineNuxtConfig({
         { name: 'color-scheme', content: 'dark' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', sizes: '16x16 32x32 48x48 64x64', href: '/favicon.ico?v=photo1' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png?v=photo1' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=photo1' },
-        { rel: 'manifest', href: '/site.webmanifest?v=photo1' },
+        { rel: 'icon', type: 'image/x-icon', sizes: '16x16 32x32 48x48 64x64', href: '/favicon.ico?v=rounded2' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png?v=rounded2' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png?v=rounded2' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=rounded2' },
+        { rel: 'manifest', href: '/site.webmanifest?v=rounded2' },
       ]
     }
   }

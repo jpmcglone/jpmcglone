@@ -18,7 +18,7 @@
 
     <UCard
       :class="{ 'ring-primary-400': isCurrentRole }"
-      :ui="{ background: job.isContract ? 'bg-gray-800 dark:bg-gray-800' : 'bg-gray-900 dark:bg-gray-900' }"
+      :ui="{ background: job.isContract ? 'bg-gray-900 dark:bg-gray-900' : 'bg-gray-800 dark:bg-gray-800', ring: job.isContract ? 'ring-1 ring-gray-800 dark:ring-gray-800' : 'ring-1 ring-primary-400/25' }"
       :data-employment="job.isContract ? 'contract' : 'full-time'"
     >
       <div :class="['flex flex-col', job.isContract ? 'gap-3' : 'gap-4']">
