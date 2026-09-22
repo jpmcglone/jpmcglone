@@ -1,65 +1,39 @@
 <template>
-  <div id="projects" v-if="projects" class="scroll-mt-6">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-        <UIcon name="i-heroicons-rocket-launch" class="text-primary-500 h-5 w-5" />
-        Projects & Advisory
-      </h2>
-    </div>
-    <div class="grid md:grid-cols-2 gap-4">
+  <section v-if="projects.length" id="projects" class="scroll-mt-6">
+    <ResumeSectionHeading icon="i-heroicons-rocket-launch" title="Projects & Advisory" />
+    <div class="space-y-4">
       <UCard
-        v-for="project in projects"
+        v-for="project in orderedProjects"
         :key="project.name"
-        class="dark:bg-gray-800"
+        :ui="{ body: { padding: project.featured ? 'p-6' : 'p-4' }, ring: project.featured ? 'ring-1 ring-primary-400/30' : 'ring-1 ring-gray-700' }"
       >
-        <div class="space-y-4">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex items-start gap-4">
-              <LinkedAvatar :url="project.url" :src="project.logo" :alt="project.name" size="lg" shape="square" />
-              <h3 class="pt-1 text-base font-medium text-gray-900 dark:text-white">
-                {{ project.name }}
+        <div :class="project.featured ? 'space-y-4' : 'space-y-2'">
+          <div class="flex items-start gap-3">
+            <LinkedAvatar :url="project.url" :src="project.logo" :alt="project.name" :size="project.featured ? 'lg' : 'sm'" shape="square" />
+            <div class="min-w-0">
+              <h3 :class="['font-semibold text-gray-50', project.featured ? 'text-lg' : 'text-base']">
+                <a v-if="project.url" :href="project.url" target="_blank" rel="noopener noreferrer" class="hover:underline">{{ project.name }}</a>
+                <span v-else>{{ project.name }}</span>
               </h3>
+              <p :class="['mt-1 text-xs', project.featured ? 'text-emerald-300' : 'text-gray-400']">{{ project.status }}</p>
             </div>
-            <UBadge color="gray" variant="soft">
-              {{ project.status }}
-            </UBadge>
           </div>
-          <p class="text-sm text-gray-600 dark:text-gray-100">
-            {{ project.description }}
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <UBadge
-              v-for="tech in project.technologies"
-              :key="tech"
-              color="gray"
-              variant="soft"
-              size="sm"
-            >
-              {{ tech }}
-            </UBadge>
-          </div>
-          <div v-if="project.url">
-            <a
-              :href="project.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 hover:underline"
-            >
-              <UIcon name="i-heroicons-link" class="h-4 w-4" />
-              Visit site
+          <p :class="['leading-relaxed text-gray-300', project.featured ? 'text-base' : 'text-sm']">{{ project.description }}</p>
+          <template v-if="project.featured">
+            <div class="flex flex-wrap gap-2">
+              <UBadge v-for="tech in project.technologies" :key="tech" color="gray" variant="soft" size="sm">{{ tech }}</UBadge>
+            </div>
+            <a v-if="project.url" :href="project.url" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-link hover:underline">
+              Visit site <UIcon name="i-heroicons-arrow-up-right" class="h-4 w-4" />
             </a>
-          </div>
+          </template>
         </div>
       </UCard>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
-defineProps({
-  projects: {
-    type: Array,
-    required: true
-  }
-})
+const props = defineProps({ projects: { type: Array, required: true } })
+const orderedProjects = computed(() => [...props.projects].sort((a, b) => Number(!!b.featured) - Number(!!a.featured)))
 </script>

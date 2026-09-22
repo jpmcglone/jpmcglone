@@ -15,6 +15,8 @@ export const skillIcons: Record<string, string> = {
   'Java': 'logos:java',
 
   // Architecture & Patterns
+  'System Architecture': 'i-heroicons-square-3-stack-3d',
+  'Full-Stack Development': 'i-heroicons-code-bracket-square',
   'MVVM': 'i-heroicons-rectangle-group',
   'MVI': 'i-heroicons-squares-2x2',
   'Factory (DI)': 'logos:swift',
@@ -103,9 +105,16 @@ export const skillIcons: Record<string, string> = {
   'Regex': 'i-heroicons-command-line',
   'XML': 'i-heroicons-code-bracket',
 
-  // AI-Assisted Development
+  // AI & Agentic Development
+  'Agentic Coding': 'i-heroicons-command-line',
+  'MCP Server Development': 'i-heroicons-server-stack',
+  'AI Workflow Design': 'i-heroicons-arrow-path',
+  'Cursor': 'i-heroicons-cursor-arrow-rays',
   'Claude': 'simple-icons:anthropic',
   'ChatGPT': 'simple-icons:openai',
+  'ChatGPT Codex': 'simple-icons:openai',
+  'Astra': 'i-heroicons-sparkles',
+  'Grok Bot': 'i-heroicons-command-line',
 
   // iOS Tooling
   'SwiftLint': 'logos:swift',
@@ -128,6 +137,7 @@ export const skillUrls: Record<string, string> = {
   'Cursor': 'https://docs.cursor.com/',
   'Claude': 'https://docs.anthropic.com/en/docs/intro-to-claude',
   'ChatGPT': 'https://platform.openai.com/docs/overview',
+  'ChatGPT Codex': 'https://chatgpt.com/codex',
 
   // Architecture & Patterns
   'MVVM': 'https://developer.apple.com/documentation/swiftui/model-data',

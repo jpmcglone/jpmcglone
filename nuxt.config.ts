@@ -1,7 +1,10 @@
+import { pageMetadata, siteMetadata } from './data/site'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2024-11-01',
+  css: ['@fontsource-variable/inter'],
   devtools: { enabled: true },
   modules: [
     '@nuxt/eslint',
@@ -14,10 +17,23 @@ export default defineNuxtConfig({
     global: true,
     icons: ['heroicons', 'simple-icons'],
   },
+  icon: {
+    clientBundle: {
+      scan: {
+        globInclude: ['components/**/*.vue', 'pages/**/*.vue', 'layouts/**/*.vue', 'data/**/*.ts', 'utils/**/*.ts', 'app.config.ts'],
+      },
+    },
+  },
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
     classSuffix: '',
+  },
+  nitro: {
+    prerender: {
+      // Unlisted tools still need static pages even though no public page links to them.
+      routes: Object.values(pageMetadata).map(page => page.path),
+    },
   },
   tailwindcss: {
     exposeConfig: true,
@@ -31,20 +47,23 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: { lang: 'en' },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       titleTemplate: '%s',
       meta: [
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#111827' },
-        { name: 'author', content: 'John P. McGlone' },
-        { name: 'robots', content: 'index, follow' },
-        // Fallback OG/Twitter so any shared URL has something
-        { property: 'og:site_name', content: 'jpmcglone.com' },
-        { name: 'twitter:site', content: '@jpmcglone' },
+        { name: 'author', content: siteMetadata.name },
+        { name: 'application-name', content: siteMetadata.name },
+        { name: 'apple-mobile-web-app-title', content: 'JP McGlone' },
+        { name: 'color-scheme', content: 'dark' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', sizes: '16x16 32x32 48x48 64x64', href: '/favicon.ico?v=photo1' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png?v=photo1' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=photo1' },
+        { rel: 'manifest', href: '/site.webmanifest?v=photo1' },
       ]
     }
   }

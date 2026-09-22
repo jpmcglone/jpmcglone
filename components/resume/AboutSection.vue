@@ -1,5 +1,5 @@
 <template>
-  <div class="bio-text py-4 px-1 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+  <div class="bio-text text-base leading-relaxed text-gray-300">
     <p
       v-for="(paragraph, paragraphIndex) in parsedBio"
       :key="paragraphIndex"
@@ -17,7 +17,7 @@
             :href="segment.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="bio-link text-primary-600 underline underline-offset-4 hover:text-primary-500 dark:text-primary-400"
+            class="bio-link text-link underline"
           >{{ segment.content }}</a><span class="bio-tooltip" role="tooltip"><strong>{{ segment.content }}</strong><br />{{ segment.description }}</span></span></template></p>
   </div>
 </template>
@@ -31,10 +31,11 @@ const props = defineProps({
 })
 
 const linkDescriptions = {
-  'https://rumble.studio': 'Rumble\'s creator-focused platform for recording, editing, and publishing content.',
+  'https://rumble.com': 'Rumble’s video platform for creators and viewers.',
+  'https://rumble.studio': 'Rumble’s livestreaming product for creators.',
   'https://www.docusign.com': 'Digital agreement platform centered on e-signature and workflow automation.',
   'https://imgur.com': 'A large image-sharing and internet culture platform.',
-  'https://menofhunger.com': 'A social media platform  justfor men.',
+  'https://menofhunger.com': 'A social media platform for men.',
   'https://realm.github.io/SwiftLint/': 'Enforces style and best practices in Swift codebases.',
   'https://github.com/nicklockwood/SwiftFormat': 'Automatically formats Swift code to keep it clean and consistent.',
   'https://github.com/peripheryapp/periphery': 'Static analysis tool for finding unused Swift code.',
@@ -87,6 +88,7 @@ function parseParagraph(paragraph) {
 }
 
 .bio-tooltip {
+  display: none;
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -124,8 +126,17 @@ function parseParagraph(paragraph) {
 }
 
 .bio-link-wrap:hover .bio-tooltip {
+  display: block;
   visibility: visible;
   opacity: 1;
   transition-delay: 0.35s;
+}
+
+@media (max-width: 639px) {
+  .bio-tooltip {
+    position: fixed;
+    bottom: 24px;
+    width: calc(100vw - 48px);
+  }
 }
 </style>

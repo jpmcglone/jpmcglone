@@ -5,11 +5,18 @@
     <div class="mb-4">
       <UInput
         v-model="searchInput"
-        @update:model-value="onSearchInput"
         placeholder="Search skills..."
         icon="i-heroicons-magnifying-glass"
         class="max-w-md"
+        aria-label="Search technical skills"
+        aria-describedby="skills-search-help"
+        @update:model-value="onSearchInput"
       />
+      <p id="skills-search-help" class="mt-2 text-xs text-gray-400">Search tools or topics: Cursor, ChatGPT, Claude, MCP, iPhone, architecture…</p>
+      <div v-if="searchQuery.trim()" class="mt-2 flex items-center gap-3">
+        <p role="status" class="text-sm text-gray-300">{{ matchingSkills }} matching {{ matchingSkills === 1 ? 'skill' : 'skills' }}</p>
+        <UButton variant="ghost" color="gray" size="xs" @click="clearSearch">Clear search</UButton>
+      </div>
     </div>
 
     <TransitionGroup
@@ -29,6 +36,7 @@
         <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
           {{ skill.category }}
         </h3>
+        <p v-if="skill.description" class="mb-3 text-sm leading-relaxed text-gray-400">{{ skill.description }}</p>
         <div class="flex flex-wrap gap-2">
           <span
             v-for="item in skill.skills"
@@ -76,20 +84,13 @@ const onSearchInput = (value) => {
   updateQuery(value)
 }
 
-const normalizeText = (text) => text.toLowerCase().replace(/[^a-z0-9]/g, '')
-
-const itemMatchesSearch = (item, category) => {
-  const query = normalizeText(searchQuery.value)
-  if (!query) return true
-  if (normalizeText(category.category).includes(query)) return true
-  return normalizeText(item.name).includes(query)
-}
-
-const categoryMatchesSearch = (category) => {
-  const query = normalizeText(searchQuery.value)
-  if (!query) return true
-  return normalizeText(category.category).includes(query) ||
-    category.skills.some(item => normalizeText(item.name).includes(query))
+const itemMatchesSearch = (item, category) => skillMatchesQuery(item, category, searchQuery.value)
+const categoryMatchesSearch = category => skillCategoryMatchesQuery(category, searchQuery.value)
+const matchingSkills = computed(() => props.technicalSkills.reduce((total, category) => total + category.skills.filter(item => itemMatchesSearch(item, category)).length, 0))
+const clearSearch = () => {
+  searchInput.value = ''
+  searchQuery.value = ''
+  updateQuery('')
 }
 
 const navigateToSkill = (skillName) => {
@@ -97,16 +98,7 @@ const navigateToSkill = (skillName) => {
   if (url) window.open(url, '_blank')
 }
 
-const sortedCategories = computed(() => {
-  if (!searchQuery.value) return props.technicalSkills
-  return [...props.technicalSkills].sort((a, b) => {
-    const aMatches = categoryMatchesSearch(a)
-    const bMatches = categoryMatchesSearch(b)
-    if (aMatches && !bMatches) return -1
-    if (!aMatches && bMatches) return 1
-    return 0
-  })
-})
+const sortedCategories = computed(() => rankSkillCategories(props.technicalSkills, searchQuery.value))
 </script>
 
 <style>

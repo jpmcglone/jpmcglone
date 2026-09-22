@@ -1,10 +1,16 @@
+import { pageMetadata, siteMetadata, type PageMetadata } from './site'
+
 export interface Skill {
   name: string
   featured?: boolean
+  historical?: boolean
+  keywords?: string[]
 }
 
 export interface SkillCategory {
   category: string
+  description?: string
+  keywords?: string[]
   skills: Skill[]
 }
 
@@ -16,6 +22,7 @@ export interface Experience {
   url?: string
   title: string
   period: string
+  endDate?: string
   isRemote?: boolean
   isCurrentRole?: boolean
   isContract?: boolean
@@ -56,6 +63,7 @@ export interface Recommendation {
   context?: string
   linkedin?: string
   year?: string
+  date?: string
 }
 
 export interface Achievement {
@@ -69,19 +77,13 @@ export interface ResumeData {
     name: string
     title: string
     location: string
+    workPreference?: string
     phone?: string
     email?: string
     image?: string
     bio?: string
   }
-  seo?: {
-    title: string
-    description: string
-    keywords: string
-    ogImage: string
-    ogUrl: string
-    canonical: string
-  }
+  seo: PageMetadata
   objective?: string
   technicalSkills: SkillCategory[]
   experience: Experience[]
@@ -99,66 +101,39 @@ export interface ResumeData {
 }
 
 const resumeData: ResumeData = {
-  seo: {
-    title: 'Resume — John P. McGlone | Seasoned iOS Engineer',
-    description: 'John P. McGlone (JP McGlone, jpmcglone) — Seasoned iOS Engineer with 16+ years of experience at Rumble, DocuSign, Imgur, and more. Swift, iOS, SDK development, product engineering.',
-    keywords: 'John McGlone resume, John P McGlone, JP McGlone, jpmcglone, senior iOS engineer, iOS developer, Swift developer, Rumble engineer, DocuSign iOS, Imgur iOS, PulsePoint, software architect, SDK developer, Roanoke VA',
-    ogImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
-    ogUrl: 'https://jpmcglone.com/resume',
-    canonical: 'https://jpmcglone.com/resume',
-  },
+  seo: pageMetadata.resume,
   personalInfo: {
     name: "John P. McGlone",
-    title: "Seasoned iOS Engineer",
-    location: "Roanoke, VA",
+    title: siteMetadata.role,
+    location: siteMetadata.location,
+    workPreference: siteMetadata.workPreference,
     phone: "(631) 943-6889",
     email: "jp@jpmcglone.com",
-    image: "/images/johnmcglone.jpg",
-    bio: `I'm a seasoned software engineer with over <strong>16 years of experience</strong> building products, APIs, and SDKs that need to feel polished, reliable, and thoughtfully made. I've worked with and led development at companies like <a href="https://rumble.studio" target="_blank" rel="noopener noreferrer">Rumble</a>, <a href="https://www.docusign.com" target="_blank" rel="noopener noreferrer">DocuSign</a>, and <a href="https://imgur.com" target="_blank" rel="noopener noreferrer">Imgur</a>, contributing to apps used by millions of people. While I work across the stack, my strongest focus is iOS, where I care deeply about product quality, maintainable architecture, smooth user experience, and the details that separate good software from great software.
+    image: siteMetadata.portrait,
+    bio: `I'm a software engineer and technical lead with <strong>16+ years of experience</strong> shipping products people rely on. I've worked on <a href="https://rumble.studio" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and <a href="https://rumble.com" target="_blank" rel="noopener noreferrer">Rumble Video</a> for iOS, and built software at <a href="https://www.docusign.com" target="_blank" rel="noopener noreferrer">DocuSign</a> and <a href="https://imgur.com" target="_blank" rel="noopener noreferrer">Imgur</a>. iPhone is my specialty; full-stack development and product architecture are part of the job.
 
-I bring more than implementation. I help teams make better technical decisions, improve engineering workflows, mentor developers, and raise the standard for craftsmanship across a codebase. I care about shipping quickly, but never at the expense of quality. I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude</a> heavily in my workflow and move very fast without cutting corners. In my own time, I'm building <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a social media platform just for men.`
+<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a live social platform with its own MCP server.
+
+I like small teams, clear technical direction, and well-made software. I mentor developers, help teams adopt practical AI workflows, and stay involved from the first architectural decision through production.`
   },
-  objective: "I want to help build exceptional products with teams that value ownership, craftsmanship, and high engineering standards. I'm especially motivated by roles where I can shape technical direction, elevate product quality, and deliver software that feels truly well made.",
+  objective: "I'm looking for a remote, hands-on lead role: shipping products, guiding a lean team, and helping the right company adopt AI or take its existing work further.",
   technicalSkills: [
     {
-      category: "AI-Assisted Development",
+      category: "AI & Agentic Development",
+      description: "Deepest experience with Cursor and ChatGPT Codex; additional experience with Claude.",
+      keywords: ["artificial intelligence", "AI assisted engineering", "augmented coding", "LLM"],
       skills: [
-        { name: "Cursor", featured: true },
-        { name: "Claude", featured: true },
-        { name: "ChatGPT", featured: true }
-      ]
-    },
-    {
-      category: "Languages",
-      skills: [
-        { name: "Swift", featured: true },
-        { name: "Objective-C", featured: true },
-        { name: "JavaScript", featured: true },
-        { name: "TypeScript" },
-        { name: "Ruby" },
-        { name: "PHP" },
-        { name: "Java" }
-      ]
-    },
-    {
-      category: "Architecture & Patterns",
-      skills: [
-        { name: "MVVM", featured: true },
-        { name: "MVI", featured: true },
-        { name: "Factory (DI)", featured: true },
-        { name: "Trunk-Based Development", featured: true }
-      ]
-    },
-    {
-      category: "Testing",
-      skills: [
-        { name: "XCTest", featured: true },
-        { name: "Quick", featured: true },
-        { name: "Nimble", featured: true }
+        { name: "Cursor", featured: true, keywords: ["AI editor", "agent", "IDE"] },
+        { name: "ChatGPT Codex", featured: true, keywords: ["OpenAI", "Chat GPT", "coding agents"] },
+        { name: "Agentic Coding", featured: true, keywords: ["AI agents", "augmented coding", "automation"] },
+        { name: "MCP Server Development", featured: true, keywords: ["Model Context Protocol", "tools", "integrations", "Men of Hunger"] },
+        { name: "AI Workflow Design", featured: true, keywords: ["AI adoption", "engineering productivity", "training"] },
+        { name: "Claude", keywords: ["Anthropic", "LLM"] }
       ]
     },
     {
       category: "iOS Frameworks",
+      keywords: ["iPhone", "iPad", "Apple", "mobile"],
       skills: [
         { name: "SwiftUI", featured: true },
         { name: "UIKit", featured: true },
@@ -167,12 +142,38 @@ I bring more than implementation. I help teams make better technical decisions, 
         { name: "SnapKit" },
         { name: "Lottie" },
         { name: "LiveKit" },
-        { name: "FLAnimatedImage" },
+        { name: "FLAnimatedImage", historical: true, keywords: ["historical", "legacy"] },
         { name: "Apollo (GraphQL)" }
       ]
     },
     {
+      category: "Architecture & Patterns",
+      keywords: ["system design", "architecture", "full stack", "technical leadership"],
+      skills: [
+        { name: "System Architecture", featured: true },
+        { name: "Full-Stack Development", featured: true },
+        { name: "MVVM" },
+        { name: "MVI" },
+        { name: "Factory (DI)" },
+        { name: "Trunk-Based Development" }
+      ]
+    },
+    {
+      category: "Languages",
+      keywords: ["programming languages"],
+      skills: [
+        { name: "Swift", featured: true },
+        { name: "Objective-C" },
+        { name: "JavaScript" },
+        { name: "TypeScript" },
+        { name: "Ruby" },
+        { name: "PHP" },
+        { name: "Java" }
+      ]
+    },
+    {
       category: "Web Frameworks",
+      keywords: ["frontend", "front end", "web"],
       skills: [
         { name: "Nuxt.js", featured: true },
         { name: "Vue.js", featured: true },
@@ -181,35 +182,8 @@ I bring more than implementation. I help teams make better technical decisions, 
       ]
     },
     {
-      category: "iOS Tooling",
-      skills: [
-        { name: "SwiftLint", featured: true },
-        { name: "SwiftFormat", featured: true },
-        { name: "Periphery", featured: true }
-      ]
-    },
-    {
-      category: "CI/CD",
-      skills: [
-        { name: "CircleCI", featured: true },
-        { name: "Fastlane", featured: true },
-        { name: "GitHub Actions" },
-        { name: "Travis CI" },
-        { name: "Jenkins" },
-        { name: "Azure DevOps" }
-      ]
-    },
-    {
-      category: "Networking",
-      skills: [
-        { name: "Alamofire", featured: true },
-        { name: "Agora", featured: true },
-        { name: "URLSession" },
-        { name: "AFNetworking" }
-      ]
-    },
-    {
       category: "Databases",
+      keywords: ["backend", "back end", "SQL", "storage"],
       skills: [
         { name: "PostgreSQL", featured: true },
         { name: "Realm" },
@@ -219,54 +193,58 @@ I bring more than implementation. I help teams make better technical decisions, 
       ]
     },
     {
-      category: "Dependency Managers",
+      category: "Testing",
+      keywords: ["quality assurance", "QA", "unit tests"],
       skills: [
-        { name: "Swift Package Manager", featured: true },
-        { name: "Cocoapods", featured: true },
-        { name: "npm" },
-        { name: "Carthage" },
-        { name: "Bundler" }
+        { name: "XCTest", featured: true },
+        { name: "Quick" },
+        { name: "Nimble" }
       ]
     },
     {
-      category: "Development Tools",
+      category: "CI/CD",
+      keywords: ["delivery", "deployment", "pipelines", "DevOps"],
       skills: [
-        { name: "Xcode", featured: true },
-        { name: "Git", featured: true },
-        { name: "VS Code" },
-        { name: "Vim" },
-        { name: "JetBrains tools" },
-        { name: "AppCode" }
+        { name: "CircleCI" },
+        { name: "Fastlane" },
+        { name: "GitHub Actions" },
+        { name: "Travis CI", historical: true, keywords: ["historical", "legacy"] },
+        { name: "Jenkins" },
+        { name: "Azure DevOps" }
       ]
     },
     {
-      category: "Issue Tracking / Wiki",
+      category: "iOS Tooling",
+      keywords: ["lint", "format", "static analysis"],
       skills: [
-        { name: "JIRA", featured: true },
-        { name: "Linear", featured: true },
-        { name: "GitHub", featured: true },
-        { name: "Notion" },
-        { name: "GitLab" },
-        { name: "Bitbucket" },
-        { name: "Confluence" },
-        { name: "Pivotal Tracker" },
-        { name: "Phabricator" }
+        { name: "SwiftLint" },
+        { name: "SwiftFormat" },
+        { name: "Periphery" }
+      ]
+    },
+    {
+      category: "Networking",
+      keywords: ["HTTP", "streaming", "real time"],
+      skills: [
+        { name: "Alamofire" },
+        { name: "Agora" },
+        { name: "URLSession" },
       ]
     },
     {
       category: "Monitoring & Analytics",
+      keywords: ["observability", "production", "crash reporting"],
       skills: [
         { name: "Sentry" },
         { name: "Crashlytics" },
         { name: "Amplitude" },
         { name: "Mixpanel" },
         { name: "Firebase" },
-        { name: "HockeyApp" },
-        { name: "Facebook Analytics" }
       ]
     },
     {
-      category: "Miscellaneous",
+      category: "APIs & Data Formats",
+      keywords: ["API", "SDK", "integration"],
       skills: [
         { name: "API Design", featured: true },
         { name: "SDK Development", featured: true },
@@ -279,20 +257,66 @@ I bring more than implementation. I help teams make better technical decisions, 
         { name: "XML" }
       ]
     },
+    {
+      category: "Development Tools",
+      keywords: ["IDE", "editors", "source control"],
+      skills: [
+        { name: "Xcode", featured: true },
+        { name: "Git", featured: true },
+        { name: "VS Code" },
+        { name: "Vim" },
+        { name: "JetBrains tools" },
+      ]
+    },
+    {
+      category: "Dependency Managers",
+      keywords: ["packages", "dependencies"],
+      skills: [
+        { name: "Swift Package Manager", featured: true },
+        { name: "Cocoapods" },
+        { name: "npm" },
+        { name: "Carthage", historical: true, keywords: ["historical", "legacy"] },
+        { name: "Bundler" }
+      ]
+    },
+    {
+      category: "Collaboration & Documentation",
+      keywords: ["collaboration", "documentation", "project management"],
+      skills: [
+        { name: "JIRA" },
+        { name: "Linear" },
+        { name: "GitHub" },
+        { name: "Notion" },
+        { name: "GitLab" },
+        { name: "Bitbucket" },
+        { name: "Confluence" },
+      ]
+    },
+    {
+      category: "AI Exploration",
+      description: "Keeping current with new models and tools; personal experimentation.",
+      keywords: ["AI", "LLM", "models", "personal experiments"],
+      skills: [
+        { name: "Astra", keywords: ["Codex", "OpenAI", "models"] },
+        { name: "Grok Bot", keywords: ["Grok", "bot", "personal machine", "local experiments"] }
+      ]
+    }
   ],
   experience: [
     {
       company: "Rumble",
       logo: "/images/logos/rumble.png",
       url: "https://rumble.com",
-      title: "Lead iOS Developer (Rumble Studio)",
-      period: "2023 - Present",
+      title: "Lead iOS Developer · Studio & Video",
+      period: "2023 - 2026",
+      endDate: "2026-09-22",
       isRemote: true,
-      isCurrentRole: true,
+      isCurrentRole: false,
       responsibilities: [
-        "Lead iOS development for Rumble Studio, delivering the app experience across iPhone, iPad, and Vision Pro",
+        "Sole iOS developer for Rumble Studio, owning development and delivery across iPhone, iPad, and Vision Pro",
         "Integrated LiveKit to enable studio-quality conference calls and multi-platform streaming with precise media synchronization",
-        { text: "Contribute to the core Rumble video app and support frontend work on Rumble's Advertising Center (RAC)", highlighted: false }
+        "Delivered substantial iOS development for Rumble Video alongside sole ownership of Studio",
+        { text: "Supported frontend development for Rumble's Advertising Center (RAC)", highlighted: false }
       ]
     },
     {
@@ -492,9 +516,9 @@ I bring more than implementation. I help teams make better technical decisions, 
     {
       name: "Men of Hunger",
       logo: "/images/logos/men-of-hunger.png",
-      description: "An independent project I build in my own time focused on creating something meaningful and useful.",
-      status: "Early Access",
-      technologies: ["Independent", "Product", "Web"],
+      description: "Built and run a live social platform for men, owning the full stack and product architecture. Built its custom MCP server and use agentic coding throughout development, with hands-on review and responsibility for what reaches production.",
+      status: "Live",
+      technologies: ["Full Stack", "Agentic Coding", "MCP"],
       url: "https://menofhunger.com",
       featured: true
     },
@@ -505,12 +529,27 @@ I bring more than implementation. I help teams make better technical decisions, 
       status: "Advising",
       technologies: ["Product", "Engineering", "Advisory"],
       url: "https://fandemicapp.com",
-      featured: true
+      featured: false
     }
   ],
   recommendations: {
     url: "https://www.linkedin.com/in/john-p-mcglone-18513014/details/recommendations/?detailScreenTabIndex=0",
     items: [
+      {
+        quote: `John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work. He stays current with the latest iOS releases and platform updates, and he is always willing to step in to solve problems or help move a project forward.
+
+Beyond his technical abilities, John is a thoughtful, dependable teammate who collaborates well across disciplines. He communicates clearly, supports those around him, and makes the people he works with better. It’s also clear that he values his family deeply and is committed to being present for them.
+
+I would strongly recommend John to any team looking for a skilled, driven, and genuinely great iOS developer.`,
+        author: "Tim Cook",
+        image: "/images/avatars/tim-cook.png",
+        title: "Product Designer",
+        company: "Rumble",
+        context: "Worked with John at Rumble",
+        linkedin: "https://www.linkedin.com/in/thetimcook/",
+        year: "2026",
+        date: "2026-09-22"
+      },
       {
         quote: "I highly recommend John as a very senior engineer. John provided exceptional technical guidance and strategic insights that significantly strengthened our project outcomes. His deep expertise, clear communication, and practical problem-solving approach made him an invaluable asset to our team. I would gladly work with John again on any future engineering initiatives.",
         author: "Brett Pollan",

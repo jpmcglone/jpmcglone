@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <title>John P. McGlone — Lead iOS &amp; Product Engineer</title>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1">
+      <stop stop-color="#1f2d40"/>
+      <stop offset="1" stop-color="#0d131f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect x="32" y="32" width="1136" height="566" rx="24" fill="none" stroke="#374151"/>
+  <g transform="translate(88 84) scale(1.5)">
+    <rect width="64" height="64" rx="14" fill="#111827"/>
+    <path d="M27 17v25c0 7-4 10-10 10-4 0-7-2-9-5" fill="none" stroke="#f9fafb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M39 50V17h7c13 0 13 19 0 19h-7" fill="none" stroke="#8bd5ca" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="88" y="288" fill="#f9fafb" font-size="64" font-weight="700" letter-spacing="-2">John P. McGlone</text>
+    <text x="88" y="346" fill="#cbd5e1" font-size="32">Lead iOS &amp; Product Engineer</text>
+    <text x="88" y="408" fill="#94a3b8" font-size="22">iOS · Full-stack architecture · AI-assisted delivery</text>
+    <path d="M88 466h1024" stroke="#374151"/>
+    <text x="88" y="529" fill="#8bd5ca" font-size="24">jpmcglone.com</text>
+  </g>
+</svg>

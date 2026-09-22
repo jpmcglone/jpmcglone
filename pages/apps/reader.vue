@@ -1,39 +1,43 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <!-- Input Area (shown only when not in presentation mode) -->
-    <div v-if="!isPresenting" class="p-8">
-      <UCard class="max-w-3xl mx-auto">
-        <div class="space-y-4">
-          <h1 class="text-2xl font-semibold">Lyrics Reader</h1>
+    <div v-if="!isPresenting" class="page-shell">
+      <PageNav title="Lyrics Reader" />
+      <div class="max-w-[800px] mx-auto">
+        <div class="space-y-6">
+          <h1 class="text-2xl font-semibold text-gray-50">Lyrics Reader</h1>
           <UTextarea
             v-model="inputText"
             :rows="10"
             placeholder="Paste your lyrics here..."
-            class="w-full font-mono"
+            aria-label="Lyrics"
+            size="xl"
+            :ui="{ padding: { xl: 'p-6' }, base: 'min-h-[300px] leading-relaxed' }"
+            class="w-full"
           />
           <UButton
-            @click="startPresentation"
             :disabled="!inputText"
-            color="primary"
+            color="black"
             size="lg"
-            class="w-full"
+            class="w-full justify-center"
+            @click="startPresentation"
           >
             Start Presentation
           </UButton>
         </div>
-      </UCard>
+      </div>
     </div>
 
     <!-- Presentation Mode -->
     <div
       v-else
-      class="fixed inset-0 bg-gray-900 text-white"
-      @keydown="handleKeydown"
-      tabindex="0"
       ref="presentationRef"
+      class="matte-background fixed inset-0 z-50 bg-gray-900 text-gray-50"
+      tabindex="0"
+      @keydown="handleKeydown"
     >
       <!-- Progress Bar -->
-      <div class="fixed top-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-80 p-4">
+      <div class="fixed top-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-95 p-6">
         <div class="flex justify-between items-center text-sm mb-2">
           <span>Section {{ currentPosition.section + 1 }}/{{ sections.length }}</span>
           <span>Line {{ currentPosition.line + 1 }}/{{ currentSection?.length || 0 }}</span>
@@ -43,8 +47,8 @@
             color="gray"
             variant="ghost"
             size="sm"
-            @click="exitPresentation"
             aria-label="Close presentation"
+            @click="exitPresentation"
           />
         </div>
         <UProgress
@@ -54,25 +58,12 @@
         />
       </div>
 
-      <!-- Fixed indicator at 1/3 mark -->
-      <div class="fixed left-0 right-0 top-0 h-full pointer-events-none" style="z-index: 0;">
-        <div class="relative h-full">
-          <div class="absolute top-[calc(33.333vh+1rem)] w-full">
-            <div class="flex justify-center items-center">
-              <div class="max-w-4xl w-full">
-                <div class="w-full h-12 bg-primary-500 bg-opacity-10 rounded-lg"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Main content container -->
-      <div class="absolute inset-0 pt-16 pb-16 flex flex-col items-center" style="z-index: 1;">
+      <div class="absolute inset-0 pt-24 pb-36 flex flex-col items-center" style="z-index: 1;">
         <!-- Scrollable content -->
         <div
-          class="h-full w-full overflow-y-auto"
           ref="scrollContainer"
+          class="h-full w-full overflow-y-auto"
         >
           <div class="min-h-full flex flex-col">
             <!-- Top spacer -->
@@ -89,7 +80,7 @@
                 <div
                   v-for="(sentence, lIndex) in section"
                   :key="`prev-${sIndex}-${lIndex}`"
-                  class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
+                  class="text-3xl mb-4 text-center break-words fit-text"
                 >
                   {{ sentence }}
                 </div>
@@ -99,12 +90,12 @@
               <div class="w-full max-w-[calc(100vw-40px)] md:max-w-4xl mb-16">
                 <div
                   v-for="(sentence, index) in currentSection"
-                  :key="`current-${index}`"
-                  class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
-                  :class="{
-                    'font-semibold': index === currentPosition.line
-                  }"
                   :id="index === currentPosition.line ? 'current-line' : ''"
+                  :key="`current-${index}`"
+                  class="text-3xl mb-4 text-center break-words fit-text"
+                  :class="{
+                    'font-semibold rounded-2xl bg-gray-800 py-6': index === currentPosition.line
+                  }"
                 >
                   {{ sentence }}
                 </div>
@@ -120,7 +111,7 @@
                 <div
                   v-for="(sentence, lIndex) in section"
                   :key="`future-${sIndex}-${lIndex}`"
-                  class="text-3xl mb-4 text-center whitespace-nowrap overflow-hidden text-ellipsis fit-text"
+                  class="text-3xl mb-4 text-center break-words fit-text"
                 >
                   {{ sentence }}
                 </div>
@@ -133,17 +124,28 @@
         </div>
       </div>
 
-      <!-- Controls Help -->
-      <div class="fixed bottom-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-80 p-4 flex justify-center gap-8 text-sm text-gray-400">
-        <span>← → Navigate Lines</span>
-        <span>Shift + ← → Navigate Sections</span>
-        <span>R Reset</span>
+      <!-- The same navigation actions are available to touch and keyboard users. -->
+      <div class="fixed bottom-0 left-0 right-0 z-10 space-y-4 bg-gray-900/95 px-6 py-5">
+        <div class="flex justify-center gap-3">
+          <UButton color="gray" size="lg" icon="i-heroicons-arrow-left" aria-label="Previous line" :disabled="!calculateNextPosition('prev', 'line')" @click="navigate('prev', 'line')" />
+          <UButton color="black" size="lg" icon="i-heroicons-arrow-right" aria-label="Next line" :disabled="!calculateNextPosition('next', 'line')" @click="navigate('next', 'line')" />
+          <UButton color="gray" size="lg" icon="i-heroicons-arrow-path" aria-label="Reset presentation" @click="navigateTo({ section: 0, line: 0 })" />
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-400">
+          <span>← → Navigate Lines</span>
+          <span>Shift + ← → Navigate Sections</span>
+          <span>R Reset</span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { pageMetadata } from '~/data/site'
+definePageMeta({ colorMode: 'dark' })
+usePageMetadata(pageMetadata.reader)
+
 // State
 const inputText = ref('')
 const isPresenting = ref(false)
@@ -293,6 +295,6 @@ watch(isPresenting, (newValue) => {
 
 .fit-text {
   font-size: clamp(1rem, 5vw, 1.875rem);
-  padding: 0 1rem;
+  padding-inline: 1rem;
 }
 </style>

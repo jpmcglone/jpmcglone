@@ -1,29 +1,25 @@
 <template>
-  <div class="relative pr-8 md:pr-12">
+  <div class="relative pr-16 md:pr-20">
     <!-- Timeline year -->
     <div
       v-if="shouldShowYear"
-      class="absolute -right-[0.25rem] top-5 translate-x-1/2"
+      class="absolute right-0 top-5 z-10"
     >
-      <div :class="[
-        'text-[10px] md:text-xs font-medium px-2 md:px-3 py-1 md:py-1.5 rounded-full',
+      <div
+:class="[
+        'flex h-8 w-14 items-center justify-center rounded-full border text-xs font-medium',
         isCurrentRole
-          ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/20 dark:shadow-primary-500/10'
-          : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 shadow-md'
+          ? 'border-primary-400 bg-primary-400 text-gray-900'
+          : 'border-gray-600 bg-gray-800 text-gray-300'
       ]">
         {{ job.period.endsWith('Present') ? 'Present' : getEndYear(job.period) }}
       </div>
     </div>
 
     <UCard
-      :class="[
-        'transition-all duration-300',
-        job.isContract
-          ? 'dark:bg-gray-800/70 border-l-2 border-amber-400/40 dark:border-amber-400/25 hover:shadow-md'
-          : isCurrentRole
-            ? 'bg-gradient-to-b from-emerald-500/10 to-transparent dark:from-emerald-500/10 dark:bg-gray-700/60 shadow-md hover:shadow-xl ring-1 ring-emerald-500/20 dark:ring-emerald-400/15'
-            : 'dark:bg-gray-700/60 shadow-md hover:shadow-xl ring-1 ring-primary-500/10 dark:ring-primary-400/10',
-      ]"
+      :class="{ 'ring-primary-400': isCurrentRole }"
+      :ui="{ background: job.isContract ? 'bg-gray-800 dark:bg-gray-800' : 'bg-gray-900 dark:bg-gray-900' }"
+      :data-employment="job.isContract ? 'contract' : 'full-time'"
     >
       <div :class="['flex flex-col', job.isContract ? 'gap-3' : 'gap-4']">
         <div class="flex items-start gap-3">
@@ -37,13 +33,13 @@
           <div class="flex-1 min-w-0">
             <div class="flex justify-between items-start gap-4">
               <div>
-                <h3 :class="['text-base flex items-center gap-2 text-gray-900 dark:text-white', job.isContract ? 'font-medium' : 'font-semibold']">
+                <h3 :class="['text-lg flex flex-wrap items-center gap-2 text-gray-50', job.isContract ? 'font-medium' : 'font-semibold']">
                   <a
                     v-if="job.url"
                     :href="job.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                    class="text-link"
                   >{{ job.company }}</a>
                   <span v-else>{{ job.company }}</span>
                   <span
@@ -68,7 +64,7 @@
                 size="sm"
                 class="hidden md:block shrink-0"
               >
-                {{ formatPeriod(job.period) }}
+                {{ formatExperiencePeriod(job) }}
               </UBadge>
             </div>
           </div>
@@ -81,7 +77,7 @@
           size="sm"
           class="md:hidden self-start"
         >
-          {{ job.period }}
+          {{ formatExperiencePeriod(job) }}
         </UBadge>
 
         <!-- Badges row — full-time only -->
@@ -100,11 +96,11 @@
             job.isContract ? 'pt-3' : 'pt-4',
           ]"
         >
-          <ul class="space-y-2">
+          <ul class="space-y-4">
             <li
               v-for="(item, index) in normalizedResponsibilities"
               :key="index"
-              class="flex gap-2 text-sm"
+              class="flex gap-3 text-base leading-relaxed"
               :class="item.highlighted ? 'text-gray-600 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'"
             >
               <UIcon
@@ -179,12 +175,15 @@ const jobBadges = computed(() => {
 </script>
 
 <style scoped>
-:deep(a) {
-  color: rgb(var(--color-primary-400));
+:deep(li a) {
+  color: var(--link-default);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-:deep(a:hover) {
-  color: rgb(var(--color-primary-300));
+:deep(li a:visited) {
+  color: var(--link-visited);
+}
+:deep(li a:hover) {
+  color: var(--link-hover);
 }
 </style>

@@ -1,6 +1,9 @@
+import { pageMetadata, siteMetadata, type PageMetadata } from './site'
+
 export interface Tag {
   label: string
   tooltip: string
+  icon: string
   link?: string
 }
 
@@ -12,6 +15,9 @@ export interface SocialLink {
 
 export interface IndexData {
   personalInfo: {
+    name: string
+    location: string
+    workPreference: string
     username: string
     title: string
     avatar: string
@@ -23,49 +29,22 @@ export interface IndexData {
     buttonText: string
     link: string
   }
-  meta: {
-    title: string
-    description: string
-    keywords: string
-    ogTitle: string
-    ogDescription: string
-    ogImage: string
-    ogUrl: string
-    ogType: string
-    twitterCard: string
-    twitterTitle: string
-    twitterDescription: string
-    twitterImage: string
-    canonical: string
-  }
+  meta: PageMetadata
 }
 
 const indexData: IndexData = {
   personalInfo: {
+    name: siteMetadata.name,
+    location: siteMetadata.location,
+    workPreference: siteMetadata.workPreference,
     username: '@jpmcglone',
-    title: 'Seasoned Software Engineer',
-    avatar: '/images/johnmcglone.jpg',
-    description: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
+    title: siteMetadata.role,
+    avatar: siteMetadata.portrait,
+    description: 'I build products, mentor engineers, and help small teams ship with AI.',
     tags: [
-      {
-        label: 'Software Engineer',
-        tooltip: 'Check out my code on GitHub',
-        link: 'https://github.com/jpmcglone'
-      },
-      {
-        label: 'Husband',
-        tooltip: 'Married to my wonderful wife Katrina',
-        link: 'https://johnandkatmcglone.com/'
-      },
-      {
-        label: 'Landlord',
-        tooltip: 'Real estate investor and property manager'
-      },
-      // {
-      //   label: 'Gamer',
-      //   tooltip: 'Watch me stream games live',
-      //   link: 'https://twitch.tv/jpmcglone'
-      // }
+      { label: 'Husband', tooltip: 'Married to my wonderful wife Katrina', icon: 'i-heroicons-heart', link: 'https://johnandkatmcglone.com/' },
+      { label: 'Landlord', tooltip: 'Real estate investor and property manager', icon: 'i-heroicons-home' },
+      { label: 'Mentor', tooltip: 'Helping engineers grow and teams do their best work', icon: 'i-heroicons-user-group', link: '/resume' },
     ],
     socialLinks: [
       {
@@ -89,21 +68,7 @@ const indexData: IndexData = {
     buttonText: 'View Resume',
     link: '/resume'
   },
-  meta: {
-    title: 'John P. McGlone (@jpmcglone) — Seasoned iOS Engineer',
-    description: 'John P. McGlone (JP McGlone, jpmcglone) is a seasoned software engineer with 16+ years building polished iOS apps, SDKs, and products. Former engineer at Rumble, DocuSign, Imgur, and more.',
-    keywords: 'John McGlone, John P McGlone, JP McGlone, jpmcglone, John P. McGlone, iOS developer, senior iOS engineer, Swift developer, iOS engineer, software engineer, Rumble, DocuSign, Imgur, PulsePoint, Men of Hunger, Roanoke VA developer',
-    ogTitle: 'John P. McGlone — Seasoned iOS Engineer',
-    ogDescription: 'JP McGlone is a seasoned software engineer with 16+ years building polished iOS apps and SDKs. Former engineer at Rumble, DocuSign, and Imgur.',
-    ogImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
-    ogUrl: 'https://jpmcglone.com',
-    ogType: 'profile',
-    twitterCard: 'summary_large_image',
-    twitterTitle: 'John P. McGlone — Seasoned iOS Engineer',
-    twitterDescription: 'JP McGlone is a seasoned software engineer with 16+ years building polished iOS apps and SDKs. Former engineer at Rumble, DocuSign, and Imgur.',
-    twitterImage: 'https://jpmcglone.com/images/johnmcglone.jpg',
-    canonical: 'https://jpmcglone.com'
-  }
+  meta: pageMetadata.home
 }
 
 export default indexData

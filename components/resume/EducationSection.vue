@@ -1,36 +1,39 @@
 <template>
   <div id="education" class="scroll-mt-6">
     <ResumeSectionHeading icon="i-heroicons-academic-cap" title="Education" />
-    <UCard class="dark:bg-gray-800">
-      <div class="flex justify-between items-stretch gap-4">
-        <div class="flex-grow">
-          <UBadge color="gray" variant="soft" size="sm" class="mb-2">
+    <UCard class="bg-gradient-to-br from-primary-400/[0.06] to-transparent">
+      <div class="space-y-6">
+        <div class="space-y-2">
+          <p class="flex items-center gap-2 text-xs font-medium leading-[18px] text-gray-400">
+            <UIcon name="i-heroicons-calendar-days" class="h-4 w-4 shrink-0" aria-hidden="true" />
             {{ education.period }}
-          </UBadge>
-          <h3 class="text-base font-medium text-gray-900 dark:text-white">
+          </p>
+          <h3 class="text-xl font-semibold leading-7 text-gray-50">
             {{ education.degree }}
           </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p class="text-base leading-relaxed text-gray-300">
             <a
               v-if="education.schoolUrl"
               :href="education.schoolUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors underline underline-offset-4"
-            >{{ education.school }}</a>
+              class="text-link inline-flex max-w-full items-baseline gap-2 hover:underline"
+            >
+              <span class="min-w-0">{{ education.school }}</span>
+              <UIcon name="i-heroicons-arrow-up-right" class="h-4 w-4 shrink-0 self-center" aria-hidden="true" />
+            </a>
             <span v-else>{{ education.school }}</span>
           </p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-3 border-t border-gray-700/70 pt-4">
+          <p class="flex items-center gap-2 text-sm leading-[22px] text-gray-400">
+            <UIcon name="i-heroicons-map-pin" class="h-4 w-4 shrink-0" aria-hidden="true" />
             {{ education.location }}
           </p>
-        </div>
-        <div v-if="education.gpa" class="relative border-2 border-gray-300 dark:border-gray-600 rounded-lg w-24 aspect-square">
-          <div class="absolute top-2 left-2 text-xs text-gray-500 dark:text-gray-400">
-            GPA
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-900 dark:text-white">
-            {{ education.gpa }}
-          </div>
+          <p v-if="education.gpa" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-primary-400/10 px-3 py-1 ring-1 ring-inset ring-primary-400/20">
+            <span class="text-lg font-semibold leading-[26px] tabular-nums text-primary-400">{{ education.gpa }}</span>
+            <span class="text-xs font-medium text-gray-300">GPA</span>
+          </p>
         </div>
       </div>
     </UCard>

@@ -1,9 +1,9 @@
 export default {
   personalInfo: {
     username: '@jpmcglone',
-    title: 'Seasoned Software Engineer',
+    title: "Lead iOS & Product Engineer",
     avatar: '/images/johnmcglone.jpg', 
-    description: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
+    description: "Technical lead focused on iOS, full-stack architecture, and shipping well-made products with AI-assisted engineering",
     tags: [
       {
         label: 'Software Engineer',
@@ -48,13 +48,9 @@ export default {
     link: '/resume'
   },
   meta: {
-    title: '@jpmcglone - Seasoned Software Engineer',
-    description: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
-    ogTitle: 'JP McGlone - Seasoned Software Engineer',
-    ogDescription: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship',
-    ogType: 'website',
-    twitterCard: 'summary',
-    twitterTitle: 'JP McGlone - Seasoned Software Engineer',
-    twitterDescription: 'Seasoned software engineer focused on iOS, product quality, and engineering craftsmanship'
+    "title": "John P. McGlone — Lead iOS & Product Engineer",
+    "description": "John P. McGlone: technical lead with 16+ years shipping iOS apps and products. Full-stack architecture, agentic coding, and hands-on engineering leadership.",
+    "path": "/",
+    "type": "profile"
   }
 } 

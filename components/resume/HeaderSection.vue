@@ -1,28 +1,31 @@
 <template>
-  <div class="p-6 sm:p-8 text-center">
+  <div class="py-4 text-center">
     <UAvatar
       v-if="personalInfo?.image"
       :src="personalInfo.image"
       :alt="personalInfo?.name"
-      size="2xl"
+      size="3xl"
+      class="mb-6"
     />
-    <h1 v-if="personalInfo?.name" class="text-3xl font-semibold mb-2 text-gray-900 dark:text-white">
+    <h1 v-if="personalInfo?.name" class="text-4xl sm:text-[56px] sm:leading-[64px] font-semibold mb-4 text-gray-50">
       {{ personalInfo.name }}
     </h1>
-    <p v-if="personalInfo?.title" class="text-lg text-gray-500 dark:text-gray-400 mb-2">
+    <p v-if="personalInfo?.title" class="text-lg font-semibold text-gray-300 mb-3">
       {{ personalInfo.title }}
     </p>
     <p v-if="personalInfo?.location" class="text-md text-gray-500 dark:text-gray-400 mb-6">
       {{ personalInfo.location }}
     </p>
     
-    <div v-if="hasLinks" class="flex justify-center gap-3">
+    <div v-if="hasLinks" class="flex flex-wrap justify-center gap-3">
       <UButton
         v-for="link in links"
         :key="link.url"
         :to="link.url"
         target="_blank"
-        class="flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow hover:-translate-y-[1px] hover:shadow-lg bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+        color="gray"
+        size="lg"
+        class="text-link"
       >
         <UIcon
           :name="getSocialIcon(link.name)"
@@ -56,4 +59,4 @@ const getSocialIcon = (name) => {
   }
   return icons[name] || icons.default
 }
-</script> 
+</script>
