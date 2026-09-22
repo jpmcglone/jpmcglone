@@ -7,7 +7,7 @@ export default {
     "phone": "(631) 943-6889",
     "email": "jp@jpmcglone.com",
     "image": "/images/johnmcglone.webp",
-    "bio": "I'm a software engineer and technical lead with <strong>16+ years of experience</strong> shipping products people rely on. I've worked on <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> and <a href=\"https://rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Video</a> for iOS, and built software at <a href=\"https://www.docusign.com\" target=\"_blank\" rel=\"noopener noreferrer\">DocuSign</a> and <a href=\"https://imgur.com\" target=\"_blank\" rel=\"noopener noreferrer\">Imgur</a>. iPhone is my specialty; full-stack development and product architecture are part of the job.\n\n<strong>AI is central to how I work.</strong> I use <a href=\"https://cursor.com\" target=\"_blank\" rel=\"noopener noreferrer\">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a>, a live social platform with its own MCP server.\n\nI like small teams, clear technical direction, and well-made software. I mentor developers, help teams adopt practical AI workflows, and stay involved from the first architectural decision through production."
+    "bio": "I'm a software engineer and technical lead with <strong>16+ years of experience</strong> shipping products people rely on. I've worked on <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> and <a href=\"https://rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Video</a> for iOS, and built software at <a href=\"https://www.docusign.com\" target=\"_blank\" rel=\"noopener noreferrer\">DocuSign</a> and <a href=\"https://imgur.com\" target=\"_blank\" rel=\"noopener noreferrer\">Imgur</a>. iPhone is my specialty; full-stack development and product architecture are part of the job.\n\n<strong>AI is central to how I work.</strong> I use <a href=\"https://cursor.com\" target=\"_blank\" rel=\"noopener noreferrer\">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a>, a men-only social media platform with its own MCP server.\n\nI like small teams, clear technical direction, and well-made software. I mentor developers, help teams adopt practical AI workflows, and stay involved from the first architectural decision through production."
   },
   objective: "I'm looking for a remote, hands-on lead role: shipping products, guiding a lean team, and helping the right company adopt AI or take its existing work further.",
   technicalSkills: [
@@ -550,7 +550,7 @@ export default {
     {
       "name": "Men of Hunger",
       "logo": "/images/logos/men-of-hunger.png",
-      "description": "Built and run a live social platform for men, owning the full stack and product architecture. Built its custom MCP server and use agentic coding throughout development, with hands-on review and responsibility for what reaches production.",
+      "description": "A community for men centered on honest conversation, accountability, and personal growth.",
       "status": "Live",
       "technologies": [
         "Full Stack",
@@ -563,7 +563,7 @@ export default {
     {
       "name": "Fandemic",
       "logo": "/images/logos/fandemic.png",
-      "description": "Advise Brett’s company, Fandemic, on product and engineering.",
+      "description": "A sports community app bringing fans together with live scores, highlights, and real-time conversations.",
       "status": "Advising",
       "technologies": [
         "Product",
