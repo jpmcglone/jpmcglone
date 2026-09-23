@@ -1,13 +1,7 @@
-const APPLE_SKILLS = new Set(['UIKit', 'Combine', 'AFNetworking', 'URLSession', 'xcconfig'])
-
-export function isAppleSkill(skill: string): boolean {
-  return skill === 'Apple' || APPLE_SKILLS.has(skill)
-}
-
 export const skillIcons: Record<string, string> = {
   // Languages
   Swift: 'logos:swift',
-  'Objective-C': 'logos:c',
+  'Objective-C': 'simple-icons:apple',
   JavaScript: 'logos:javascript',
   TypeScript: 'logos:typescript-icon',
   Ruby: 'logos:ruby',
@@ -19,26 +13,26 @@ export const skillIcons: Record<string, string> = {
   'Full-Stack Development': 'i-jpm-code-bracket-square',
   MVVM: 'i-jpm-rectangle-group',
   MVI: 'i-jpm-squares-2x2',
-  'Factory (DI)': 'logos:swift',
+  'Factory (DI)': 'i-jpm-cube',
 
   // Testing
-  XCTest: 'logos:swift',
-  Quick: 'logos:swift',
-  Nimble: 'logos:swift',
+  XCTest: 'i-jpm-beaker',
+  Quick: 'i-jpm-beaker',
+  Nimble: 'i-jpm-check',
 
   // iOS Frameworks
   SwiftUI: 'logos:swift',
-  UIKit: 'logos:apple',
+  UIKit: 'simple-icons:apple',
   'Swift 6 Concurrency': 'logos:swift',
-  Combine: 'logos:apple',
+  Combine: 'simple-icons:apple',
   SnapKit: 'i-jpm-puzzle-piece',
   Lottie: 'i-jpm-play-circle',
-  'Apollo (GraphQL)': 'logos:apollostack',
+  'Apollo (GraphQL)': 'simple-icons:apollographql',
 
   // Web Frameworks
   'Nuxt.js': 'logos:nuxt-icon',
   'Vue.js': 'logos:vue',
-  'Next.js': 'logos:nextjs-icon',
+  'Next.js': 'simple-icons:nextdotjs',
   React: 'logos:react',
 
   // Databases
@@ -50,9 +44,9 @@ export const skillIcons: Record<string, string> = {
 
   // Dependency Managers
   'Swift Package Manager': 'logos:swift',
-  Cocoapods: 'i-jpm-cube',
+  Cocoapods: 'simple-icons:cocoapods',
   Carthage: 'i-jpm-cube-transparent',
-  Bundler: 'logos:ruby',
+  Bundler: 'i-jpm-cube',
   npm: 'logos:npm-icon',
 
   // CI/CD
@@ -61,14 +55,14 @@ export const skillIcons: Record<string, string> = {
   'GitHub Actions': 'logos:github-actions',
   'Travis CI': 'logos:travis-ci',
   Jenkins: 'logos:jenkins',
-  'Azure DevOps': 'logos:azure-icon',
+  'Azure DevOps': 'simple-icons:azuredevops',
 
   // Monitoring & Analytics
   Sentry: 'simple-icons:sentry',
-  Crashlytics: 'logos:firebase',
+  Crashlytics: 'logos:crashlytics',
   Firebase: 'logos:firebase',
-  Amplitude: 'i-jpm-chart-bar',
-  Mixpanel: 'i-jpm-presentation-chart-line',
+  Amplitude: 'logos:amplitude-icon',
+  Mixpanel: 'simple-icons:mixpanel',
 
   // Development Tools
   Xcode: 'logos:xcode',
@@ -79,16 +73,16 @@ export const skillIcons: Record<string, string> = {
   AppCode: 'logos:jetbrains',
 
   // Networking
-  Alamofire: 'logos:swift',
-  Agora: 'i-jpm-signal',
+  Alamofire: 'i-jpm-signal',
+  Agora: 'simple-icons:agora',
   AFNetworking: 'logos:apple',
-  URLSession: 'logos:apple',
+  URLSession: 'simple-icons:apple',
 
   // Issue Tracking / Wiki
-  Linear: 'i-jpm-ticket',
+  Linear: 'simple-icons:linear',
   JIRA: 'logos:jira',
-  GitHub: 'logos:github-icon',
-  Notion: 'logos:notion-icon',
+  GitHub: 'simple-icons:github',
+  Notion: 'simple-icons:notion',
   GitLab: 'logos:gitlab',
   Bitbucket: 'logos:bitbucket',
   Confluence: 'logos:confluence',
@@ -98,32 +92,32 @@ export const skillIcons: Record<string, string> = {
   'API Design': 'i-jpm-circle-stack',
   'SDK Development': 'i-jpm-cube',
   'Trunk-Based Development': 'i-jpm-arrow-path',
-  JSON: 'i-jpm-code-bracket',
-  YAML: 'i-jpm-document-text',
-  dotenv: 'i-jpm-document',
-  xcconfig: 'logos:apple',
+  JSON: 'simple-icons:json',
+  YAML: 'simple-icons:yaml',
+  dotenv: 'simple-icons:dotenv',
+  xcconfig: 'simple-icons:apple',
   Regex: 'i-jpm-command-line',
   XML: 'i-jpm-code-bracket',
 
   // AI & Agentic Development
   'Agentic Coding': 'i-jpm-command-line',
-  'MCP Server Development': 'i-jpm-server-stack',
+  'MCP Server Development': 'simple-icons:modelcontextprotocol',
   'AI Workflow Design': 'i-jpm-arrow-path',
-  Cursor: 'i-jpm-cursor-arrow-rays',
-  Claude: 'simple-icons:anthropic',
+  Cursor: 'simple-icons:cursor',
+  Claude: 'simple-icons:claude',
   ChatGPT: 'simple-icons:openai',
-  'ChatGPT Codex': 'simple-icons:openai',
-  Astra: 'i-jpm-sparkles',
-  'Grok Bot': 'i-jpm-command-line',
+  'ChatGPT Codex': 'logos:codex',
+  Astra: 'simple-icons:openai',
+  'Grok Bot': 'logos:grok-icon',
 
   // iOS Tooling
-  SwiftLint: 'logos:swift',
-  SwiftFormat: 'logos:swift',
-  Periphery: 'logos:swift',
+  SwiftLint: 'i-jpm-check',
+  SwiftFormat: 'i-jpm-code-bracket',
+  Periphery: 'i-jpm-magnifying-glass',
 
   // Additional
   FLAnimatedImage: 'i-jpm-photo',
-  LiveKit: 'i-jpm-video-camera',
+  LiveKit: 'simple-icons:livekit',
   HockeyApp: 'i-jpm-rocket-launch',
   'Facebook Analytics': 'logos:facebook',
   'Pivotal Tracker': 'i-jpm-clipboard-document-list',
@@ -134,7 +128,7 @@ export const skillIcons: Record<string, string> = {
 
 export const skillUrls: Record<string, string> = {
   // AI-Assisted Development
-  Cursor: 'https://docs.cursor.com/',
+  Cursor: 'https://cursor.com/',
   Claude: 'https://docs.anthropic.com/en/docs/intro-to-claude',
   ChatGPT: 'https://platform.openai.com/docs/overview',
   'ChatGPT Codex': 'https://chatgpt.com/codex',
@@ -249,23 +243,32 @@ export const skillUrls: Record<string, string> = {
   XML: 'https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction',
 }
 
-const primarySkillIcons: Record<string, string> = {
-  Swift: 'simple-icons:swift',
-  SwiftUI: 'simple-icons:swift',
-  UIKit: 'simple-icons:apple',
-  'Swift 6 Concurrency': 'simple-icons:swift',
-  'Nuxt.js': 'simple-icons:nuxt',
-  'Vue.js': 'simple-icons:vuedotjs',
-  PostgreSQL: 'simple-icons:postgresql',
-  XCTest: 'i-jpm-beaker',
-  'Swift Package Manager': 'i-jpm-cube',
-  Xcode: 'i-jpm-wrench-screwdriver',
-  Git: 'simple-icons:git',
+// Keep the same product identity on featured and regular chips.
+export function getSkillIcon(skill: string): string {
+  return skillIcons[skill] ?? 'i-jpm-code-bracket'
 }
 
-export function getSkillIcon(skill: string, primary = false): string {
-  if (primary && primarySkillIcons[skill]) return primarySkillIcons[skill]!
-  return skillIcons[skill] ?? 'i-jpm-code-bracket'
+// Official compact artwork for products without suitable bundled vector marks.
+export const skillImages: Record<string, string> = {
+  SwiftUI: '/images/skills/swiftui.webp',
+  SnapKit: '/images/skills/snapkit.webp',
+  Lottie: '/images/skills/lottie.webp',
+  Quick: '/images/skills/quick.webp',
+  'Factory (DI)': '/images/skills/factory.webp',
+  Alamofire: '/images/skills/alamofire.webp',
+  SwiftFormat: '/images/skills/swiftformat.webp',
+  Periphery: '/images/skills/periphery.webp',
+  Bundler: '/images/skills/bundler.webp',
+  Carthage: '/images/skills/carthage.webp',
+}
+
+export function getSkillImage(skill: string): string | undefined {
+  return skillImages[skill]
+}
+
+// These bundled logos contain fixed dark fills rather than currentColor.
+export function isDarkSkillIcon(skill: string): boolean {
+  return skill === 'ChatGPT Codex' || skill === 'Grok Bot'
 }
 
 export function getSkillUrl(skill: string): string | null {

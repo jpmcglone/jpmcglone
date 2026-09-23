@@ -66,11 +66,22 @@
               hasSkillUrl(item.name) ? 'cursor-pointer hover:-translate-y-0.5' : '',
             ]"
           >
+            <img
+              v-if="getSkillImage(item.name)"
+              :src="getSkillImage(item.name)"
+              alt=""
+              width="16"
+              height="16"
+              loading="lazy"
+              class="size-4 shrink-0 object-contain"
+              :class="item.historical ? 'grayscale opacity-50' : ''"
+            />
             <UIcon
-              :name="getSkillIcon(item.name, item.featured)"
-              class="h-4 w-4 text-current"
+              v-else
+              :name="getSkillIcon(item.name)"
+              class="h-4 w-4 shrink-0 text-current"
               :class="[
-                !item.featured && isAppleSkill(item.name) ? 'dark:invert' : '',
+                !item.featured && isDarkSkillIcon(item.name) ? 'invert' : '',
                 item.historical ? 'grayscale opacity-50' : '',
               ]"
             />

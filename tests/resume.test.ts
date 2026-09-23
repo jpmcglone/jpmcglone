@@ -1,4 +1,4 @@
-import { readdirSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { describe, expect, it } from 'vitest'
 import resume from '../data/resume'
@@ -68,7 +68,7 @@ describe('resume content', () => {
 
 describe('skill icon assets', () => {
   it('resolves every displayed skill icon from the local collection and installed libraries', async () => {
-    const { getSkillIcon } = await import('../utils/skillMeta')
+    const { getSkillIcon, getSkillImage } = await import('../utils/skillMeta')
     const require = createRequire(import.meta.url)
     const collections = {
       jpm: Object.fromEntries(
@@ -82,7 +82,15 @@ describe('skill icon assets', () => {
       'simple-icons': require('@iconify-json/simple-icons/icons.json').icons,
     }
     for (const skill of resume.technicalSkills.flatMap((category) => category.skills)) {
-      const id = getSkillIcon(skill.name, skill.featured).replace(/^i-/, '')
+      const image = getSkillImage(skill.name)
+      if (image) {
+        expect(
+          existsSync(new URL(`../public${image}`, import.meta.url)),
+          `Missing ${skill.name} logo`,
+        ).toBe(true)
+        continue
+      }
+      const id = getSkillIcon(skill.name).replace(/^i-/, '')
       const prefix = Object.keys(collections).find(
         (prefix) => id.startsWith(`${prefix}:`) || id.startsWith(`${prefix}-`),
       ) as keyof typeof collections
