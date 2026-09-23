@@ -64,6 +64,10 @@ export interface Recommendation {
   linkedin?: string
   year?: string
   date?: string
+  sharedCompany?: {
+    name: string
+    image: string
+  }
 }
 
 export interface Achievement {
@@ -613,6 +617,7 @@ Beyond his technical abilities, John is a thoughtful, dependable teammate who co
 
 I would strongly recommend John to any team looking for a skilled, driven, and genuinely great iOS developer.`,
         author: 'Tim Cook',
+        sharedCompany: { name: 'Rumble', image: '/images/logos/rumble.png' },
         image: '/images/avatars/tim-cook.png',
         title: 'Product Designer',
         company: 'Rumble',
@@ -628,6 +633,7 @@ Beyond his strong technical background, John has an exceptional ability to appro
 
 I would highly recommend John to any team looking for a strong engineer who combines technical expertise, product thinking, and great collaboration skills.`,
         author: 'Joan Manrubia Martínez',
+        sharedCompany: { name: 'Rumble', image: '/images/logos/rumble.png' },
         image: '/images/avatars/joan-manrubia-martinez.webp',
         title: 'Senior Frontend Engineer',
         company: 'Rumble',
@@ -640,6 +646,7 @@ I would highly recommend John to any team looking for a strong engineer who comb
         quote:
           'I highly recommend John as a very senior engineer. John provided exceptional technical guidance and strategic insights that significantly strengthened our project outcomes. His deep expertise, clear communication, and practical problem-solving approach made him an invaluable asset to our team. I would gladly work with John again on any future engineering initiatives.',
         author: 'Brett Pollan',
+        sharedCompany: { name: 'Fandemic', image: '/images/logos/fandemic.png' },
         image: '/images/avatars/brett-pollan.jpeg',
         title: 'Results-oriented and solutions focused business leader',
         context: 'John advises at Brett’s company, Fandemic',
@@ -650,6 +657,7 @@ I would highly recommend John to any team looking for a strong engineer who comb
         quote:
           'JP taught me crucial team skills like how to create JIRA tickets with a clear done state and how to write clear Git commit messages. He also opened my eyes to various technologies to avoid reinventing the wheel.',
         author: 'Kevin Wang',
+        sharedCompany: { name: 'Eligible', image: '/images/logos/eligible.png' },
         image: '/images/avatars/kevin-wang.jpeg',
         title: 'Senior Engineer',
         company: 'Clerk',
@@ -661,6 +669,7 @@ I would highly recommend John to any team looking for a strong engineer who comb
         quote:
           'He always puts in the extra hours necessary, and will go above and beyond to find the best way to solve problems, for both short and long term answers. John is an asset to any team that is lucky enough to have him.',
         author: 'Aubrey Hadley',
+        sharedCompany: { name: 'Workday', image: '/images/logos/workday.png' },
         image: '/images/avatars/aubrey-hadley.jpeg',
         title: 'Lead Product Designer',
         context: 'Worked with John at Workday',
@@ -671,6 +680,7 @@ I would highly recommend John to any team looking for a strong engineer who comb
         quote:
           'Along with his incredible technical abilities, I also learned a great deal from JP on how to interact with team members in difficult situations and how to calmly tackle and discuss problems within a project. He was hard working, sincere and very thorough in all his duties.',
         author: 'Mili Shrivastava',
+        sharedCompany: { name: 'Workday', image: '/images/logos/workday.png' },
         image: '/images/avatars/mili-shrivastava.jpeg',
         title: 'Head of QA/QE & Release',
         context: 'Worked with John at Workday',

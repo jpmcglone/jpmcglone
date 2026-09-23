@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import { describe, expect, it } from 'vitest'
 import resume from '../data/resume'
 import { pageMetadata } from '../data/site'
@@ -67,10 +68,11 @@ describe('resume content', () => {
 describe('skill icon assets', () => {
   it('resolves every displayed skill icon from the installed libraries', async () => {
     const { getSkillIcon } = await import('../utils/skillMeta')
+    const require = createRequire(import.meta.url)
     const collections = {
-      heroicons: (await import('@iconify-json/heroicons/icons.json')).default.icons,
-      logos: (await import('@iconify-json/logos/icons.json')).default.icons,
-      'simple-icons': (await import('@iconify-json/simple-icons/icons.json')).default.icons,
+      heroicons: require('@iconify-json/heroicons/icons.json').icons,
+      logos: require('@iconify-json/logos/icons.json').icons,
+      'simple-icons': require('@iconify-json/simple-icons/icons.json').icons,
     }
     for (const skill of resume.technicalSkills.flatMap((category) => category.skills)) {
       const id = getSkillIcon(skill.name, skill.featured).replace(/^i-/, '')
