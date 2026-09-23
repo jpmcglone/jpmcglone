@@ -514,6 +514,9 @@ export default {
     schoolUrl: "https://www.ncc.edu/",
     location: "Garden City, NY",
     period: "2006 - 2009",
+    logo: "/images/logos/ncc.png",
+    studies: "Double major studies: Mathematics & Computer Science.",
+    majorGpa: "4.0",
     gpa: "3.8"
   },
   links: [
