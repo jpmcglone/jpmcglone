@@ -20,7 +20,7 @@
               class="w-full"
               placeholder="YYYY-MM-DD"
               size="lg"
-              icon="i-heroicons-calendar-days"
+              icon="i-jpm-calendar-days"
             />
           </UFormField>
           <UFormField label="Life in Years" name="maxAge">

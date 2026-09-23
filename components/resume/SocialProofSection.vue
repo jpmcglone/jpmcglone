@@ -3,7 +3,7 @@
     <div class="mb-8 max-w-sm">
       <UCard v-if="metrics?.yearsExperience" class="text-center p-4 dark:bg-gray-800">
         <div class="flex flex-col items-center">
-          <UIcon name="i-heroicons-clock" class="h-8 w-8 text-primary-500 mb-2" />
+          <UIcon name="i-jpm-clock" class="h-8 w-8 text-primary-500 mb-2" />
           <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
             {{ metrics.yearsExperience }}+
           </h4>

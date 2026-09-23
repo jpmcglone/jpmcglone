@@ -1,14 +1,26 @@
 <template>
   <div id="experience" class="scroll-mt-6">
-    <ResumeSectionHeading icon="i-heroicons-briefcase" title="Experience" />
+    <ResumeSectionHeading icon="i-jpm-briefcase" title="Experience" />
 
     <div class="relative">
       <!-- Timeline line -->
-      <div aria-hidden="true" class="absolute bottom-0 right-7 top-12 w-px bg-gray-600" />
+      <div
+        aria-hidden="true"
+        class="absolute bottom-0 right-7 w-px bg-gray-600"
+        :class="currentRoles.length ? 'top-18' : 'top-16'"
+      />
 
       <!-- Current Roles -->
-      <div v-if="currentRoles.length" class="mb-12">
-        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 my-2">Current</p>
+      <div v-if="currentRoles.length" class="current-experience relative mb-12">
+        <h3
+          class="mb-4 flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-widest text-emerald-300"
+        >
+          <span
+            aria-hidden="true"
+            class="size-2 rounded-full bg-emerald-300 shadow-[0_0_12px_#6ee7b766]"
+          />
+          Current
+        </h3>
         <div
           v-for="(job, index) in currentRoles"
           :key="job.company"
@@ -66,3 +78,15 @@ const gapBefore = (job, index, roles) => {
   return 'mt-12'
 }
 </script>
+
+<style scoped>
+.current-experience::before {
+  content: '';
+  position: absolute;
+  right: 1.75rem;
+  top: 4.5rem;
+  bottom: -7rem;
+  width: 1px;
+  background: linear-gradient(to bottom, #6ee7b7 0%, #34d399 25%, var(--color-gray-600) 100%);
+}
+</style>

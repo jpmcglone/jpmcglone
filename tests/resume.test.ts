@@ -1,3 +1,4 @@
+import { readdirSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { describe, expect, it } from 'vitest'
 import resume from '../data/resume'
@@ -66,10 +67,16 @@ describe('resume content', () => {
 })
 
 describe('skill icon assets', () => {
-  it('resolves every displayed skill icon from the installed libraries', async () => {
+  it('resolves every displayed skill icon from the local collection and installed libraries', async () => {
     const { getSkillIcon } = await import('../utils/skillMeta')
     const require = createRequire(import.meta.url)
     const collections = {
+      jpm: Object.fromEntries(
+        readdirSync(new URL('../assets/icons/', import.meta.url)).map((file) => [
+          file.replace(/\.svg$/, ''),
+          true,
+        ]),
+      ),
       heroicons: require('@iconify-json/heroicons/icons.json').icons,
       logos: require('@iconify-json/logos/icons.json').icons,
       'simple-icons': require('@iconify-json/simple-icons/icons.json').icons,

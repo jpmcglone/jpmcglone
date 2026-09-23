@@ -25,6 +25,7 @@ export interface Experience {
   endDate?: string
   isRemote?: boolean
   isCurrentRole?: boolean
+  isIndependent?: boolean
   isContract?: boolean
   isDefunct?: boolean
   responsibilities: Responsibility[]
@@ -36,6 +37,9 @@ export interface Education {
   schoolUrl?: string
   location: string
   period: string
+  logo?: string
+  studies?: string
+  majorGpa?: string
   gpa?: string
 }
 
@@ -314,6 +318,19 @@ I like small teams, clear technical direction, and well-made software. I mentor 
   ],
   experience: [
     {
+      company: 'Men of Hunger',
+      logo: '/images/logos/men-of-hunger.png',
+      url: 'https://menofhunger.com',
+      title: 'Creator & Engineer',
+      period: '2026 - Present',
+      isCurrentRole: true,
+      isIndependent: true,
+      responsibilities: [
+        'Build and run a men-only social media platform, owning the full stack, architecture, and production delivery.',
+        'Built its custom MCP server and use agentic coding with hands-on review throughout development.',
+      ],
+    },
+    {
       company: 'Rumble',
       logo: '/images/logos/rumble.png',
       url: 'https://rumble.com',
@@ -573,6 +590,9 @@ I like small teams, clear technical direction, and well-made software. I mentor 
     schoolUrl: 'https://www.ncc.edu/',
     location: 'Garden City, NY',
     period: '2006 - 2009',
+    logo: '/images/logos/ncc.png',
+    studies: 'Double major studies: Mathematics & Computer Science.',
+    majorGpa: '4.0',
     gpa: '3.8',
   },
   links: [

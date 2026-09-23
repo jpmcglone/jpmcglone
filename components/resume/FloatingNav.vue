@@ -6,7 +6,7 @@
     <UTooltip text="Home">
       <UButton
         to="/"
-        icon="i-heroicons-home"
+        icon="i-jpm-home"
         aria-label="Home"
         color="neutral"
         variant="ghost"

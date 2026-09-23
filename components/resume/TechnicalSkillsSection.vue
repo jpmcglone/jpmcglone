@@ -1,12 +1,12 @@
 <template>
   <div id="technical-skills" class="scroll-mt-6">
-    <ResumeSectionHeading icon="i-heroicons-code-bracket" title="Technical Skills" />
+    <ResumeSectionHeading icon="i-jpm-code-bracket" title="Technical Skills" />
 
     <div class="mb-4">
       <UInput
         v-model="searchInput"
         placeholder="Search skills..."
-        icon="i-heroicons-magnifying-glass"
+        icon="i-jpm-magnifying-glass"
         class="w-full max-w-md"
         aria-label="Search technical skills"
         aria-describedby="skills-search-help"

@@ -15,7 +15,7 @@
         <!-- Objective Section -->
         <ResumeObjectiveSection v-if="resumeData.objective" :objective="resumeData.objective" />
 
-        <USeparator />
+        <USeparator v-if="!resumeData.objective" />
 
         <!-- Featured Projects -->
         <ResumeFeaturedProjectsSection
@@ -71,33 +71,33 @@ const sections = computed(() => {
   const availableSections = []
 
   if (resumeData.personalInfo?.bio) {
-    availableSections.push({ id: 'about', label: 'About', icon: 'i-heroicons-user' })
+    availableSections.push({ id: 'about', label: 'About', icon: 'i-jpm-user' })
   }
   if (resumeData.projects?.length) {
-    availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-heroicons-rocket-launch' })
+    availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-jpm-rocket-launch' })
   }
   if (resumeData.recommendations?.items?.length) {
     availableSections.push({
       id: 'recommendations',
       label: 'Recommendations',
-      icon: 'i-heroicons-chat-bubble-bottom-center-text',
+      icon: 'i-jpm-chat-bubble-bottom-center-text',
     })
   }
   if (resumeData.technicalSkills?.length) {
     availableSections.push({
       id: 'technical-skills',
       label: 'Skills',
-      icon: 'i-heroicons-code-bracket',
+      icon: 'i-jpm-code-bracket',
     })
   }
   if (resumeData.experience?.length) {
-    availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-heroicons-briefcase' })
+    availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-jpm-briefcase' })
   }
   if (resumeData.education) {
     availableSections.push({
       id: 'education',
       label: 'Education',
-      icon: 'i-heroicons-academic-cap',
+      icon: 'i-jpm-academic-cap',
     })
   }
 

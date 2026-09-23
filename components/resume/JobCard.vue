@@ -6,22 +6,25 @@
         :class="[
           'flex h-8 w-14 items-center justify-center rounded-full border text-xs font-medium',
           isCurrentRole
-            ? 'border-primary-400 bg-primary-400 text-gray-900'
+            ? 'border-emerald-300 bg-emerald-300 text-gray-950 shadow-[0_0_16px_#6ee7b733]'
             : 'border-gray-600 bg-gray-800 text-gray-300',
         ]"
       >
-        {{ job.period.endsWith('Present') ? 'Present' : getEndYear(job.period) }}
+        {{ isCurrentRole ? 'Now' : getEndYear(job.period) }}
       </div>
     </div>
 
     <UCard
-      :class="{ 'ring-primary-400': isCurrentRole }"
       :ui="{
-        root: job.isContract
-          ? 'bg-gray-900 ring-1 ring-gray-800'
-          : 'bg-gray-800 ring-1 ring-primary-400/25',
+        root: isCurrentRole
+          ? 'bg-gradient-to-br from-emerald-950/60 to-gray-800 ring-1 ring-emerald-300/50 shadow-lg shadow-emerald-950/20'
+          : job.isContract
+            ? 'bg-gray-900 ring-1 ring-gray-800'
+            : 'bg-gray-800 ring-1 ring-primary-400/25',
       }"
-      :data-employment="job.isContract ? 'contract' : 'full-time'"
+      :data-employment="
+        job.isIndependent ? 'independent' : job.isContract ? 'contract' : 'full-time'
+      "
     >
       <div :class="['flex flex-col', job.isContract ? 'gap-3' : 'gap-4']">
         <div class="flex items-start gap-3">
@@ -127,7 +130,7 @@
             >
               <UIcon
                 v-if="item.highlighted"
-                name="i-heroicons-check"
+                name="i-jpm-check"
                 class="flex-shrink-0 h-4 w-4 mt-1 text-primary-500"
               />
               <span v-else class="flex-shrink-0 w-4 text-center">•</span>
@@ -169,15 +172,22 @@ const jobBadges = computed(() => {
   if (props.job.isContract) {
     badges.push({
       label: 'Contract',
-      icon: 'i-heroicons-briefcase-solid',
+      icon: 'i-jpm-briefcase',
       tooltip: 'Worked as an independent contractor or through a consulting agency',
       classes:
         'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20 dark:bg-amber-400/10 dark:text-amber-400 dark:ring-amber-400/20',
     })
+  } else if (props.job.isIndependent) {
+    badges.push({
+      label: 'Nights & weekends',
+      icon: 'i-jpm-moon',
+      tooltip: 'Independent passion project',
+      classes: 'bg-emerald-400/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/20',
+    })
   } else {
     badges.push({
       label: 'Full-time',
-      icon: 'i-heroicons-building-office-solid',
+      icon: 'i-jpm-building-office',
       tooltip: 'Full-time employee position with benefits',
       classes:
         'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20 dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20',
@@ -186,7 +196,7 @@ const jobBadges = computed(() => {
   if (props.job.isRemote) {
     badges.push({
       label: 'Remote',
-      icon: 'i-heroicons-globe-americas-solid',
+      icon: 'i-jpm-globe-americas',
       tooltip: 'Work performed primarily from home office',
       classes:
         'bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-600/20 dark:bg-sky-400/10 dark:text-sky-400 dark:ring-sky-400/20',

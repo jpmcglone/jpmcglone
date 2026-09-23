@@ -17,7 +17,7 @@ export const siteMetadata = {
   handle: '@jpmcglone',
   image: '/images/social-card.png',
   imageAlt:
-    'John P. McGlone — Lead iOS & Product Engineer. Full-stack architecture and AI-assisted delivery.',
+    'Portrait of John P. McGlone, Lead iOS & Product Engineer. AI-assisted engineering. Open to remote roles.',
   imageWidth: 1200,
   imageHeight: 630,
 }

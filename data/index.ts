@@ -45,13 +45,13 @@ const indexData: IndexData = {
       {
         label: 'Husband',
         tooltip: 'Married to my wonderful wife Katrina',
-        icon: 'i-heroicons-heart',
+        icon: 'i-jpm-heart',
         link: 'https://johnandkatmcglone.com/',
       },
       {
         label: 'Landlord',
         tooltip: 'Real estate investor and property manager',
-        icon: 'i-heroicons-home',
+        icon: 'i-jpm-home',
       },
     ],
     socialLinks: [

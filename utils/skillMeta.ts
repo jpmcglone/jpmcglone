@@ -15,10 +15,10 @@ export const skillIcons: Record<string, string> = {
   Java: 'logos:java',
 
   // Architecture & Patterns
-  'System Architecture': 'i-heroicons-square-3-stack-3d',
-  'Full-Stack Development': 'i-heroicons-code-bracket-square',
-  MVVM: 'i-heroicons-rectangle-group',
-  MVI: 'i-heroicons-squares-2x2',
+  'System Architecture': 'i-jpm-square-3-stack-3d',
+  'Full-Stack Development': 'i-jpm-code-bracket-square',
+  MVVM: 'i-jpm-rectangle-group',
+  MVI: 'i-jpm-squares-2x2',
   'Factory (DI)': 'logos:swift',
 
   // Testing
@@ -31,8 +31,8 @@ export const skillIcons: Record<string, string> = {
   UIKit: 'logos:apple',
   'Swift 6 Concurrency': 'logos:swift',
   Combine: 'logos:apple',
-  SnapKit: 'i-heroicons-puzzle-piece',
-  Lottie: 'i-heroicons-play-circle',
+  SnapKit: 'i-jpm-puzzle-piece',
+  Lottie: 'i-jpm-play-circle',
   'Apollo (GraphQL)': 'logos:apollostack',
 
   // Web Frameworks
@@ -50,8 +50,8 @@ export const skillIcons: Record<string, string> = {
 
   // Dependency Managers
   'Swift Package Manager': 'logos:swift',
-  Cocoapods: 'i-heroicons-cube',
-  Carthage: 'i-heroicons-cube-transparent',
+  Cocoapods: 'i-jpm-cube',
+  Carthage: 'i-jpm-cube-transparent',
   Bundler: 'logos:ruby',
   npm: 'logos:npm-icon',
 
@@ -67,8 +67,8 @@ export const skillIcons: Record<string, string> = {
   Sentry: 'simple-icons:sentry',
   Crashlytics: 'logos:firebase',
   Firebase: 'logos:firebase',
-  Amplitude: 'i-heroicons-chart-bar',
-  Mixpanel: 'i-heroicons-presentation-chart-line',
+  Amplitude: 'i-jpm-chart-bar',
+  Mixpanel: 'i-jpm-presentation-chart-line',
 
   // Development Tools
   Xcode: 'logos:xcode',
@@ -80,12 +80,12 @@ export const skillIcons: Record<string, string> = {
 
   // Networking
   Alamofire: 'logos:swift',
-  Agora: 'i-heroicons-signal',
+  Agora: 'i-jpm-signal',
   AFNetworking: 'logos:apple',
   URLSession: 'logos:apple',
 
   // Issue Tracking / Wiki
-  Linear: 'i-heroicons-ticket',
+  Linear: 'i-jpm-ticket',
   JIRA: 'logos:jira',
   GitHub: 'logos:github-icon',
   Notion: 'logos:notion-icon',
@@ -95,26 +95,26 @@ export const skillIcons: Record<string, string> = {
 
   // Miscellaneous
   GraphQL: 'logos:graphql',
-  'API Design': 'i-heroicons-circle-stack',
-  'SDK Development': 'i-heroicons-cube',
-  'Trunk-Based Development': 'i-heroicons-arrow-path',
-  JSON: 'i-heroicons-code-bracket',
-  YAML: 'i-heroicons-document-text',
-  dotenv: 'i-heroicons-document',
+  'API Design': 'i-jpm-circle-stack',
+  'SDK Development': 'i-jpm-cube',
+  'Trunk-Based Development': 'i-jpm-arrow-path',
+  JSON: 'i-jpm-code-bracket',
+  YAML: 'i-jpm-document-text',
+  dotenv: 'i-jpm-document',
   xcconfig: 'logos:apple',
-  Regex: 'i-heroicons-command-line',
-  XML: 'i-heroicons-code-bracket',
+  Regex: 'i-jpm-command-line',
+  XML: 'i-jpm-code-bracket',
 
   // AI & Agentic Development
-  'Agentic Coding': 'i-heroicons-command-line',
-  'MCP Server Development': 'i-heroicons-server-stack',
-  'AI Workflow Design': 'i-heroicons-arrow-path',
-  Cursor: 'i-heroicons-cursor-arrow-rays',
+  'Agentic Coding': 'i-jpm-command-line',
+  'MCP Server Development': 'i-jpm-server-stack',
+  'AI Workflow Design': 'i-jpm-arrow-path',
+  Cursor: 'i-jpm-cursor-arrow-rays',
   Claude: 'simple-icons:anthropic',
   ChatGPT: 'simple-icons:openai',
   'ChatGPT Codex': 'simple-icons:openai',
-  Astra: 'i-heroicons-sparkles',
-  'Grok Bot': 'i-heroicons-command-line',
+  Astra: 'i-jpm-sparkles',
+  'Grok Bot': 'i-jpm-command-line',
 
   // iOS Tooling
   SwiftLint: 'logos:swift',
@@ -122,14 +122,14 @@ export const skillIcons: Record<string, string> = {
   Periphery: 'logos:swift',
 
   // Additional
-  FLAnimatedImage: 'i-heroicons-photo',
-  LiveKit: 'i-heroicons-video-camera',
-  HockeyApp: 'i-heroicons-rocket-launch',
+  FLAnimatedImage: 'i-jpm-photo',
+  LiveKit: 'i-jpm-video-camera',
+  HockeyApp: 'i-jpm-rocket-launch',
   'Facebook Analytics': 'logos:facebook',
-  'Pivotal Tracker': 'i-heroicons-clipboard-document-list',
-  Phabricator: 'i-heroicons-bug-ant',
+  'Pivotal Tracker': 'i-jpm-clipboard-document-list',
+  Phabricator: 'i-jpm-bug-ant',
 
-  default: 'i-heroicons-code-bracket',
+  default: 'i-jpm-code-bracket',
 }
 
 export const skillUrls: Record<string, string> = {
@@ -257,15 +257,15 @@ const primarySkillIcons: Record<string, string> = {
   'Nuxt.js': 'simple-icons:nuxt',
   'Vue.js': 'simple-icons:vuedotjs',
   PostgreSQL: 'simple-icons:postgresql',
-  XCTest: 'i-heroicons-beaker',
-  'Swift Package Manager': 'i-heroicons-cube',
-  Xcode: 'i-heroicons-wrench-screwdriver',
+  XCTest: 'i-jpm-beaker',
+  'Swift Package Manager': 'i-jpm-cube',
+  Xcode: 'i-jpm-wrench-screwdriver',
   Git: 'simple-icons:git',
 }
 
 export function getSkillIcon(skill: string, primary = false): string {
   if (primary && primarySkillIcons[skill]) return primarySkillIcons[skill]!
-  return skillIcons[skill] ?? 'i-heroicons-code-bracket'
+  return skillIcons[skill] ?? 'i-jpm-code-bracket'
 }
 
 export function getSkillUrl(skill: string): string | null {

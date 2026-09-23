@@ -43,7 +43,7 @@
           <span>Line {{ currentPosition.line + 1 }}/{{ currentSection?.length || 0 }}</span>
           <!-- Close Button -->
           <UButton
-            icon="i-heroicons-x-mark"
+            icon="i-jpm-x-mark"
             color="neutral"
             variant="ghost"
             size="sm"
@@ -124,7 +124,7 @@
             color="neutral"
             variant="soft"
             size="lg"
-            icon="i-heroicons-arrow-left"
+            icon="i-jpm-arrow-left"
             aria-label="Previous line"
             :disabled="!calculateNextPosition('prev', 'line')"
             @click="navigate('prev', 'line')"
@@ -132,7 +132,7 @@
           <UButton
             color="neutral"
             size="lg"
-            icon="i-heroicons-arrow-right"
+            icon="i-jpm-arrow-right"
             aria-label="Next line"
             :disabled="!calculateNextPosition('next', 'line')"
             @click="navigate('next', 'line')"
@@ -141,7 +141,7 @@
             color="neutral"
             variant="soft"
             size="lg"
-            icon="i-heroicons-arrow-path"
+            icon="i-jpm-arrow-path"
             aria-label="Reset presentation"
             @click="navigateTo({ section: 0, line: 0 })"
           />

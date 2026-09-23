@@ -71,7 +71,7 @@ const getSocialIcon = (name) => {
   const icons = {
     GitHub: 'i-simple-icons-github',
     LinkedIn: 'i-simple-icons-linkedin',
-    default: 'i-heroicons-link',
+    default: 'i-jpm-link',
   }
   return icons[name] || icons.default
 }

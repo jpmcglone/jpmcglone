@@ -45,7 +45,7 @@
           width="44"
           height="44"
           loading="lazy"
-          class="size-9 shrink-0 rounded-xl object-contain ring-1 ring-white/10 sm:size-11"
+          class="size-9 shrink-0 company-logo object-contain ring-1 ring-white/10 sm:size-11"
         />
       </figcaption>
       <blockquote class="space-y-5 text-base leading-7 text-gray-300">

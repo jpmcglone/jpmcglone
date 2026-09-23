@@ -108,3 +108,12 @@ body,
     scroll-behavior: auto !important;
   }
 }
+
+/* Match the 1.77 / 24 corner proportion of the LinkedIn brand mark. */
+.company-logo,
+.company-logo img {
+  border-radius: 7.4%;
+}
+.company-logo {
+  overflow: hidden;
+}

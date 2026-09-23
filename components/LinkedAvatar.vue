@@ -9,7 +9,7 @@
       :class="[
         'bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center',
         sizes.box,
-        isCircle ? 'rounded-full' : 'rounded-lg',
+        isCircle ? 'rounded-full' : 'company-logo',
       ]"
     >
       <span :class="['font-semibold text-primary-600 dark:text-primary-400 uppercase', sizes.text]">
@@ -21,7 +21,7 @@
       :src="src"
       :alt="alt"
       :size="sizes.avatar"
-      :ui="{ root: isCircle ? 'rounded-full' : 'rounded-lg' }"
+      :ui="{ root: isCircle ? 'rounded-full' : 'company-logo' }"
     />
   </component>
 </template>

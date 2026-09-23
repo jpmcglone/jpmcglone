@@ -61,7 +61,7 @@
         >
           <UIcon :name="social.icon" class="h-4 w-4" />
           {{ social.name }}
-          <UIcon name="i-heroicons-arrow-up-right" class="h-3 w-3" />
+          <UIcon name="i-jpm-arrow-up-right" class="h-3 w-3" />
         </a>
       </div>
     </div>

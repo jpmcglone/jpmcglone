@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ResumeSectionHeading icon="i-heroicons-trophy" title="Achievements" />
+    <ResumeSectionHeading icon="i-jpm-trophy" title="Achievements" />
     <div class="grid md:grid-cols-2 gap-4">
       <UCard v-for="achievement in achievements" :key="achievement.title" class="dark:bg-gray-800">
         <div class="flex items-start gap-4">

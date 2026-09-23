@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     fonts: false,
   },
   icon: {
+    customCollections: [{ prefix: 'jpm', dir: './assets/icons' }],
     clientBundle: {
       scan: {
         globInclude: [
