@@ -580,6 +580,7 @@ export default {
       {
         "quote": "John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work. He stays current with the latest iOS releases and platform updates, and he is always willing to step in to solve problems or help move a project forward.\n\nBeyond his technical abilities, John is a thoughtful, dependable teammate who collaborates well across disciplines. He communicates clearly, supports those around him, and makes the people he works with better. It’s also clear that he values his family deeply and is committed to being present for them.\n\nI would strongly recommend John to any team looking for a skilled, driven, and genuinely great iOS developer.",
         "author": "Tim Cook",
+        "sharedCompany": {"name": "Rumble", "image": "/images/logos/rumble.png"},
         "image": "/images/avatars/tim-cook.png",
         "title": "Product Designer",
         "company": "Rumble",
@@ -591,6 +592,7 @@ export default {
       {
         "quote": "I had the pleasure of working with John on the same team, and from the moment I joined the company, it was clear that he was one of the most passionate engineers I had ever worked with.\n\nBeyond his strong technical background, John has an exceptional ability to approach problems from a product perspective, think outside the box, and find practical solutions to complex challenges. This combination makes him a solid engineer. More importantly, John is a great teammate. He is always willing to collaborate, share his knowledge, and support those around him.\n\nI would highly recommend John to any team looking for a strong engineer who combines technical expertise, product thinking, and great collaboration skills.",
         "author": "Joan Manrubia Martínez",
+        "sharedCompany": {"name": "Rumble", "image": "/images/logos/rumble.png"},
         "image": "/images/avatars/joan-manrubia-martinez.webp",
         "title": "Senior Frontend Engineer",
         "company": "Rumble",
@@ -602,6 +604,7 @@ export default {
       {
         "quote": "I highly recommend John as a very senior engineer. John provided exceptional technical guidance and strategic insights that significantly strengthened our project outcomes. His deep expertise, clear communication, and practical problem-solving approach made him an invaluable asset to our team. I would gladly work with John again on any future engineering initiatives.",
         "author": "Brett Pollan",
+        "sharedCompany": {"name": "Fandemic", "image": "/images/logos/fandemic.png"},
         "image": "/images/avatars/brett-pollan.jpeg",
         "title": "Results-oriented and solutions focused business leader",
         "context": "John advises at Brett’s company, Fandemic",
@@ -611,6 +614,7 @@ export default {
       {
         "quote": "JP taught me crucial team skills like how to create JIRA tickets with a clear done state and how to write clear Git commit messages. He also opened my eyes to various technologies to avoid reinventing the wheel.",
         "author": "Kevin Wang",
+        "sharedCompany": {"name": "Eligible", "image": "/images/logos/eligible.png"},
         "image": "/images/avatars/kevin-wang.jpeg",
         "title": "Senior Engineer",
         "company": "Clerk",
@@ -621,6 +625,7 @@ export default {
       {
         "quote": "He always puts in the extra hours necessary, and will go above and beyond to find the best way to solve problems, for both short and long term answers. John is an asset to any team that is lucky enough to have him.",
         "author": "Aubrey Hadley",
+        "sharedCompany": {"name": "Workday", "image": "/images/logos/workday.png"},
         "image": "/images/avatars/aubrey-hadley.jpeg",
         "title": "Lead Product Designer",
         "context": "Worked with John at Workday",
@@ -630,6 +635,7 @@ export default {
       {
         "quote": "Along with his incredible technical abilities, I also learned a great deal from JP on how to interact with team members in difficult situations and how to calmly tackle and discuss problems within a project. He was hard working, sincere and very thorough in all his duties.",
         "author": "Mili Shrivastava",
+        "sharedCompany": {"name": "Workday", "image": "/images/logos/workday.png"},
         "image": "/images/avatars/mili-shrivastava.jpeg",
         "title": "Head of QA/QE & Release",
         "context": "Worked with John at Workday",
