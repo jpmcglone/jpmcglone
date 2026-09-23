@@ -50,6 +50,61 @@
     </div>
     <template v-if="!showAll">
       <div
+        v-if="items.length > 1"
+        class="deck-navigation mb-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1"
+      >
+        <div
+          role="group"
+          :aria-label="`Choose a ${itemLabel}`"
+          class="flex flex-wrap items-center gap-1"
+        >
+          <button
+            v-for="(item, index) in items"
+            :key="item.id"
+            type="button"
+            :aria-label="`View ${itemLabel} ${index + 1}: ${item.label}${item.company ? `, ${item.company.name}` : ''}`"
+            :aria-current="selected === index ? 'true' : undefined"
+            :aria-controls="`${id}-deck`"
+            :title="item.company ? `${item.label} · ${item.company.name}` : item.label"
+            class="group flex h-16 shrink-0 items-center justify-center rounded-lg transition-[width] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+            :class="selected === index ? 'w-16' : 'w-11'"
+            @click="goTo(index)"
+          >
+            <span
+              aria-hidden="true"
+              class="relative flex size-9 items-center justify-center transition-[scale,opacity] duration-200 ease-out motion-reduce:transition-none"
+              :class="[
+                itemLabel === 'project' ? 'company-logo' : 'rounded-full',
+                selected === index
+                  ? 'scale-[1.17] opacity-100'
+                  : 'scale-[0.83] opacity-65 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100',
+              ]"
+            >
+              <UAvatar
+                :src="item.image"
+                :alt="item.label"
+                class="size-9"
+                :ui="{ root: itemLabel === 'project' ? 'company-logo' : 'rounded-full' }"
+              />
+              <img
+                v-if="itemLabel === 'recommendation' && item.company"
+                :src="item.company.image"
+                alt=""
+                width="16"
+                height="16"
+                class="company-logo absolute z-10 bg-gray-900 object-contain transition-[width,height,right,bottom] duration-200 ease-out motion-reduce:transition-none"
+                :class="
+                  selected === index ? '-bottom-2 -right-2 size-5' : '-bottom-0.5 -right-0.5 size-4'
+                "
+              />
+            </span>
+          </button>
+        </div>
+        <UButton variant="ghost" class="min-h-11 text-link" @click="showAll = true">
+          View all {{ items.length }}
+        </UButton>
+      </div>
+      <div
         class="recommendation-stack relative print:hidden"
         :class="{ 'has-more': nextItem, 'has-depth': remaining > 1 }"
       >
@@ -106,7 +161,6 @@
           role="region"
           aria-roledescription="carousel"
           :aria-label="label"
-          :aria-describedby="`${id}-help`"
           tabindex="0"
           class="relative z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-400"
           @keydown.left.prevent="goTo(selected - 1)"
@@ -153,36 +207,6 @@
           </motion.div>
         </div>
       </div>
-      <div
-        v-if="items.length > 1"
-        class="deck-navigation mt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1"
-      >
-        <div role="group" :aria-label="`Choose a ${itemLabel}`" class="flex items-center">
-          <button
-            v-for="(item, index) in items"
-            :key="item.id"
-            type="button"
-            :aria-label="`View ${itemLabel} ${index + 1}: ${item.label}`"
-            :aria-current="selected === index ? 'true' : undefined"
-            :title="item.label"
-            class="flex size-11 items-center justify-center rounded-lg focus-visible:outline-2 focus-visible:outline-primary-400"
-            @click="goTo(index)"
-          >
-            <span
-              class="h-2 rounded-full transition-all duration-200 motion-reduce:transition-none"
-              :class="
-                selected === index ? 'w-6 bg-primary-400' : 'w-2 bg-gray-500 hover:bg-gray-300'
-              "
-            />
-          </button>
-        </div>
-        <UButton variant="ghost" class="min-h-11 text-link" @click="showAll = true">
-          View all {{ items.length }}
-        </UButton>
-      </div>
-      <p :id="`${id}-help`" class="deck-navigation mt-1 text-xs text-gray-400">
-        Swipe or use the arrows to explore.
-      </p>
     </template>
   </div>
 </template>

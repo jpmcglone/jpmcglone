@@ -327,7 +327,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       isIndependent: true,
       responsibilities: [
         'Build and run a men-only social media platform, owning the full stack, architecture, and production delivery.',
-        'Built its custom MCP server and use agentic coding with hands-on review throughout development.',
+        'Build and maintain its custom MCP server, using agentic coding with hands-on review throughout development.',
       ],
     },
     {
