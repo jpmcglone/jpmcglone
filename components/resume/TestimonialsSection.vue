@@ -21,7 +21,7 @@
 
     <div class="grid gap-4">
       <UCard
-        v-for="recommendation in sortedRecommendations"
+        v-for="recommendation in recommendations"
         :key="recommendation.author"
         class="dark:bg-gray-800"
       >
@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   recommendations: {
     type: Array,
     required: true,
@@ -91,10 +91,4 @@ const props = defineProps({
     default: '',
   },
 })
-
-const sortedRecommendations = computed(() =>
-  [...props.recommendations].sort((a, b) =>
-    (b.date || `${b.year || '0000'}-01-01`).localeCompare(a.date || `${a.year || '0000'}-01-01`),
-  ),
-)
 </script>

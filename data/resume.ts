@@ -622,6 +622,21 @@ I would strongly recommend John to any team looking for a skilled, driven, and g
         date: '2026-09-22',
       },
       {
+        quote: `I had the pleasure of working with John on the same team, and from the moment I joined the company, it was clear that he was one of the most passionate engineers I had ever worked with.
+
+Beyond his strong technical background, John has an exceptional ability to approach problems from a product perspective, think outside the box, and find practical solutions to complex challenges. This combination makes him a solid engineer. More importantly, John is a great teammate. He is always willing to collaborate, share his knowledge, and support those around him.
+
+I would highly recommend John to any team looking for a strong engineer who combines technical expertise, product thinking, and great collaboration skills.`,
+        author: 'Joan Manrubia Martínez',
+        image: '/images/avatars/joan-manrubia-martinez.webp',
+        title: 'Senior Frontend Engineer',
+        company: 'Rumble',
+        context: 'Worked with John at Rumble',
+        linkedin: 'https://www.linkedin.com/in/joan-manrubia-martinez/',
+        year: '2026',
+        date: '2026-09-23',
+      },
+      {
         quote:
           'I highly recommend John as a very senior engineer. John provided exceptional technical guidance and strategic insights that significantly strengthened our project outcomes. His deep expertise, clear communication, and practical problem-solving approach made him an invaluable asset to our team. I would gladly work with John again on any future engineering initiatives.',
         author: 'Brett Pollan',
