@@ -6,7 +6,11 @@ import { pageMetadata } from '../data/site'
 import { formatExperiencePeriod, formatPeriod, getEndYear } from '../utils/formatters'
 import { parseInlineContent } from '../utils/inlineContent'
 import { profileSchema } from '../utils/profileSchema'
-import { rankSkillCategories, skillMatchesQuery } from '../utils/skillSearch'
+import {
+  rankSkillCategories,
+  skillMatchesQuery,
+  visibleSkillCategories,
+} from '../utils/skillSearch'
 
 describe('skill search', () => {
   const matches = (query: string) =>
@@ -98,5 +102,26 @@ describe('skill icon assets', () => {
       const name = id.slice(prefix.length + 1)
       expect(name in collections[prefix], `Missing ${skill.name} icon: ${id}`).toBe(true)
     }
+  })
+})
+
+describe('progressive skill disclosure', () => {
+  it('keeps the default view compact while preserving every skill in expanded mode', () => {
+    const preview = visibleSkillCategories(resume.technicalSkills, '')
+    expect(preview).toHaveLength(4)
+    expect(preview.flatMap((category) => category.skills).length).toBeLessThan(20)
+    expect(visibleSkillCategories(resume.technicalSkills, '', true)).toBe(resume.technicalSkills)
+  })
+  it('finds hidden skills without expanding and shows only matching results', () => {
+    const names = (query: string) =>
+      visibleSkillCategories(resume.technicalSkills, query).flatMap((category) =>
+        category.skills.map((skill) => skill.name),
+      )
+    expect(names('JSON')).toContain('JSON')
+    expect(names('cursor')).toEqual(['Cursor'])
+    expect(names('notarealskill')).toEqual([])
+    expect(visibleSkillCategories(resume.technicalSkills, 'JSON', true)).toEqual(
+      visibleSkillCategories(resume.technicalSkills, 'JSON'),
+    )
   })
 })

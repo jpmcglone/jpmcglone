@@ -35,6 +35,28 @@
       </span>
     </p>
 
+    <div class="mb-4 flex flex-wrap justify-center gap-3">
+      <UButton
+        v-if="personalInfo.email"
+        :to="`mailto:${personalInfo.email}`"
+        icon="i-heroicons-envelope"
+        size="lg"
+      >
+        Email me
+      </UButton>
+      <UButton
+        to="/resume.pdf"
+        external
+        download="John-P-McGlone-Resume.pdf"
+        icon="i-jpm-document-text"
+        color="neutral"
+        variant="outline"
+        size="lg"
+      >
+        Download PDF
+      </UButton>
+    </div>
+
     <div v-if="hasLinks" class="flex flex-wrap justify-center gap-3">
       <UButton
         v-for="link in links"

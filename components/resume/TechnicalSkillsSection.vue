@@ -25,19 +25,31 @@
       </div>
     </div>
 
-    <p class="mb-4 text-xs text-gray-400">
-      Filled chips highlight my core focus. Muted items reflect historical experience.
-    </p>
+    <div v-if="!searchQuery.trim()" class="mb-4 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-xs text-gray-400">
+        {{
+          showAllSkills
+            ? 'Full skill set. Muted items reflect historical experience.'
+            : 'Core focus. Search the full skill set or expand below.'
+        }}
+      </p>
+      <UButton
+        color="neutral"
+        variant="outline"
+        size="sm"
+        :aria-expanded="showAllSkills"
+        aria-controls="skills-list"
+        @click="showAllSkills = !showAllSkills"
+      >
+        {{ showAllSkills ? 'Show core skills' : `Show all ${totalSkills} skills` }}
+      </UButton>
+    </div>
 
-    <TransitionGroup name="category" tag="div" class="grid md:grid-cols-2 gap-4">
+    <TransitionGroup id="skills-list" name="category" tag="div" class="grid md:grid-cols-2 gap-4">
       <UCard
         v-for="skill in sortedCategories"
         :key="skill.category"
         class="dark:bg-gray-800 transition-all duration-300"
-        :class="{
-          'opacity-20': !categoryMatchesSearch(skill),
-          'scale-[1.02] shadow-lg': categoryMatchesSearch(skill) && searchQuery,
-        }"
       >
         <h3 class="text-base font-medium mb-3 text-gray-900 dark:text-white">
           {{ skill.category }}
@@ -61,8 +73,6 @@
                 : item.historical
                   ? 'bg-gray-800 text-gray-500 ring-1 ring-inset ring-gray-700/50'
                   : 'bg-gray-700/60 text-gray-300',
-              !itemMatchesSearch(item, skill) ? 'opacity-20' : '',
-              itemMatchesSearch(item, skill) && searchQuery ? 'scale-[1.05] shadow-sm' : '',
               hasSkillUrl(item.name) ? 'cursor-pointer hover:-translate-y-0.5' : '',
             ]"
           >
@@ -103,6 +113,10 @@ const props = defineProps({
   },
 })
 
+const showAllSkills = ref(false)
+const totalSkills = computed(() =>
+  props.technicalSkills.reduce((sum, category) => sum + category.skills.length, 0),
+)
 const searchInput = ref('')
 const searchQuery = ref('')
 
@@ -116,7 +130,6 @@ const onSearchInput = (value) => {
 }
 
 const itemMatchesSearch = (item, category) => skillMatchesQuery(item, category, searchQuery.value)
-const categoryMatchesSearch = (category) => skillCategoryMatchesQuery(category, searchQuery.value)
 const matchingSkills = computed(() =>
   props.technicalSkills.reduce(
     (total, category) =>
@@ -131,7 +144,7 @@ const clearSearch = () => {
 }
 
 const sortedCategories = computed(() =>
-  rankSkillCategories(props.technicalSkills, searchQuery.value),
+  visibleSkillCategories(props.technicalSkills, searchQuery.value, showAllSkills.value),
 )
 </script>
 
@@ -149,5 +162,12 @@ const sortedCategories = computed(() =>
 .category-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .category-move,
+  .category-enter-active,
+  .category-leave-active {
+    transition: none;
+  }
 }
 </style>

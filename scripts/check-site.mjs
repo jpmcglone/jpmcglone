@@ -39,3 +39,10 @@ for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8')
 assert.ok(!sitemap.includes('/apps/'))
 assert.equal((await readFile(resolve(root, 'CNAME'), 'utf8')).trim(), 'jpmcglone.com')
+
+const resumeHtml = await readFile(resolve(root, 'resume/index.html'), 'utf8')
+assert.match(resumeHtml, /href="\/resume.pdf"/)
+assert.match(resumeHtml, /href="mailto:jp@jpmcglone.com"/)
+const pdf = await readFile(resolve(root, 'resume.pdf'))
+assert.equal(pdf.subarray(0, 5).toString(), '%PDF-')
+console.log('Resume contact links and PDF asset checks passed')

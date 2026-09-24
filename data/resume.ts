@@ -1,4 +1,4 @@
-import { pageMetadata, siteMetadata, type PageMetadata } from './site'
+import { pageMetadata, siteMetadata, type PageMetadata } from './site.ts'
 
 export interface Skill {
   name: string
@@ -118,11 +118,9 @@ const resumeData: ResumeData = {
     phone: '(631) 943-6889',
     email: 'jp@jpmcglone.com',
     image: siteMetadata.portrait,
-    bio: `I'm a software engineer and technical lead with <strong>16+ years of experience</strong> shipping products people rely on. I've worked on <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and <a href="https://rumble.com" target="_blank" rel="noopener noreferrer">Rumble Video</a> for iOS, and built software at <a href="https://www.docusign.com" target="_blank" rel="noopener noreferrer">DocuSign</a> and <a href="https://imgur.com" target="_blank" rel="noopener noreferrer">Imgur</a>. iPhone is my specialty; full-stack development and product architecture are part of the job.
+    bio: `I'm an iOS engineer and technical lead who takes products from architecture to production. I was the sole iOS developer for <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and contributed substantially to Rumble Video. My work also spans full-stack development and product architecture.
 
-<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex to move quickly, with engineering judgment, code review, and ownership of what ships. I also build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform with its own MCP server.
-
-I like small teams, clear technical direction, and well-made software. I mentor developers, help teams adopt practical AI workflows, and stay involved from the first architectural decision through production.`,
+<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex with hands-on review and ownership of what ships. I build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform. I like lean teams, clear technical direction, and helping other engineers do their best work.`,
   },
   objective:
     "I'm looking for a remote, hands-on lead role: shipping products, guiding a lean team, and helping the right company adopt AI or take its existing work further.",
@@ -327,7 +325,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       isIndependent: true,
       responsibilities: [
         'Build and run a men-only social media platform, owning the full stack, architecture, and production delivery.',
-        'Build and maintain its custom MCP server, using agentic coding with hands-on review throughout development.',
+        'Build and maintain a custom MCP server for admin insights and scheduling posts and newsletters; use agentic coding with hands-on review throughout development.',
       ],
     },
     {
@@ -341,8 +339,9 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       isCurrentRole: false,
       responsibilities: [
         'Sole iOS developer for Rumble Studio, owning development and delivery across iPhone, iPad, and Vision Pro',
-        'Integrated LiveKit to enable studio-quality conference calls and multi-platform streaming with precise media synchronization',
+        'Partnered closely with design to raise the quality of the mobile experience and turn ambitious product ideas into shipped iOS features',
         'Delivered substantial iOS development for Rumble Video alongside sole ownership of Studio',
+        'Integrated LiveKit for conference calls and multi-platform streaming with synchronized audio and video',
         {
           text: "Supported frontend development for Rumble's Advertising Center (RAC)",
           highlighted: false,
@@ -357,8 +356,8 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       period: '2022 - 2023',
       isRemote: true,
       responsibilities: [
-        'Developed a social audio and video platform from the ground up, scaling to thousands of users and facilitating a successful acquisition',
-        'Implemented ultra-low latency audio streaming using Agora.io, ensuring <100ms delay across a global user base',
+        'Developed a social audio and video platform from the ground up',
+        'Implemented low-latency audio streaming using Agora.io',
         'Built an advanced audio-transcript synchronization system with custom scrubbing and playback controls',
         {
           text: 'Designed a state management system to handle complex real-time user interactions efficiently',
@@ -396,7 +395,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       isRemote: true,
       responsibilities: [
         'Revamped mobile development workflow by implementing modern CI/CD practices across platforms',
-        'Reduced deployment times by 40% through Azure DevOps optimizations and parallel build processes',
+        'Optimized Azure DevOps pipelines and parallelized build processes',
         {
           text: 'Designed a modular white-label solution to enable rapid customization of pharmacy applications',
           highlighted: false,
@@ -416,7 +415,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       isContract: true,
       isRemote: true,
       responsibilities: [
-        'Developed high-performance SwiftUI charts rendering real-time glucose data with smooth 60fps animations',
+        'Developed SwiftUI charts for real-time glucose data with smooth animations',
         'Implemented a reliable BLE connection handler with automatic reconnection and background updates',
         'Led the migration from RxSwift to Combine, improving code maintainability and reducing compile times',
         {
@@ -445,7 +444,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       period: '2019 - 2020',
       responsibilities: [
         'Developed a SwiftUI-based app using MVVM and dependency injection for improved testability',
-        'Optimized CI/CD pipeline in CircleCI, reducing build times from 45 to 15 minutes',
+        'Optimized the CircleCI pipeline to streamline builds and releases',
         {
           text: 'Designed a thread-safe logging system leveraging Combine for precise debugging across async operations',
           highlighted: false,
@@ -467,7 +466,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
           highlighted: false,
         },
         {
-          text: 'Maintained a perfect track record of on-time delivery across multiple client projects',
+          text: 'Delivered mobile applications across multiple client projects',
           highlighted: false,
         },
       ],
@@ -480,10 +479,10 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       period: '2017 - 2019',
       isRemote: true,
       responsibilities: [
-        'Developed a healthcare eligibility SDK processing millions of checks with 99.9% uptime',
+        'Developed a healthcare eligibility SDK for insurance coverage checks',
         'Led technical integration calls, assisting major healthcare providers in adopting our SDK',
         {
-          text: 'Designed a mock data system that reduced QA cycles from days to hours',
+          text: 'Designed a mock data system to support faster, repeatable QA',
           highlighted: false,
         },
         {
@@ -500,10 +499,10 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       period: '2016 - 2017',
       isDefunct: true,
       responsibilities: [
-        'Refactored messaging SDK architecture, increasing developer adoption by 35%',
-        'Scaled the SDK to handle millions of daily messages across major applications',
+        'Refactored messaging SDK architecture to simplify integration',
+        'Improved messaging SDK performance and reliability',
         {
-          text: 'Developed comprehensive SDK examples, reducing integration support tickets by 40%',
+          text: 'Developed SDK examples to help developers integrate and troubleshoot',
           highlighted: false,
         },
         {
@@ -519,10 +518,10 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       title: 'Senior iOS Developer',
       period: '2015 - 2015',
       responsibilities: [
-        'Engineered a high-performance UICollectionView-based grid supporting thousands of images with smooth scrolling',
-        'Developed Hermes, an in-app notification framework that reduced crash rates from 2% to 0.2%',
+        'Engineered a UICollectionView-based image grid with smooth scrolling',
+        'Developed Hermes, an in-app notification framework',
         {
-          text: 'Implemented advanced analytics and crash reporting, achieving 99.9% app stability',
+          text: 'Implemented analytics and crash reporting to identify and resolve stability issues',
           highlighted: false,
         },
         {
@@ -538,8 +537,8 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       title: 'iOS Developer',
       period: '2013 - 2014',
       responsibilities: [
-        'Implemented StoreKit-based in-app purchases, increasing subscription revenue by 25%',
-        'Optimized app size by 40% through a dynamic content loading system',
+        'Implemented StoreKit-based in-app purchases for subscriptions',
+        'Implemented dynamic content loading to reduce app size',
         {
           text: 'Built a modular styling framework to standardize UI development across teams',
           highlighted: false,
@@ -576,7 +575,7 @@ I like small teams, clear technical direction, and well-made software. I mentor 
       period: '2009 - 2011',
       isContract: true,
       responsibilities: [
-        `Built <a href="https://www.pulsepoint.org/" target="_blank" rel="noopener noreferrer">PulsePoint</a> (originally firedepartment.mobi), a first-responder geolocation app now used by hundreds of fire departments nationwide`,
+        `Built <a href="https://www.pulsepoint.org/" target="_blank" rel="noopener noreferrer">PulsePoint</a> (originally firedepartment.mobi), a first-responder geolocation app`,
         {
           text: 'Developed various mobile apps and web applications for local and regional clients',
           highlighted: false,
