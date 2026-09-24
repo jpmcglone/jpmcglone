@@ -46,7 +46,7 @@ export function visibleSkillCategories(
     'AI & Agentic Development',
     'iOS Frameworks',
     'Architecture & Patterns',
-    'Web Frameworks',
+    'APIs & Data Formats',
   ])
   return categories
     .filter((category) => core.has(category.category))

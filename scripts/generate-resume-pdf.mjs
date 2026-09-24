@@ -16,7 +16,7 @@ const doc = new PDFDocument({
     Subject: resume.personalInfo.title,
     Keywords: 'iOS, technical leadership, AI, Swift, MCP, full-stack',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-09-23T00:00:00Z'),
+    ModDate: new Date('2026-09-24T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -48,7 +48,7 @@ const period = (value) => {
   const [start, end] = value.split(' - ')
   return start === end ? start : value.replace(' - ', '–')
 }
-function job(entry, count) {
+function job(entry, indices) {
   const y = doc.y
   doc
     .font('Helvetica-Bold')
@@ -66,7 +66,7 @@ function job(entry, count) {
     { lineGap: 0 },
   )
   doc.y += 4
-  for (const item of entry.responsibilities.slice(0, count)) {
+  for (const item of indices.map((index) => entry.responsibilities[index])) {
     const text = typeof item === 'string' ? item : item.text
     const y = doc.y
     doc.font('Helvetica').fontSize(10).fillColor('#263447').text('•', 46, y)
@@ -85,16 +85,26 @@ section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))
 doc.y += 5
 body(resume.objective)
-section('Core skills')
-body('iOS: Swift, SwiftUI, UIKit, Swift concurrency · Architecture & full-stack development')
-body('AI: Cursor, ChatGPT Codex, Claude, agentic coding, MCP servers · Web: Nuxt, Vue, TypeScript')
+section('Technical Skills')
+body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, Combine, XCTest')
+body('Architecture: MVVM, dependency injection, reusable components, SDK development, API design')
+body('Media & delivery: LiveKit, Agora, real-time audio/video, networking, persistence, CI/CD')
+body('AI-assisted development: Cursor, ChatGPT Codex, Claude, MCP servers, hands-on code review')
 section('Experience')
-const bulletCounts = { 'Men of Hunger': 2, Rumble: 3, Callin: 2, Eligible: 2, DocuSign: 2 }
-resume.experience.slice(0, 5).forEach((entry) => job(entry, bulletCounts[entry.company] || 1))
+// Select relevant evidence from the same responsibilities shown on the website.
+const bulletIndices = {
+  'Men of Hunger': [0, 1],
+  Rumble: [0, 1, 3],
+  Callin: [0, 1],
+  'Rite Aid': [3],
+  Eligible: [0, 1],
+  DocuSign: [0, 1],
+}
+resume.experience.slice(0, 5).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
 doc.addPage()
 doc.font('Helvetica-Bold').fontSize(13).fillColor('#142337').text(person.name)
 section('Experience continued')
-resume.experience.slice(5).forEach((entry) => job(entry, bulletCounts[entry.company] || 1))
+resume.experience.slice(5).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
 section('Education')
 body(`${resume.education.school} · ${period(resume.education.period)}`)
 body(`${resume.education.degree} · ${resume.education.studies}`)

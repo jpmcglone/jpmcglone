@@ -116,12 +116,12 @@ const resumeData: ResumeData = {
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I'm an iOS engineer and technical lead who takes products from architecture to production. I was the sole iOS developer for <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and contributed substantially to Rumble Video. My work also spans full-stack development and product architecture.
+    bio: `I'm an iOS and product engineer with deep experience in <strong>Swift, SwiftUI, and UIKit</strong>, taking products from architecture to production. I was the sole iOS developer for <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and contributed substantially to Rumble Video. My work spans real-time audio/video, SDK and API development, and full-stack architecture.
 
-<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex with hands-on review and ownership of what ships. I build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform. I like lean teams, clear technical direction, and helping other engineers do their best work.`,
+<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex with hands-on code review. I build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform. I value close collaboration with design, mentoring engineers, and ownership of what ships.`,
   },
   objective:
-    "I'm looking for a remote, hands-on lead role: shipping products, guiding a lean team, and helping the right company adopt AI or take its existing work further.",
+    "I'm looking for a remote senior or lead engineering role with hands-on product ownership, technical direction, and practical AI-assisted development.",
   technicalSkills: [
     {
       category: 'AI & Agentic Development',
@@ -163,7 +163,11 @@ const resumeData: ResumeData = {
         { name: 'Combine' },
         { name: 'SnapKit' },
         { name: 'Lottie' },
-        { name: 'LiveKit' },
+        {
+          name: 'LiveKit',
+          featured: true,
+          keywords: ['real-time audio', 'video', 'media', 'streaming'],
+        },
         { name: 'FLAnimatedImage', historical: true, keywords: ['historical', 'legacy'] },
         { name: 'Apollo (GraphQL)' },
       ],
@@ -254,7 +258,7 @@ const resumeData: ResumeData = {
     },
     {
       category: 'APIs & Data Formats',
-      keywords: ['API', 'SDK', 'integration'],
+      keywords: ['API', 'SDK', 'integration', 'reusable components', 'platform development'],
       skills: [
         { name: 'API Design', featured: true },
         { name: 'SDK Development', featured: true },
