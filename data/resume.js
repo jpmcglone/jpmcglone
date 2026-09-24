@@ -6,9 +6,9 @@ export default {
     "workPreference": "Remote",
     "phone": "(631) 943-6889",
     "image": "/images/johnmcglone.webp",
-    "bio": "I'm an iOS and product engineer with deep experience in <strong>Swift, SwiftUI, and UIKit</strong>, taking products from architecture to production. I was the sole iOS developer for <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> and contributed substantially to Rumble Video. My work spans real-time audio/video, SDK and API development, and full-stack architecture.\n\n<strong>AI is central to how I work.</strong> I use <a href=\"https://cursor.com\" target=\"_blank\" rel=\"noopener noreferrer\">Cursor</a> and ChatGPT Codex with hands-on code review. I build and run <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a>, a men-only social media platform. I value close collaboration with design, mentoring engineers, and ownership of what ships."
+    "bio": "I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.\n\n<strong>AI expands what I can deliver.</strong> I build <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a> across its API, web, and iOS apps using agentic coding, architectural judgment, and hands-on review. I work closely with design, mentor engineers, and take responsibility for what ships."
   },
-  objective: "I'm looking for a remote senior or lead engineering role with hands-on product ownership, technical direction, and practical AI-assisted development.",
+  objective: "I'm looking for a remote senior or lead role owning the engineering of a product and helping a lean team ship quickly and reliably. I'm open to technical leadership and people management.",
   technicalSkills: [
     {
       "category": "AI & Agentic Development",
