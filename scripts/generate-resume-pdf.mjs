@@ -79,9 +79,7 @@ const person = resume.personalInfo
 doc.font('Helvetica-Bold').fontSize(26).fillColor('#142337').text(person.name)
 doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
-body(`${person.location} · Open to remote roles · ${person.email}`, {
-  link: `mailto:${person.email}`,
-})
+body(`${person.location} · Open to remote roles`)
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
 section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))

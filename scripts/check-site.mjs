@@ -5,6 +5,11 @@ import { resolve } from 'node:path'
 const root = resolve(process.argv[2] || '.output/public')
 for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
   const html = await readFile(resolve(root, route, 'index.html'), 'utf8')
+  assert.doesNotMatch(
+    html,
+    /mailto:|["']email["']\s*:/,
+    'Public pages must not expose an email address',
+  )
   const isPublic = !route.startsWith('apps/')
   assert.match(
     html,
@@ -42,7 +47,7 @@ assert.equal((await readFile(resolve(root, 'CNAME'), 'utf8')).trim(), 'jpmcglone
 
 const resumeHtml = await readFile(resolve(root, 'resume/index.html'), 'utf8')
 assert.match(resumeHtml, /href="\/resume.pdf"/)
-assert.match(resumeHtml, /href="mailto:jp@jpmcglone.com"/)
+assert.doesNotMatch(resumeHtml, /mailto:|Email me/)
 const pdf = await readFile(resolve(root, 'resume.pdf'))
 assert.equal(pdf.subarray(0, 5).toString(), '%PDF-')
 console.log('Resume contact links and PDF asset checks passed')

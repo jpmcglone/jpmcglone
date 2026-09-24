@@ -37,14 +37,6 @@
 
     <div class="mb-4 flex flex-wrap justify-center gap-3">
       <UButton
-        v-if="personalInfo.email"
-        :to="`mailto:${personalInfo.email}`"
-        icon="i-heroicons-envelope"
-        size="lg"
-      >
-        Email me
-      </UButton>
-      <UButton
         to="/resume.pdf"
         external
         download="John-P-McGlone-Resume.pdf"

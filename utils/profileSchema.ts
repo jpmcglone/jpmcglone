@@ -15,7 +15,6 @@ export function profileSchema(page: PageMetadata) {
         jobTitle: siteMetadata.role,
         url: `${siteMetadata.url}/`,
         image: new URL(siteMetadata.portrait, siteMetadata.url).href,
-        email: siteMetadata.email,
         description:
           'Lead iOS and product engineer with 16+ years of experience. Full-stack architecture, AI-assisted engineering, and mentoring small teams.',
         homeLocation: { '@type': 'Place', name: siteMetadata.location },

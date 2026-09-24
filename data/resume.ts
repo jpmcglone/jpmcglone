@@ -87,7 +87,6 @@ export interface ResumeData {
     location: string
     workPreference?: string
     phone?: string
-    email?: string
     image?: string
     bio?: string
   }
@@ -116,7 +115,6 @@ const resumeData: ResumeData = {
     location: siteMetadata.location,
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
-    email: 'jp@jpmcglone.com',
     image: siteMetadata.portrait,
     bio: `I'm an iOS engineer and technical lead who takes products from architecture to production. I was the sole iOS developer for <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and contributed substantially to Rumble Video. My work also spans full-stack development and product architecture.
 

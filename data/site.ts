@@ -12,7 +12,6 @@ export const siteMetadata = {
   location: 'Roanoke, VA',
   workPreference: 'Remote',
   portrait: '/images/johnmcglone.webp',
-  email: 'jp@jpmcglone.com',
   url: 'https://jpmcglone.com',
   handle: '@jpmcglone',
   image: '/images/social-card.png',
