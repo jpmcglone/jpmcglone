@@ -5,7 +5,6 @@ export default {
     "location": "Roanoke, VA",
     "workPreference": "Remote",
     "phone": "(631) 943-6889",
-    "email": "jp@jpmcglone.com",
     "image": "/images/johnmcglone.webp",
     "bio": "I'm an iOS engineer and technical lead who takes products from architecture to production. I was the sole iOS developer for <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> and contributed substantially to Rumble Video. My work also spans full-stack development and product architecture.\n\n<strong>AI is central to how I work.</strong> I use <a href=\"https://cursor.com\" target=\"_blank\" rel=\"noopener noreferrer\">Cursor</a> and ChatGPT Codex with hands-on review and ownership of what ships. I build and run <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a>, a men-only social media platform. I like lean teams, clear technical direction, and helping other engineers do their best work."
   },
