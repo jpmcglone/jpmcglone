@@ -81,6 +81,8 @@ doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
 body(`${person.location} · Open to remote roles`)
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
+const linkedIn = resume.links.find((link) => link.name === 'LinkedIn')
+if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })
 section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))
 doc.y += 5
@@ -93,18 +95,20 @@ body('AI-assisted development: Cursor, ChatGPT Codex, Claude, MCP servers, hands
 section('Experience')
 // Select relevant evidence from the same responsibilities shown on the website.
 const bulletIndices = {
-  'Men of Hunger': [0, 1],
-  Rumble: [0, 1, 3],
+  'Men of Hunger': [0, 2, 3],
+  Rumble: [0, 1, 2, 3],
   Callin: [0, 1],
   'Rite Aid': [3],
   Eligible: [0, 1],
   DocuSign: [0, 1],
 }
-resume.experience.slice(0, 5).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
+resume.experience.slice(0, 4).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
 doc.addPage()
 doc.font('Helvetica-Bold').fontSize(13).fillColor('#142337').text(person.name)
 section('Experience continued')
-resume.experience.slice(5).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
+resume.experience
+  .slice(4)
+  .forEach((entry, index) => job(entry, index >= 7 ? [] : bulletIndices[entry.company] || [0]))
 section('Education')
 body(`${resume.education.school} · ${period(resume.education.period)}`)
 body(`${resume.education.degree} · ${resume.education.studies}`)

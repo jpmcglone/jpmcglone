@@ -116,12 +116,12 @@ const resumeData: ResumeData = {
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I'm an iOS and product engineer with deep experience in <strong>Swift, SwiftUI, and UIKit</strong>, taking products from architecture to production. I was the sole iOS developer for <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> and contributed substantially to Rumble Video. My work spans real-time audio/video, SDK and API development, and full-stack architecture.
+    bio: `I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.
 
-<strong>AI is central to how I work.</strong> I use <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a> and ChatGPT Codex with hands-on code review. I build and run <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a men-only social media platform. I value close collaboration with design, mentoring engineers, and ownership of what ships.`,
+<strong>AI expands what I can deliver.</strong> I build <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a> across its API, web, and iOS apps using agentic coding, architectural judgment, and hands-on review. I work closely with design, mentor engineers, and take responsibility for what ships.`,
   },
   objective:
-    "I'm looking for a remote senior or lead engineering role with hands-on product ownership, technical direction, and practical AI-assisted development.",
+    "I'm looking for a remote senior or lead role owning the engineering of a product and helping a lean team ship quickly and reliably. I'm open to technical leadership and people management.",
   technicalSkills: [
     {
       category: 'AI & Agentic Development',
@@ -326,23 +326,25 @@ const resumeData: ResumeData = {
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
-        'Build and run a men-only social media platform, owning the full stack, architecture, and production delivery.',
-        'Build and maintain a custom MCP server for admin insights and scheduling posts and newsletters; use agentic coding with hands-on review throughout development.',
+        'Own the architecture and development of a men-only social media platform across its API, web, and iOS apps, using agentic coding with hands-on review.',
+        'Build posts, chats, video calls, and voice messages across the product.',
+        'Build “Catch me up,” an AI feature that summarizes long conversations using thread content, images, and public-profile context.',
+        'Build and maintain a custom MCP server for admin insights and scheduling posts and newsletters.',
       ],
     },
     {
       company: 'Rumble',
       logo: '/images/logos/rumble.png',
       url: 'https://rumble.com',
-      title: 'Lead iOS Developer · Studio & Video',
+      title: 'Lead iOS Developer (Studio) · Senior iOS Developer (Video)',
       period: '2023 - 2026',
       endDate: '2026-09-22',
       isRemote: true,
       isCurrentRole: false,
       responsibilities: [
-        'Sole iOS developer for Rumble Studio, owning development and delivery across iPhone, iPad, and Vision Pro',
+        'Sole iOS developer for Rumble Studio: built the app from scratch through launch and maintained every subsequent update across iPhone, iPad, and Vision Pro',
         'Partnered closely with design to raise the quality of the mobile experience and turn ambitious product ideas into shipped iOS features',
-        'Delivered substantial iOS development for Rumble Video alongside sole ownership of Studio',
+        'Contributed to Rumble Video as a senior iOS developer alongside sole ownership of Studio',
         'Integrated LiveKit for conference calls and multi-platform streaming with synchronized audio and video',
         {
           text: "Supported frontend development for Rumble's Advertising Center (RAC)",

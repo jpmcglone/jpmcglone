@@ -17,6 +17,11 @@
 
         <USeparator v-if="!resumeData.objective" />
 
+        <!-- Experience -->
+        <ResumeExperienceSection v-if="resumeData.experience" :experience="resumeData.experience" />
+
+        <USeparator v-if="resumeData.experience" />
+
         <!-- Featured Projects -->
         <ResumeFeaturedProjectsSection
           v-if="resumeData.projects?.length"
@@ -24,15 +29,6 @@
         />
 
         <USeparator v-if="resumeData.projects?.length" />
-
-        <!-- Recommendations -->
-        <ResumeTestimonialsSection
-          v-if="resumeData.recommendations?.items?.length"
-          :recommendations="resumeData.recommendations.items"
-          :recommendations-url="resumeData.recommendations.url"
-        />
-
-        <USeparator v-if="resumeData.recommendations?.items?.length" />
 
         <!-- Technical Skills -->
         <ResumeTechnicalSkillsSection
@@ -42,10 +38,14 @@
 
         <USeparator v-if="resumeData.technicalSkills" />
 
-        <!-- Experience -->
-        <ResumeExperienceSection v-if="resumeData.experience" :experience="resumeData.experience" />
+        <!-- Recommendations -->
+        <ResumeTestimonialsSection
+          v-if="resumeData.recommendations?.items?.length"
+          :recommendations="resumeData.recommendations.items"
+          :recommendations-url="resumeData.recommendations.url"
+        />
 
-        <USeparator v-if="resumeData.experience" />
+        <USeparator v-if="resumeData.recommendations?.items?.length" />
 
         <!-- Education -->
         <ResumeEducationSection v-if="resumeData.education" :education="resumeData.education" />
@@ -73,15 +73,11 @@ const sections = computed(() => {
   if (resumeData.personalInfo?.bio) {
     availableSections.push({ id: 'about', label: 'About', icon: 'i-jpm-user' })
   }
+  if (resumeData.experience?.length) {
+    availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-jpm-briefcase' })
+  }
   if (resumeData.projects?.length) {
     availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-jpm-rocket-launch' })
-  }
-  if (resumeData.recommendations?.items?.length) {
-    availableSections.push({
-      id: 'recommendations',
-      label: 'Recommendations',
-      icon: 'i-jpm-chat-bubble-bottom-center-text',
-    })
   }
   if (resumeData.technicalSkills?.length) {
     availableSections.push({
@@ -90,8 +86,12 @@ const sections = computed(() => {
       icon: 'i-jpm-code-bracket',
     })
   }
-  if (resumeData.experience?.length) {
-    availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-jpm-briefcase' })
+  if (resumeData.recommendations?.items?.length) {
+    availableSections.push({
+      id: 'recommendations',
+      label: 'Recommendations',
+      icon: 'i-jpm-chat-bubble-bottom-center-text',
+    })
   }
   if (resumeData.education) {
     availableSections.push({
