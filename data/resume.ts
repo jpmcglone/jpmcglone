@@ -28,6 +28,7 @@ export interface Experience {
   isIndependent?: boolean
   isContract?: boolean
   isDefunct?: boolean
+  acquiredBy?: { name: string; logo: string; date: string; note?: string }
   appStore?: Link[]
   responsibilities: Responsibility[]
 }
@@ -379,10 +380,15 @@ const resumeData: ResumeData = {
     {
       company: 'Callin',
       logo: '/images/logos/callin.png',
-      url: 'https://callin.com',
       title: 'Lead iOS Developer',
       period: '2022 - 2023',
       isRemote: true,
+      acquiredBy: {
+        name: 'Rumble',
+        logo: '/images/logos/rumble.png',
+        date: 'May 2023',
+        note: 'The Callin app has since been sunset.',
+      },
       responsibilities: [
         'Developed a social audio and video platform from the ground up',
         'Implemented low-latency audio streaming using Agora.io',

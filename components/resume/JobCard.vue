@@ -60,6 +60,23 @@
                   >
                     closed
                   </span>
+                  <UTooltip
+                    v-if="job.acquiredBy"
+                    :text="`Acquired by ${job.acquiredBy.name} in ${job.acquiredBy.date}. ${job.acquiredBy.note ?? ''}`"
+                  >
+                    <span
+                      class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 py-0.5 pl-0.5 pr-2 text-[11px] font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
+                    >
+                      <img
+                        :src="job.acquiredBy.logo"
+                        alt=""
+                        width="16"
+                        height="16"
+                        class="size-4 rounded-full"
+                      />
+                      Acquired by {{ job.acquiredBy.name }} · {{ job.acquiredBy.date }}
+                    </span>
+                  </UTooltip>
                 </h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   {{ job.title }}
