@@ -15,6 +15,7 @@
         <a
           href="#building"
           class="hidden text-sm font-medium text-gray-300 hover:text-white sm:inline"
+          @click.prevent="scrollToSection('building')"
         >
           Projects
         </a>
@@ -314,6 +315,14 @@ const recommendation = resumeData.recommendations.items.find(
   (item) => item.author === personalInfo.featuredRecommendation.author,
 )
 const recommendationCount = resumeData.recommendations.items.length
+
+const motionPreference = usePreferredReducedMotion()
+function scrollToSection(id) {
+  const section = document.getElementById(id)
+  if (!section) return
+  section.scrollIntoView({ behavior: motionPreference.value === 'reduce' ? 'instant' : 'smooth' })
+  history.replaceState(null, '', `#${id}`)
+}
 </script>
 
 <style scoped>
