@@ -25,6 +25,8 @@ export interface IndexData {
     description: string
     highlight: string
     offTheClock: Tag[]
+    previouslyAt: { company: string; label: string }[]
+    featuredRecommendation: { author: string; excerpt: string }
     socialLinks: SocialLink[]
   }
   resume: {
@@ -46,6 +48,17 @@ const indexData: IndexData = {
     description: 'I build products, mentor engineers, and help small teams ship with AI.',
     highlight:
       'Built <a href="https://studio.rumble.com">Rumble Studio</a> for iOS solo, from scratch through launch.',
+    previouslyAt: [
+      { company: 'Rumble', label: 'Rumble' },
+      { company: 'Walmart Labs', label: 'Walmart' },
+      { company: 'DocuSign', label: 'DocuSign' },
+      { company: 'Workday', label: 'Workday' },
+    ],
+    featuredRecommendation: {
+      author: 'Tim Cook',
+      excerpt:
+        'John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work.',
+    },
     offTheClock: [
       {
         label: 'Husband',
