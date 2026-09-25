@@ -38,7 +38,7 @@
       <div>
         <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
         <div
-          v-for="(job, index) in pastRoles"
+          v-for="(job, index) in visiblePastRoles"
           :key="job.company"
           :class="gapBefore(job, index, pastRoles)"
         >
@@ -48,6 +48,71 @@
             :is-current-role="false"
           />
         </div>
+
+        <template v-if="earlierRoles.length">
+          <div class="mt-8 pr-16 md:pr-20 print:hidden">
+            <button
+              type="button"
+              class="group flex w-full items-center gap-4 rounded-2xl border border-dashed border-gray-600 bg-gray-900/60 px-4 py-3 text-left transition-colors hover:border-gray-400 hover:bg-gray-800/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+              :aria-expanded="expanded"
+              aria-controls="earlier-experience"
+              @click="expanded = !expanded"
+            >
+              <span v-if="!expanded" aria-hidden="true" class="flex shrink-0 -space-x-2">
+                <UAvatar
+                  v-for="job in earlierLogos"
+                  :key="job.company"
+                  :src="job.logo"
+                  :alt="job.company"
+                  size="sm"
+                  class="company-logo ring-2 ring-gray-900"
+                  :ui="{ root: 'company-logo' }"
+                />
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-sm font-semibold text-gray-100">
+                  {{ expanded ? 'Show fewer roles' : `Show ${earlierRoles.length} more roles` }}
+                </span>
+                <span v-if="!expanded" class="block text-xs text-gray-400">
+                  {{ earlierSpan }}
+                </span>
+              </span>
+              <UIcon
+                name="i-jpm-arrow-right"
+                class="size-4 shrink-0 text-link transition-transform duration-300 motion-reduce:transition-none"
+                :class="expanded ? '-rotate-90' : 'rotate-90'"
+              />
+            </button>
+          </div>
+
+          <div
+            id="earlier-experience"
+            class="grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none print:grid-rows-[1fr]"
+            :class="expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+            :inert="!expanded"
+          >
+            <div class="-mx-3 min-h-0 overflow-hidden print:overflow-visible">
+              <div class="px-3 pb-3">
+                <div
+                  v-for="(job, index) in earlierRoles"
+                  :key="job.company"
+                  class="transition duration-500 ease-out motion-reduce:transition-none print:translate-y-0 print:opacity-100"
+                  :class="[
+                    gapBefore(job, index + visiblePastCount, pastRoles),
+                    expanded ? 'translate-y-0 opacity-100' : '-translate-y-3 opacity-0',
+                  ]"
+                  :style="{ transitionDelay: expanded ? `${Math.min(index, 8) * 60}ms` : '0ms' }"
+                >
+                  <ResumeJobCard
+                    :job="job"
+                    :should-show-year="shouldShowYear(job, index + visiblePastCount, pastRoles)"
+                    :is-current-role="false"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -64,6 +129,19 @@ const props = defineProps({
 const currentRoles = computed(() => props.experience.filter((job) => job.isCurrentRole) || [])
 
 const pastRoles = computed(() => props.experience.filter((job) => !job.isCurrentRole) || [])
+
+const visiblePastCount = 2
+const visiblePastRoles = computed(() => pastRoles.value.slice(0, visiblePastCount))
+const earlierRoles = computed(() => pastRoles.value.slice(visiblePastCount))
+const earlierLogos = computed(() => earlierRoles.value.filter((job) => job.logo).slice(0, 6))
+const earlierSpan = computed(() => {
+  const roles = earlierRoles.value
+  if (!roles.length) return ''
+  const start = roles.at(-1).period.split(' - ')[0]
+  const end = getEndYear(roles[0].period)
+  return start === end ? start : `${start}–${end}`
+})
+const expanded = ref(false)
 
 const shouldShowYear = (job, index, roles) => {
   if (index === 0) return true
