@@ -21,6 +21,7 @@ export interface IndexData {
     username: string
     title: string
     avatar: string
+    portrait: string
     availability: string
     headline: string
     pitch: string
@@ -45,6 +46,7 @@ const indexData: IndexData = {
     username: '@jpmcglone',
     title: siteMetadata.role,
     avatar: siteMetadata.portrait,
+    portrait: '/images/johnmcglone-portrait.webp',
     availability: 'Open to senior & lead roles',
     headline: 'The iOS engineer who owns the whole product.',
     pitch:
@@ -106,7 +108,7 @@ const indexData: IndexData = {
   },
   resume: {
     buttonText: 'View Resume',
-    link: '/resume',
+    link: '/resume/',
   },
   meta: pageMetadata.home,
 }

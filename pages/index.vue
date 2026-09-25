@@ -44,10 +44,15 @@
             {{ personalInfo.workPreference }}
           </span>
         </p>
-        <h1
-          class="text-[40px] font-semibold leading-[1.08] tracking-tight text-gray-50 sm:text-5xl lg:text-6xl"
-        >
-          {{ personalInfo.headline }}
+        <h1 class="flex flex-col gap-4">
+          <span class="text-base font-medium text-gray-300 sm:text-lg">
+            {{ personalInfo.name }}, {{ personalInfo.title }}
+          </span>
+          <span
+            class="text-[40px] font-semibold leading-[1.08] tracking-tight text-gray-50 sm:text-5xl lg:text-6xl"
+          >
+            {{ personalInfo.headline }}
+          </span>
         </h1>
         <p class="max-w-xl text-[17px] leading-relaxed text-gray-300 sm:text-lg">
           {{ personalInfo.pitch }}
@@ -97,7 +102,7 @@
 
       <div class="relative mx-auto w-full max-w-[440px]">
         <img
-          :src="personalInfo.avatar"
+          :src="personalInfo.portrait"
           :alt="`Portrait of ${personalInfo.name}`"
           width="440"
           height="500"
@@ -226,7 +231,7 @@
           </span>
         </span>
         <NuxtLink
-          to="/resume#recommendations"
+          to="/resume/#recommendations"
           class="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-link"
         >
           All {{ recommendationCount }} recommendations

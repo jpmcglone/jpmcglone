@@ -14,10 +14,19 @@ export function profileSchema(page: PageMetadata) {
         alternateName: ['JP McGlone', 'jpmcglone', 'John McGlone', 'John P McGlone'],
         jobTitle: siteMetadata.role,
         url: `${siteMetadata.url}/`,
-        image: new URL(siteMetadata.portrait, siteMetadata.url).href,
+        image: new URL('/images/johnmcglone-portrait.webp', siteMetadata.url).href,
         description:
-          'Lead iOS and product engineer with 16+ years of experience. Full-stack architecture, AI-assisted engineering, and mentoring small teams.',
-        homeLocation: { '@type': 'Place', name: siteMetadata.location },
+          'Lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Built Rumble Studio solo and builds Men of Hunger and Greenlane.',
+        homeLocation: {
+          '@type': 'Place',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Roanoke',
+            addressRegion: 'VA',
+            addressCountry: 'US',
+          },
+        },
+        alumniOf: { '@type': 'CollegeOrUniversity', name: 'Nassau Community College' },
         sameAs: [
           'https://github.com/jpmcglone',
           'https://www.linkedin.com/in/john-p-mcglone-18513014',
@@ -26,6 +35,7 @@ export function profileSchema(page: PageMetadata) {
           'iOS',
           'Swift',
           'SwiftUI',
+          'UIKit',
           'Full-stack development',
           'Software architecture',
           'Agentic coding',

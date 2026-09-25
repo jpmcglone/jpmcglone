@@ -25,29 +25,29 @@ export const pageMetadata = {
   home: {
     title: 'John P. McGlone — Lead iOS & Product Engineer',
     description:
-      'John P. McGlone is a lead iOS and product engineer in Roanoke, VA, seeking remote work. 16+ years shipping products, full-stack architecture, and AI-assisted delivery.',
+      'Lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Built Rumble Studio solo. Open to senior and lead remote roles.',
     path: '/',
     type: 'profile',
   },
   resume: {
     title: 'Résumé — John P. McGlone | Lead iOS & Product Engineer',
     description:
-      'Explore John P. McGlone’s work on Rumble Studio, Rumble Video, Men of Hunger, and Greenlane. iOS expertise, full-stack engineering, MCP servers, and AI-assisted delivery.',
-    path: '/resume',
+      'Résumé of John P. McGlone: 16+ years of iOS, from Rumble Studio and Rumble Video to Men of Hunger and Greenlane. Downloadable PDF included.',
+    path: '/resume/',
     type: 'profile',
   },
   reader: {
     title: 'Lyrics Reader — John P. McGlone',
     description:
       'A personal lyrics reader with line-by-line presentation, section navigation, and keyboard controls.',
-    path: '/apps/reader',
+    path: '/apps/reader/',
     unlisted: true,
   },
   ageCalculator: {
     title: 'Age Calculator — John P. McGlone',
     description:
       'Calculate ages in years, months, weeks, and days, with current periods and a visual life-in-years grid.',
-    path: '/apps/deathcalculator',
+    path: '/apps/deathcalculator/',
     unlisted: true,
   },
 } satisfies Record<string, PageMetadata>

@@ -13,7 +13,9 @@ for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
   const isPublic = !route.startsWith('apps/')
   assert.match(
     html,
-    new RegExp(`<link[^>]+rel="canonical"[^>]+href="https://jpmcglone.com/${route}"`),
+    new RegExp(
+      `<link[^>]+rel="canonical"[^>]+href="https://jpmcglone.com/${route && `${route}/`}"`,
+    ),
   )
   assert.match(html, /<meta name="description" content="[^"]+"/)
   assert.match(
@@ -43,6 +45,10 @@ for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
 }
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8')
 assert.ok(!sitemap.includes('/apps/'))
+assert.ok(
+  sitemap.includes('<loc>https://jpmcglone.com/resume/</loc>'),
+  'Sitemap must avoid redirects',
+)
 assert.equal((await readFile(resolve(root, 'CNAME'), 'utf8')).trim(), 'jpmcglone.com')
 
 const resumeHtml = await readFile(resolve(root, 'resume/index.html'), 'utf8')
