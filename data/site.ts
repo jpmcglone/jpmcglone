@@ -23,9 +23,9 @@ export const siteMetadata = {
 
 export const pageMetadata = {
   home: {
-    title: 'John P. McGlone — Lead iOS & Product Engineer',
+    title: 'John P. McGlone (JP McGlone) — Lead iOS & Product Engineer',
     description:
-      'Lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Built Rumble Studio solo. Open to senior and lead remote roles.',
+      'JP McGlone (John McGlone) is a lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Open to senior and lead remote roles.',
     path: '/',
     type: 'profile',
   },

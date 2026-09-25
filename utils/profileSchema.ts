@@ -48,7 +48,7 @@ export function profileSchema(page: PageMetadata) {
         '@id': siteId,
         url: `${siteMetadata.url}/`,
         name: siteMetadata.name,
-        alternateName: ['JP McGlone', 'jpmcglone'],
+        alternateName: ['JP McGlone', 'John McGlone', 'jpmcglone'],
         inLanguage: 'en-US',
         publisher: { '@id': personId },
       },
