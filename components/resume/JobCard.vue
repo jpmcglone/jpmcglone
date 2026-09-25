@@ -54,27 +54,27 @@
                     {{ job.company }}
                   </a>
                   <span v-else>{{ job.company }}</span>
-                  <span
-                    v-if="job.isDefunct"
-                    class="text-[10px] font-normal px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 tracking-wide"
-                  >
-                    closed
-                  </span>
-                  <UTooltip
-                    v-if="job.acquiredBy"
-                    :text="`Acquired by ${job.acquiredBy.name} in ${job.acquiredBy.date}. ${job.acquiredBy.note ?? ''}`"
-                  >
+                  <UTooltip v-if="job.companyStatus" :text="job.companyStatus.note">
                     <span
-                      class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 py-0.5 pl-0.5 pr-2 text-[11px] font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
+                      :class="[
+                        'inline-flex items-center gap-1.5 rounded-full py-0.5 pr-2 text-[11px] font-medium ring-1 ring-inset',
+                        job.companyStatus.logo ? 'pl-0.5' : 'pl-2',
+                        statusClasses[job.companyStatus.kind],
+                      ]"
                     >
                       <img
-                        :src="job.acquiredBy.logo"
+                        v-if="job.companyStatus.logo"
+                        :src="job.companyStatus.logo"
                         alt=""
                         width="16"
                         height="16"
                         class="size-4 rounded-full"
                       />
-                      Acquired by {{ job.acquiredBy.name }} · {{ job.acquiredBy.date }}
+                      {{
+                        [job.companyStatus.label, job.companyStatus.date]
+                          .filter(Boolean)
+                          .join(' · ')
+                      }}
                     </span>
                   </UTooltip>
                 </h3>
@@ -194,6 +194,12 @@ const props = defineProps({
     default: false,
   },
 })
+
+const statusClasses = {
+  acquired: 'bg-emerald-400/10 text-emerald-300 ring-emerald-400/30',
+  renamed: 'bg-sky-400/10 text-sky-300 ring-sky-400/30',
+  closed: 'bg-gray-700/40 text-gray-400 ring-gray-600',
+}
 
 const normalizedResponsibilities = computed(() => {
   const items = (props.job.responsibilities || []).map((item) => {

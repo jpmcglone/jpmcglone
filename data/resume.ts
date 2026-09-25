@@ -16,6 +16,14 @@ export interface SkillCategory {
 
 export type Responsibility = string | { text: string; highlighted: boolean }
 
+export interface CompanyStatus {
+  kind: 'closed' | 'acquired' | 'renamed'
+  label: string
+  date?: string
+  logo?: string
+  note: string
+}
+
 export interface Experience {
   company: string
   logo?: string
@@ -27,8 +35,7 @@ export interface Experience {
   isCurrentRole?: boolean
   isIndependent?: boolean
   isContract?: boolean
-  isDefunct?: boolean
-  acquiredBy?: { name: string; logo: string; date: string; note?: string }
+  companyStatus?: CompanyStatus
   appStore?: Link[]
   responsibilities: Responsibility[]
 }
@@ -383,11 +390,12 @@ const resumeData: ResumeData = {
       title: 'Lead iOS Developer',
       period: '2022 - 2023',
       isRemote: true,
-      acquiredBy: {
-        name: 'Rumble',
-        logo: '/images/logos/rumble.png',
+      companyStatus: {
+        kind: 'acquired',
+        label: 'Acquired by Rumble',
         date: 'May 2023',
-        note: 'The Callin app has since been sunset.',
+        logo: '/images/logos/rumble.png',
+        note: 'Rumble acquired Callin in May 2023. The Callin app has since been sunset.',
       },
       responsibilities: [
         'Developed a social audio and video platform from the ground up',
@@ -405,7 +413,11 @@ const resumeData: ResumeData = {
       period: '2022 - 2022',
       isContract: true,
       isRemote: true,
-      isDefunct: true,
+      companyStatus: {
+        kind: 'closed',
+        label: 'Closed',
+        note: 'Epihealthy is no longer operating.',
+      },
       responsibilities: [
         'Developed a real-time seizure detection app using CoreBluetooth for continuous health monitoring',
         'Engineered a robust background processing system to ensure 24/7 health data collection and processing',
@@ -422,11 +434,16 @@ const resumeData: ResumeData = {
     {
       company: 'Rite Aid',
       logo: '/images/logos/rite-aid.png',
-      url: 'https://www.riteaid.com',
       title: 'Senior Product Mobile Specialist',
       period: '2021 - 2021',
       isContract: true,
       isRemote: true,
+      companyStatus: {
+        kind: 'closed',
+        label: 'Closed',
+        date: 'Oct 2025',
+        note: 'Rite Aid closed all remaining stores in October 2025 after its second bankruptcy. Its brand and website were later sold to an unrelated company.',
+      },
       responsibilities: [
         'Revamped mobile development workflow by implementing modern CI/CD practices across platforms',
         'Optimized Azure DevOps pipelines and parallelized build processes',
@@ -443,11 +460,16 @@ const resumeData: ResumeData = {
     {
       company: 'Supersapiens',
       logo: '/images/logos/supersapiens.png',
-      url: 'https://www.supersapiens.com',
       title: 'iOS Engineer',
       period: '2020 - 2021',
       isContract: true,
       isRemote: true,
+      companyStatus: {
+        kind: 'closed',
+        label: 'Closed',
+        date: 'Mar 2024',
+        note: 'Supersapiens stopped sensor shipments and ended all memberships in March 2024.',
+      },
       responsibilities: [
         'Developed SwiftUI charts for real-time glucose data with smooth animations',
         'Implemented a reliable BLE connection handler with automatic reconnection and background updates',
@@ -461,11 +483,17 @@ const resumeData: ResumeData = {
     {
       company: 'Walmart Labs',
       logo: '/images/logos/walmart.png',
-      url: 'https://www.walmart.com',
+      url: 'https://tech.walmart.com',
       title: 'Senior iOS Developer',
       period: '2020 - 2020',
       isContract: true,
       isRemote: true,
+      companyStatus: {
+        kind: 'renamed',
+        label: 'Now Walmart Global Tech',
+        date: '2020',
+        note: 'Walmart Labs became Walmart Global Tech in August 2020.',
+      },
       responsibilities: [
         "Contributed to the development of Walmart's newest app, leveraging UIKit and SwiftUI to replace the legacy system",
       ],
@@ -473,9 +501,14 @@ const resumeData: ResumeData = {
     {
       company: 'Airside Mobile',
       logo: '/images/logos/airside.png',
-      url: 'https://airsidemobile.com/',
+      url: 'https://www.entrust.com/products/airside-app',
       title: 'Senior iOS Developer',
       period: '2019 - 2020',
+      companyStatus: {
+        kind: 'acquired',
+        label: 'Now part of Entrust',
+        note: 'Onfido acquired Airside in May 2023, and Entrust acquired Onfido in April 2024. The Airside app is now an Entrust product.',
+      },
       responsibilities: [
         'Developed a SwiftUI-based app using MVVM and dependency injection for improved testability',
         'Optimized the CircleCI pipeline to streamline builds and releases',
@@ -492,6 +525,11 @@ const resumeData: ResumeData = {
       url: 'https://www.linkedin.com/company/ad60-agency-llc/',
       title: 'Lead iOS Developer',
       period: '2019 - 2019',
+      companyStatus: {
+        kind: 'closed',
+        label: 'Agency closed',
+        note: 'After 10 years as a digital agency, AD:60 stopped client work and became an in-house fintech studio.',
+      },
       responsibilities: [
         'Developed a financial education game featuring complex animations and state management using UIKit, CoreAnimation, and Lottie',
         'Architected a seamless migration from XMPP to Matrix.org for chat functionality, improving reliability and scalability',
@@ -531,7 +569,12 @@ const resumeData: ResumeData = {
       url: 'https://www.linkedin.com/company/layer/',
       title: 'Senior iOS Developer',
       period: '2016 - 2017',
-      isDefunct: true,
+      companyStatus: {
+        kind: 'closed',
+        label: 'Closed',
+        date: 'Oct 2019',
+        note: 'Engagio acquired Layer in early 2019 and shut down the Layer platform on October 30, 2019.',
+      },
       responsibilities: [
         'Refactored messaging SDK architecture to simplify integration',
         'Improved messaging SDK performance and reliability',
@@ -551,6 +594,12 @@ const resumeData: ResumeData = {
       url: 'https://imgur.com',
       title: 'Senior iOS Developer',
       period: '2015 - 2015',
+      companyStatus: {
+        kind: 'acquired',
+        label: 'Acquired by MediaLab',
+        date: '2021',
+        note: 'MediaLab acquired Imgur in September 2021. Imgur is still operating.',
+      },
       responsibilities: [
         'Engineered a UICollectionView-based image grid with smooth scrolling',
         'Developed Hermes, an in-app notification framework',
