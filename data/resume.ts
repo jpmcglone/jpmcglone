@@ -48,11 +48,13 @@ export interface Link {
   url: string
 }
 
+export type ProjectStatus = 'Live' | 'In Development' | 'Advising'
+
 export interface Project {
   name: string
   logo?: string
   description: string
-  status: string
+  status: ProjectStatus
   technologies: string[]
   url?: string
   featured?: boolean

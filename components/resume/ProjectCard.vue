@@ -27,9 +27,7 @@
             </a>
             <span v-else>{{ project.name }}</span>
           </h3>
-          <p :class="['mt-1 text-xs', project.featured ? 'text-emerald-300' : 'text-gray-400']">
-            {{ project.status }}
-          </p>
+          <ResumeProjectStatusBadge :status="project.status" class="mt-1.5" />
         </div>
       </div>
       <p :class="['leading-relaxed text-gray-300', project.featured ? 'text-base' : 'text-sm']">
