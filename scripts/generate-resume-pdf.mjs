@@ -62,7 +62,7 @@ function job(entry, indices) {
     .text(period(entry.period), 440, y, { width: 128, align: 'right' })
   doc.y = y + 15
   body(
-    `${entry.title}${entry.isIndependent ? ' · Nights & weekends' : entry.isContract ? ' · Contract' : ''}${entry.joinedVia ? ` · ${entry.joinedVia.label}` : ''}${entry.companyStatus ? ` · ${entry.companyStatus.label}${entry.companyStatus.date ? ` (${entry.companyStatus.date})` : ''}` : ''}`,
+    `${entry.title}${entry.isIndependent ? ' · Independent' : entry.isContract ? ' · Contract' : ''}${entry.joinedVia ? ` · ${entry.joinedVia.label}` : ''}${entry.companyStatus ? ` · ${entry.companyStatus.label}${entry.companyStatus.date ? ` (${entry.companyStatus.date})` : ''}` : ''}`,
     { lineGap: 0 },
   )
   doc.y += 4

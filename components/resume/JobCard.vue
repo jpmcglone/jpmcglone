@@ -225,9 +225,9 @@ const jobBadges = computed(() => {
     })
   } else if (props.job.isIndependent) {
     badges.push({
-      label: 'Nights & weekends',
-      icon: 'i-jpm-moon',
-      tooltip: 'Independent passion project',
+      label: 'Independent',
+      icon: 'i-jpm-rocket-launch',
+      tooltip: 'A product I’m building independently',
       classes: 'bg-emerald-400/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/20',
     })
   } else {
