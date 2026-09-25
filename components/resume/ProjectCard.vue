@@ -33,6 +33,16 @@
       <p :class="['leading-relaxed text-gray-300', project.featured ? 'text-base' : 'text-sm']">
         {{ project.description }}
       </p>
+      <aside
+        v-if="project.originStory"
+        class="flex gap-2.5 rounded-lg border-l-2 border-amber-400/60 bg-amber-400/5 px-3 py-2 text-sm leading-relaxed text-gray-300"
+      >
+        <UIcon name="i-jpm-sparkles" class="mt-0.5 size-4 shrink-0 text-amber-300" />
+        <p>
+          <span class="font-semibold text-amber-200">Origin story:&nbsp;</span>
+          <em>{{ project.originStory }}</em>
+        </p>
+      </aside>
       <template v-if="project.technologies.length || project.url">
         <div class="flex flex-wrap gap-2">
           <UBadge

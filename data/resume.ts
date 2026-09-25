@@ -36,6 +36,7 @@ export interface Experience {
   isIndependent?: boolean
   isContract?: boolean
   companyStatus?: CompanyStatus
+  joinedVia?: Omit<CompanyStatus, 'kind'>
   appStore?: Link[]
   responsibilities: Responsibility[]
 }
@@ -63,6 +64,7 @@ export interface Project {
   name: string
   logo?: string
   description: string
+  originStory?: string
   status: ProjectStatus
   technologies: string[]
   url?: string
@@ -366,6 +368,12 @@ const resumeData: ResumeData = {
       endDate: '2026-09-22',
       isRemote: true,
       isCurrentRole: false,
+      joinedVia: {
+        label: 'Joined via Callin acquisition',
+        logo: '/images/logos/callin.png',
+        date: 'May 2023',
+        note: 'I joined Rumble when it acquired Callin in May 2023.',
+      },
       appStore: [
         { name: 'Rumble Studio', url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205' },
         {
@@ -395,7 +403,7 @@ const resumeData: ResumeData = {
         label: 'Acquired by Rumble',
         date: 'May 2023',
         logo: '/images/logos/rumble.png',
-        note: 'Rumble acquired Callin in May 2023. The Callin app has since been sunset.',
+        note: 'Rumble acquired Callin in May 2023, and I joined Rumble through the acquisition. The Callin app has since been sunset.',
       },
       responsibilities: [
         'Developed a social audio and video platform from the ground up',
@@ -703,6 +711,8 @@ const resumeData: ResumeData = {
       logo: '/images/logos/greenlane.png',
       description:
         'Finds Apple App Review issues before you submit by building, exploring, and checking your iOS app locally on your Mac.',
+      originStory:
+        "Men of Hunger's iOS app has been fighting its way through App Review, so I'm building the tool I wish I'd had.",
       status: 'In Development',
       technologies: ['iOS Tooling', 'Agentic Coding', 'Rapid Development'],
       url: 'https://greenlane.dev',

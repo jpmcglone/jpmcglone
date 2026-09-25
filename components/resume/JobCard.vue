@@ -54,27 +54,23 @@
                     {{ job.company }}
                   </a>
                   <span v-else>{{ job.company }}</span>
-                  <UTooltip v-if="job.companyStatus" :text="job.companyStatus.note">
+                  <UTooltip v-for="tag in companyTags" :key="tag.label" :text="tag.note">
                     <span
                       :class="[
                         'inline-flex items-center gap-1.5 rounded-full py-0.5 pr-2 text-[11px] font-medium ring-1 ring-inset',
-                        job.companyStatus.logo ? 'pl-0.5' : 'pl-2',
-                        statusClasses[job.companyStatus.kind],
+                        tag.logo ? 'pl-0.5' : 'pl-2',
+                        statusClasses[tag.kind],
                       ]"
                     >
                       <img
-                        v-if="job.companyStatus.logo"
-                        :src="job.companyStatus.logo"
+                        v-if="tag.logo"
+                        :src="tag.logo"
                         alt=""
                         width="16"
                         height="16"
                         class="size-4 rounded-full"
                       />
-                      {{
-                        [job.companyStatus.label, job.companyStatus.date]
-                          .filter(Boolean)
-                          .join(' · ')
-                      }}
+                      {{ [tag.label, tag.date].filter(Boolean).join(' · ') }}
                     </span>
                   </UTooltip>
                 </h3>
@@ -195,7 +191,15 @@ const props = defineProps({
   },
 })
 
+const companyTags = computed(() =>
+  [
+    props.job.joinedVia && { ...props.job.joinedVia, kind: 'joined' },
+    props.job.companyStatus,
+  ].filter(Boolean),
+)
+
 const statusClasses = {
+  joined: 'bg-emerald-400/10 text-emerald-300 ring-emerald-400/30',
   acquired: 'bg-emerald-400/10 text-emerald-300 ring-emerald-400/30',
   renamed: 'bg-sky-400/10 text-sky-300 ring-sky-400/30',
   closed: 'bg-gray-700/40 text-gray-400 ring-gray-600',
