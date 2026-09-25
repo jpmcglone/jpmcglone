@@ -3,21 +3,9 @@
     <main class="flex-grow">
       <slot />
     </main>
-    <footer class="px-6 pb-12 pt-8 text-center text-xs leading-relaxed text-gray-400">
-      <p class="max-w-md mx-auto px-4">
-        Built by
-        <NuxtLink to="/" class="font-medium text-link underline">John McGlone</NuxtLink>
-        using
-        <a
-          href="https://nuxt.com"
-          class="font-medium text-link underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Nuxt
-        </a>
-        <br />
-        <span class="mt-2 block text-gray-400">© {{ new Date().getFullYear() }}</span>
+    <footer class="px-6 pb-10 pt-8 text-center text-xs text-gray-400">
+      <p class="mx-auto max-w-2xl border-t border-gray-700/70 pt-6">
+        © {{ new Date().getFullYear() }} John P. McGlone
       </p>
     </footer>
   </div>
