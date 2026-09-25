@@ -16,7 +16,7 @@ const doc = new PDFDocument({
     Subject: resume.personalInfo.title,
     Keywords: 'iOS, technical leadership, AI, Swift, MCP, full-stack',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-09-24T00:00:00Z'),
+    ModDate: new Date('2026-09-25T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -96,19 +96,23 @@ section('Experience')
 // Select relevant evidence from the same responsibilities shown on the website.
 const bulletIndices = {
   'Men of Hunger': [0, 2, 3],
+  Greenlane: [0, 1],
   Rumble: [0, 1, 2, 3],
   Callin: [0, 1],
-  'Rite Aid': [3],
+  Supersapiens: [0],
+  'Airside Mobile': [0],
   Eligible: [0, 1],
-  DocuSign: [0, 1],
 }
-resume.experience.slice(0, 4).forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
+const firstPageRoles = 3
+resume.experience
+  .slice(0, firstPageRoles)
+  .forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
 doc.addPage()
 doc.font('Helvetica-Bold').fontSize(13).fillColor('#142337').text(person.name)
 section('Experience continued')
 resume.experience
-  .slice(4)
-  .forEach((entry, index) => job(entry, index >= 7 ? [] : bulletIndices[entry.company] || [0]))
+  .slice(firstPageRoles)
+  .forEach((entry) => job(entry, bulletIndices[entry.company] || []))
 section('Education')
 body(`${resume.education.school} · ${period(resume.education.period)}`)
 body(`${resume.education.degree} · ${resume.education.studies}`)

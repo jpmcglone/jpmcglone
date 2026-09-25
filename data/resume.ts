@@ -333,6 +333,20 @@ const resumeData: ResumeData = {
       ],
     },
     {
+      company: 'Greenlane',
+      logo: '/images/logos/greenlane.png',
+      url: 'https://greenlane.dev',
+      title: 'Creator & Engineer',
+      period: '2026 - Present',
+      isCurrentRole: true,
+      isIndependent: true,
+      responsibilities: [
+        'Build a Mac tool that finds Apple App Review issues before submission by building, exploring, and checking iOS apps locally in Simulator.',
+        'Deliver actionable evidence (findings, screenshots, build logs, and crash locations) with live progress in a web dashboard and CLI.',
+        'Ship rapidly with agentic coding and hands-on review, owning the product end to end.',
+      ],
+    },
+    {
       company: 'Rumble',
       logo: '/images/logos/rumble.png',
       url: 'https://rumble.com',
@@ -618,6 +632,16 @@ const resumeData: ResumeData = {
       technologies: ['Full Stack', 'Agentic Coding', 'MCP'],
       url: 'https://menofhunger.com',
       featured: true,
+    },
+    {
+      name: 'Greenlane',
+      logo: '/images/logos/greenlane.png',
+      description:
+        'Finds Apple App Review issues before you submit by building, exploring, and checking your iOS app locally on your Mac.',
+      status: 'In Development',
+      technologies: ['iOS Tooling', 'Agentic Coding', 'Rapid Development'],
+      url: 'https://greenlane.dev',
+      featured: false,
     },
     {
       name: 'Fandemic',
