@@ -1,22 +1,33 @@
 <template>
-  <div class="mx-auto max-w-2xl px-6 pb-6 pt-14 sm:pt-20">
-    <div class="flex flex-col items-center gap-7 text-center">
-      <div class="flex flex-col items-center gap-3">
-        <UAvatar
+  <div class="mx-auto max-w-6xl px-6">
+    <nav aria-label="Main" class="flex items-center justify-between py-5">
+      <NuxtLink to="/" class="flex min-h-11 items-center gap-2.5 font-semibold text-gray-50">
+        <img
           :src="personalInfo.avatar"
-          :alt="personalInfo.name"
-          :ui="{ root: 'size-[104px]' }"
-          size="3xl"
-          width="104"
-          height="104"
-          fetchpriority="high"
-          decoding="async"
-          class="mb-1 ring-1 ring-gray-600"
+          alt=""
+          width="32"
+          height="32"
+          class="size-8 rounded-full object-cover ring-1 ring-gray-600"
         />
-        <h1 class="text-[36px] font-semibold leading-tight tracking-tight text-gray-50 sm:text-5xl">
-          {{ personalInfo.name }}
-        </h1>
-        <p class="text-lg font-medium text-gray-200 sm:text-xl">{{ personalInfo.title }}</p>
+        {{ personalInfo.name }}
+      </NuxtLink>
+      <div class="flex items-center gap-6">
+        <a
+          href="#building"
+          class="hidden text-sm font-medium text-gray-300 hover:text-white sm:inline"
+        >
+          Building
+        </a>
+        <UButton :to="indexData.resume.link" color="neutral" class="min-h-10 px-4 font-semibold">
+          Resume
+        </UButton>
+      </div>
+    </nav>
+
+    <header
+      class="grid items-center gap-12 border-t border-gray-800 py-14 lg:grid-cols-[1fr_440px] lg:gap-20 lg:py-24"
+    >
+      <div class="flex flex-col items-start gap-7">
         <p
           class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 px-3 py-1.5 text-[13px] font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
         >
@@ -27,164 +38,196 @@
             <span class="relative inline-flex size-2 rounded-full bg-emerald-300" />
           </span>
           {{ personalInfo.availability }}
-          <span class="hidden font-normal text-gray-400 sm:inline">
+          <span class="font-normal text-gray-400">
             <span aria-hidden="true" class="mx-1">·</span>
             {{ personalInfo.workPreference }}
-            <span aria-hidden="true" class="mx-1">·</span>
-            {{ personalInfo.location }}
           </span>
         </p>
-        <p class="flex items-center gap-2 text-[13px] text-gray-400 sm:hidden">
-          <VirginiaIcon class="h-4 w-6" />
-          {{ personalInfo.workPreference }}
-          <span aria-hidden="true">·</span>
-          {{ personalInfo.location }}
-        </p>
-      </div>
-
-      <div class="flex flex-col items-center gap-3.5">
-        <p class="max-w-lg text-[17px] leading-relaxed text-gray-300 sm:text-lg">
-          {{ personalInfo.description }}
-        </p>
-        <p
-          class="proof inline-flex items-start gap-2.5 rounded-lg bg-gray-800/70 py-1.5 pl-1.5 pr-3.5 text-left text-sm leading-relaxed text-gray-200 ring-1 ring-gray-700 sm:items-center"
+        <h1
+          class="text-[40px] font-semibold leading-[1.08] tracking-tight text-gray-50 sm:text-5xl lg:text-6xl"
         >
-          <img
-            src="/images/logos/rumble.png"
-            alt=""
-            width="24"
-            height="24"
-            class="company-logo size-6 shrink-0"
-          />
-          <InlineContent :text="personalInfo.highlight" />
+          {{ personalInfo.headline }}
+        </h1>
+        <p class="max-w-xl text-[17px] leading-relaxed text-gray-300 sm:text-lg">
+          {{ personalInfo.pitch }}
         </p>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-center gap-2.5">
-        <UButton
-          :to="indexData.resume.link"
-          color="neutral"
-          size="md"
-          class="min-h-11 px-6 font-semibold"
-        >
-          {{ indexData.resume.buttonText }}
-        </UButton>
-        <UButton
-          to="/resume.pdf"
-          external
-          download="John-P-McGlone-Resume.pdf"
-          aria-label="Download résumé as PDF"
-          color="neutral"
-          variant="soft"
-          size="md"
-          class="min-h-11 px-5"
-        >
-          <UIcon name="i-jpm-document-text" class="size-4" />
-          Download PDF
-        </UButton>
-        <UTooltip v-for="social in personalInfo.socialLinks" :key="social.name" :text="social.name">
+        <div class="flex flex-wrap items-center gap-3">
           <UButton
-            :to="social.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            :aria-label="social.name"
+            :to="indexData.resume.link"
+            color="neutral"
+            size="lg"
+            class="min-h-12 px-6 font-semibold"
+          >
+            {{ indexData.resume.buttonText }}
+          </UButton>
+          <UButton
+            to="/resume.pdf"
+            external
+            download="John-P-McGlone-Resume.pdf"
+            aria-label="Download résumé as PDF"
             color="neutral"
             variant="soft"
-            size="md"
-            class="size-11 justify-center"
+            size="lg"
+            class="min-h-12 px-5"
           >
-            <UIcon :name="social.icon" class="size-[18px]" />
+            <UIcon name="i-jpm-document-text" class="size-4" />
+            Download PDF
           </UButton>
-        </UTooltip>
+          <UTooltip
+            v-for="social in personalInfo.socialLinks"
+            :key="social.name"
+            :text="social.name"
+          >
+            <UButton
+              :to="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="social.name"
+              color="neutral"
+              variant="soft"
+              size="lg"
+              class="size-12 justify-center p-0"
+            >
+              <UIcon :name="social.icon" class="size-[18px]" />
+            </UButton>
+          </UTooltip>
+        </div>
       </div>
-    </div>
 
-    <section v-if="buildingNow.length" aria-labelledby="building-now" class="mt-14">
-      <h2 id="building-now" class="section-label">Building now</h2>
-      <div class="grid gap-3">
+      <div class="relative mx-auto w-full max-w-[440px]">
+        <img
+          :src="personalInfo.avatar"
+          :alt="`Portrait of ${personalInfo.name}`"
+          width="440"
+          height="500"
+          fetchpriority="high"
+          class="aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
+        />
+        <div
+          v-for="(chip, index) in personalInfo.heroChips"
+          :key="chip.title"
+          class="hero-chip absolute flex items-center gap-2.5 rounded-xl bg-gray-900/90 px-3.5 py-2.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur"
+          :class="index === 0 ? 'right-4 top-4' : 'bottom-6 left-3 sm:-left-8'"
+        >
+          <img
+            v-if="chip.logo"
+            :src="chip.logo"
+            alt=""
+            width="32"
+            height="32"
+            class="company-logo size-8 shrink-0"
+          />
+          <span class="text-left">
+            <span class="block text-[15px] font-semibold text-gray-50">{{ chip.title }}</span>
+            <span class="block text-xs text-gray-400">{{ chip.subtitle }}</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <section
+      aria-label="Previously at"
+      class="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 border-y border-gray-800 py-8"
+    >
+      <h2 class="section-eyebrow w-full text-center text-gray-400 sm:w-auto">Previously at</h2>
+      <span
+        v-for="company in previouslyAt"
+        :key="company.label"
+        class="flex items-center gap-2.5 text-base font-semibold text-gray-300"
+      >
+        <img
+          :src="company.logo"
+          alt=""
+          width="36"
+          height="36"
+          class="company-logo size-9 object-contain"
+        />
+        {{ company.label }}
+      </span>
+    </section>
+
+    <section
+      v-if="buildingNow.length"
+      id="building"
+      aria-labelledby="building-heading"
+      class="scroll-mt-6 py-20"
+    >
+      <p class="section-eyebrow text-emerald-300">Building now</p>
+      <h2
+        id="building-heading"
+        class="mt-3 text-[28px] font-semibold tracking-tight text-gray-50 sm:text-4xl"
+      >
+        Two products I’m building on nights and weekends.
+      </h2>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
         <a
           v-for="project in buildingNow"
           :key="project.name"
           :href="project.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex gap-3.5 rounded-2xl bg-gray-800/60 p-4 ring-1 ring-gray-700 transition hover:bg-gray-800 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+          class="group flex flex-col gap-4 rounded-2xl bg-gray-800/55 p-6 ring-1 ring-gray-700 transition hover:bg-gray-800 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:p-7"
         >
-          <img
-            :src="project.logo"
-            :alt="`${project.name} logo`"
-            width="44"
-            height="44"
-            class="company-logo size-11 shrink-0 object-contain"
-          />
-          <span class="min-w-0 flex-1">
-            <span class="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span class="font-semibold text-gray-50 group-hover:underline">
-                {{ project.name }}
-              </span>
-              <ResumeProjectStatusBadge :status="project.status" />
-            </span>
-            <span class="mt-1.5 block text-sm leading-snug text-gray-400">
-              {{ project.description }}
-            </span>
+          <span class="flex items-start justify-between">
+            <img
+              :src="project.logo"
+              :alt="`${project.name} logo`"
+              width="56"
+              height="56"
+              class="company-logo size-14 object-contain"
+            />
+            <UIcon
+              name="i-jpm-arrow-up-right"
+              class="size-5 text-link transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+            />
           </span>
-          <UIcon
-            name="i-jpm-arrow-up-right"
-            class="size-4 shrink-0 text-link transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-          />
+          <span class="flex flex-wrap items-center gap-2.5">
+            <span class="text-2xl font-semibold text-gray-50 group-hover:underline">
+              {{ project.name }}
+            </span>
+            <ResumeProjectStatusBadge :status="project.status" />
+          </span>
+          <span class="text-base leading-relaxed text-gray-300">{{ project.description }}</span>
+          <span
+            v-if="project.originStory"
+            class="rounded-lg border-l-2 border-amber-400/60 bg-amber-400/5 px-3 py-2 text-sm italic leading-relaxed text-gray-300"
+          >
+            <span class="font-semibold not-italic text-amber-200">Origin story:&nbsp;</span>
+            {{ project.originStory }}
+          </span>
         </a>
       </div>
     </section>
 
-    <section aria-labelledby="previously-at" class="mt-14">
-      <h2 id="previously-at" class="section-label">Previously at</h2>
-      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-4 sm:gap-x-10">
-        <li
-          v-for="company in previouslyAt"
-          :key="company.label"
-          class="flex w-16 flex-col items-center gap-2"
-        >
-          <img
-            :src="company.logo"
-            :alt="`${company.label} logo`"
-            width="40"
-            height="40"
-            class="company-logo size-10 object-contain"
-          />
-          <span class="text-xs font-medium text-gray-400">{{ company.label }}</span>
-        </li>
-      </ul>
-    </section>
-
     <figure
       v-if="recommendation"
-      class="mt-14 rounded-2xl bg-gray-800/60 p-5 ring-1 ring-gray-700 sm:px-7 sm:py-6"
+      class="rounded-3xl bg-gray-800/60 p-7 ring-1 ring-emerald-400/30 sm:p-10"
     >
-      <ResumeQuoteMark aria-hidden="true" class="mb-4 h-[18px] w-6 text-emerald-300" />
-      <blockquote class="text-base leading-relaxed text-gray-200 sm:text-lg">
-        {{ indexData.personalInfo.featuredRecommendation.excerpt }}
+      <ResumeQuoteMark aria-hidden="true" class="mb-5 h-[22px] w-7 text-emerald-300" />
+      <blockquote
+        class="max-w-4xl text-xl font-medium leading-snug tracking-tight text-gray-50 sm:text-2xl"
+      >
+        {{ personalInfo.featuredRecommendation.excerpt }}
       </blockquote>
-      <figcaption class="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+      <figcaption class="mt-7 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
         <span class="flex items-center gap-3">
           <img
             :src="recommendation.image"
             :alt="recommendation.author"
-            width="40"
-            height="40"
-            class="size-10 rounded-full object-cover"
+            width="48"
+            height="48"
+            class="size-12 rounded-full object-cover"
           />
-          <span class="text-left">
-            <span class="block text-sm font-semibold text-gray-50">
-              {{ recommendation.author }}
-            </span>
-            <span class="block text-[13px] text-gray-400">
+          <span>
+            <span class="block font-semibold text-gray-50">{{ recommendation.author }}</span>
+            <span class="block text-sm text-gray-400">
               {{ recommendation.title }} at {{ recommendation.company }}
             </span>
           </span>
         </span>
         <NuxtLink
           to="/resume#recommendations"
-          class="inline-flex min-h-11 items-center gap-1 text-[13px] font-medium text-link"
+          class="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-link"
         >
           All {{ recommendationCount }} recommendations
           <UIcon name="i-jpm-arrow-right" class="size-3.5" />
@@ -192,9 +235,49 @@
       </figcaption>
     </figure>
 
-    <p class="mt-12 flex flex-wrap items-center justify-center gap-x-5 text-[13px] text-gray-400">
-      <span>Off the clock</span>
-      <UTooltip v-for="tag in personalInfo.offTheClock" :key="tag.label" :text="tag.tooltip">
+    <section
+      aria-labelledby="hiring-heading"
+      class="mt-20 flex flex-col gap-6 rounded-3xl bg-emerald-400/[0.07] p-7 ring-1 ring-emerald-400/30 sm:p-12 lg:flex-row lg:items-center lg:justify-between"
+    >
+      <div>
+        <h2
+          id="hiring-heading"
+          class="text-[26px] font-semibold tracking-tight text-gray-50 sm:text-3xl"
+        >
+          Hiring a senior or lead iOS engineer?
+        </h2>
+        <p class="mt-2 text-[17px] text-gray-300">
+          I’m open to remote roles owning the engineering of a product. Let’s talk.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <UButton
+          v-if="linkedIn"
+          :to="linkedIn.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          color="neutral"
+          size="lg"
+          class="min-h-12 px-5 font-semibold"
+        >
+          <UIcon :name="linkedIn.icon" class="size-[18px]" />
+          Message me on LinkedIn
+        </UButton>
+        <UButton
+          :to="indexData.resume.link"
+          color="neutral"
+          variant="soft"
+          size="lg"
+          class="min-h-12 px-5"
+        >
+          {{ indexData.resume.buttonText }}
+        </UButton>
+      </div>
+    </section>
+
+    <p class="mt-14 flex flex-wrap items-center justify-center gap-x-5 text-[13px] text-gray-400">
+      <span>Outside of tech</span>
+      <UTooltip v-for="tag in personalInfo.outsideOfTech" :key="tag.label" :text="tag.tooltip">
         <NuxtLink
           v-if="tag.link"
           :to="tag.link"
@@ -222,6 +305,7 @@ definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
 
 const personalInfo = indexData.personalInfo
+const linkedIn = personalInfo.socialLinks.find((link) => link.name === 'LinkedIn')
 const buildingNow = resumeData.projects.filter((project) => project.status !== 'Advising')
 const previouslyAt = personalInfo.previouslyAt.map((entry) => ({
   ...entry,
@@ -234,21 +318,10 @@ const recommendationCount = resumeData.recommendations.items.length
 </script>
 
 <style scoped>
-.section-label {
-  margin-bottom: 0.875rem;
-  text-align: center;
-  font-size: 0.6875rem;
+.section-eyebrow {
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-gray-400);
-}
-.proof :deep(a) {
-  color: var(--link-default);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.proof :deep(a:hover) {
-  color: var(--link-hover);
 }
 </style>

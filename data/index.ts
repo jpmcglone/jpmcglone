@@ -22,9 +22,10 @@ export interface IndexData {
     title: string
     avatar: string
     availability: string
-    description: string
-    highlight: string
-    offTheClock: Tag[]
+    headline: string
+    pitch: string
+    heroChips: { title: string; subtitle: string; logo?: string }[]
+    outsideOfTech: Tag[]
     previouslyAt: { company: string; label: string }[]
     featuredRecommendation: { author: string; excerpt: string }
     socialLinks: SocialLink[]
@@ -45,9 +46,17 @@ const indexData: IndexData = {
     title: siteMetadata.role,
     avatar: siteMetadata.portrait,
     availability: 'Open to senior & lead roles',
-    description: 'I build products, mentor engineers, and help small teams ship with AI.',
-    highlight:
-      'Built <a href="https://studio.rumble.com">Rumble Studio</a> for iOS solo, from scratch through launch.',
+    headline: 'The iOS engineer who owns the whole product.',
+    pitch:
+      '16 years of Swift, SwiftUI, and UIKit, from architecture to the App Store. I lead across mobile, web, and APIs, mentor engineers, and use AI to help small teams ship more.',
+    heroChips: [
+      { title: '16+ years', subtitle: 'shipping iOS apps' },
+      {
+        title: 'Built Rumble Studio solo',
+        subtitle: 'iPhone, iPad & Vision Pro',
+        logo: '/images/logos/rumble.png',
+      },
+    ],
     previouslyAt: [
       { company: 'Rumble', label: 'Rumble' },
       { company: 'Walmart Labs', label: 'Walmart' },
@@ -59,12 +68,17 @@ const indexData: IndexData = {
       excerpt:
         'John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work.',
     },
-    offTheClock: [
+    outsideOfTech: [
       {
         label: 'Husband',
         tooltip: 'Married to my wonderful wife Katrina',
         icon: 'i-jpm-heart',
         link: 'https://johnandkatmcglone.com/',
+      },
+      {
+        label: '3 kids and counting',
+        tooltip: 'Proud dad of three (so far)',
+        icon: 'i-jpm-face-smile',
       },
       {
         label: 'Landlord',
