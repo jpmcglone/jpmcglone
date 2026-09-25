@@ -28,6 +28,7 @@ export interface Experience {
   isIndependent?: boolean
   isContract?: boolean
   isDefunct?: boolean
+  appStore?: Link[]
   responsibilities: Responsibility[]
 }
 
@@ -128,7 +129,7 @@ const resumeData: ResumeData = {
     {
       category: 'AI & Agentic Development',
       description:
-        'Deepest experience with Cursor and ChatGPT Codex; additional experience with Claude.',
+        'Deepest experience with Cursor, ChatGPT Codex, and Astra; additional experience with Claude.',
       keywords: ['artificial intelligence', 'AI assisted engineering', 'augmented coding', 'LLM'],
       skills: [
         { name: 'Cursor', featured: true, keywords: ['AI editor', 'agent', 'IDE'] },
@@ -137,6 +138,7 @@ const resumeData: ResumeData = {
           featured: true,
           keywords: ['OpenAI', 'Chat GPT', 'coding agents'],
         },
+        { name: 'Astra', featured: true, keywords: ['Codex', 'OpenAI', 'models'] },
         {
           name: 'Agentic Coding',
           featured: true,
@@ -313,7 +315,6 @@ const resumeData: ResumeData = {
       description: 'Keeping current with new models and tools; personal experimentation.',
       keywords: ['AI', 'LLM', 'models', 'personal experiments'],
       skills: [
-        { name: 'Astra', keywords: ['Codex', 'OpenAI', 'models'] },
         { name: 'Grok Bot', keywords: ['Grok', 'bot', 'personal machine', 'local experiments'] },
       ],
     },
@@ -357,6 +358,13 @@ const resumeData: ResumeData = {
       endDate: '2026-09-22',
       isRemote: true,
       isCurrentRole: false,
+      appStore: [
+        { name: 'Rumble Studio', url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205' },
+        {
+          name: 'Rumble',
+          url: 'https://apps.apple.com/us/app/rumble-live-streaming-videos/id1518427877',
+        },
+      ],
       responsibilities: [
         'Sole iOS developer for Rumble Studio: built the app from scratch through launch and maintained every subsequent update across iPhone, iPad, and Vision Pro',
         'Partnered closely with design to raise the quality of the mobile experience and turn ambitious product ideas into shipped iOS features',

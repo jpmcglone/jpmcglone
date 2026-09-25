@@ -23,9 +23,12 @@
             </a>
             <span v-else>{{ recommendation.author }}</span>
           </p>
-          <p class="mt-1 text-sm text-gray-400">
+          <p class="mt-1 text-sm font-medium text-gray-200">
             {{ recommendation.title }}
-            <span v-if="recommendation.company">at {{ recommendation.company }}</span>
+            <template v-if="recommendation.company">
+              <span class="font-normal text-gray-400">at&nbsp;</span>
+              <span class="font-semibold text-gray-50">{{ recommendation.company }}</span>
+            </template>
           </p>
           <p v-if="recommendation.year" class="mt-2 text-xs text-primary-400">
             <time v-if="recommendation.date" :datetime="recommendation.date">

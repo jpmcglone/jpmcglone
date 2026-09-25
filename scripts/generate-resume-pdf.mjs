@@ -91,7 +91,9 @@ section('Technical Skills')
 body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, Combine, XCTest')
 body('Architecture: MVVM, dependency injection, reusable components, SDK development, API design')
 body('Media & delivery: LiveKit, Agora, real-time audio/video, networking, persistence, CI/CD')
-body('AI-assisted development: Cursor, ChatGPT Codex, Claude, MCP servers, hands-on code review')
+body(
+  'AI-assisted development: Cursor, ChatGPT Codex, Astra, Claude, MCP servers, hands-on code review',
+)
 section('Experience')
 // Select relevant evidence from the same responsibilities shown on the website.
 const bulletIndices = {

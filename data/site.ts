@@ -32,7 +32,7 @@ export const pageMetadata = {
   resume: {
     title: 'Résumé — John P. McGlone | Lead iOS & Product Engineer',
     description:
-      'Explore John P. McGlone’s work on Rumble Studio, Rumble Video, and Men of Hunger. iOS expertise, full-stack engineering, MCP servers, and AI-assisted delivery.',
+      'Explore John P. McGlone’s work on Rumble Studio, Rumble Video, Men of Hunger, and Greenlane. iOS expertise, full-stack engineering, MCP servers, and AI-assisted delivery.',
     path: '/resume',
     type: 'profile',
   },

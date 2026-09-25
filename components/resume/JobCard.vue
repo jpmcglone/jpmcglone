@@ -137,6 +137,25 @@
               <InlineContent :text="item.text" />
             </li>
           </ul>
+          <div v-if="job.appStore?.length" class="mt-5 flex flex-wrap gap-2">
+            <a
+              v-for="app in job.appStore"
+              :key="app.url"
+              :href="app.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`${app.name} on the App Store`"
+              class="inline-flex items-center gap-2 rounded-lg bg-black px-3 py-1.5 text-white ring-1 ring-white/20 transition hover:ring-white/40"
+            >
+              <UIcon name="i-simple-icons-apple" class="h-5 w-5" />
+              <span class="flex flex-col leading-none">
+                <span class="text-[9px] tracking-wide text-gray-300">
+                  Download on the App Store
+                </span>
+                <span class="mt-0.5 text-sm font-semibold">{{ app.name }}</span>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </UCard>
