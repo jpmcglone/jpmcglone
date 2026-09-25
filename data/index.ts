@@ -21,8 +21,10 @@ export interface IndexData {
     username: string
     title: string
     avatar: string
+    availability: string
     description: string
-    tags: Tag[]
+    highlight: string
+    offTheClock: Tag[]
     socialLinks: SocialLink[]
   }
   resume: {
@@ -40,8 +42,11 @@ const indexData: IndexData = {
     username: '@jpmcglone',
     title: siteMetadata.role,
     avatar: siteMetadata.portrait,
+    availability: 'Open to senior & lead roles',
     description: 'I build products, mentor engineers, and help small teams ship with AI.',
-    tags: [
+    highlight:
+      'Built <a href="https://studio.rumble.com">Rumble Studio</a> for iOS solo, from scratch through launch.',
+    offTheClock: [
       {
         label: 'Husband',
         tooltip: 'Married to my wonderful wife Katrina',
