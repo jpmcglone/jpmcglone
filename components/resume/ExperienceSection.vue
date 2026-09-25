@@ -50,7 +50,7 @@
         </div>
 
         <template v-if="earlierRoles.length">
-          <div class="mt-8 pr-16 md:pr-20 print:hidden">
+          <div ref="earlierToggle" class="mt-8 pr-16 md:pr-20 print:hidden">
             <button
               type="button"
               class="group flex w-full items-center gap-4 rounded-2xl border border-dashed border-gray-600 bg-gray-900/60 px-4 py-3 text-left transition-colors hover:border-gray-400 hover:bg-gray-800/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
@@ -87,7 +87,7 @@
 
           <div
             id="earlier-experience"
-            class="grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none print:grid-rows-[1fr]"
+            class="grid transition-[grid-template-rows] duration-500 ease-out [overflow-anchor:none] motion-reduce:transition-none print:grid-rows-[1fr]"
             :class="expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
             :inert="!expanded"
           >
@@ -108,6 +108,18 @@
                     :should-show-year="shouldShowYear(job, index + visiblePastCount, pastRoles)"
                     :is-current-role="false"
                   />
+                </div>
+                <div class="mt-8 pr-16 md:pr-20 print:hidden">
+                  <button
+                    type="button"
+                    class="flex w-full items-center justify-between gap-4 rounded-2xl border border-dashed border-gray-600 bg-gray-900/60 px-4 py-3 text-left text-sm font-semibold text-gray-100 transition-colors hover:border-gray-400 hover:bg-gray-800/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+                    aria-controls="earlier-experience"
+                    :aria-expanded="expanded"
+                    @click="collapseFromBottom"
+                  >
+                    Show fewer roles
+                    <UIcon name="i-jpm-arrow-right" class="size-4 shrink-0 -rotate-90 text-link" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -142,6 +154,32 @@ const earlierSpan = computed(() => {
   return start === end ? start : `${start}–${end}`
 })
 const expanded = ref(false)
+const earlierToggle = useTemplateRef('earlierToggle')
+const motionPreference = usePreferredReducedMotion()
+
+function collapseFromBottom() {
+  const toggle = earlierToggle.value
+  if (!toggle) {
+    expanded.value = false
+    return
+  }
+  const reduceMotion = motionPreference.value === 'reduce'
+  let collapsed = false
+  const collapse = () => {
+    if (collapsed) return
+    collapsed = true
+    window.removeEventListener('scrollend', collapse)
+    expanded.value = false
+    toggle.querySelector('button')?.focus({ preventScroll: true })
+  }
+  // Collapse only after scrolling back up, so the shrinking list can't cancel the scroll.
+  if (!reduceMotion) {
+    window.addEventListener('scrollend', collapse, { once: true })
+    setTimeout(collapse, 900)
+  }
+  toggle.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'instant' : 'smooth' })
+  if (reduceMotion) collapse()
+}
 
 const shouldShowYear = (job, index, roles) => {
   if (index === 0) return true
