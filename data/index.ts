@@ -50,7 +50,7 @@ const indexData: IndexData = {
     pitch:
       '16 years of Swift, SwiftUI, and UIKit, from architecture to the App Store. I lead across mobile, web, and APIs, mentor engineers, and use AI to help small teams ship more.',
     heroChips: [
-      { title: '16+ years', subtitle: 'shipping iOS apps' },
+      { title: '4 Apple platforms', subtitle: 'iPhone, iPad, Apple TV & Vision Pro' },
       {
         title: 'Built Rumble Studio solo',
         subtitle: 'iPhone, iPad & Vision Pro',

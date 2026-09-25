@@ -16,7 +16,7 @@
           href="#building"
           class="hidden text-sm font-medium text-gray-300 hover:text-white sm:inline"
         >
-          Building
+          Projects
         </a>
         <UButton :to="indexData.resume.link" color="neutral" class="min-h-10 px-4 font-semibold">
           Resume
@@ -107,7 +107,7 @@
           v-for="(chip, index) in personalInfo.heroChips"
           :key="chip.title"
           class="hero-chip absolute flex items-center gap-2.5 rounded-xl bg-gray-900/90 px-3.5 py-2.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur"
-          :class="index === 0 ? 'right-4 top-4' : 'bottom-6 left-3 sm:-left-8'"
+          :class="index === 0 ? 'left-3 top-4 sm:-left-8' : 'bottom-6 right-3 sm:-right-8'"
         >
           <img
             v-if="chip.logo"
@@ -152,12 +152,11 @@
       aria-labelledby="building-heading"
       class="scroll-mt-6 py-20"
     >
-      <p class="section-eyebrow text-emerald-300">Building now</p>
       <h2
         id="building-heading"
-        class="mt-3 text-[28px] font-semibold tracking-tight text-gray-50 sm:text-4xl"
+        class="text-[28px] font-semibold tracking-tight text-gray-50 sm:text-4xl"
       >
-        Two products I’m building on nights and weekends.
+        What I’m working on
       </h2>
       <div class="mt-8 grid gap-5 md:grid-cols-2">
         <a
@@ -244,10 +243,10 @@
           id="hiring-heading"
           class="text-[26px] font-semibold tracking-tight text-gray-50 sm:text-3xl"
         >
-          Hiring a senior or lead iOS engineer?
+          Hiring? Let’s talk.
         </h2>
         <p class="mt-2 text-[17px] text-gray-300">
-          I’m open to remote roles owning the engineering of a product. Let’s talk.
+          I’m open to senior and lead remote roles owning the engineering of a product.
         </p>
       </div>
       <div class="flex flex-wrap gap-3">
