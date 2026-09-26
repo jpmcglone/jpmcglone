@@ -129,7 +129,7 @@ const resumeData: ResumeData = {
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href="https://studio.rumble.com" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.
+    bio: `I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.
 
 <strong>AI expands what I can deliver.</strong> I build <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a> across its API, web, and iOS apps using agentic coding, architectural judgment, and hands-on review. I work closely with design, mentor engineers, and take responsibility for what ships.`,
   },
