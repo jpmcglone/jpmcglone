@@ -162,7 +162,7 @@
                 </span>
               </span>
               <img
-                v-if="nextItem.company"
+                v-if="nextItem.company && nextItem.company.name !== items[selected]?.company?.name"
                 :src="nextItem.company.image"
                 :alt="`${nextItem.company.name} company logo`"
                 width="28"
