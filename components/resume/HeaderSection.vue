@@ -5,7 +5,7 @@
       :src="personalInfo.image"
       :alt="personalInfo?.name"
       size="3xl"
-      :ui="{ root: 'size-20' }"
+      :ui="{ root: 'portrait-morph size-20' }"
       width="80"
       height="80"
       fetchpriority="high"

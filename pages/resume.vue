@@ -3,6 +3,8 @@
     <div class="resume-page mx-auto grid gap-12 px-6 py-6 sm:py-12 print:block">
       <ResumeFloatingNav :sections="sections" />
       <div class="resume-content mx-auto w-full min-w-0 max-w-[70ch] space-y-12">
+        <RecruiterGreeting class="print:hidden" />
+
         <!-- Header Section -->
         <ResumeHeaderSection :personal-info="resumeData.personalInfo" :links="resumeData.links" />
 

@@ -29,6 +29,7 @@
       class="grid items-center gap-12 border-t border-gray-800 py-14 lg:grid-cols-[1fr_440px] lg:gap-20 lg:py-24"
     >
       <div class="flex flex-col items-start gap-7">
+        <RecruiterGreeting class="max-w-xl" />
         <p
           class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 px-3 py-1.5 text-[13px] font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
         >
@@ -108,10 +109,10 @@
           width="440"
           height="500"
           fetchpriority="high"
-          class="aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
+          class="portrait-morph aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
         />
         <div
-          class="hero-chip absolute bottom-6 right-3 w-72 rounded-xl bg-gray-900/90 p-2 shadow-2xl ring-1 ring-gray-700 backdrop-blur sm:-right-8"
+          class="hero-chip absolute bottom-6 right-3 w-72 rounded-xl bg-gray-900/95 p-2 shadow-2xl ring-1 ring-gray-700 sm:-right-8"
         >
           <p
             class="px-1.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400"
@@ -233,6 +234,10 @@
         </a>
       </div>
     </section>
+
+    <DeviceShowcase class="border-t border-gray-800" />
+
+    <CareerTimeline />
 
     <figure
       v-if="recommendation"

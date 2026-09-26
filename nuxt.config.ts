@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   css: ['@fontsource-variable/inter', '~/assets/css/tailwind.css'],
   devtools: { enabled: true },
+  experimental: { viewTransition: true },
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/icon', '@vueuse/nuxt'],
   ui: {
     fonts: false,
