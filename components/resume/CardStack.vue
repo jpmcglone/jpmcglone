@@ -57,7 +57,7 @@
           role="group"
           :aria-label="`Choose a ${itemLabel}`"
           class="flex touch-pan-y flex-wrap items-center select-none"
-          :class="hasCompanyGroups ? 'gap-x-3 gap-y-4 pl-2 pt-2' : 'gap-1'"
+          :class="hasCompanyGroups ? 'gap-x-4 gap-y-4 pr-3 pt-3' : 'gap-1'"
           @pointerdown="onSelectorPointerDown"
           @pointerup="onSelectorPointerUp"
           @pointercancel="swipeStart = null"
@@ -83,7 +83,12 @@
               :title="group.company.name"
               width="24"
               height="24"
-              class="company-logo absolute -left-2 -top-2 z-10 size-6 object-contain shadow-md ring-2 ring-gray-900"
+              class="company-logo absolute z-10 object-contain shadow-md ring-2 ring-gray-900 transition-all duration-200"
+              :class="
+                group.entries.some((entry) => entry.index === selected)
+                  ? '-right-2.5 -top-2.5 size-7'
+                  : '-right-2 -top-2 size-6'
+              "
             />
             <button
               v-for="{ item, index } in group.entries"
