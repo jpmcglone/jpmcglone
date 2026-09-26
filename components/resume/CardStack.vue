@@ -1,5 +1,5 @@
 <template>
-  <div ref="stackSection" class="-mx-3 overflow-x-clip px-3">
+  <div ref="stackSection" class="-mx-3 overflow-x-clip overscroll-x-contain px-3">
     <div
       v-if="items.length > 1"
       class="deck-navigation mb-4 flex items-center justify-between gap-3"
@@ -56,49 +56,65 @@
         <div
           role="group"
           :aria-label="`Choose a ${itemLabel}`"
-          class="flex flex-wrap items-center gap-1"
+          class="flex touch-pan-y flex-wrap items-center gap-2 select-none"
+          @pointerdown="onSelectorPointerDown"
+          @pointerup="onSelectorPointerUp"
+          @pointercancel="swipeStart = null"
         >
-          <button
-            v-for="(item, index) in items"
-            :key="item.id"
-            type="button"
-            :aria-label="`View ${itemLabel} ${index + 1}: ${item.label}${item.company ? `, ${item.company.name}` : ''}`"
-            :aria-current="selected === index ? 'true' : undefined"
-            :aria-controls="`${id}-deck`"
-            :title="item.company ? `${item.label} · ${item.company.name}` : item.label"
-            class="group flex h-16 shrink-0 items-center justify-center rounded-lg transition-[width] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
-            :class="selected === index ? 'w-16' : 'w-11'"
-            @click="goTo(index)"
+          <div
+            v-for="group in groups"
+            :key="group.key"
+            :class="
+              group.company
+                ? [
+                    'flex items-center rounded-2xl pl-2.5 pr-0.5 ring-1 ring-inset transition-colors duration-200',
+                    group.entries.some((entry) => entry.index === selected)
+                      ? 'bg-gray-800/80 ring-gray-500/60'
+                      : 'bg-gray-800/30 ring-gray-700/60',
+                  ]
+                : 'contents'
+            "
           >
-            <span
-              aria-hidden="true"
-              class="relative flex size-9 items-center justify-center transition-[scale,opacity] duration-200 ease-out motion-reduce:transition-none"
-              :class="[
-                itemLabel === 'project' ? 'company-logo' : 'rounded-full',
-                selected === index
-                  ? 'scale-[1.17] opacity-100'
-                  : 'scale-[0.83] opacity-65 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100',
-              ]"
+            <img
+              v-if="group.company"
+              :src="group.company.image"
+              :alt="group.company.name"
+              :title="group.company.name"
+              width="24"
+              height="24"
+              class="company-logo mr-1 size-6 shrink-0 object-contain"
+            />
+            <button
+              v-for="{ item, index } in group.entries"
+              :key="item.id"
+              type="button"
+              :aria-label="`View ${itemLabel} ${index + 1}: ${item.label}${item.company ? `, ${item.company.name}` : ''}`"
+              :aria-current="selected === index ? 'true' : undefined"
+              :aria-controls="`${id}-deck`"
+              :title="item.company ? `${item.label} · ${item.company.name}` : item.label"
+              class="group flex h-16 shrink-0 items-center justify-center rounded-lg transition-[width] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+              :class="selected === index ? 'w-16' : 'w-11'"
+              @click="onSelectorClick(index)"
             >
-              <UAvatar
-                :src="item.image"
-                :alt="item.label"
-                class="size-9"
-                :ui="{ root: itemLabel === 'project' ? 'company-logo' : 'rounded-full' }"
-              />
-              <img
-                v-if="itemLabel === 'recommendation' && item.company"
-                :src="item.company.image"
-                alt=""
-                width="16"
-                height="16"
-                class="company-logo absolute z-10 bg-gray-900 object-contain transition-[width,height,right,bottom] duration-200 ease-out motion-reduce:transition-none"
-                :class="
-                  selected === index ? '-bottom-2 -right-2 size-5' : '-bottom-0.5 -right-0.5 size-4'
-                "
-              />
-            </span>
-          </button>
+              <span
+                aria-hidden="true"
+                class="relative flex size-9 items-center justify-center transition-[scale,opacity] duration-200 ease-out motion-reduce:transition-none"
+                :class="[
+                  itemLabel === 'project' ? 'company-logo' : 'rounded-full',
+                  selected === index
+                    ? 'scale-[1.17] opacity-100'
+                    : 'scale-[0.83] opacity-65 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100',
+                ]"
+              >
+                <UAvatar
+                  :src="item.image"
+                  :alt="item.label"
+                  class="size-9"
+                  :ui="{ root: itemLabel === 'project' ? 'company-logo' : 'rounded-full' }"
+                />
+              </span>
+            </button>
+          </div>
         </div>
         <UButton variant="ghost" class="min-h-11 text-link" @click="showAll = true">
           View all {{ items.length }}
@@ -276,6 +292,75 @@ function onDragEnd(_event: PointerEvent, info: { offset: { x: number }; velocity
   if (Math.abs(distance) > 55 || (Math.abs(distance) > 12 && Math.abs(info.velocity.x) > 500)) {
     goTo(selected.value + (distance < 0 ? 1 : -1))
   }
+}
+
+const groups = computed(() => {
+  const result: {
+    key: string
+    company?: StackItem['company']
+    entries: { item: StackItem; index: number }[]
+  }[] = []
+  props.items.forEach((item, index) => {
+    const last = result.at(-1)
+    if (item.company && last?.company?.name === item.company.name) {
+      last.entries.push({ item, index })
+    } else {
+      result.push({
+        key: `${item.company?.name ?? item.id}-${index}`,
+        company: item.company,
+        entries: [{ item, index }],
+      })
+    }
+  })
+  return result
+})
+
+// One trackpad swipe moves one card: momentum events keep the gesture locked until they stop.
+let wheelDistance = 0
+let wheelLocked = false
+let wheelIdle: ReturnType<typeof setTimeout> | undefined
+useEventListener(
+  section,
+  'wheel',
+  (event: WheelEvent) => {
+    if (showAll.value || props.items.length < 2) return
+    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
+    event.preventDefault()
+    clearTimeout(wheelIdle)
+    wheelIdle = setTimeout(() => {
+      wheelLocked = false
+      wheelDistance = 0
+    }, 200)
+    if (wheelLocked) return
+    wheelDistance += event.deltaX
+    if (Math.abs(wheelDistance) > 40) {
+      goTo(selected.value + (wheelDistance > 0 ? 1 : -1))
+      wheelLocked = true
+      wheelDistance = 0
+    }
+  },
+  { passive: false },
+)
+
+const swipeStart = ref<{ x: number; y: number } | null>(null)
+let suppressClickUntil = 0
+function onSelectorPointerDown(event: PointerEvent) {
+  if (event.pointerType !== 'touch') return
+  swipeStart.value = { x: event.clientX, y: event.clientY }
+}
+function onSelectorPointerUp(event: PointerEvent) {
+  if (!swipeStart.value) return
+  const dx = event.clientX - swipeStart.value.x
+  const dy = event.clientY - swipeStart.value.y
+  swipeStart.value = null
+  if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    suppressClickUntil = Date.now() + 400
+    goTo(selected.value + (dx < 0 ? 1 : -1))
+  }
+}
+function onSelectorClick(index: number) {
+  if (Date.now() < suppressClickUntil) return
+  goTo(index)
 }
 </script>
 <style scoped>
