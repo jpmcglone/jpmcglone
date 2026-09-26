@@ -25,7 +25,12 @@ export interface IndexData {
     availability: string
     headline: string
     pitch: string
-    latestWork: { name: string; platform: string; logo: string; url: string }[]
+    latestWork: {
+      name: string
+      tagline?: string
+      logo: string
+      links: { label: string; ariaLabel: string; url: string; icon: string; primary?: boolean }[]
+    }[]
     outsideOfTech: Tag[]
     previouslyAt: { company: string; label: string }[]
     featuredRecommendation: { author: string; excerpt: string }
@@ -53,16 +58,36 @@ const indexData: IndexData = {
       '16 years of Swift, SwiftUI, and UIKit, from architecture to the App Store. I lead across mobile, web, and APIs, mentor engineers, and use AI to help small teams ship more.',
     latestWork: [
       {
-        name: 'Rumble Studio',
-        platform: 'iOS',
+        name: 'Rumble',
         logo: '/images/logos/rumble.png',
-        url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205',
+        links: [
+          {
+            label: 'Studio',
+            ariaLabel: 'Rumble Studio on the App Store',
+            url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205',
+            icon: 'i-simple-icons-apple',
+            primary: true,
+          },
+          {
+            label: 'Video',
+            ariaLabel: 'Rumble Video on the App Store',
+            url: 'https://apps.apple.com/us/app/rumble-live-streaming-videos/id1518427877',
+            icon: 'i-simple-icons-apple',
+          },
+        ],
       },
       {
         name: 'Men of Hunger',
-        platform: 'Website',
+        tagline: 'Men’s social network',
         logo: '/images/logos/men-of-hunger.png',
-        url: 'https://menofhunger.com',
+        links: [
+          {
+            label: '',
+            ariaLabel: 'Visit Men of Hunger',
+            url: 'https://menofhunger.com',
+            icon: 'i-jpm-globe-americas',
+          },
+        ],
       },
     ],
     previouslyAt: [

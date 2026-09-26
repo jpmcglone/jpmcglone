@@ -110,20 +110,17 @@
           class="aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
         />
         <div
-          class="hero-chip absolute bottom-6 right-3 w-56 rounded-xl bg-gray-900/90 p-1.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur sm:-right-8"
+          class="hero-chip absolute bottom-6 right-3 w-72 rounded-xl bg-gray-900/90 p-2 shadow-2xl ring-1 ring-gray-700 backdrop-blur sm:-right-8"
         >
           <p
-            class="px-2 pb-1 pt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400"
+            class="px-1.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400"
           >
             Latest work
           </p>
-          <a
+          <div
             v-for="work in personalInfo.latestWork"
             :key="work.name"
-            :href="work.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex min-h-11 items-center gap-2.5 rounded-lg px-2 py-1.5 transition hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-primary-400"
+            class="flex min-h-11 items-center gap-2.5 px-1.5 py-1.5"
           >
             <img
               :src="work.logo"
@@ -133,13 +130,32 @@
               class="company-logo size-7 shrink-0"
             />
             <span class="min-w-0 flex-1 text-left">
-              <span class="block text-sm font-semibold text-gray-50 group-hover:underline">
-                {{ work.name }}
+              <span class="block text-sm font-semibold text-gray-50">{{ work.name }}</span>
+              <span v-if="work.tagline" class="block truncate text-xs text-gray-400">
+                {{ work.tagline }}
               </span>
-              <span class="block text-xs text-gray-400">{{ work.platform }}</span>
             </span>
-            <UIcon name="i-jpm-arrow-up-right" class="size-4 shrink-0 text-link" />
-          </a>
+            <span class="flex shrink-0 items-center gap-1.5">
+              <UTooltip v-for="link in work.links" :key="link.url" :text="link.ariaLabel">
+                <a
+                  :href="link.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :aria-label="link.ariaLabel"
+                  class="inline-flex h-8 items-center justify-center gap-1 rounded-md text-xs font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+                  :class="[
+                    link.label ? 'px-2.5' : 'w-8',
+                    link.primary
+                      ? 'bg-gray-50 text-gray-900 hover:bg-white'
+                      : 'bg-gray-800 text-gray-200 ring-1 ring-gray-700 hover:bg-gray-700',
+                  ]"
+                >
+                  <UIcon :name="link.icon" class="size-3.5" />
+                  <span v-if="link.label">{{ link.label }}</span>
+                </a>
+              </UTooltip>
+            </span>
+          </div>
         </div>
       </div>
     </header>
