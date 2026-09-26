@@ -318,10 +318,25 @@ const groups = computed(() => {
 
 const hasCompanyGroups = computed(() => groups.value.some((group) => group.company))
 
-// One trackpad swipe moves one card: momentum events keep the gesture locked until they stop.
+// One trackpad swipe moves one card. Momentum events keep the gesture locked, but momentum only
+// decays, so a sudden speed-up or reversal while it coasts is a new swipe and unlocks immediately.
 let wheelDistance = 0
 let wheelLocked = false
+let wheelLockDirection = 0
+let wheelLockedAt = 0
+let wheelPeak = 0
+let wheelDecaying = false
+let wheelLastMagnitude = 0
 let wheelIdle: ReturnType<typeof setTimeout> | undefined
+
+function resetWheel() {
+  wheelLocked = false
+  wheelDistance = 0
+  wheelPeak = 0
+  wheelDecaying = false
+  wheelLastMagnitude = 0
+}
+
 useEventListener(
   section,
   'wheel',
@@ -330,15 +345,29 @@ useEventListener(
     if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
     event.preventDefault()
     clearTimeout(wheelIdle)
-    wheelIdle = setTimeout(() => {
-      wheelLocked = false
-      wheelDistance = 0
-    }, 200)
-    if (wheelLocked) return
+    wheelIdle = setTimeout(resetWheel, 200)
+
+    const magnitude = Math.abs(event.deltaX)
+    const direction = Math.sign(event.deltaX)
+    if (wheelLocked) {
+      wheelPeak = Math.max(wheelPeak, magnitude)
+      if (magnitude < wheelPeak * 0.8) wheelDecaying = true
+      const reversed = direction !== wheelLockDirection && magnitude > 4
+      const reaccelerated =
+        wheelDecaying && magnitude > Math.max(wheelLastMagnitude * 1.5, wheelLastMagnitude + 6)
+      wheelLastMagnitude = magnitude
+      if (performance.now() - wheelLockedAt < 150 || !(reversed || reaccelerated)) return
+      resetWheel()
+    }
+
     wheelDistance += event.deltaX
+    wheelLastMagnitude = magnitude
     if (Math.abs(wheelDistance) > 40) {
       goTo(selected.value + (wheelDistance > 0 ? 1 : -1))
       wheelLocked = true
+      wheelLockDirection = Math.sign(wheelDistance)
+      wheelLockedAt = performance.now()
+      wheelPeak = magnitude
       wheelDistance = 0
     }
   },
