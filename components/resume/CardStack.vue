@@ -161,15 +161,20 @@
                   {{ nextItem.label }}
                 </span>
               </span>
-              <img
+              <span
                 v-if="nextItem.company && nextItem.company.name !== items[selected]?.company?.name"
-                :src="nextItem.company.image"
-                :alt="`${nextItem.company.name} company logo`"
-                width="28"
-                height="28"
-                loading="lazy"
-                class="size-7 shrink-0 company-logo object-contain ring-1 ring-white/10"
-              />
+                class="flex shrink-0 items-center gap-2"
+              >
+                <span class="text-xs font-medium text-gray-300">{{ nextItem.company.name }}</span>
+                <img
+                  :src="nextItem.company.image"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  class="size-7 shrink-0 company-logo object-contain ring-1 ring-white/10"
+                />
+              </span>
               <UIcon
                 name="i-jpm-arrow-right"
                 class="size-4 shrink-0 text-link transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
