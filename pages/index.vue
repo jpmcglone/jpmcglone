@@ -109,28 +109,38 @@
           fetchpriority="high"
           class="aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
         />
-        <a
-          :href="heroChip.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Rumble Studio on the App Store"
-          class="hero-chip group absolute bottom-6 right-3 flex items-center gap-2.5 rounded-xl bg-gray-900/90 px-3.5 py-2.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur transition hover:bg-gray-900 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:-right-8"
+        <div
+          class="hero-chip absolute bottom-6 right-3 w-56 rounded-xl bg-gray-900/90 p-1.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur sm:-right-8"
         >
-          <img
-            :src="heroChip.logo"
-            alt=""
-            width="32"
-            height="32"
-            class="company-logo size-8 shrink-0"
-          />
-          <span class="text-left">
-            <span class="block text-[15px] font-semibold text-gray-50 group-hover:underline">
-              {{ heroChip.title }}
+          <p
+            class="px-2 pb-1 pt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400"
+          >
+            Latest work
+          </p>
+          <a
+            v-for="work in personalInfo.latestWork"
+            :key="work.name"
+            :href="work.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex min-h-11 items-center gap-2.5 rounded-lg px-2 py-1.5 transition hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-primary-400"
+          >
+            <img
+              :src="work.logo"
+              alt=""
+              width="28"
+              height="28"
+              class="company-logo size-7 shrink-0"
+            />
+            <span class="min-w-0 flex-1 text-left">
+              <span class="block text-sm font-semibold text-gray-50 group-hover:underline">
+                {{ work.name }}
+              </span>
+              <span class="block text-xs text-gray-400">{{ work.platform }}</span>
             </span>
-            <span class="block text-xs text-gray-400">{{ heroChip.subtitle }}</span>
-          </span>
-          <UIcon name="i-jpm-arrow-up-right" class="size-4 shrink-0 text-link" />
-        </a>
+            <UIcon name="i-jpm-arrow-up-right" class="size-4 shrink-0 text-link" />
+          </a>
+        </div>
       </div>
     </header>
 
@@ -313,7 +323,6 @@ definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
 
 const personalInfo = indexData.personalInfo
-const heroChip = personalInfo.heroChip
 const linkedIn = personalInfo.socialLinks.find((link) => link.name === 'LinkedIn')
 const buildingNow = resumeData.projects.filter((project) => project.status !== 'Advising')
 const previouslyAt = personalInfo.previouslyAt.map((entry) => ({

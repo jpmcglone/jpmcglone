@@ -25,7 +25,7 @@ export interface IndexData {
     availability: string
     headline: string
     pitch: string
-    heroChip: { title: string; subtitle: string; logo: string; url: string }
+    latestWork: { name: string; platform: string; logo: string; url: string }[]
     outsideOfTech: Tag[]
     previouslyAt: { company: string; label: string }[]
     featuredRecommendation: { author: string; excerpt: string }
@@ -51,12 +51,20 @@ const indexData: IndexData = {
     headline: 'The iOS engineer who owns the whole product.',
     pitch:
       '16 years of Swift, SwiftUI, and UIKit, from architecture to the App Store. I lead across mobile, web, and APIs, mentor engineers, and use AI to help small teams ship more.',
-    heroChip: {
-      title: 'Built Rumble Studio solo',
-      subtitle: 'iPhone, iPad & Vision Pro',
-      logo: '/images/logos/rumble.png',
-      url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205',
-    },
+    latestWork: [
+      {
+        name: 'Rumble Studio',
+        platform: 'iOS',
+        logo: '/images/logos/rumble.png',
+        url: 'https://apps.apple.com/us/app/rumble-studio/id6472735205',
+      },
+      {
+        name: 'Men of Hunger',
+        platform: 'Website',
+        logo: '/images/logos/men-of-hunger.png',
+        url: 'https://menofhunger.com',
+      },
+    ],
     previouslyAt: [
       { company: 'Rumble', label: 'Rumble' },
       { company: 'Walmart Labs', label: 'Walmart' },
