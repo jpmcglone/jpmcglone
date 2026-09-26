@@ -733,6 +733,20 @@ const resumeData: ResumeData = {
     url: 'https://www.linkedin.com/in/john-p-mcglone-18513014/details/recommendations/?detailScreenTabIndex=0',
     items: [
       {
+        quote: `I highly recommend John McGlone. I worked alongside John for five years at Callin and Rumble, and I also served as his manager for a portion of that time.
+
+During our time together, John single-handedly built the Rumble Studio app from the ground up. This project perfectly highlighted his remarkable autonomy and technical execution. He operates with a high degree of independence, requiring virtually no oversight to deliver complex products. John’s passion for iOS development has shone through his work, always chomping at the bit to integrate the latest feature and hardware platforms as soon as they were available. John is a trustworthy, reliable, and incredibly skilled engineer who would be a massive asset to any technical team.`,
+        author: 'James Whitney',
+        sharedCompany: { name: 'Rumble', image: '/images/logos/rumble.png' },
+        image: '/images/avatars/james-whitney.webp',
+        title: 'Technical Lead',
+        company: 'Rumble',
+        context: 'Managed John at Callin and Rumble',
+        linkedin: 'https://www.linkedin.com/in/james-d-whitney/',
+        year: '2026',
+        date: '2026-09-25',
+      },
+      {
         quote: `John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work. He stays current with the latest iOS releases and platform updates, and he is always willing to step in to solve problems or help move a project forward.
 
 Beyond his technical abilities, John is a thoughtful, dependable teammate who collaborates well across disciplines. He communicates clearly, supports those around him, and makes the people he works with better. It’s also clear that he values his family deeply and is committed to being present for them.
