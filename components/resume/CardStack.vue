@@ -56,7 +56,8 @@
         <div
           role="group"
           :aria-label="`Choose a ${itemLabel}`"
-          class="flex touch-pan-y flex-wrap items-center gap-2 select-none"
+          class="flex touch-pan-y flex-wrap items-center select-none"
+          :class="hasCompanyGroups ? 'gap-x-3 gap-y-4 pl-2 pt-2' : 'gap-1'"
           @pointerdown="onSelectorPointerDown"
           @pointerup="onSelectorPointerUp"
           @pointercancel="swipeStart = null"
@@ -67,7 +68,7 @@
             :class="
               group.company
                 ? [
-                    'flex items-center rounded-2xl pl-2.5 pr-0.5 ring-1 ring-inset transition-colors duration-200',
+                    'relative flex items-center rounded-2xl px-1 ring-1 ring-inset transition-colors duration-200',
                     group.entries.some((entry) => entry.index === selected)
                       ? 'bg-gray-800/80 ring-gray-500/60'
                       : 'bg-gray-800/30 ring-gray-700/60',
@@ -82,7 +83,7 @@
               :title="group.company.name"
               width="24"
               height="24"
-              class="company-logo mr-1 size-6 shrink-0 object-contain"
+              class="company-logo absolute -left-2 -top-2 z-10 size-6 object-contain shadow-md ring-2 ring-gray-900"
             />
             <button
               v-for="{ item, index } in group.entries"
@@ -314,6 +315,8 @@ const groups = computed(() => {
   })
   return result
 })
+
+const hasCompanyGroups = computed(() => groups.value.some((group) => group.company))
 
 // One trackpad swipe moves one card: momentum events keep the gesture locked until they stop.
 let wheelDistance = 0
