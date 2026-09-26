@@ -459,23 +459,27 @@ const groups = computed(() => {
 
 const hasCompanyGroups = computed(() => groups.value.some((group) => group.company))
 
-// One trackpad swipe moves one card. Momentum events keep the gesture locked, but momentum only
-// decays, so a sudden speed-up or reversal while it coasts is a new swipe and unlocks immediately.
+// One trackpad swipe moves one card. After a move, the gesture stays locked through its momentum
+// until events go idle. A new swipe during the momentum tail unlocks early only after a cooldown,
+// once the tail has mostly died out, and when the speed climbs for several events in a row;
+// macOS momentum is bursty, so a single spike is not treated as a new swipe.
 let wheelDistance = 0
 let wheelLocked = false
 let wheelLockDirection = 0
 let wheelLockedAt = 0
 let wheelPeak = 0
-let wheelDecaying = false
+let wheelTrough = Infinity
 let wheelLastMagnitude = 0
+let wheelRising = 0
 let wheelIdle: ReturnType<typeof setTimeout> | undefined
 
 function resetWheel() {
   wheelLocked = false
   wheelDistance = 0
   wheelPeak = 0
-  wheelDecaying = false
+  wheelTrough = Infinity
   wheelLastMagnitude = 0
+  wheelRising = 0
 }
 
 useEventListener(
@@ -483,21 +487,26 @@ useEventListener(
   'wheel',
   (event: WheelEvent) => {
     if (showAll.value || props.items.length < 2) return
-    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
+    const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY)
+    if (!horizontal && !wheelLocked) return
     event.preventDefault()
     clearTimeout(wheelIdle)
     wheelIdle = setTimeout(resetWheel, 200)
+    if (!horizontal) return
 
     const magnitude = Math.abs(event.deltaX)
     const direction = Math.sign(event.deltaX)
     if (wheelLocked) {
       wheelPeak = Math.max(wheelPeak, magnitude)
-      if (magnitude < wheelPeak * 0.8) wheelDecaying = true
-      const reversed = direction !== wheelLockDirection && magnitude > 4
-      const reaccelerated =
-        wheelDecaying && magnitude > Math.max(wheelLastMagnitude * 1.5, wheelLastMagnitude + 6)
+      wheelTrough = Math.min(wheelTrough, magnitude)
+      wheelRising = magnitude > wheelLastMagnitude * 1.3 && magnitude >= 8 ? wheelRising + 1 : 0
       wheelLastMagnitude = magnitude
-      if (performance.now() - wheelLockedAt < 150 || !(reversed || reaccelerated)) return
+      const elapsed = performance.now() - wheelLockedAt
+      const tailFaded = wheelTrough < wheelPeak * 0.35
+      const newSwipe =
+        (direction !== wheelLockDirection && magnitude > 6 && elapsed > 250) ||
+        (tailFaded && wheelRising >= 3 && magnitude >= 16 && elapsed > 400)
+      if (!newSwipe) return
       resetWheel()
     }
 
@@ -509,6 +518,8 @@ useEventListener(
       wheelLockDirection = Math.sign(wheelDistance)
       wheelLockedAt = performance.now()
       wheelPeak = magnitude
+      wheelTrough = Infinity
+      wheelRising = 0
       wheelDistance = 0
     }
   },
