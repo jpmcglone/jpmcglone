@@ -40,8 +40,13 @@
             {{ recommendation.context }}
           </p>
         </div>
+        <span
+          v-if="recommendation.sharedCompany && floatLogo"
+          aria-hidden="true"
+          class="size-9 shrink-0 sm:size-11"
+        />
         <img
-          v-if="recommendation.sharedCompany"
+          v-else-if="recommendation.sharedCompany"
           :src="recommendation.sharedCompany.image"
           :alt="`${recommendation.sharedCompany.name} company logo`"
           :title="recommendation.sharedCompany.name"
@@ -67,7 +72,7 @@
 <script setup lang="ts">
 import type { Recommendation } from '~/data/resume'
 
-defineProps<{ recommendation: Recommendation }>()
+defineProps<{ recommendation: Recommendation; floatLogo?: boolean }>()
 </script>
 
 <style scoped>

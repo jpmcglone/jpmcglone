@@ -37,8 +37,11 @@
       item-label="recommendation"
       plural-label="recommendations"
     >
-      <template #default="{ index }">
-        <ResumeRecommendationCard :recommendation="recommendations[index]!" />
+      <template #default="{ index, floating }">
+        <ResumeRecommendationCard
+          :recommendation="recommendations[index]!"
+          :float-logo="floating"
+        />
       </template>
     </ResumeCardStack>
   </section>

@@ -221,10 +221,32 @@
                     class="deck-card"
                     :aria-label="`${selected + 1} of ${items.length}: ${items[selected]?.label}`"
                   >
-                    <slot :item="items[selected]!" :index="selected" />
+                    <slot :item="items[selected]!" :index="selected" :floating="true" />
                   </div>
                 </div>
               </motion.div>
+            </AnimatePresence>
+            <AnimatePresence :initial="false" :custom="direction">
+              <motion.img
+                v-if="currentCompany"
+                :key="currentCompany.name"
+                :src="currentCompany.image"
+                :alt="`${currentCompany.name} company logo`"
+                :title="currentCompany.name"
+                width="44"
+                height="44"
+                class="company-logo pointer-events-none absolute right-5 top-5 z-20 size-9 object-contain ring-1 ring-white/10 sm:right-6 sm:top-6 sm:size-11"
+                :custom="direction"
+                :variants="cardVariants"
+                initial="enter"
+                animate="center"
+                exit="exit"
+                :transition="
+                  reducedMotion
+                    ? { duration: 0 }
+                    : { type: 'spring', stiffness: 190, damping: 25, mass: 0.8 }
+                "
+              />
             </AnimatePresence>
           </motion.div>
         </div>
@@ -253,6 +275,7 @@ const selected = ref(0)
 const showAll = ref(false)
 const remaining = computed(() => props.items.length - selected.value - 1)
 const nextItem = computed(() => props.items[selected.value + 1])
+const currentCompany = computed(() => props.items[selected.value]?.company)
 const direction = ref(1)
 const cardContent = useTemplateRef('cardContent')
 const { height: cardHeight } = useElementSize(cardContent)
