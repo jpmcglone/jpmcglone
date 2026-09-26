@@ -109,25 +109,28 @@
           fetchpriority="high"
           class="aspect-[22/25] w-full rounded-[28px] object-cover ring-1 ring-gray-700"
         />
-        <div
-          v-for="(chip, index) in personalInfo.heroChips"
-          :key="chip.title"
-          class="hero-chip absolute flex items-center gap-2.5 rounded-xl bg-gray-900/90 px-3.5 py-2.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur"
-          :class="index === 0 ? 'left-3 top-4 sm:-left-8' : 'bottom-6 right-3 sm:-right-8'"
+        <a
+          :href="heroChip.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Rumble Studio on the App Store"
+          class="hero-chip group absolute bottom-6 right-3 flex items-center gap-2.5 rounded-xl bg-gray-900/90 px-3.5 py-2.5 shadow-2xl ring-1 ring-gray-700 backdrop-blur transition hover:bg-gray-900 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:-right-8"
         >
           <img
-            v-if="chip.logo"
-            :src="chip.logo"
+            :src="heroChip.logo"
             alt=""
             width="32"
             height="32"
             class="company-logo size-8 shrink-0"
           />
           <span class="text-left">
-            <span class="block text-[15px] font-semibold text-gray-50">{{ chip.title }}</span>
-            <span class="block text-xs text-gray-400">{{ chip.subtitle }}</span>
+            <span class="block text-[15px] font-semibold text-gray-50 group-hover:underline">
+              {{ heroChip.title }}
+            </span>
+            <span class="block text-xs text-gray-400">{{ heroChip.subtitle }}</span>
           </span>
-        </div>
+          <UIcon name="i-jpm-arrow-up-right" class="size-4 shrink-0 text-link" />
+        </a>
       </div>
     </header>
 
@@ -310,6 +313,7 @@ definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
 
 const personalInfo = indexData.personalInfo
+const heroChip = personalInfo.heroChip
 const linkedIn = personalInfo.socialLinks.find((link) => link.name === 'LinkedIn')
 const buildingNow = resumeData.projects.filter((project) => project.status !== 'Advising')
 const previouslyAt = personalInfo.previouslyAt.map((entry) => ({
