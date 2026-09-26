@@ -93,6 +93,7 @@ const indexData: IndexData = {
     previouslyAt: [
       { company: 'Rumble', label: 'Rumble' },
       { company: 'Walmart Labs', label: 'Walmart' },
+      { company: 'Imgur', label: 'Imgur' },
       { company: 'DocuSign', label: 'DocuSign' },
       { company: 'Workday', label: 'Workday' },
     ],
