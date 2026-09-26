@@ -257,6 +257,9 @@
             <span class="block text-sm text-gray-400">
               {{ recommendation.title }} at {{ recommendation.company }}
             </span>
+            <span v-if="recommendation.context" class="block text-xs text-gray-400">
+              {{ recommendation.context }}
+            </span>
           </span>
         </span>
         <NuxtLink

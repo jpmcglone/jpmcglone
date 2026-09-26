@@ -97,9 +97,9 @@ const indexData: IndexData = {
       { company: 'Workday', label: 'Workday' },
     ],
     featuredRecommendation: {
-      author: 'Tim Cook',
+      author: 'James Whitney',
       excerpt:
-        'John is the best iOS developer I’ve ever worked with. He is exceptionally talented, proactive, and consistently brings a high level of ownership to his work.',
+        'John single-handedly built the Rumble Studio app from the ground up. … He operates with a high degree of independence, requiring virtually no oversight to deliver complex products.',
     },
     outsideOfTech: [
       {
