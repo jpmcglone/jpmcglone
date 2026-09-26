@@ -741,7 +741,7 @@ During our time together, John single-handedly built the Rumble Studio app from 
         image: '/images/avatars/james-whitney.webp',
         title: 'Technical Lead',
         company: 'Rumble',
-        context: 'Managed John at Callin and Rumble',
+        context: 'Managed John at Rumble',
         linkedin: 'https://www.linkedin.com/in/james-d-whitney/',
         year: '2026',
         date: '2026-09-25',
