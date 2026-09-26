@@ -60,6 +60,7 @@
         color="neutral"
         variant="soft"
         class="profile-action sm:w-[154px]"
+        @click="saveResumePdf"
       >
         <UIcon name="i-jpm-document-text" class="size-4 shrink-0 sm:size-[18px]" />
         <span class="sm:hidden" aria-hidden="true">PDF</span>

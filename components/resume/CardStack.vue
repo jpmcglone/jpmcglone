@@ -38,12 +38,18 @@
           Next
         </UButton>
       </div>
-      <UButton v-else variant="ghost" class="min-h-11 text-link" @click="showAll = false">
+      <UButton
+        v-else
+        icon="i-jpm-card-stack"
+        variant="ghost"
+        class="min-h-11 text-link"
+        @click="showCards"
+      >
         Card view
       </UButton>
     </div>
 
-    <div :class="showAll ? 'grid gap-4' : 'hidden print:grid print:gap-4'">
+    <div ref="listRoot" :class="showAll ? 'grid gap-4' : 'hidden print:grid print:gap-4'">
       <div v-for="(item, index) in items" :key="item.id">
         <slot :item="item" :index="index" />
       </div>
@@ -122,7 +128,7 @@
             </button>
           </div>
         </div>
-        <UButton variant="ghost" class="min-h-11 text-link" @click="showAll = true">
+        <UButton icon="i-jpm-list" variant="ghost" class="min-h-11 text-link" @click="showList">
           View all {{ items.length }}
         </UButton>
       </div>
@@ -286,6 +292,108 @@ const cardContent = useTemplateRef('cardContent')
 const { height: cardHeight } = useElementSize(cardContent)
 const motionPreference = usePreferredReducedMotion()
 const reducedMotion = computed(() => motionPreference.value === 'reduce')
+
+const listRoot = useTemplateRef('listRoot')
+const viewEase = 'cubic-bezier(0.22, 1, 0.36, 1)'
+const listItems = () => [...(listRoot.value?.children ?? [])] as HTMLElement[]
+// The floating company logo travels with the deck card.
+const deckMovers = () =>
+  [
+    ...(deckRegion.value?.querySelectorAll<HTMLElement>('.deck-card, img[alt$="company logo"]') ??
+      []),
+  ] as HTMLElement[]
+const offset = (from: DOMRect, to: DOMRect) =>
+  `translate(${from.left - to.left}px, ${from.top - to.top}px)`
+
+async function showList() {
+  const from = deckRegion.value?.querySelector('.deck-card')?.getBoundingClientRect()
+  showAll.value = true
+  await nextTick()
+  if (reducedMotion.value || !from) return
+  const items = listItems()
+  const target = items[selected.value]
+  if (!target) return
+  let to = target.getBoundingClientRect()
+  if (to.bottom > window.innerHeight) {
+    window.scrollTo({ top: window.scrollY + to.top - from.top, behavior: 'instant' })
+    to = target.getBoundingClientRect()
+  }
+  target.animate([{ transform: offset(from, to) }, { transform: 'none' }], {
+    duration: 480,
+    easing: viewEase,
+  })
+  items.forEach((el, index) => {
+    if (index === selected.value) return
+    const toward = index < selected.value ? 16 : -16
+    el.animate(
+      [
+        { opacity: 0, transform: `translateY(${toward}px) scale(0.98)` },
+        { opacity: 1, transform: 'none' },
+      ],
+      {
+        duration: 380,
+        delay: 80 + Math.abs(index - selected.value) * 45,
+        easing: viewEase,
+        fill: 'backwards',
+      },
+    )
+  })
+}
+
+async function showCards() {
+  const items = listItems()
+  const middle = window.innerHeight / 2
+  let focus = selected.value
+  let closest = Infinity
+  items.forEach((el, index) => {
+    const rect = el.getBoundingClientRect()
+    const distance = Math.abs((rect.top + rect.bottom) / 2 - middle)
+    if (rect.bottom > 0 && rect.top < window.innerHeight && distance < closest) {
+      closest = distance
+      focus = index
+    }
+  })
+  const from = items[focus]?.getBoundingClientRect()
+  if (!reducedMotion.value) {
+    await Promise.all(
+      items
+        .filter((_, index) => index !== focus)
+        .map(
+          (el) =>
+            el.animate([{ opacity: 1 }, { opacity: 0, transform: 'scale(0.97)' }], {
+              duration: 160,
+              easing: 'ease-in',
+              fill: 'forwards',
+            }).finished,
+        ),
+    )
+  }
+  selected.value = focus
+  showAll.value = false
+  await nextTick()
+  items.forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()))
+  if (reducedMotion.value || !from || !section.value) return
+  const sectionTop = section.value.getBoundingClientRect().top
+  if (sectionTop < 0) {
+    window.scrollTo({ top: window.scrollY + sectionTop - 80, behavior: 'instant' })
+  }
+  const card = deckRegion.value?.querySelector('.deck-card')
+  if (!card) return
+  const transform = offset(from, card.getBoundingClientRect())
+  deckMovers().forEach((el) =>
+    el.animate([{ transform }, { transform: 'none' }], { duration: 480, easing: viewEase }),
+  )
+  section.value
+    .querySelectorAll<HTMLElement>('.deck-navigation, .next-card-preview')
+    .forEach((el) =>
+      el.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 300,
+        delay: 180,
+        easing: 'ease-out',
+        fill: 'backwards',
+      }),
+    )
+}
 
 async function goTo(index: number) {
   if (index < 0 || index >= props.items.length || index === selected.value) return

@@ -75,6 +75,7 @@
             variant="soft"
             size="lg"
             class="min-h-12 px-5"
+            @click="saveResumePdf"
           >
             <UIcon name="i-jpm-document-text" class="size-4" />
             Download PDF
