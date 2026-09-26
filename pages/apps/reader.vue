@@ -9,7 +9,7 @@
           <UTextarea
             v-model="inputText"
             :rows="10"
-            placeholder="Paste your lyrics here..."
+            placeholder="Paste your lyrics here…"
             aria-label="Lyrics"
             size="xl"
             :ui="{ base: 'p-6 min-h-[300px] leading-relaxed' }"

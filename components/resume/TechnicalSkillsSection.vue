@@ -5,7 +5,7 @@
     <div class="mb-4">
       <UInput
         v-model="searchInput"
-        placeholder="Search skills..."
+        placeholder="Search skills…"
         icon="i-jpm-magnifying-glass"
         class="w-full max-w-md"
         aria-label="Search technical skills"
