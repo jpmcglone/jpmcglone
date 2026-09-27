@@ -6,6 +6,8 @@ import { pageMetadata } from '../data/site'
 import { formatExperiencePeriod, formatPeriod, getEndYear } from '../utils/formatters'
 import { parseInlineContent } from '../utils/inlineContent'
 import { profileSchema } from '../utils/profileSchema'
+import { connectionsForSkill } from '../utils/skillConnections'
+import { hiringNote, recruiterShareUrl } from '../utils/hiringNote'
 import {
   rankSkillCategories,
   skillMatchesQuery,
@@ -27,6 +29,24 @@ describe('skill search', () => {
     expect(matches('swiftui')).toEqual(matches('Swift-UI'))
     expect(matches('mcp unrelated')).toEqual([])
     expect(matches('AppCode')).toEqual([])
+  })
+  it('lights up the work a skill actually touched', () => {
+    const swift = connectionsForSkill('SwiftUI')
+    expect(swift.jobs).toContain('Rumble')
+    expect(swift.jobs).toContain('Men of Hunger')
+    expect(swift.recommendations).toContain('James Whitney')
+    const mcp = connectionsForSkill('MCP Server Development')
+    expect(mcp.jobs).toContain('Men of Hunger')
+    expect(mcp.projects).toContain('Men of Hunger')
+    expect(mcp.jobs).not.toContain('Workday')
+    const agora = connectionsForSkill('Agora')
+    expect(agora.jobs).toContain('Callin')
+  })
+  it('writes a recruiter note with the personalized URL', () => {
+    const note = hiringNote({ name: 'Acme', domain: 'acme.com' })
+    expect(note).toContain('For the Acme team')
+    expect(note).toContain('for=acme.com')
+    expect(recruiterShareUrl(null)).toBe('https://jpmcglone.com/resume/')
   })
   it('ranks direct matches first without changing the source order', () => {
     const before = resume.technicalSkills.map((category) => category.category)

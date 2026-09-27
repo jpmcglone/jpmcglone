@@ -1,5 +1,7 @@
 <template>
   <UCard
+    class="work-card"
+    :class="highlightClass"
     :ui="{
       body: project.featured ? 'p-6' : 'p-4',
       root: project.featured ? 'ring-1 ring-primary-400/30' : 'ring-1 ring-gray-700',
@@ -71,5 +73,10 @@
 </template>
 <script setup lang="ts">
 import type { Project } from '~/data/resume'
-defineProps<{ project: Project }>()
+const props = defineProps<{ project: Project }>()
+const { active, isProjectMatched } = useSkillHighlight()
+const highlightClass = computed(() => {
+  if (!active.value) return ''
+  return isProjectMatched(props.project.name) ? 'work-card-match' : 'work-card-dim'
+})
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <UCard class="dark:bg-gray-800" :ui="{ body: 'p-5 sm:p-6' }">
+  <UCard class="work-card dark:bg-gray-800" :class="highlightClass" :ui="{ body: 'p-5 sm:p-6' }">
     <figure class="space-y-6">
       <figcaption class="flex items-start gap-3 sm:gap-4">
         <LinkedAvatar
@@ -72,7 +72,12 @@
 <script setup lang="ts">
 import type { Recommendation } from '~/data/resume'
 
-defineProps<{ recommendation: Recommendation; floatLogo?: boolean }>()
+const props = defineProps<{ recommendation: Recommendation; floatLogo?: boolean }>()
+const { active, isRecommendationMatched } = useSkillHighlight()
+const highlightClass = computed(() => {
+  if (!active.value) return ''
+  return isRecommendationMatched(props.recommendation.author) ? 'work-card-match' : 'work-card-dim'
+})
 </script>
 
 <style scoped>

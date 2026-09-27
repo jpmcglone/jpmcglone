@@ -284,6 +284,18 @@ const section = useTemplateRef('stackSection')
 const deckRegion = useTemplateRef('deckRegion')
 const selected = ref(0)
 const showAll = ref(false)
+const highlight = useSkillHighlight()
+function revealMatches() {
+  if (!highlight.selected.value || showAll.value) return
+  const ids = new Set(
+    props.id === 'projects'
+      ? highlight.matches.value.projects
+      : highlight.matches.value.recommendations,
+  )
+  if (props.items.some((item) => ids.has(item.id) || ids.has(item.label))) showList()
+}
+watch(() => highlight.selected.value, revealMatches)
+onMounted(revealMatches)
 const remaining = computed(() => props.items.length - selected.value - 1)
 const nextItem = computed(() => props.items[selected.value + 1])
 const currentCompany = computed(() => props.items[selected.value]?.company)

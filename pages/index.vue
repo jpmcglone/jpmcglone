@@ -22,6 +22,18 @@
         <UButton :to="indexData.resume.link" color="neutral" class="min-h-10 px-4 font-semibold">
           Resume
         </UButton>
+        <UTooltip text="Command palette">
+          <UButton
+            color="neutral"
+            variant="soft"
+            aria-label="Open command palette"
+            class="min-h-10 px-3"
+            @click="openPalette"
+          >
+            <UIcon name="i-jpm-command" class="size-4" />
+            <span class="hidden text-xs font-medium text-gray-400 sm:inline">⌘K</span>
+          </UButton>
+        </UTooltip>
       </div>
     </nav>
 
@@ -202,7 +214,8 @@
           :href="project.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col gap-4 rounded-2xl bg-gray-800/55 p-6 ring-1 ring-gray-700 transition hover:bg-gray-800 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:p-7"
+          class="work-card group flex flex-col gap-4 rounded-2xl bg-gray-800/55 p-6 ring-1 ring-gray-700 transition hover:bg-gray-800 hover:ring-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:p-7"
+          :class="projectHighlight(project.name)"
         >
           <span class="flex items-start justify-between">
             <img
@@ -315,6 +328,10 @@
         >
           {{ indexData.resume.buttonText }}
         </UButton>
+        <UButton color="neutral" variant="soft" size="lg" class="min-h-12 px-5" @click="copyHiring">
+          <UIcon name="i-jpm-clipboard-document-list" class="size-[18px]" />
+          Copy a note for your team
+        </UButton>
       </div>
     </section>
 
@@ -346,6 +363,29 @@ import resumeData from '~/data/resume'
 
 definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
+
+const { open: paletteOpen } = useCommandPalette()
+const { recruiter } = useRecruiter()
+const { active, isProjectMatched } = useSkillHighlight()
+const toast = useToast()
+function openPalette() {
+  paletteOpen.value = true
+}
+function projectHighlight(name) {
+  if (!active.value) return ''
+  return isProjectMatched(name) ? 'work-card-match' : 'work-card-dim'
+}
+async function copyHiring() {
+  const copied = await copyText(hiringNote(recruiter.value))
+  toast.add({
+    title: copied ? 'Copied' : 'Could not copy',
+    description: copied
+      ? recruiter.value
+        ? `A note for the ${recruiter.value.name} team.`
+        : 'Hiring note copied.'
+      : 'Copy the text from the page instead.',
+  })
+}
 
 const personalInfo = indexData.personalInfo
 const linkedIn = personalInfo.socialLinks.find((link) => link.name === 'LinkedIn')

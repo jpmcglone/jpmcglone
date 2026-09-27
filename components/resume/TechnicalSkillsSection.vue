@@ -13,8 +13,9 @@
         @update:model-value="onSearchInput"
       />
       <p id="skills-search-help" class="mt-2 text-xs text-gray-400">
-        Search tools or topics: Cursor, ChatGPT, Claude, MCP, iPhone, architecture…
+        Search or select a skill to light up matching jobs, projects, and recommendations.
       </p>
+      <SkillMatchBar />
       <div v-if="searchQuery.trim()" class="mt-2 flex items-center gap-3">
         <p role="status" class="text-sm text-gray-300">
           {{ matchingSkills }} matching {{ matchingSkills === 1 ? 'skill' : 'skills' }}
@@ -58,47 +59,53 @@
           {{ skill.description }}
         </p>
         <div class="flex flex-wrap gap-2">
-          <component
-            :is="hasSkillUrl(item.name) ? 'a' : 'span'"
+          <span
             v-for="item in skill.skills"
             :key="item.name"
-            :href="getSkillUrl(item.name) || undefined"
-            :target="hasSkillUrl(item.name) ? '_blank' : undefined"
-            :rel="hasSkillUrl(item.name) ? 'noopener noreferrer' : undefined"
-            :title="item.historical ? 'Historical experience' : undefined"
             class="skill-chip inline-flex items-center font-medium rounded-md text-sm px-2 py-1 gap-1.5 transition-all duration-200"
-            :class="[
-              item.featured
-                ? 'skill-chip-primary bg-primary-400 text-gray-950'
-                : item.historical
-                  ? 'bg-gray-800 text-gray-500 ring-1 ring-inset ring-gray-700/50'
-                  : 'bg-gray-700/60 text-gray-300',
-              hasSkillUrl(item.name) ? 'cursor-pointer hover:-translate-y-0.5' : '',
-            ]"
+            :class="chipClass(item)"
+            :title="item.historical ? 'Historical experience' : undefined"
           >
-            <img
-              v-if="getSkillImage(item.name)"
-              :src="getSkillImage(item.name)"
-              alt=""
-              width="16"
-              height="16"
-              loading="lazy"
-              class="size-4 shrink-0 object-contain"
-              :class="item.historical ? 'grayscale opacity-50' : ''"
-            />
-            <UIcon
-              v-else
-              :name="getSkillIcon(item.name)"
-              class="h-4 w-4 shrink-0 text-current"
-              :class="[
-                !item.featured && isDarkSkillIcon(item.name) ? 'invert' : '',
-                item.historical ? 'grayscale opacity-50' : '',
-              ]"
-            />
-            {{ item.name }}
-            <span v-if="hasSkillUrl(item.name)" class="opacity-70 group-hover:opacity-100">↗</span>
-            <span v-if="item.historical" class="sr-only">(historical experience)</span>
-          </component>
+            <button
+              type="button"
+              class="inline-flex items-center gap-1.5"
+              :aria-pressed="selected === item.name"
+              @click="select(item.name)"
+            >
+              <img
+                v-if="getSkillImage(item.name)"
+                :src="getSkillImage(item.name)"
+                alt=""
+                width="16"
+                height="16"
+                loading="lazy"
+                class="size-4 shrink-0 object-contain"
+                :class="item.historical ? 'grayscale opacity-50' : ''"
+              />
+              <UIcon
+                v-else
+                :name="getSkillIcon(item.name)"
+                class="h-4 w-4 shrink-0 text-current"
+                :class="[
+                  !item.featured && isDarkSkillIcon(item.name) ? 'invert' : '',
+                  item.historical ? 'grayscale opacity-50' : '',
+                ]"
+              />
+              {{ item.name }}
+              <span v-if="item.historical" class="sr-only">(historical experience)</span>
+            </button>
+            <a
+              v-if="hasSkillUrl(item.name)"
+              :href="getSkillUrl(item.name) || undefined"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`Open ${item.name}`"
+              class="opacity-70 hover:opacity-100"
+              @click.stop
+            >
+              ↗
+            </a>
+          </span>
         </div>
       </UCard>
     </TransitionGroup>
@@ -112,6 +119,23 @@ const props = defineProps({
     required: true,
   },
 })
+
+const { selected, select, active } = useSkillHighlight()
+
+function chipClass(item) {
+  return [
+    item.featured
+      ? 'skill-chip-primary bg-primary-400 text-gray-950'
+      : item.historical
+        ? 'bg-gray-800 text-gray-500 ring-1 ring-inset ring-gray-700/50'
+        : 'bg-gray-700/60 text-gray-300',
+    selected.value === item.name
+      ? 'ring-2 ring-emerald-300 ring-offset-2 ring-offset-gray-800'
+      : '',
+    active.value && selected.value !== item.name ? 'opacity-45' : '',
+    'hover:-translate-y-0.5',
+  ]
+}
 
 const showAllSkills = ref(false)
 const totalSkills = computed(() =>

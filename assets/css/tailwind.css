@@ -3,6 +3,7 @@
 
 @theme static {
   --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
   --color-blue-300: #b7d0ff;
   --color-blue-400: #89b4fa;
   --color-blue-500: #74a0e8;
@@ -159,4 +160,30 @@ body,
 }
 .company-logo {
   overflow: hidden;
+}
+
+.work-card {
+  transition:
+    opacity 300ms ease,
+    box-shadow 300ms ease;
+}
+.work-card-dim {
+  opacity: 0.38;
+}
+.work-card-match {
+  box-shadow:
+    0 0 0 1px rgb(110 231 183 / 0.55),
+    0 0 28px rgb(110 231 183 / 0.14);
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-card {
+    transition: none;
+  }
+}
+@media print {
+  .work-card-dim,
+  .work-card-match {
+    opacity: 1;
+    box-shadow: none;
+  }
 }

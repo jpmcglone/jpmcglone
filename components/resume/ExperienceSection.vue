@@ -154,6 +154,14 @@ const earlierSpan = computed(() => {
   return start === end ? start : `${start}–${end}`
 })
 const expanded = ref(false)
+const highlight = useSkillHighlight()
+watch(
+  () => highlight.matches.value.jobs,
+  (jobs) => {
+    if (earlierRoles.value.some((job) => jobs.includes(job.company))) expanded.value = true
+  },
+  { immediate: true },
+)
 const earlierToggle = useTemplateRef('earlierToggle')
 const motionPreference = usePreferredReducedMotion()
 

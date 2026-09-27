@@ -15,6 +15,8 @@
     </div>
 
     <UCard
+      class="work-card"
+      :class="highlightClass"
       :ui="{
         root: isCurrentRole
           ? 'bg-gradient-to-br from-emerald-950/60 to-gray-800 ring-1 ring-emerald-300/50 shadow-lg shadow-emerald-950/20'
@@ -189,6 +191,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+})
+
+const { active, isJobMatched } = useSkillHighlight()
+const highlightClass = computed(() => {
+  if (!active.value) return ''
+  return isJobMatched(props.job.company) ? 'work-card-match' : 'work-card-dim'
 })
 
 const companyTags = computed(() =>

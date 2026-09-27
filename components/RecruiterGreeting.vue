@@ -31,6 +31,15 @@
         Thanks for taking a look. I’d love to hear what you’re building.
       </p>
       <UButton
+        icon="i-jpm-clipboard-document-list"
+        color="neutral"
+        variant="ghost"
+        size="sm"
+        aria-label="Copy intro for this team"
+        class="size-11 shrink-0 justify-center"
+        @click="copyIntro"
+      />
+      <UButton
         icon="i-jpm-x-mark"
         color="neutral"
         variant="ghost"
@@ -45,6 +54,17 @@
 
 <script setup lang="ts">
 const { recruiter, dismiss } = useRecruiter()
+const toast = useToast()
 const logoFailed = ref(false)
 watch(recruiter, () => (logoFailed.value = false))
+
+async function copyIntro() {
+  const copied = await copyText(hiringNote(recruiter.value))
+  toast.add({
+    title: copied ? 'Copied' : 'Could not copy',
+    description: copied
+      ? `A note for the ${recruiter.value?.name} team.`
+      : 'Copy the text from the page instead.',
+  })
+}
 </script>
