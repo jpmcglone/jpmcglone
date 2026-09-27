@@ -55,7 +55,7 @@
 
       <div
         ref="stage"
-        class="showcase-stage relative flex h-[500px] items-center justify-center pb-10 sm:h-[540px]"
+        class="showcase-stage relative flex min-h-[640px] items-center justify-center pb-12 sm:min-h-[700px]"
         @pointermove="onPointerMove"
         @pointerleave="resetTilt"
       >
@@ -78,41 +78,37 @@
             <div class="device-tilt" :style="tiltStyle">
               <button
                 type="button"
-                class="device block cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-400"
-                :class="`device-${device}`"
+                class="poster block cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary-400"
+                :class="`poster-${device}`"
                 :aria-label="`Show the next Rumble Studio screen on ${currentDevice.label}`"
                 @click="nextScreen"
               >
-                <span v-if="device === 'iphone'" aria-hidden="true" class="dynamic-island" />
-                <span class="screen block">
-                  <img
-                    v-for="(src, index) in currentDevice.screens"
-                    :key="src"
-                    :src="src"
-                    :alt="
-                      index === screen
-                        ? `Rumble Studio on ${currentDevice.label}: ${captions[index]}`
-                        : ''
-                    "
-                    :width="currentDevice.size[0]"
-                    :height="currentDevice.size[1]"
-                    loading="lazy"
-                    decoding="async"
-                    class="absolute inset-0 size-full object-cover transition-opacity duration-500 motion-reduce:transition-none"
-                    :class="index === screen ? 'opacity-100' : 'opacity-0'"
-                  />
-                </span>
+                <img
+                  v-for="(shot, index) in currentDevice.screens"
+                  :key="shot.src"
+                  :src="shot.src"
+                  :alt="
+                    index === screen
+                      ? `Rumble Studio on ${currentDevice.label}: ${shot.caption}`
+                      : ''
+                  "
+                  :width="shot.width"
+                  :height="shot.height"
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute inset-0 size-full object-contain transition-opacity duration-500 motion-reduce:transition-none"
+                  :class="index === screen ? 'opacity-100' : 'opacity-0'"
+                />
               </button>
-              <span v-if="device === 'vision'" aria-hidden="true" class="window-bar" />
             </div>
           </motion.div>
         </AnimatePresence>
         <div class="absolute bottom-0 flex gap-2">
           <button
-            v-for="(caption, index) in captions"
-            :key="caption"
+            v-for="(shot, index) in currentDevice.screens"
+            :key="shot.src"
             type="button"
-            :aria-label="`Show screen: ${caption}`"
+            :aria-label="`Show screen: ${shot.caption}`"
             :aria-pressed="screen === index"
             class="grid size-11 place-items-center"
             @click="screen = index"
@@ -134,14 +130,28 @@ import { AnimatePresence, motion } from 'motion-v'
 type DeviceId = 'iphone' | 'ipad' | 'vision'
 
 const appStoreUrl = 'https://apps.apple.com/us/app/rumble-studio/id6472735205'
-const captions = ['Your online streaming studio', 'Stream to anywhere']
-const iphoneScreens = ['/images/rumble-studio/iphone-1.webp', '/images/rumble-studio/iphone-2.webp']
-const ipadScreens = ['/images/rumble-studio/ipad-1.webp', '/images/rumble-studio/ipad-2.webp']
-// Rumble Studio runs on Vision Pro as its iPad app, so the window shows the iPad screens.
-const devices: { id: DeviceId; label: string; screens: string[]; size: [number, number] }[] = [
-  { id: 'iphone', label: 'iPhone', screens: iphoneScreens, size: [434, 946] },
-  { id: 'ipad', label: 'iPad', screens: ipadScreens, size: [954, 717] },
-  { id: 'vision', label: 'Vision Pro', screens: ipadScreens, size: [954, 717] },
+const iphoneScreens = [
+  { src: '/images/rumble-studio/iphone-1.webp', caption: 'Home', width: 1290, height: 2796 },
+  { src: '/images/rumble-studio/iphone-2.webp', caption: 'Go live', width: 1290, height: 2796 },
+  { src: '/images/rumble-studio/iphone-3.webp', caption: 'Canvas', width: 1290, height: 2796 },
+  {
+    src: '/images/rumble-studio/iphone-4.webp',
+    caption: 'Multi-stream',
+    width: 1290,
+    height: 2796,
+  },
+  { src: '/images/rumble-studio/iphone-5.webp', caption: 'Campaigns', width: 1290, height: 2796 },
+]
+const ipadScreens = [
+  { src: '/images/rumble-studio/ipad-1.webp', caption: 'Go live', width: 1199, height: 1600 },
+  { src: '/images/rumble-studio/ipad-2.webp', caption: 'Canvas', width: 1199, height: 1600 },
+  { src: '/images/rumble-studio/ipad-3.webp', caption: 'Campaigns', width: 1199, height: 1600 },
+]
+// Rumble Studio runs on Vision Pro as its iPad app, so that window uses the iPad screens.
+const devices = [
+  { id: 'iphone' as const, label: 'iPhone', screens: iphoneScreens },
+  { id: 'ipad' as const, label: 'iPad', screens: ipadScreens },
+  { id: 'vision' as const, label: 'Vision Pro', screens: ipadScreens },
 ]
 
 const device = ref<DeviceId>('iphone')
@@ -152,6 +162,8 @@ const reducedMotion = computed(() => motionPreference.value === 'reduce')
 
 function select(id: DeviceId) {
   device.value = id
+  const next = devices.find((option) => option.id === id)!
+  if (screen.value >= next.screens.length) screen.value = 0
 }
 function step(offset: number) {
   const index = devices.findIndex((option) => option.id === device.value)
@@ -164,7 +176,7 @@ function step(offset: number) {
   )
 }
 function nextScreen() {
-  screen.value = (screen.value + 1) % captions.length
+  screen.value = (screen.value + 1) % currentDevice.value.screens.length
 }
 
 const stage = useTemplateRef('stage')
@@ -214,84 +226,17 @@ function resetTilt() {
   transition: transform 0.25s ease-out;
 }
 
-.device {
+.poster {
   position: relative;
-  background: #05070b;
-  box-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.12),
-    0 30px 80px -20px rgb(0 0 0 / 0.8);
+  filter: drop-shadow(0 28px 48px rgb(0 0 0 / 0.55));
 }
-.screen {
-  position: relative;
-  overflow: hidden;
-  background: #0b1520;
+.poster-iphone {
+  width: min(286px, 72vw);
+  aspect-ratio: 1290 / 2796;
 }
-
-.device-iphone {
-  border-radius: 46px;
-  padding: 11px;
-}
-.device-iphone .screen {
-  width: min(188px, 45vw);
-  aspect-ratio: 434 / 946;
-  border-radius: 36px;
-}
-.dynamic-island {
-  position: absolute;
-  z-index: 1;
-  top: 20px;
-  left: 50%;
-  width: 30%;
-  height: 22px;
-  border-radius: 999px;
-  background: #000;
-  transform: translateX(-50%);
-}
-
-.device-ipad {
-  border-radius: 30px;
-  padding: 14px;
-}
-.device-ipad .screen {
-  width: min(540px, 82vw);
-  aspect-ratio: 954 / 717;
-  border-radius: 16px;
-}
-
-.device-vision {
-  padding: 0;
-  border-radius: 28px;
-  background: rgb(255 255 255 / 0.08);
-  box-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.22),
-    0 40px 90px -30px rgb(0 0 0 / 0.9),
-    inset 0 1px 0 rgb(255 255 255 / 0.25);
-  animation: float 6s ease-in-out infinite;
-}
-.device-vision .screen {
-  width: min(520px, 80vw);
-  aspect-ratio: 954 / 717;
-  border-radius: 28px;
-}
-.window-bar {
-  position: absolute;
-  bottom: -22px;
-  left: 50%;
-  width: 72px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.35);
-  transform: translateX(-50%);
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -8px;
-  }
+.poster-ipad,
+.poster-vision {
+  width: min(460px, 88vw);
+  aspect-ratio: 1199 / 1600;
 }
 </style>
