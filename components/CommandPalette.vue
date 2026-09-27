@@ -1,7 +1,13 @@
 <template>
-  <UModal v-model:open="open" :ui="{ content: 'sm:max-w-lg' }">
+  <UModal v-model:open="open" :ui="{ content: 'command-palette sm:max-w-lg z-50' }">
     <template #content>
-      <UCommandPalette :groups="groups" placeholder="Jump, search, or copy…" class="h-96" />
+      <UCommandPalette
+        v-model:search-term="searchTerm"
+        :groups="groups"
+        placeholder="Jump, search, or copy…"
+        class="h-96"
+        :ui="{ viewport: 'pb-1' }"
+      />
     </template>
   </UModal>
 </template>
@@ -10,6 +16,8 @@
 import type { CommandPaletteGroup, CommandPaletteItem } from '@nuxt/ui'
 import indexData from '~/data/index'
 import resumeData from '~/data/resume'
+
+type SearchableItem = CommandPaletteItem & { keywords?: string[] }
 
 const { open } = useCommandPalette()
 const { recruiter } = useRecruiter()
@@ -70,27 +78,66 @@ async function copyLink() {
   })
 }
 
-const resumeSections: CommandPaletteItem[] = [
-  { id: 'about', label: 'About', icon: 'i-jpm-user' },
-  { id: 'projects', label: 'Projects', icon: 'i-jpm-rocket-launch' },
-  { id: 'experience', label: 'Experience', icon: 'i-jpm-briefcase' },
-  { id: 'technical-skills', label: 'Skills', icon: 'i-jpm-code-bracket' },
-  { id: 'recommendations', label: 'Recommendations', icon: 'i-jpm-chat-bubble-bottom-center-text' },
+const searchTerm = ref('')
+
+watch(open, (isOpen) => {
+  if (!isOpen) searchTerm.value = ''
+})
+
+const resumeSections: SearchableItem[] = [
+  { id: 'about', label: 'About', icon: 'i-jpm-user', keywords: ['bio', 'profile'] },
+  {
+    id: 'projects',
+    label: 'Projects',
+    icon: 'i-jpm-rocket-launch',
+    keywords: ['work', 'building'],
+  },
+  {
+    id: 'experience',
+    label: 'Experience',
+    icon: 'i-jpm-briefcase',
+    keywords: ['work', 'jobs', 'career'],
+  },
+  {
+    id: 'technical-skills',
+    label: 'Skills',
+    icon: 'i-jpm-code-bracket',
+    keywords: ['tech', 'stack'],
+  },
+  {
+    id: 'recommendations',
+    label: 'Recommendations',
+    icon: 'i-jpm-chat-bubble-bottom-center-text',
+    keywords: ['rec', 'recs', 'testimonials', 'references'],
+  },
+  {
+    id: 'education',
+    label: 'Education',
+    icon: 'i-jpm-academic-cap',
+    keywords: ['college', 'school', 'nassau', 'ncc'],
+  },
 ].map((section) => ({
   ...section,
   onSelect: () => go(`/resume/#${section.id}`),
 }))
 
-const groups = computed<CommandPaletteGroup[]>(() => [
+const allGroups = computed<CommandPaletteGroup[]>(() => [
   {
     id: 'goto',
     label: 'Go to',
     items: [
-      { label: 'Home', icon: 'i-jpm-home', kbds: ['G', 'H'], onSelect: () => go('/') },
+      {
+        label: 'Home',
+        icon: 'i-jpm-home',
+        kbds: ['G', 'H'],
+        keywords: ['start', 'index'],
+        onSelect: () => go('/'),
+      },
       {
         label: 'Résumé',
         icon: 'i-jpm-document-text',
         kbds: ['G', 'R'],
+        keywords: ['resume', 'cv'],
         onSelect: () => go('/resume/'),
       },
       ...resumeSections,
@@ -103,16 +150,19 @@ const groups = computed<CommandPaletteGroup[]>(() => [
       {
         label: recruiter.value ? `Copy note for ${recruiter.value.name}` : 'Copy hiring note',
         icon: 'i-jpm-clipboard-document-list',
+        keywords: ['share', 'intro', 'recruiter', 'forward'],
         onSelect: copyHiring,
       },
       {
         label: 'Copy page link',
         icon: 'i-jpm-link',
+        keywords: ['url', 'share'],
         onSelect: copyLink,
       },
       {
         label: 'Download PDF',
         icon: 'i-jpm-document-text',
+        keywords: ['pdf', 'resume', 'cv'],
         onSelect: () => {
           open.value = false
           saveResumePdfFromAction()
@@ -149,6 +199,7 @@ const groups = computed<CommandPaletteGroup[]>(() => [
       suffix: project.status,
       avatar: project.logo ? { src: project.logo } : undefined,
       icon: project.logo ? undefined : 'i-jpm-rocket-launch',
+      keywords: [project.name, ...(project.technologies || [])],
       onSelect: () => {
         open.value = false
         if (project.url) window.open(project.url, '_blank', 'noopener,noreferrer')
@@ -156,5 +207,27 @@ const groups = computed<CommandPaletteGroup[]>(() => [
       },
     })),
   },
+  {
+    id: 'experience',
+    label: 'Experience',
+    items: resumeData.experience.map((job) => ({
+      label: job.company,
+      suffix: job.title,
+      avatar: job.logo ? { src: job.logo } : undefined,
+      icon: job.logo ? undefined : 'i-jpm-briefcase',
+      keywords: [job.company, job.title],
+      onSelect: () => go('/resume/#experience'),
+    })),
+  },
 ])
+
+const groups = computed(() =>
+  allGroups.value
+    .map((group) => ({
+      ...group,
+      ignoreFilter: true,
+      items: (group.items || []).filter((item) => commandMatchesQuery(item, searchTerm.value)),
+    }))
+    .filter((group) => group.items.length > 0),
+)
 </script>

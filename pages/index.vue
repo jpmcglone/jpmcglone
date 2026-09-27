@@ -22,18 +22,6 @@
         <UButton :to="indexData.resume.link" color="neutral" class="min-h-10 px-4 font-semibold">
           Resume
         </UButton>
-        <UTooltip text="Command palette">
-          <UButton
-            color="neutral"
-            variant="soft"
-            aria-label="Open command palette"
-            class="min-h-10 px-3"
-            @click="openPalette"
-          >
-            <UIcon name="i-jpm-command" class="size-4" />
-            <span class="hidden text-xs font-medium text-gray-400 sm:inline">⌘K</span>
-          </UButton>
-        </UTooltip>
       </div>
     </nav>
 
@@ -364,13 +352,9 @@ import resumeData from '~/data/resume'
 definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
 
-const { open: paletteOpen } = useCommandPalette()
 const { recruiter } = useRecruiter()
 const { active, isProjectMatched } = useSkillHighlight()
 const toast = useToast()
-function openPalette() {
-  paletteOpen.value = true
-}
 function projectHighlight(name) {
   if (!active.value) return ''
   return isProjectMatched(name) ? 'work-card-match' : 'work-card-dim'

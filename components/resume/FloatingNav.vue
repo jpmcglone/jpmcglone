@@ -14,17 +14,6 @@
         class="h-11 w-11 justify-center p-0"
       />
     </UTooltip>
-    <UTooltip text="Command palette · ⌘K">
-      <UButton
-        icon="i-jpm-command"
-        aria-label="Open command palette"
-        color="neutral"
-        variant="ghost"
-        size="lg"
-        class="h-11 w-11 justify-center p-0"
-        @click="openPalette"
-      />
-    </UTooltip>
     <ul class="flex flex-wrap justify-center gap-2 xl:flex-col">
       <li v-for="section in sections" :key="section.id">
         <UButton
@@ -50,11 +39,6 @@ const props = defineProps({
     required: true,
   },
 })
-
-const { open } = useCommandPalette()
-function openPalette() {
-  open.value = true
-}
 
 const activeSection = ref(props.sections[0]?.id)
 let animationFrame = 0

@@ -6,6 +6,7 @@ import { pageMetadata } from '../data/site'
 import { formatExperiencePeriod, formatPeriod, getEndYear } from '../utils/formatters'
 import { parseInlineContent } from '../utils/inlineContent'
 import { profileSchema } from '../utils/profileSchema'
+import { commandMatchesQuery } from '../utils/commandSearch'
 import { connectionsForSkill } from '../utils/skillConnections'
 import { hiringNote, recruiterShareUrl } from '../utils/hiringNote'
 import {
@@ -29,6 +30,24 @@ describe('skill search', () => {
     expect(matches('swiftui')).toEqual(matches('Swift-UI'))
     expect(matches('mcp unrelated')).toEqual([])
     expect(matches('AppCode')).toEqual([])
+  })
+  it('matches command palette queries the way people type them', () => {
+    const resumeItem = { label: 'Résumé', keywords: ['resume', 'cv'] }
+    expect(commandMatchesQuery(resumeItem, 'resume')).toBe(true)
+    expect(commandMatchesQuery(resumeItem, 'RESUME')).toBe(true)
+    expect(commandMatchesQuery(resumeItem, 'résumé')).toBe(true)
+    expect(commandMatchesQuery(resumeItem, 'cv')).toBe(true)
+    expect(commandMatchesQuery({ label: 'ChatGPT Codex' }, 'chatgpt')).toBe(true)
+    expect(commandMatchesQuery({ label: 'Men of Hunger' }, 'menofhunger')).toBe(true)
+    expect(commandMatchesQuery({ label: 'SwiftUI' }, 'swift ui')).toBe(true)
+    expect(commandMatchesQuery({ label: 'Northern Kentucky University (NKU)' }, 'nku')).toBe(true)
+    expect(commandMatchesQuery(resumeItem, 'linkedin')).toBe(false)
+    expect(
+      commandMatchesQuery({ label: 'Copy page link', keywords: ['url', 'share'] }, 'nku'),
+    ).toBe(false)
+    expect(commandMatchesQuery({ label: 'Education', keywords: ['college', 'school'] }, 'nku')).toBe(
+      false,
+    )
   })
   it('lights up the work a skill actually touched', () => {
     const swift = connectionsForSkill('SwiftUI')

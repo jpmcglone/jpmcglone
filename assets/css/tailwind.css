@@ -76,6 +76,10 @@ html:root [class]:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 4px;
 }
+html:root .command-palette :focus-visible,
+html:root .command-palette [class]:focus-visible {
+  outline: none;
+}
 
 .resume-page {
   grid-template-columns: minmax(0, 70ch);
