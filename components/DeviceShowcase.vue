@@ -224,6 +224,9 @@ function resetTilt() {
 
 .poster {
   position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
   filter: drop-shadow(0 28px 48px rgb(0 0 0 / 0.55));
 }
 .poster-iphone {
