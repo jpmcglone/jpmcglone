@@ -60,7 +60,7 @@
         @pointermove="onPointerMove"
         @pointerleave="resetTilt"
       >
-        <div aria-hidden="true" class="stage-glow absolute inset-0" :class="`glow-${device}`" />
+        <div aria-hidden="true" class="stage-glow pointer-events-none absolute" :class="`glow-${device}`" />
         <AnimatePresence mode="wait">
           <motion.div
             :key="device"
@@ -204,7 +204,9 @@ function resetTilt() {
 }
 
 .stage-glow {
-  border-radius: 32px;
+  inset: 18% 12%;
+  border-radius: 999px;
+  filter: blur(42px);
   transition: background 0.6s ease;
 }
 .glow-iphone {
@@ -226,8 +228,9 @@ function resetTilt() {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
-  filter: drop-shadow(0 28px 48px rgb(0 0 0 / 0.55));
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 28px 48px -12px rgb(0 0 0 / 0.55);
 }
 .poster-iphone {
   width: min(286px, 72vw);
@@ -236,5 +239,11 @@ function resetTilt() {
 .poster-ipad {
   width: min(460px, 88vw);
   aspect-ratio: 1199 / 1600;
+  border-radius: 32px 32px 0 0;
+  box-shadow: none;
+  /* The green swoosh is painted to the bottom edge. Fade it out so the
+     rounded mask does not slice a hard corner through the glow. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 94%, transparent 100%);
 }
 </style>
