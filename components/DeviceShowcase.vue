@@ -11,7 +11,8 @@
         </h2>
         <p class="max-w-lg text-[17px] leading-relaxed text-gray-300">
           I built Rumble Studio for iOS from scratch as its sole developer, then shipped every
-          update across iPhone, iPad, and Vision Pro.
+          update on iPhone and iPad. The same iPad app runs on Vision Pro, with custom UI so eye
+          tracking can highlight each control.
         </p>
         <div
           role="radiogroup"
@@ -127,7 +128,7 @@
 <script setup lang="ts">
 import { AnimatePresence, motion } from 'motion-v'
 
-type DeviceId = 'iphone' | 'ipad' | 'vision'
+type DeviceId = 'iphone' | 'ipad'
 
 const appStoreUrl = 'https://apps.apple.com/us/app/rumble-studio/id6472735205'
 const iphoneScreens = [
@@ -147,11 +148,9 @@ const ipadScreens = [
   { src: '/images/rumble-studio/ipad-2.webp', caption: 'Canvas', width: 1199, height: 1600 },
   { src: '/images/rumble-studio/ipad-3.webp', caption: 'Campaigns', width: 1199, height: 1600 },
 ]
-// Rumble Studio runs on Vision Pro as its iPad app, so that window uses the iPad screens.
 const devices = [
   { id: 'iphone' as const, label: 'iPhone', screens: iphoneScreens },
-  { id: 'ipad' as const, label: 'iPad', screens: ipadScreens },
-  { id: 'vision' as const, label: 'Vision Pro', screens: ipadScreens },
+  { id: 'ipad' as const, label: 'iPad / Vision Pro', screens: ipadScreens },
 ]
 
 const device = ref<DeviceId>('iphone')
@@ -212,12 +211,9 @@ function resetTilt() {
   background: radial-gradient(closest-side, rgb(132 204 22 / 0.16), transparent 75%);
 }
 .glow-ipad {
-  background: radial-gradient(closest-side, rgb(56 189 248 / 0.14), transparent 75%);
-}
-.glow-vision {
   background:
-    radial-gradient(60% 45% at 30% 30%, rgb(167 139 250 / 0.2), transparent 70%),
-    radial-gradient(55% 45% at 75% 70%, rgb(56 189 248 / 0.16), transparent 70%);
+    radial-gradient(55% 45% at 28% 30%, rgb(167 139 250 / 0.16), transparent 70%),
+    radial-gradient(closest-side, rgb(56 189 248 / 0.14), transparent 75%);
 }
 
 .device-tilt {
@@ -234,8 +230,7 @@ function resetTilt() {
   width: min(286px, 72vw);
   aspect-ratio: 1290 / 2796;
 }
-.poster-ipad,
-.poster-vision {
+.poster-ipad {
   width: min(460px, 88vw);
   aspect-ratio: 1199 / 1600;
 }
