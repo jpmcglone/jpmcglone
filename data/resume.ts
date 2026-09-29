@@ -129,12 +129,12 @@ const resumeData: ResumeData = {
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.
+    bio: `Lead iOS and product engineer. 16 years in <strong>Swift, SwiftUI, and UIKit</strong>, owning products from architecture through the App Store, across mobile, web, and APIs. I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch as its sole developer, shipped it on iPhone, iPad, and Vision Pro, and maintained every update.
 
-<strong>AI expands what I can deliver.</strong> I build <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a> across its API, web, and iOS apps using agentic coding, architectural judgment, and hands-on review. I work closely with design, mentor engineers, and take responsibility for what ships.`,
+<strong>AI lets me take on more of the product.</strong> I build <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a> across its API, web, and iOS apps with Cursor and Claude, and I still review what ships. I partner with design and mentor engineers.`,
   },
   objective:
-    "I'm looking for a remote senior or lead role owning the engineering of a product and helping a lean team ship quickly and reliably. I'm open to technical leadership and people management.",
+    "I'm looking for a remote senior or lead iOS role where I own the mobile roadmap, set technical direction with product, and mentor engineers.",
   technicalSkills: [
     {
       category: 'AI & Agentic Development',
@@ -339,10 +339,10 @@ const resumeData: ResumeData = {
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
-        'Own the architecture and development of a men-only social media platform across its API, web, and iOS apps, using agentic coding with hands-on review.',
-        'Build posts, chats, video calls, and voice messages across the product.',
-        'Build “Catch me up,” an AI feature that summarizes long conversations using thread content, images, and public-profile context.',
-        'Build and maintain a custom MCP server for admin insights and scheduling posts and newsletters.',
+        'Own the architecture and ship a men-only social platform across its API, web, and iOS apps, using agentic coding with hands-on review.',
+        'Shipped posts, chat, video calls, and voice messages as the core product.',
+        'Shipped “Catch me up,” an AI feature that summarizes long conversations from the thread, images, and public profile.',
+        'Built and maintain a custom MCP server for admin insights and for scheduling posts and newsletters.',
       ],
     },
     {
@@ -354,9 +354,9 @@ const resumeData: ResumeData = {
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
-        'Build a Mac tool that finds Apple App Review issues before submission by building, exploring, and checking iOS apps locally in Simulator.',
-        'Deliver actionable evidence (findings, screenshots, build logs, and crash locations) with live progress in a web dashboard and CLI.',
-        'Ship rapidly with agentic coding and hands-on review, owning the product end to end.',
+        'Building a Mac tool that finds Apple App Review issues before submission by building, exploring, and checking iOS apps locally in Simulator.',
+        'The dashboard and CLI show findings, screenshots, build logs, and crash locations, with live progress.',
+        'Own the product end to end and ship it with agentic coding and hands-on review.',
       ],
     },
     {
@@ -382,12 +382,12 @@ const resumeData: ResumeData = {
         },
       ],
       responsibilities: [
-        'Sole iOS developer for Rumble Studio: built the app from scratch through launch and maintained every subsequent update across iPhone, iPad, and Vision Pro',
-        'Partnered closely with design to raise the quality of the mobile experience and turn ambitious product ideas into shipped iOS features',
-        'Contributed to Rumble Video as a senior iOS developer alongside sole ownership of Studio',
-        'Integrated LiveKit for conference calls and multi-platform streaming with synchronized audio and video',
+        'Sole iOS developer for Rumble Studio: took the app from scratch to the App Store, set the technical direction, and owned every update on iPhone, iPad, and Vision Pro.',
+        'Partnered with design to turn ambitious product ideas into shipped iOS features, including custom UI so Vision Pro eye tracking can highlight each control.',
+        'Contributed to Rumble Video as a senior iOS developer alongside sole ownership of Studio.',
+        'Integrated LiveKit for conference calls and multi-platform streaming with synchronized audio and video.',
         {
-          text: "Supported frontend development for Rumble's Advertising Center (RAC)",
+          text: "Supported frontend development for Rumble's Advertising Center.",
           highlighted: false,
         },
       ],
@@ -406,11 +406,11 @@ const resumeData: ResumeData = {
         note: 'Rumble acquired Callin in May 2023, and I joined Rumble through the acquisition. The Callin app has since been sunset.',
       },
       responsibilities: [
-        'Developed a social audio and video platform from the ground up',
-        'Implemented low-latency audio streaming using Agora.io',
-        'Built an advanced audio-transcript synchronization system with custom scrubbing and playback controls',
+        'Built a social audio and video platform from the ground up as lead iOS developer.',
+        'Shipped low-latency live audio with Agora.',
+        'Built audio-transcript sync with custom scrubbing and playback controls.',
         {
-          text: 'Designed a state management system to handle complex real-time user interactions efficiently',
+          text: 'Designed state management for complex real-time interactions.',
           highlighted: false,
         },
       ],
@@ -427,14 +427,14 @@ const resumeData: ResumeData = {
         note: 'Epihealthy is no longer operating.',
       },
       responsibilities: [
-        'Developed a real-time seizure detection app using CoreBluetooth for continuous health monitoring',
-        'Engineered a robust background processing system to ensure 24/7 health data collection and processing',
+        'Shipped a real-time seizure detection app using CoreBluetooth for continuous health monitoring.',
+        'Engineered background processing so health data kept collecting around the clock.',
         {
-          text: 'Implemented an intelligent alert system with customizable thresholds and emergency contact integration',
+          text: 'Built alerts with custom thresholds and emergency contacts.',
           highlighted: false,
         },
         {
-          text: 'Designed a fault-tolerant data sync mechanism to prevent critical health data loss during connectivity issues',
+          text: 'Designed sync that kept critical health data from dropping when the connection failed.',
           highlighted: false,
         },
       ],
@@ -453,14 +453,14 @@ const resumeData: ResumeData = {
         note: 'Rite Aid closed all remaining stores in October 2025 after its second bankruptcy. Its brand and website were later sold to an unrelated company.',
       },
       responsibilities: [
-        'Revamped mobile development workflow by implementing modern CI/CD practices across platforms',
-        'Optimized Azure DevOps pipelines and parallelized build processes',
+        'Rebuilt the mobile workflow with CI/CD across platforms.',
+        'Sped up Azure DevOps pipelines by parallelizing builds.',
         {
-          text: 'Designed a modular white-label solution to enable rapid customization of pharmacy applications',
+          text: 'Designed a modular white-label setup so pharmacy apps could be customized quickly.',
           highlighted: false,
         },
         {
-          text: 'Provided mentorship to distributed team leads on git workflows, code reviews, and technical documentation',
+          text: 'Mentored distributed team leads on git, code review, and technical documentation.',
           highlighted: false,
         },
       ],
@@ -479,11 +479,11 @@ const resumeData: ResumeData = {
         note: 'Supersapiens stopped sensor shipments and ended all memberships in March 2024.',
       },
       responsibilities: [
-        'Developed SwiftUI charts for real-time glucose data with smooth animations',
-        'Implemented a reliable BLE connection handler with automatic reconnection and background updates',
-        'Led the migration from RxSwift to Combine, improving code maintainability and reducing compile times',
+        'Built SwiftUI charts for real-time glucose data.',
+        'Shipped a BLE connection handler with automatic reconnection and background updates.',
+        'Led the migration from RxSwift to Combine, which made the code easier to maintain and faster to compile.',
         {
-          text: 'Enhanced error handling and retry logic to ensure seamless data collection',
+          text: 'Tightened error handling and retries so glucose data kept coming in.',
           highlighted: false,
         },
       ],
@@ -503,7 +503,7 @@ const resumeData: ResumeData = {
         note: 'Walmart Labs became Walmart Global Tech in August 2020.',
       },
       responsibilities: [
-        "Contributed to the development of Walmart's newest app, leveraging UIKit and SwiftUI to replace the legacy system",
+        "Contributed to Walmart's newest iOS app, using UIKit and SwiftUI to replace the legacy client.",
       ],
     },
     {
@@ -518,13 +518,13 @@ const resumeData: ResumeData = {
         note: 'Onfido acquired Airside in May 2023, and Entrust acquired Onfido in April 2024. The Airside app is now an Entrust product.',
       },
       responsibilities: [
-        'Developed a SwiftUI-based app using MVVM and dependency injection for improved testability',
-        'Optimized the CircleCI pipeline to streamline builds and releases',
+        'Built a SwiftUI app with MVVM and dependency injection so it could be tested.',
+        'Tightened the CircleCI pipeline so builds and releases were easier to ship.',
         {
-          text: 'Designed a thread-safe logging system leveraging Combine for precise debugging across async operations',
+          text: 'Designed a thread-safe logging system with Combine for debugging async work.',
           highlighted: false,
         },
-        'Established and documented a comprehensive Swift style guide adopted across multiple teams',
+        'Wrote the Swift style guide that multiple teams adopted.',
       ],
     },
     {
@@ -539,14 +539,14 @@ const resumeData: ResumeData = {
         note: 'After 10 years as a digital agency, AD:60 stopped client work and became an in-house fintech studio.',
       },
       responsibilities: [
-        'Developed a financial education game featuring complex animations and state management using UIKit, CoreAnimation, and Lottie',
-        'Architected a seamless migration from XMPP to Matrix.org for chat functionality, improving reliability and scalability',
+        'Built a financial education game with UIKit, Core Animation, and Lottie.',
+        'Migrated chat from XMPP to Matrix.org for reliability and scale.',
         {
-          text: 'Automated JIRA workflows to streamline sprint planning and task management',
+          text: 'Automated JIRA workflows for sprint planning.',
           highlighted: false,
         },
         {
-          text: 'Delivered mobile applications across multiple client projects',
+          text: 'Delivered mobile apps across client projects.',
           highlighted: false,
         },
       ],
@@ -559,14 +559,14 @@ const resumeData: ResumeData = {
       period: '2017 - 2019',
       isRemote: true,
       responsibilities: [
-        'Developed a healthcare eligibility SDK for insurance coverage checks',
-        'Led technical integration calls, assisting major healthcare providers in adopting our SDK',
+        'Built a healthcare eligibility SDK for insurance coverage checks.',
+        'Led integration calls that helped major healthcare providers adopt the SDK.',
         {
-          text: 'Designed a mock data system to support faster, repeatable QA',
+          text: 'Designed mock data so QA could repeat coverage checks faster.',
           highlighted: false,
         },
         {
-          text: 'Built a modular architecture enabling clients to customize the UI while maintaining core functionality',
+          text: 'Built a modular architecture so clients could customize the UI without forking the core.',
           highlighted: false,
         },
       ],
@@ -584,14 +584,14 @@ const resumeData: ResumeData = {
         note: 'Engagio acquired Layer in early 2019 and shut down the Layer platform on October 30, 2019.',
       },
       responsibilities: [
-        'Refactored messaging SDK architecture to simplify integration',
-        'Improved messaging SDK performance and reliability',
+        'Refactored the messaging SDK so other teams could integrate it with less setup.',
+        'Improved messaging SDK performance and reliability.',
         {
-          text: 'Developed SDK examples to help developers integrate and troubleshoot',
+          text: 'Wrote SDK examples for integration and troubleshooting.',
           highlighted: false,
         },
         {
-          text: 'Designed a flexible persistence layer supporting multiple database backends',
+          text: 'Designed a persistence layer that supported more than one database.',
           highlighted: false,
         },
       ],
@@ -609,14 +609,14 @@ const resumeData: ResumeData = {
         note: 'MediaLab acquired Imgur in September 2021. Imgur is still operating.',
       },
       responsibilities: [
-        'Engineered a UICollectionView-based image grid with smooth scrolling',
-        'Developed Hermes, an in-app notification framework',
+        'Built a UICollectionView image grid that stayed smooth while scrolling.',
+        'Built Hermes, an in-app notification framework.',
         {
-          text: 'Implemented analytics and crash reporting to identify and resolve stability issues',
+          text: 'Added analytics and crash reporting to find and fix stability issues.',
           highlighted: false,
         },
         {
-          text: 'Built reusable UI components to accelerate feature development across teams',
+          text: 'Built reusable UI components so other teams could ship features faster.',
           highlighted: false,
         },
       ],
@@ -628,14 +628,14 @@ const resumeData: ResumeData = {
       title: 'iOS Developer',
       period: '2013 - 2014',
       responsibilities: [
-        'Implemented StoreKit-based in-app purchases for subscriptions',
-        'Implemented dynamic content loading to reduce app size',
+        'Shipped StoreKit subscriptions.',
+        'Cut app size with dynamic content loading.',
         {
-          text: 'Built a modular styling framework to standardize UI development across teams',
+          text: 'Built a styling framework so teams shared one UI system.',
           highlighted: false,
         },
         {
-          text: 'Designed an intelligent caching system to enhance app performance and offline access',
+          text: 'Designed caching for performance and offline access.',
           highlighted: false,
         },
       ],
@@ -647,14 +647,14 @@ const resumeData: ResumeData = {
       title: 'iOS Developer',
       period: '2011 - 2013',
       responsibilities: [
-        'Won a company-wide hackathon with an innovative drag-and-drop goal management system',
-        'Implemented a secure SSO solution adhering to enterprise security requirements',
+        'Won a company-wide hackathon with a drag-and-drop goal manager.',
+        'Shipped SSO that met enterprise security requirements.',
         {
-          text: 'Developed a custom localization system to support server-side locale management',
+          text: 'Built localization that let the server control locales.',
           highlighted: false,
         },
         {
-          text: 'Created a responsive grid system for complex enterprise data visualization',
+          text: 'Built a responsive grid for dense enterprise data.',
           highlighted: false,
         },
       ],

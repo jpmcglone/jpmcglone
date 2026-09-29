@@ -11,12 +11,13 @@ const doc = new PDFDocument({
   margin: 44,
   bufferPages: true,
   info: {
-    Title: `${resume.personalInfo.name} — Resume`,
+    Title: `${resume.personalInfo.name}, Resume`,
     Author: resume.personalInfo.name,
     Subject: resume.personalInfo.title,
-    Keywords: 'iOS, technical leadership, AI, Swift, MCP, full-stack',
+    Keywords:
+      'iOS, Swift, SwiftUI, UIKit, App Store, technical leadership, remote, AI, MCP, full-stack',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-09-25T00:00:00Z'),
+    ModDate: new Date('2026-09-29T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -88,11 +89,13 @@ body(plain(person.bio).replace(/\n\n/g, ' '))
 doc.y += 5
 body(resume.objective)
 section('Technical Skills')
-body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, Combine, XCTest')
-body('Architecture: MVVM, dependency injection, reusable components, SDK development, API design')
-body('Media & delivery: LiveKit, Agora, real-time audio/video, networking, persistence, CI/CD')
+body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, iPhone, iPad, visionOS, App Store')
 body(
-  'AI-assisted development: Cursor, ChatGPT Codex, Astra, Claude, MCP servers, hands-on code review',
+  'Leadership: system architecture, technical direction, mentoring, code review, CI/CD, SDK and API design',
+)
+body('Product: full-stack APIs, real-time audio and video (LiveKit, Agora), MVVM, XCTest')
+body(
+  'AI-assisted engineering: Cursor, ChatGPT Codex, Claude, MCP servers, agentic coding, hands-on review',
 )
 section('Experience')
 // Select relevant evidence from the same responsibilities shown on the website.

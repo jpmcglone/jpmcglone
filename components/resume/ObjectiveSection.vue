@@ -1,6 +1,6 @@
 <template>
   <div class="objective-section scroll-mt-6 py-8">
-    <ResumeSectionHeading icon="i-jpm-flag" title="Objective" />
+    <ResumeSectionHeading icon="i-jpm-flag" title="What I'm looking for" />
     <p class="text-gray-200 leading-relaxed text-lg">
       {{ objective }}
     </p>

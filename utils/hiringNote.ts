@@ -12,8 +12,8 @@ export function recruiterShareUrl(recruiter: ShareAudience | null, path = '/resu
 }
 
 export function hiringNote(recruiter: ShareAudience | null) {
-  const intro = recruiter ? `For the ${recruiter.name} team —\n\n` : ''
-  return `${intro}JP McGlone — Lead iOS & Product Engineer
+  const intro = recruiter ? `For the ${recruiter.name} team.\n\n` : ''
+  return `${intro}JP McGlone, Lead iOS & Product Engineer
 16 years of Swift, SwiftUI, and UIKit. Built Rumble Studio from scratch; ships Men of Hunger across iOS, web, and API. Open to senior and lead remote roles.
 
 ${recruiterShareUrl(recruiter)}`

@@ -14,7 +14,7 @@
         <p class="font-hand min-w-0 flex-1 text-[22px] leading-snug text-gray-100">
           Still here? That’s the good kind of signal. I’d rather hear what you’re building than have
           you keep scrolling.
-          <span class="mt-2 block text-emerald-300">— JP</span>
+          <span class="mt-2 block text-emerald-300">JP</span>
         </p>
         <UButton
           icon="i-jpm-x-mark"

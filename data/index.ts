@@ -100,7 +100,7 @@ const indexData: IndexData = {
     featuredRecommendation: {
       author: 'James Whitney',
       excerpt:
-        'John single-handedly built the Rumble Studio app from the ground up. … He operates with a high degree of independence, requiring virtually no oversight to deliver complex products.',
+        'John single-handedly built the Rumble Studio app from the ground up.',
     },
     outsideOfTech: [
       {

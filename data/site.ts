@@ -23,28 +23,28 @@ export const siteMetadata = {
 
 export const pageMetadata = {
   home: {
-    title: 'John P. McGlone (JP McGlone) — Lead iOS & Product Engineer',
+    title: 'John P. McGlone (JP McGlone), Lead iOS & Product Engineer',
     description:
       'JP McGlone (John McGlone) is a lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Open to senior and lead remote roles.',
     path: '/',
     type: 'profile',
   },
   resume: {
-    title: 'Résumé — John P. McGlone | Lead iOS & Product Engineer',
+    title: 'Résumé, John P. McGlone | Lead iOS & Product Engineer',
     description:
-      'Résumé of John P. McGlone: 16+ years of iOS, from Rumble Studio and Rumble Video to Men of Hunger and Greenlane. Downloadable PDF included.',
+      'Résumé of John P. McGlone, lead iOS engineer: Swift, SwiftUI, and UIKit, from Rumble Studio on the App Store to Men of Hunger. Open to remote senior and lead roles.',
     path: '/resume/',
     type: 'profile',
   },
   reader: {
-    title: 'Lyrics Reader — John P. McGlone',
+    title: 'Lyrics Reader, John P. McGlone',
     description:
       'A personal lyrics reader with line-by-line presentation, section navigation, and keyboard controls.',
     path: '/apps/reader/',
     unlisted: true,
   },
   ageCalculator: {
-    title: 'Age Calculator — John P. McGlone',
+    title: 'Age Calculator, John P. McGlone',
     description:
       'Calculate ages in years, months, weeks, and days, with current periods and a visual life-in-years grid.',
     path: '/apps/deathcalculator/',

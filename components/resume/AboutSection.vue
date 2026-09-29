@@ -1,5 +1,6 @@
 <template>
   <div class="bio-text text-base leading-relaxed text-gray-300">
+    <ResumeSectionHeading icon="i-jpm-user" title="Profile" />
     <p
       v-for="(paragraph, paragraphIndex) in parsedBio"
       :key="paragraphIndex"
