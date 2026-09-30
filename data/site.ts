@@ -21,6 +21,13 @@ export const siteMetadata = {
   imageHeight: 630,
 }
 
+// Confirmed by John on September 30, 2026; shared by both public profile pages.
+export const hiringPreferences = {
+  workAuthorization: 'Authorized to work in the U.S.',
+  location: 'Remote · Eastern time',
+  availability: 'Full-time preferred · Open to contracts',
+}
+
 export const pageMetadata = {
   home: {
     title: 'John P. McGlone (JP McGlone), Lead iOS & Product Engineer',
@@ -35,19 +42,5 @@ export const pageMetadata = {
       'Résumé of John P. McGlone, lead iOS engineer: Swift, SwiftUI, and UIKit, from Rumble Studio on the App Store to Men of Hunger. Open to remote senior and lead roles.',
     path: '/resume/',
     type: 'profile',
-  },
-  reader: {
-    title: 'Lyrics Reader, John P. McGlone',
-    description:
-      'A personal lyrics reader with line-by-line presentation, section navigation, and keyboard controls.',
-    path: '/apps/reader/',
-    unlisted: true,
-  },
-  ageCalculator: {
-    title: 'Age Calculator, John P. McGlone',
-    description:
-      'Calculate ages in years, months, weeks, and days, with current periods and a visual life-in-years grid.',
-    path: '/apps/deathcalculator/',
-    unlisted: true,
   },
 } satisfies Record<string, PageMetadata>

@@ -67,6 +67,7 @@
         <span class="hidden sm:inline" aria-hidden="true">Download PDF</span>
       </UButton>
     </nav>
+    <HiringDetails centered />
   </div>
 </template>
 

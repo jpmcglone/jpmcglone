@@ -100,6 +100,7 @@
             </UButton>
           </UTooltip>
         </div>
+        <HiringDetails />
       </div>
 
       <div class="relative mx-auto w-full max-w-[440px]">

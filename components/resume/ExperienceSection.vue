@@ -10,33 +10,11 @@
         :class="currentRoles.length ? 'top-18' : 'top-16'"
       />
 
-      <!-- Current Roles -->
-      <div v-if="currentRoles.length" class="current-experience relative mb-12">
-        <h3
-          class="mb-4 flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-widest text-emerald-300"
-        >
-          <span
-            aria-hidden="true"
-            class="size-2 rounded-full bg-emerald-300 shadow-[0_0_12px_#6ee7b766]"
-          />
-          Current
-        </h3>
-        <div
-          v-for="(job, index) in currentRoles"
-          :key="job.company"
-          :class="gapBefore(job, index, currentRoles)"
-        >
-          <ResumeJobCard
-            :job="job"
-            :should-show-year="shouldShowYear(job, index, currentRoles)"
-            :is-current-role="true"
-          />
-        </div>
-      </div>
-
       <!-- Past Roles -->
       <div>
-        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Previous</h3>
+        <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+          Employment &amp; contracts
+        </h3>
         <div
           v-for="(job, index) in visiblePastRoles"
           :key="job.company"
@@ -126,6 +104,29 @@
           </div>
         </template>
       </div>
+      <!-- Independent Projects -->
+      <div v-if="currentRoles.length" class="current-experience relative mt-12">
+        <h3
+          class="mb-4 flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-widest text-emerald-300"
+        >
+          <span
+            aria-hidden="true"
+            class="size-2 rounded-full bg-emerald-300 shadow-[0_0_12px_#6ee7b766]"
+          />
+          Independent projects
+        </h3>
+        <div
+          v-for="(job, index) in currentRoles"
+          :key="job.company"
+          :class="gapBefore(job, index, currentRoles)"
+        >
+          <ResumeJobCard
+            :job="job"
+            :should-show-year="shouldShowYear(job, index, currentRoles)"
+            :is-current-role="true"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -209,7 +210,7 @@ const gapBefore = (job, index, roles) => {
   position: absolute;
   right: 1.75rem;
   top: 4.5rem;
-  bottom: -7rem;
+  bottom: 0;
   width: 1px;
   background: linear-gradient(to bottom, #6ee7b7 0%, #34d399 25%, var(--color-gray-600) 100%);
 }

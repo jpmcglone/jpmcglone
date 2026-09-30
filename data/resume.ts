@@ -30,6 +30,7 @@ export interface Experience {
   url?: string
   title: string
   period: string
+  startDate?: string
   endDate?: string
   isRemote?: boolean
   isCurrentRole?: boolean
@@ -129,9 +130,9 @@ const resumeData: ResumeData = {
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `Lead iOS and product engineer. 16 years in <strong>Swift, SwiftUI, and UIKit</strong>, owning products from architecture through the App Store, across mobile, web, and APIs. I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch as its sole developer, shipped it on iPhone, iPad, and Vision Pro, and maintained every update.
+    bio: `I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch as its sole developer, launched it on iPhone, iPad, and Vision Pro, and owned every update. I bring 16 years of iOS experience, with deep expertise in <strong>Swift, SwiftUI, and UIKit</strong>.
 
-<strong>AI lets me take on more of the product.</strong> I build <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a> across its API, web, and iOS apps with Cursor and Claude, and I still review what ships. I partner with design and mentor engineers.`,
+I own products from architecture through the App Store, partner with design, and mentor engineers. My independent projects extend that work across web and APIs, using AI-assisted development with hands-on review.`,
   },
   objective:
     "I'm looking for a remote senior or lead iOS role where I own the mobile roadmap, set technical direction with product, and mentor engineers.",
@@ -336,10 +337,11 @@ const resumeData: ResumeData = {
       url: 'https://menofhunger.com',
       title: 'Creator & Engineer',
       period: '2026 - Present',
+      startDate: '2026-01',
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
-        'Own the architecture and ship a men-only social platform across its API, web, and iOS apps, using agentic coding with hands-on review.',
+        'Started as an independent nights-and-weekends project alongside my full-time role. Own the architecture and ship across API, web, and iOS using agentic coding with hands-on review.',
         'Shipped posts, chat, video calls, and voice messages as the core product.',
         'Shipped “Catch me up,” an AI feature that summarizes long conversations from the thread, images, and public profile.',
         'Built and maintain a custom MCP server for admin insights and for scheduling posts and newsletters.',
@@ -351,6 +353,7 @@ const resumeData: ResumeData = {
       url: 'https://greenlane.dev',
       title: 'Creator & Engineer',
       period: '2026 - Present',
+      startDate: '2026-09',
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
@@ -365,6 +368,7 @@ const resumeData: ResumeData = {
       url: 'https://rumble.com',
       title: 'Lead iOS Developer (Studio) · Senior iOS Developer (Video)',
       period: '2023 - 2026',
+      startDate: '2023-05',
       endDate: '2026-09-22',
       isRemote: true,
       isCurrentRole: false,
@@ -397,6 +401,8 @@ const resumeData: ResumeData = {
       logo: '/images/logos/callin.png',
       title: 'Lead iOS Developer',
       period: '2022 - 2023',
+      startDate: '2022-01',
+      endDate: '2023-05',
       isRemote: true,
       companyStatus: {
         kind: 'acquired',
@@ -429,14 +435,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Shipped a real-time seizure detection app using CoreBluetooth for continuous health monitoring.',
         'Engineered background processing so health data kept collecting around the clock.',
-        {
-          text: 'Built alerts with custom thresholds and emergency contacts.',
-          highlighted: false,
-        },
-        {
-          text: 'Designed sync that kept critical health data from dropping when the connection failed.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -453,16 +451,8 @@ const resumeData: ResumeData = {
         note: 'Rite Aid closed all remaining stores in October 2025 after its second bankruptcy. Its brand and website were later sold to an unrelated company.',
       },
       responsibilities: [
-        'Rebuilt the mobile workflow with CI/CD across platforms.',
-        'Sped up Azure DevOps pipelines by parallelizing builds.',
-        {
-          text: 'Designed a modular white-label setup so pharmacy apps could be customized quickly.',
-          highlighted: false,
-        },
-        {
-          text: 'Mentored distributed team leads on git, code review, and technical documentation.',
-          highlighted: false,
-        },
+        'Rebuilt mobile CI/CD in Azure DevOps with parallel builds.',
+        'Designed a modular, white-label setup for pharmacy apps.',
       ],
     },
     {
@@ -481,11 +471,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Built SwiftUI charts for real-time glucose data.',
         'Shipped a BLE connection handler with automatic reconnection and background updates.',
-        'Led the migration from RxSwift to Combine, which made the code easier to maintain and faster to compile.',
-        {
-          text: 'Tightened error handling and retries so glucose data kept coming in.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -519,12 +504,7 @@ const resumeData: ResumeData = {
       },
       responsibilities: [
         'Built a SwiftUI app with MVVM and dependency injection so it could be tested.',
-        'Tightened the CircleCI pipeline so builds and releases were easier to ship.',
-        {
-          text: 'Designed a thread-safe logging system with Combine for debugging async work.',
-          highlighted: false,
-        },
-        'Wrote the Swift style guide that multiple teams adopted.',
+        'Wrote a Swift style guide adopted by multiple teams.',
       ],
     },
     {
@@ -541,14 +521,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Built a financial education game with UIKit, Core Animation, and Lottie.',
         'Migrated chat from XMPP to Matrix.org for reliability and scale.',
-        {
-          text: 'Automated JIRA workflows for sprint planning.',
-          highlighted: false,
-        },
-        {
-          text: 'Delivered mobile apps across client projects.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -561,14 +533,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Built a healthcare eligibility SDK for insurance coverage checks.',
         'Led integration calls that helped major healthcare providers adopt the SDK.',
-        {
-          text: 'Designed mock data so QA could repeat coverage checks faster.',
-          highlighted: false,
-        },
-        {
-          text: 'Built a modular architecture so clients could customize the UI without forking the core.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -586,14 +550,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Refactored the messaging SDK so other teams could integrate it with less setup.',
         'Improved messaging SDK performance and reliability.',
-        {
-          text: 'Wrote SDK examples for integration and troubleshooting.',
-          highlighted: false,
-        },
-        {
-          text: 'Designed a persistence layer that supported more than one database.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -611,14 +567,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Built a UICollectionView image grid that stayed smooth while scrolling.',
         'Built Hermes, an in-app notification framework.',
-        {
-          text: 'Added analytics and crash reporting to find and fix stability issues.',
-          highlighted: false,
-        },
-        {
-          text: 'Built reusable UI components so other teams could ship features faster.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -630,14 +578,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Shipped StoreKit subscriptions.',
         'Cut app size with dynamic content loading.',
-        {
-          text: 'Built a styling framework so teams shared one UI system.',
-          highlighted: false,
-        },
-        {
-          text: 'Designed caching for performance and offline access.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -649,14 +589,6 @@ const resumeData: ResumeData = {
       responsibilities: [
         'Won a company-wide hackathon with a drag-and-drop goal manager.',
         'Shipped SSO that met enterprise security requirements.',
-        {
-          text: 'Built localization that let the server control locales.',
-          highlighted: false,
-        },
-        {
-          text: 'Built a responsive grid for dense enterprise data.',
-          highlighted: false,
-        },
       ],
     },
     {
@@ -667,10 +599,7 @@ const resumeData: ResumeData = {
       isContract: true,
       responsibilities: [
         `Built <a href="https://www.pulsepoint.org/" target="_blank" rel="noopener noreferrer">PulsePoint</a> (originally firedepartment.mobi), a first-responder geolocation app`,
-        {
-          text: 'Developed various mobile apps and web applications for local and regional clients',
-          highlighted: false,
-        },
+        'Developed various mobile apps and web applications for local and regional clients',
       ],
     },
   ],
@@ -722,7 +651,7 @@ const resumeData: ResumeData = {
       name: 'Fandemic',
       logo: '/images/logos/fandemic.png',
       description:
-        'A sports community app bringing fans together with live scores, highlights, and real-time conversations.',
+        'Product and engineering advisor since April 2025 to the founder of a sports community app. Advisory work alongside my engineering roles.',
       status: 'Advising',
       technologies: ['Product', 'Engineering', 'Advisory'],
       url: 'https://fandemicapp.com',

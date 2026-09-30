@@ -19,6 +19,11 @@
 
         <USeparator v-if="!resumeData.objective" />
 
+        <!-- Experience -->
+        <ResumeExperienceSection v-if="resumeData.experience" :experience="resumeData.experience" />
+
+        <USeparator v-if="resumeData.experience" />
+
         <!-- Featured Projects -->
         <ResumeFeaturedProjectsSection
           v-if="resumeData.projects?.length"
@@ -26,11 +31,6 @@
         />
 
         <USeparator v-if="resumeData.projects?.length" />
-
-        <!-- Experience -->
-        <ResumeExperienceSection v-if="resumeData.experience" :experience="resumeData.experience" />
-
-        <USeparator v-if="resumeData.experience" />
 
         <!-- Technical Skills -->
         <ResumeTechnicalSkillsSection
@@ -75,11 +75,11 @@ const sections = computed(() => {
   if (resumeData.personalInfo?.bio) {
     availableSections.push({ id: 'about', label: 'About', icon: 'i-jpm-user' })
   }
-  if (resumeData.projects?.length) {
-    availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-jpm-rocket-launch' })
-  }
   if (resumeData.experience?.length) {
     availableSections.push({ id: 'experience', label: 'Experience', icon: 'i-jpm-briefcase' })
+  }
+  if (resumeData.projects?.length) {
+    availableSections.push({ id: 'projects', label: 'Projects', icon: 'i-jpm-rocket-launch' })
   }
   if (resumeData.technicalSkills?.length) {
     availableSections.push({

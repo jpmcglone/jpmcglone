@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(process.argv[2] || '.output/public')
-for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
+for (const route of ['', 'resume']) {
   const html = await readFile(resolve(root, route, 'index.html'), 'utf8')
   assert.doesNotMatch(
     html,
@@ -42,6 +42,9 @@ for (const route of ['', 'resume', 'apps/reader', 'apps/deathcalculator']) {
     await readFile(resolve(root, `.${decodeURIComponent(match[1])}`))
   }
   console.log(`${route || '/'}: metadata, indexing and asset checks passed`)
+}
+for (const gone of ['apps/reader/index.html', 'apps/deathcalculator/index.html']) {
+  await assert.rejects(readFile(resolve(root, gone)), `${gone} must not be published`)
 }
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8')
 assert.ok(!sitemap.includes('/apps/'))

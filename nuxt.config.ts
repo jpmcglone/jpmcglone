@@ -34,7 +34,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      // Unlisted tools still need static pages even though no public page links to them.
       routes: Object.values(pageMetadata).map((page) => page.path),
     },
   },

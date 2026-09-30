@@ -17,7 +17,7 @@ const doc = new PDFDocument({
     Keywords:
       'iOS, Swift, SwiftUI, UIKit, App Store, technical leadership, remote, AI, MCP, full-stack',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-09-29T00:00:00Z'),
+    ModDate: new Date('2026-09-30T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -80,14 +80,12 @@ const person = resume.personalInfo
 doc.font('Helvetica-Bold').fontSize(26).fillColor('#142337').text(person.name)
 doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
-body(`${person.location} · Open to remote roles`)
+body(`${person.location} · Open to remote senior & lead roles`)
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
 const linkedIn = resume.links.find((link) => link.name === 'LinkedIn')
 if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })
 section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))
-doc.y += 5
-body(resume.objective)
 section('Technical Skills')
 body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, iPhone, iPad, visionOS, App Store')
 body(
@@ -97,27 +95,42 @@ body('Product: full-stack APIs, real-time audio and video (LiveKit, Agora), MVVM
 body(
   'AI-assisted engineering: Cursor, ChatGPT Codex, Claude, MCP servers, agentic coding, hands-on review',
 )
-section('Experience')
-// Select relevant evidence from the same responsibilities shown on the website.
-const bulletIndices = {
-  'Men of Hunger': [0, 2, 3],
-  Greenlane: [0, 1],
-  Rumble: [0, 1, 2, 3],
-  Callin: [0, 1],
-  Supersapiens: [0],
-  'Airside Mobile': [0],
-  Eligible: [0, 1],
-}
-const firstPageRoles = 3
-resume.experience
-  .slice(0, firstPageRoles)
-  .forEach((entry) => job(entry, bulletIndices[entry.company] || [0]))
+section('Employment')
+const findJob = (company) => resume.experience.find((entry) => entry.company === company)
+job(findJob('Rumble'), [0, 1, 3])
+job(findJob('Callin'), [0, 1, 2])
+section('Independent projects')
+job(findJob('Men of Hunger'), [0, 2])
+job(findJob('Greenlane'), [0])
 doc.addPage()
 doc.font('Helvetica-Bold').fontSize(13).fillColor('#142337').text(person.name)
-section('Experience continued')
-resume.experience
-  .slice(firstPageRoles)
-  .forEach((entry) => job(entry, bulletIndices[entry.company] || []))
+section('Earlier employment & contracts')
+const earlier = resume.experience.filter(
+  (entry) => !entry.isIndependent && !['Rumble', 'Callin'].includes(entry.company),
+)
+for (const entry of earlier) {
+  const y = doc.y
+  doc
+    .font('Helvetica-Bold')
+    .fontSize(9.5)
+    .fillColor('#142337')
+    .text(`${entry.company} · ${entry.title}${entry.isContract ? ' (Contract)' : ''}`, 44, y, {
+      width: 425,
+    })
+  const nextY = doc.y
+  doc
+    .font('Helvetica')
+    .fontSize(9)
+    .fillColor('#526477')
+    .text(period(entry.period), 475, y, { width: 93, align: 'right' })
+  doc.y = nextY + 3
+  const first = entry.responsibilities[0]
+  body(typeof first === 'string' ? first : first.text, { lineGap: 0 })
+  doc.y += 7
+}
+section('Advisory')
+body('Fandemic · Product & Engineering Advisor · Apr 2025–Present')
+body('Advise the founder on product and engineering alongside my engineering roles.')
 section('Education')
 body(`${resume.education.school} · ${period(resume.education.period)}`)
 body(`${resume.education.degree} · ${resume.education.studies}`)

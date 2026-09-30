@@ -55,7 +55,7 @@ const indexData: IndexData = {
     availability: 'Open to senior & lead roles',
     headline: 'The iOS engineer who owns the whole product.',
     pitch:
-      '16 years of Swift, SwiftUI, and UIKit, from architecture to the App Store. I lead across mobile, web, and APIs, mentor engineers, and use AI to help small teams ship more.',
+      'I built Rumble Studio for iOS from scratch as its sole developer, from architecture to the App Store on iPhone, iPad, and Vision Pro. I bring 16 years of iOS experience, product ownership, and technical leadership.',
     latestWork: [
       {
         name: 'Rumble',
@@ -99,8 +99,7 @@ const indexData: IndexData = {
     ],
     featuredRecommendation: {
       author: 'James Whitney',
-      excerpt:
-        'John single-handedly built the Rumble Studio app from the ground up.',
+      excerpt: 'John single-handedly built the Rumble Studio app from the ground up.',
     },
     outsideOfTech: [
       {

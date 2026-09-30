@@ -104,8 +104,7 @@ describe('resume content', () => {
     const profile = profileSchema(pageMetadata.resume)['@graph']
     expect(home[0]?.['@id']).toBe(profile[0]?.['@id'])
     expect(profile[2]?.url).toBe('https://jpmcglone.com/resume/')
-    expect(pageMetadata.reader.unlisted).toBe(true)
-    expect(pageMetadata.ageCalculator.unlisted).toBe(true)
+    expect(Object.values(pageMetadata).map((page) => page.path)).toEqual(['/', '/resume/'])
   })
 })
 
