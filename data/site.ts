@@ -14,7 +14,8 @@ export const siteMetadata = {
   portrait: '/images/johnmcglone.webp',
   url: 'https://jpmcglone.com',
   handle: '@jpmcglone',
-  image: '/images/social-card.png',
+  // Use a new filename when refreshing the card so social crawlers fetch fresh bytes.
+  image: '/images/john-mcglone-social-2026-10.png',
   imageAlt:
     'Portrait of John P. McGlone, Lead iOS & Product Engineer. AI-assisted engineering. Open to remote roles.',
   imageWidth: 1200,

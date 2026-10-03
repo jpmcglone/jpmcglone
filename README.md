@@ -46,3 +46,16 @@ npm run deploy
 The deploy script publishes `.output/public` to the `gh-pages` branch and adds `.nojekyll`; `public/CNAME` preserves the custom domain. Pushing source to `main` alone does not deploy.
 
 Stop the development server before generating in the same checkout: both commands write to `.nuxt`. To keep development running, generate from a separate checkout or temporary source copy.
+
+## Social previews
+
+Both public pages emit their own title and description with a shared 1200 × 630 portrait
+card and `summary_large_image` metadata. The image URL lives in `data/site.ts`; use a new
+filename when refreshing it to avoid stale social image caches. Keep the old image
+available for previously cached cards. `npm run check:site` checks the generated HTML
+for unique, early sharing tags and verifies the PNG dimensions and size.
+
+After deployment, check both public URLs and the image with a `Twitterbot` user agent.
+X may retain an older page preview after deployment; a fresh query string such as
+`https://jpmcglone.com/?share=20261002` can be used to request an uncached page URL.
+The canonical URLs stay unchanged.

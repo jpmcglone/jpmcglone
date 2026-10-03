@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { siteMetadata } from '../data/site.ts'
 
 const root = resolve(process.argv[2] || '.output/public')
 for (const route of ['', 'resume']) {
@@ -18,10 +19,36 @@ for (const route of ['', 'resume']) {
     ),
   )
   assert.match(html, /<meta name="description" content="[^"]+"/)
-  assert.match(
-    html,
-    /<meta property="og:image" content="https:\/\/jpmcglone.com\/images\/social-card.png"/,
-  )
+  // Inspect the static HTML: social crawlers do not execute the app's JavaScript.
+  const head = html.slice(0, html.indexOf('</head>'))
+  const meta = (name) => {
+    const tags = [...head.matchAll(/<meta\s+[^>]*>/g)]
+      .map(([tag]) =>
+        Object.fromEntries(
+          [...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(([, key, value]) => [key, value]),
+        ),
+      )
+      .filter((tag) => tag.name === name || tag.property === name)
+    assert.equal(tags.length, 1, `${route || '/'}: exactly one ${name} tag`)
+    assert.ok(tags[0].content, `${name} must not be empty`)
+    assert.ok(head.indexOf(`"${name}"`) < 8192, `${name} must precede large inline styles`)
+    return tags[0].content
+  }
+  const imageUrl = new URL(siteMetadata.image, siteMetadata.url).href
+  assert.equal(meta('twitter:card'), 'summary_large_image')
+  assert.equal(meta('twitter:image'), imageUrl)
+  assert.equal(meta('og:image'), imageUrl)
+  assert.equal(meta('og:image:type'), 'image/png')
+  assert.equal(meta('og:image:width'), String(siteMetadata.imageWidth))
+  assert.equal(meta('og:image:height'), String(siteMetadata.imageHeight))
+  assert.equal(meta('twitter:image:alt'), meta('og:image:alt'))
+  assert.equal(meta('twitter:title'), meta('og:title'))
+  assert.equal(meta('twitter:description'), meta('og:description'))
+  const image = await readFile(resolve(root, `.${new URL(imageUrl).pathname}`))
+  assert.equal(image.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', 'Card must be a PNG')
+  assert.equal(image.readUInt32BE(16), siteMetadata.imageWidth)
+  assert.equal(image.readUInt32BE(20), siteMetadata.imageHeight)
+  assert.ok(image.length < 5_000_000, 'Card must be under 5 MB')
   assert.match(
     html,
     isPublic ? /name="robots" content="index, follow/ : /name="robots" content="noindex, nofollow/,

@@ -49,6 +49,7 @@ export function usePageMetadata(page: PageMetadata) {
             { property: 'profile:username', content: 'jpmcglone' },
           ]
         : []),
-    ],
+      // After charset, viewport, and title; before inline styles and scripts.
+    ].map((tag) => ({ ...tag, tagPriority: 15 })),
   })
 }
