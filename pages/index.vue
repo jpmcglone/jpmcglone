@@ -246,6 +246,9 @@
       class="rounded-3xl bg-gray-800/60 p-7 ring-1 ring-emerald-400/30 sm:p-10"
     >
       <ResumeQuoteMark aria-hidden="true" class="mb-5 h-[22px] w-7 text-emerald-300" />
+      <p class="mb-3 text-xs font-medium uppercase tracking-wider text-gray-400">
+        Excerpt from James Whitney’s recommendation
+      </p>
       <blockquote
         class="max-w-4xl text-xl font-medium leading-snug tracking-tight text-gray-50 sm:text-2xl"
       >
@@ -274,7 +277,7 @@
           to="/resume/#recommendations"
           class="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-link"
         >
-          All {{ recommendationCount }} recommendations
+          Read the full recommendation
           <UIcon name="i-jpm-arrow-right" class="size-3.5" />
         </NuxtLink>
       </figcaption>
@@ -292,12 +295,10 @@
           Hiring? Let’s talk.
         </h2>
         <p class="mt-2 max-w-2xl text-[17px] text-gray-300">
-          I’m seeking a remote, full-time W-2 Staff or Lead mobile engineering role. I’m also open
-          to hands-on Head of Mobile roles at smaller companies.
+          {{ hiringPreferences.fullTime }}
         </p>
         <p class="mt-3 max-w-2xl text-sm leading-relaxed text-gray-400">
-          Need help with a product? I take on select contract projects: app launches, architecture
-          reviews, and improvements to existing products across iOS, web, and APIs.
+          {{ hiringPreferences.contracts }}
         </p>
       </div>
       <div class="flex flex-wrap gap-3">
@@ -354,6 +355,7 @@
 <script setup>
 import indexData from '~/data/index'
 import resumeData from '~/data/resume'
+import { hiringPreferences } from '~/data/site'
 
 definePageMeta({ colorMode: 'dark' })
 usePageMetadata(indexData.meta)
@@ -387,7 +389,6 @@ const previouslyAt = personalInfo.previouslyAt.map((entry) => ({
 const recommendation = resumeData.recommendations.items.find(
   (item) => item.author === personalInfo.featuredRecommendation.author,
 )
-const recommendationCount = resumeData.recommendations.items.length
 
 const motionPreference = usePreferredReducedMotion()
 function scrollToSection(id) {

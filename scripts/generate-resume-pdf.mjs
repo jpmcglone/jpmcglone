@@ -3,6 +3,7 @@ import { mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import PDFDocument from 'pdfkit'
 import resume from '../data/resume.ts'
+import { hiringPreferences } from '../data/site.ts'
 
 const output = fileURLToPath(new URL('../public/resume.pdf', import.meta.url))
 await mkdir(fileURLToPath(new URL('../public', import.meta.url)), { recursive: true })
@@ -15,7 +16,7 @@ const doc = new PDFDocument({
     Author: resume.personalInfo.name,
     Subject: resume.personalInfo.title,
     Keywords:
-      'Staff Mobile Engineer, Lead Mobile Engineer, Head of Mobile, iOS, Swift, SwiftUI, UIKit, technical leadership, remote, W-2',
+      'Staff Mobile Engineer, Lead Mobile Engineer, Head of Mobile, iOS, Swift, SwiftUI, UIKit, technical leadership, remote',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
     ModDate: new Date('2026-10-03T00:00:00Z'),
   },
@@ -43,7 +44,7 @@ const section = (title) => {
     .lineWidth(0.5)
     .strokeColor('#cbd5e1')
     .stroke()
-  doc.y += 13
+  doc.y += 9
 }
 const period = (value) => {
   const [start, end] = value.split(' - ')
@@ -80,8 +81,8 @@ const person = resume.personalInfo
 doc.font('Helvetica-Bold').fontSize(26).fillColor('#142337').text(person.name)
 doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
-body(`${person.location} · Remote · Full-time W-2`)
-body('Target: Staff / Lead Mobile Engineer; also Head of Mobile at smaller companies')
+body(`${person.location} · Remote · Full-time`)
+body(hiringPreferences.fullTime)
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
 const linkedIn = resume.links.find((link) => link.name === 'LinkedIn')
 if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })

@@ -14,7 +14,7 @@ export function recruiterShareUrl(recruiter: ShareAudience | null, path = '/resu
 export function hiringNote(recruiter: ShareAudience | null) {
   const intro = recruiter ? `For the ${recruiter.name} team.\n\n` : ''
   return `${intro}JP McGlone, Lead iOS & Product Engineer
-16 years in iOS, with deep Swift, SwiftUI, and UIKit expertise. Built Rumble Studio from scratch and owns products from architecture through launch. Seeking remote, full-time W-2 Staff/Lead mobile roles; also open to hands-on Head of Mobile roles at smaller companies. Available for select contract projects.
+16 years in iOS, with deep Swift, SwiftUI, and UIKit expertise. Built Rumble Studio from scratch and owns products from architecture through launch. Seeking remote, full-time Staff/Lead mobile roles; also open to hands-on Head of Mobile roles at smaller companies. Available for select contract projects.
 
 ${recruiterShareUrl(recruiter)}`
 }

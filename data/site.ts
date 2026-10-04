@@ -26,7 +26,11 @@ export const siteMetadata = {
 export const hiringPreferences = {
   workAuthorization: 'Authorized to work in the U.S.',
   location: 'Remote · Eastern time',
-  availability: 'Full-time W-2 · Select contract projects',
+  availability: 'Full-time · Select contract projects',
+  fullTime:
+    "I'm seeking a remote, full-time Staff or Lead mobile engineering role. I'm also open to hands-on Head of Mobile roles at smaller companies.",
+  contracts:
+    'I take on select contract projects: app launches, architecture reviews, and improvements to existing products across iOS, web, and APIs.',
 }
 
 export const pageMetadata = {
@@ -40,7 +44,7 @@ export const pageMetadata = {
   resume: {
     title: 'Résumé, John P. McGlone | Lead iOS & Product Engineer',
     description:
-      'John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote, W-2.',
+      'John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote.',
     path: '/resume/',
     type: 'profile',
   },

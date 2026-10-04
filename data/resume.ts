@@ -1,4 +1,4 @@
-import { pageMetadata, siteMetadata, type PageMetadata } from './site.ts'
+import { hiringPreferences, pageMetadata, siteMetadata, type PageMetadata } from './site.ts'
 
 export interface Skill {
   name: string
@@ -134,8 +134,9 @@ const resumeData: ResumeData = {
 
 I set technical direction, own delivery from architecture through the App Store, partner with product and design, and mentor engineers. My independent projects extend that ownership across web and APIs, using AI-assisted development with hands-on review.`,
   },
-  objective:
-    "I'm seeking a remote, full-time W-2 Staff or Lead mobile engineering role focused on iOS architecture, product delivery, and mentoring. I'm also open to hands-on Head of Mobile roles at smaller companies, with ownership of mobile strategy and delivery.\n\nFor contracts, I take on select app launches, architecture reviews, and product improvements across iOS, web, and APIs.",
+  objective: `${hiringPreferences.fullTime}
+
+${hiringPreferences.contracts}`,
   technicalSkills: [
     {
       category: 'iOS Frameworks',
