@@ -6,7 +6,7 @@ export default {
     "username": "@jpmcglone",
     "title": "Lead iOS & Product Engineer",
     "avatar": "/images/johnmcglone.webp",
-    "description": "I build products, mentor engineers, and help small teams ship with AI.",
+    "description": "I own mobile architecture and delivery, mentor engineers, and ship products. Seeking remote W-2 Staff/Lead mobile roles; also open to hands-on Head of Mobile roles at smaller companies and select contracts.",
     "tags": [
       {
         "label": "Husband",
@@ -39,7 +39,7 @@ export default {
   },
   "meta": {
     "title": "John P. McGlone — Lead iOS & Product Engineer",
-    "description": "John P. McGlone is a lead iOS and product engineer in Roanoke, VA, seeking remote work. 16+ years shipping products, full-stack architecture, and AI-assisted delivery.",
+    "description": "John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote, W-2.",
     "path": "/",
     "type": "profile"
   }
