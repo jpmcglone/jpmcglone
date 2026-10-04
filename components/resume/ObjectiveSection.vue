@@ -1,8 +1,13 @@
 <template>
   <div class="objective-section scroll-mt-6 py-8">
     <ResumeSectionHeading icon="i-jpm-flag" title="What I'm looking for" />
-    <p class="text-gray-200 leading-relaxed text-lg">
-      {{ objective }}
+    <p
+      v-for="(paragraph, index) in objective.split('\n\n')"
+      :key="index"
+      class="leading-relaxed"
+      :class="index === 0 ? 'text-lg text-gray-200' : 'mt-4 text-base text-gray-400'"
+    >
+      {{ paragraph }}
     </p>
   </div>
 </template>

@@ -184,6 +184,8 @@
       </span>
     </section>
 
+    <DeviceShowcase />
+
     <section
       v-if="buildingNow.length"
       id="building"
@@ -236,8 +238,6 @@
         </a>
       </div>
     </section>
-
-    <DeviceShowcase class="border-t border-gray-800" />
 
     <CareerTimeline />
 
