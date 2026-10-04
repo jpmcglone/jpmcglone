@@ -6,7 +6,7 @@ export default {
     "username": "@jpmcglone",
     "title": "Lead iOS & Product Engineer",
     "avatar": "/images/johnmcglone.webp",
-    "description": "I own mobile architecture and delivery, mentor engineers, and ship products. Seeking remote W-2 Staff/Lead mobile roles; also open to hands-on Head of Mobile roles at smaller companies and select contracts.",
+    "description": "I own mobile architecture and delivery, mentor engineers, and ship products. Seeking remote, full-time Staff/Lead mobile roles; also open to hands-on Head of Mobile roles at smaller companies and select contracts.",
     "tags": [
       {
         "label": "Husband",
@@ -39,7 +39,7 @@ export default {
   },
   "meta": {
     "title": "John P. McGlone — Lead iOS & Product Engineer",
-    "description": "John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote, W-2.",
+    "description": "John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote, full-time.",
     "path": "/",
     "type": "profile"
   }
