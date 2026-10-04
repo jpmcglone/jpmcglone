@@ -15,9 +15,9 @@ const doc = new PDFDocument({
     Author: resume.personalInfo.name,
     Subject: resume.personalInfo.title,
     Keywords:
-      'iOS, Swift, SwiftUI, UIKit, App Store, technical leadership, remote, AI, MCP, full-stack',
+      'Staff Mobile Engineer, Lead Mobile Engineer, Head of Mobile, iOS, Swift, SwiftUI, UIKit, technical leadership, remote, W-2',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-09-30T00:00:00Z'),
+    ModDate: new Date('2026-10-03T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -31,7 +31,7 @@ const body = (text, options = {}) =>
     .fillColor('#263447')
     .text(plain(text), 44, doc.y, { width, lineGap: 2, ...options })
 const section = (title) => {
-  doc.moveDown(0.6)
+  doc.moveDown(0.35)
   doc
     .font('Helvetica-Bold')
     .fontSize(10)
@@ -80,7 +80,8 @@ const person = resume.personalInfo
 doc.font('Helvetica-Bold').fontSize(26).fillColor('#142337').text(person.name)
 doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
-body(`${person.location} · Open to remote senior & lead roles`)
+body(`${person.location} · Remote · Full-time W-2`)
+body('Target: Staff / Lead Mobile Engineer; also Head of Mobile at smaller companies')
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
 const linkedIn = resume.links.find((link) => link.name === 'LinkedIn')
 if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })

@@ -132,10 +132,10 @@ const resumeData: ResumeData = {
     image: siteMetadata.portrait,
     bio: `I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch as its sole developer, launched it on iPhone, iPad, and Vision Pro, and owned every update. I bring 16 years of iOS experience, with deep expertise in <strong>Swift, SwiftUI, and UIKit</strong>.
 
-I own products from architecture through the App Store, partner with design, and mentor engineers. My independent projects extend that work across web and APIs, using AI-assisted development with hands-on review.`,
+I set technical direction, own delivery from architecture through the App Store, partner with product and design, and mentor engineers. My independent projects extend that ownership across web and APIs, using AI-assisted development with hands-on review.`,
   },
   objective:
-    "I'm looking for a remote senior or lead iOS role where I own the mobile roadmap, set technical direction with product, and mentor engineers.",
+    "I'm seeking a remote, full-time W-2 Staff or Lead mobile engineering role focused on iOS architecture, product delivery, and mentoring. I'm also open to hands-on Head of Mobile roles at smaller companies, with ownership of mobile strategy and delivery. For contracts, I take on select app launches, architecture reviews, and product improvements across iOS, web, and APIs.",
   technicalSkills: [
     {
       category: 'AI & Agentic Development',

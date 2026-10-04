@@ -6,9 +6,9 @@ export default {
     "workPreference": "Remote",
     "phone": "(631) 943-6889",
     "image": "/images/johnmcglone.webp",
-    "bio": "I'm a product engineer with deep expertise in <strong>iOS, Swift, SwiftUI, and UIKit</strong>. I take ownership from architecture through production, across mobile, web, and APIs. I built <a href=\"https://studio.rumble.com\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> for iOS from scratch through launch as its sole developer, then maintained every update.\n\n<strong>AI expands what I can deliver.</strong> I build <a href=\"https://menofhunger.com\" target=\"_blank\" rel=\"noopener noreferrer\">Men of Hunger</a> across its API, web, and iOS apps using agentic coding, architectural judgment, and hands-on review. I work closely with design, mentor engineers, and take responsibility for what ships."
+    "bio": "I built <a href=\"https://apps.apple.com/us/app/rumble-studio/id6472735205\" target=\"_blank\" rel=\"noopener noreferrer\">Rumble Studio</a> for iOS from scratch as its sole developer, launched it on iPhone, iPad, and Vision Pro, and owned every update. I bring 16 years of iOS experience, with deep expertise in <strong>Swift, SwiftUI, and UIKit</strong>.\n\nI set technical direction, own delivery from architecture through the App Store, partner with product and design, and mentor engineers. My independent projects extend that ownership across web and APIs, using AI-assisted development with hands-on review."
   },
-  objective: "I'm looking for a remote senior or lead role owning the engineering of a product and helping a lean team ship quickly and reliably. I'm open to technical leadership and people management.",
+  objective: "I'm seeking a remote, full-time W-2 Staff or Lead mobile engineering role focused on iOS architecture, product delivery, and mentoring. I'm also open to hands-on Head of Mobile roles at smaller companies, with ownership of mobile strategy and delivery. For contracts, I take on select app launches, architecture reviews, and product improvements across iOS, web, and APIs.",
   technicalSkills: [
     {
       "category": "AI & Agentic Development",

@@ -52,7 +52,7 @@ const indexData: IndexData = {
     title: siteMetadata.role,
     avatar: siteMetadata.portrait,
     portrait: '/images/johnmcglone-portrait.webp',
-    availability: 'Open to senior & lead roles',
+    availability: 'Seeking Staff / Lead mobile roles',
     headline: 'The iOS engineer who owns the whole product.',
     pitch:
       'I built Rumble Studio for iOS from scratch as its sole developer, from architecture to the App Store on iPhone, iPad, and Vision Pro. I bring 16 years of iOS experience, product ownership, and technical leadership.',

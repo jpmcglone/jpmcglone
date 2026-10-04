@@ -45,9 +45,9 @@ describe('skill search', () => {
     expect(
       commandMatchesQuery({ label: 'Copy page link', keywords: ['url', 'share'] }, 'nku'),
     ).toBe(false)
-    expect(commandMatchesQuery({ label: 'Education', keywords: ['college', 'school'] }, 'nku')).toBe(
-      false,
-    )
+    expect(
+      commandMatchesQuery({ label: 'Education', keywords: ['college', 'school'] }, 'nku'),
+    ).toBe(false)
   })
   it('lights up the work a skill actually touched', () => {
     const swift = connectionsForSkill('SwiftUI')

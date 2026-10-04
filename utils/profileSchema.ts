@@ -16,7 +16,7 @@ export function profileSchema(page: PageMetadata) {
         url: `${siteMetadata.url}/`,
         image: new URL('/images/johnmcglone-portrait.webp', siteMetadata.url).href,
         description:
-          'Lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Built Rumble Studio solo and builds Men of Hunger and Greenlane.',
+          'Lead iOS and product engineer with 16 years in iOS. Built Rumble Studio solo. Seeking Staff/Lead mobile roles or hands-on Head of Mobile roles at smaller companies.',
         homeLocation: {
           '@type': 'Place',
           address: {

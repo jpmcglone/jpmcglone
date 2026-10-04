@@ -22,25 +22,25 @@ export const siteMetadata = {
   imageHeight: 630,
 }
 
-// Confirmed by John on September 30, 2026; shared by both public profile pages.
+// Career direction confirmed by John on October 3, 2026; shared by both public pages.
 export const hiringPreferences = {
   workAuthorization: 'Authorized to work in the U.S.',
   location: 'Remote · Eastern time',
-  availability: 'Full-time preferred · Open to contracts',
+  availability: 'Full-time W-2 · Select contract projects',
 }
 
 export const pageMetadata = {
   home: {
     title: 'John P. McGlone (JP McGlone), Lead iOS & Product Engineer',
     description:
-      'JP McGlone (John McGlone) is a lead iOS and product engineer with 16+ years of Swift, SwiftUI, and UIKit. Open to senior and lead remote roles.',
+      'JP McGlone: 16 years in iOS, from architecture to the App Store. Seeking remote Staff/Lead mobile roles; also open to Head of Mobile at smaller companies.',
     path: '/',
     type: 'profile',
   },
   resume: {
     title: 'Résumé, John P. McGlone | Lead iOS & Product Engineer',
     description:
-      'Résumé of John P. McGlone, lead iOS engineer: Swift, SwiftUI, and UIKit, from Rumble Studio on the App Store to Men of Hunger. Open to remote senior and lead roles.',
+      'John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote, W-2.',
     path: '/resume/',
     type: 'profile',
   },

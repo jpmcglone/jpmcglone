@@ -60,7 +60,11 @@
         @pointermove="onPointerMove"
         @pointerleave="resetTilt"
       >
-        <div aria-hidden="true" class="stage-glow pointer-events-none absolute" :class="`glow-${device}`" />
+        <div
+          aria-hidden="true"
+          class="stage-glow pointer-events-none absolute"
+          :class="`glow-${device}`"
+        />
         <AnimatePresence mode="wait">
           <motion.div
             :key="device"

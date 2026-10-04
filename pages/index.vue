@@ -291,8 +291,13 @@
         >
           Hiring? Let’s talk.
         </h2>
-        <p class="mt-2 text-[17px] text-gray-300">
-          I’m open to senior and lead remote roles owning the engineering of a product.
+        <p class="mt-2 max-w-2xl text-[17px] text-gray-300">
+          I’m seeking a remote, full-time W-2 Staff or Lead mobile engineering role. I’m also open
+          to hands-on Head of Mobile roles at smaller companies.
+        </p>
+        <p class="mt-3 max-w-2xl text-sm leading-relaxed text-gray-400">
+          Need help with a product? I take on select contract projects: app launches, architecture
+          reviews, and improvements to existing products across iOS, web, and APIs.
         </p>
       </div>
       <div class="flex flex-wrap gap-3">
