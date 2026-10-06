@@ -3,7 +3,6 @@ import { mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import PDFDocument from 'pdfkit'
 import resume from '../data/resume.ts'
-import { hiringPreferences } from '../data/site.ts'
 
 const output = fileURLToPath(new URL('../public/resume.pdf', import.meta.url))
 await mkdir(fileURLToPath(new URL('../public', import.meta.url)), { recursive: true })
@@ -16,9 +15,9 @@ const doc = new PDFDocument({
     Author: resume.personalInfo.name,
     Subject: resume.personalInfo.title,
     Keywords:
-      'Staff Mobile Engineer, Lead Mobile Engineer, Head of Mobile, iOS, Swift, SwiftUI, UIKit, technical leadership, remote',
+      'Full-Stack Product Engineer, TypeScript, Vue.js, Nuxt, real-time media, LiveKit, API design, iOS, remote',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
-    ModDate: new Date('2026-10-03T00:00:00Z'),
+    ModDate: new Date('2026-10-05T00:00:00Z'),
   },
 })
 const stream = createWriteStream(output)
@@ -82,18 +81,18 @@ doc.font('Helvetica-Bold').fontSize(26).fillColor('#142337').text(person.name)
 doc.font('Helvetica').fontSize(12).fillColor('#176376').text(person.title)
 doc.y += 9
 body(`${person.location} · Remote · Full-time`)
-body(hiringPreferences.fullTime)
+body(resume.objective.split('\n\n')[0])
 body('jpmcglone.com/resume', { link: 'https://jpmcglone.com/resume/' })
 const linkedIn = resume.links.find((link) => link.name === 'LinkedIn')
 if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })
 section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))
 section('Technical Skills')
-body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, iPhone, iPad, visionOS, App Store')
+body('Full stack: TypeScript, JavaScript, Vue.js, Nuxt, PostgreSQL, API design')
 body(
   'Leadership: system architecture, technical direction, mentoring, code review, CI/CD, SDK and API design',
 )
-body('Product: full-stack APIs, real-time audio and video (LiveKit, Agora), MVVM, XCTest')
+body('Media & iOS: LiveKit, Agora, Swift, SwiftUI, UIKit, Swift concurrency, XCTest')
 body(
   'AI-assisted engineering: Cursor, ChatGPT Codex, Claude, MCP servers, agentic coding, hands-on review',
 )
@@ -103,9 +102,10 @@ job(findJob('Rumble'), [0, 1, 3])
 job(findJob('Callin'), [0, 1, 2])
 section('Independent projects')
 job(findJob('Men of Hunger'), [0, 2])
-job(findJob('Greenlane'), [0])
 doc.addPage()
 doc.font('Helvetica-Bold').fontSize(13).fillColor('#142337').text(person.name)
+section('Additional independent work')
+job(findJob('Greenlane'), [0])
 section('Earlier employment & contracts')
 const earlier = resume.experience.filter(
   (entry) => !entry.isIndependent && !['Rumble', 'Callin'].includes(entry.company),

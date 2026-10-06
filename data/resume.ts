@@ -125,16 +125,18 @@ const resumeData: ResumeData = {
   seo: pageMetadata.resume,
   personalInfo: {
     name: 'John P. McGlone',
-    title: siteMetadata.role,
+    title: 'Full-Stack Product Engineer · Real-Time Media',
     location: siteMetadata.location,
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I built <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a> for iOS from scratch as its sole developer, launched it on iPhone, iPad, and Vision Pro, and owned every update. I bring 16 years of iOS experience, with deep expertise in <strong>Swift, SwiftUI, and UIKit</strong>.
+    bio: `I’m a full-stack product engineer with 16 years of experience and a background in <strong>real-time audio and video</strong>. I partner with product and design to take products from architecture through launch.
 
-I set technical direction, own delivery from architecture through the App Store, partner with product and design, and mentor engineers. My independent projects extend that ownership across web and APIs, using AI-assisted development with hands-on review.`,
+As the sole iOS developer for <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a>, I built and launched the app on iPhone, iPad, and Vision Pro, integrated LiveKit for live audio/video and multi-platform streaming, and owned every update.
+
+I created and shipped <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a full-stack community product with a <strong>TypeScript, Vue.js, and Nuxt</strong> web app. I own web, API, and iOS delivery, including chat, video calls, voice messages, and AI conversation summaries.`,
   },
-  objective: `${hiringPreferences.fullTime}
+  objective: `I'm seeking a remote, full-time Senior or Staff product engineering role, building across the stack with a focus on media, creative tools, and AI-powered experiences.
 
 ${hiringPreferences.contracts}`,
   technicalSkills: [
@@ -342,7 +344,7 @@ ${hiringPreferences.contracts}`,
       isCurrentRole: true,
       isIndependent: true,
       responsibilities: [
-        'Started as an independent nights-and-weekends project alongside my full-time role. Own the architecture and ship across API, web, and iOS using agentic coding with hands-on review.',
+        'Created and shipped a full-stack community product with a TypeScript, Vue.js, and Nuxt web app. Own architecture and delivery across web, API, and iOS, using AI-assisted development with hands-on review.',
         'Shipped posts, chat, video calls, and voice messages as the core product.',
         'Shipped “Catch me up,” an AI feature that summarizes long conversations from the thread, images, and public profile.',
         'Built and maintain a custom MCP server for admin insights and for scheduling posts and newsletters.',

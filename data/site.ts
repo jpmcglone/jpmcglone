@@ -42,9 +42,9 @@ export const pageMetadata = {
     type: 'profile',
   },
   resume: {
-    title: 'Résumé, John P. McGlone | Lead iOS & Product Engineer',
+    title: 'Résumé, John P. McGlone | Full-Stack Product Engineer',
     description:
-      'John P. McGlone: iOS architecture, product ownership, and technical leadership. Seeking Staff/Lead mobile or smaller-company Head of Mobile roles. Remote.',
+      'John P. McGlone: full-stack product engineering, real-time audio and video, and shipped TypeScript products. Rumble Studio and Men of Hunger. Remote.',
     path: '/resume/',
     type: 'profile',
   },
