@@ -125,18 +125,18 @@ const resumeData: ResumeData = {
   seo: pageMetadata.resume,
   personalInfo: {
     name: 'John P. McGlone',
-    title: 'Full-Stack Product Engineer · Real-Time Media',
+    title: siteMetadata.role,
     location: siteMetadata.location,
     workPreference: siteMetadata.workPreference,
     phone: '(631) 943-6889',
     image: siteMetadata.portrait,
-    bio: `I’m a full-stack product engineer with 16 years of experience and a background in <strong>real-time audio and video</strong>. I partner with product and design to take products from architecture through launch.
+    bio: `I’m an iOS developer with <strong>16 years of experience</strong> and deep expertise in <strong>Swift, SwiftUI, and UIKit</strong>. I set technical direction, partner with product and design, and own delivery from architecture through the App Store.
 
 As the sole iOS developer for <a href="https://apps.apple.com/us/app/rumble-studio/id6472735205" target="_blank" rel="noopener noreferrer">Rumble Studio</a>, I built and launched the app on iPhone, iPad, and Vision Pro, integrated LiveKit for live audio/video and multi-platform streaming, and owned every update.
 
-I created and shipped <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, a full-stack community product with a <strong>TypeScript, Vue.js, and Nuxt</strong> web app. I own web, API, and iOS delivery, including chat, video calls, voice messages, and AI conversation summaries.`,
+My independent work extends across web and APIs. I created and shipped <a href="https://menofhunger.com" target="_blank" rel="noopener noreferrer">Men of Hunger</a>, owning its iOS app, API, and <strong>TypeScript, Vue.js, and Nuxt</strong> web app, with chat, video calls, voice messages, and AI conversation summaries.`,
   },
-  objective: `I'm seeking a remote, full-time Senior or Staff product engineering role, building across the stack with a focus on media, creative tools, and AI-powered experiences.
+  objective: `I'm seeking a remote, full-time Senior, Staff, or Lead engineering role where I can bring deep iOS experience and hands-on product ownership. I'm also open to roles that span web and APIs.
 
 ${hiringPreferences.contracts}`,
   technicalSkills: [

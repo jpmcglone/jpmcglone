@@ -15,7 +15,7 @@ const doc = new PDFDocument({
     Author: resume.personalInfo.name,
     Subject: resume.personalInfo.title,
     Keywords:
-      'Full-Stack Product Engineer, TypeScript, Vue.js, Nuxt, real-time media, LiveKit, API design, iOS, remote',
+      'Lead iOS Engineer, Product Engineer, Swift, SwiftUI, UIKit, real-time media, LiveKit, TypeScript, Vue.js, Nuxt, API design, remote',
     CreationDate: new Date('2026-09-23T00:00:00Z'),
     ModDate: new Date('2026-10-05T00:00:00Z'),
   },
@@ -88,11 +88,11 @@ if (linkedIn) body('Contact me on LinkedIn', { link: linkedIn.url })
 section('Profile')
 body(plain(person.bio).replace(/\n\n/g, ' '))
 section('Technical Skills')
-body('Full stack: TypeScript, JavaScript, Vue.js, Nuxt, PostgreSQL, API design')
+body('iOS: Swift, SwiftUI, UIKit, Swift concurrency, iPhone, iPad, visionOS, XCTest, App Store')
 body(
   'Leadership: system architecture, technical direction, mentoring, code review, CI/CD, SDK and API design',
 )
-body('Media & iOS: LiveKit, Agora, Swift, SwiftUI, UIKit, Swift concurrency, XCTest')
+body('Web & media: TypeScript, JavaScript, Vue.js, Nuxt, PostgreSQL, LiveKit, Agora')
 body(
   'AI-assisted engineering: Cursor, ChatGPT Codex, Claude, MCP servers, agentic coding, hands-on review',
 )
